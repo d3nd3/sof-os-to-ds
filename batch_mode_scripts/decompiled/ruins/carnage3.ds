@@ -1,0 +1,74 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity mit
+local entity sg
+local entity mat
+local int a
+
+mit = find entity with targetname "mit"
+sg = find entity with targetname "sg"
+mat = find entity with targetname "mat"
+use entity mit
+use entity sg
+use entity mat
+mit.health += 40
+sg.health += 40
+mat.health += 80
+a = 0
+label lab_00004
+a += 1
+jo = get entity activator
+animate entity mit performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity sg performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget CHEST
+animate entity mat performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+if mit.health < 0
+if sg.health < 0
+if mat.health < 0
+goto lab_00002
+endif
+if a == 5
+suspend
+jo = get entity activator
+animate entity mit performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity sg performing action STD_XROLL_RT_A_A
+animate entity mat performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+wait 0.800 seconds
+suspend
+jo = get entity activator
+sg.health += 90
+animate entity sg performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
+endif
+suspend
+goto lab_00004
+label lab_00002
+animate entity mit performing action SCRIPT_RELEASE
+animate entity sg performing action SCRIPT_RELEASE
+animate entity mat performing action SCRIPT_RELEASE
+exit

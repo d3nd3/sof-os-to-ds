@@ -1,0 +1,92 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity adoor
+local entity ade
+local entity bde
+local entity cde
+local entity dde
+local entity ede
+local entity fde
+local entity gde
+local entity atrn
+local entity btrn
+local entity ctrn
+local entity aswat
+local entity bswat
+
+atrn = find entity with targetname "atrn"
+btrn = find entity with targetname "btrn"
+ctrn = find entity with targetname "ctrn"
+adoor = find entity with targetname "adoor"
+ade = find entity with targetname "ade"
+bde = find entity with targetname "bde"
+cde = find entity with targetname "cde"
+dde = find entity with targetname "dde"
+ede = find entity with targetname "ede"
+fde = find entity with targetname "fde"
+gde = find entity with targetname "gde"
+aswat = find entity with targetname "aswat"
+bswat = find entity with targetname "bswat"
+use entity ade
+use entity bde
+use entity cde
+use entity dde
+use entity ede
+use entity fde
+use entity gde
+wait 1.400 seconds
+use entity adoor
+use entity aswat
+animate entity bswat performing action STD_XDONTSHOOT_N_A_N
+wait 0.400 seconds
+animate entity aswat performing action LB_XLEANUPSHOOT_N_P_N
+wait 0.700 seconds
+animate entity cde performing action STD_F_FWD_P_CB targeting entity bswat kill nulltarget HEAD
+animate entity ade performing action RUN by moving [-400.000 ,0.000 ,0.000]
+animate entity cde performing action RUN by moving [150.000 ,0.000 ,0.000]
+wait 2.500 seconds
+animate entity cde performing action RUN by moving [0.000 ,-10.000 ,0.000]
+animate entity dde performing action RUN by moving [350.000 ,0.000 ,0.000]
+animate entity dde performing action WALK by moving [-20.000 ,0.000 ,0.000]
+wait 0.500 seconds
+animate entity dde performing action RUN by moving [0.000 ,-3.000 ,0.000]
+animate entity ade performing action SCRIPT_RELEASE
+animate entity bde performing action SCRIPT_RELEASE
+animate entity cde performing action SCRIPT_RELEASE
+animate entity dde performing action SCRIPT_RELEASE
+animate entity ede performing action SCRIPT_RELEASE
+animate entity fde performing action SCRIPT_RELEASE
+wait 4 seconds
+animate entity gde performing action WALK by moving [0.000 ,280.000 ,0.000]
+wait 1.200 seconds
+animate entity gde performing action SCRIPT_RELEASE
+remove entity atrn
+remove entity btrn
+remove entity ctrn
+exit

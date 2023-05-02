@@ -1,0 +1,99 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity bthgrd1
+local entity bthhelp
+local entity boothdr
+local entity bthexp1
+local entity bthexp2
+local entity bthexp3
+local entity bthglas
+local entity bthrl1
+local entity bthrl2
+local entity bthrl3
+local entity bthfire1
+local entity bthfire2
+local entity bthfire3
+local entity bthwal1
+local entity bthwal1a
+local entity bthwal2
+local entity bthwal2a
+local entity bthwal3
+local entity bthwal3a
+local int sig1
+
+bthgrd1 = find entity with targetname "bthgrd1"
+bthhelp = find entity with targetname "bthhelp"
+boothdr = find entity with targetname "boothdr"
+bthexp1 = find entity with targetname "bthexp1"
+bthexp2 = find entity with targetname "bthexp2"
+bthexp3 = find entity with targetname "bthexp3"
+bthglas = find entity with targetname "bthglas"
+bthrl1 = find entity with targetname "bthrl1"
+bthrl2 = find entity with targetname "bthrl2"
+bthrl3 = find entity with targetname "bthrl3"
+bthfire1 = find entity with targetname "bthfire1"
+bthfire2 = find entity with targetname "bthfire2"
+bthfire3 = find entity with targetname "bthfire3"
+bthwal1 = find entity with targetname "bthwal1"
+bthwal1a = find entity with targetname "bthwal1a"
+bthwal2 = find entity with targetname "bthwal2"
+bthwal2a = find entity with targetname "bthwal2a"
+bthwal3 = find entity with targetname "bthwal3"
+bthwal3a = find entity with targetname "bthwal3a"
+animate entity bthgrd1 performing action STD_EPOUNDDOOR_N_A_N holding for 3.600
+animate entity bthhelp performing action STD_R_N_PK_N by moving [-196.000 ,0.000 ,0.000]
+animate entity bthhelp performing action STD_XALARMPUSH_N_A_N
+animate entity bthhelp performing action STD_XAFRAIDSHAKE_N_N_N
+wait 2.700 seconds
+use entity boothdr
+animate entity bthgrd1 performing action STD_WNORMAL_N_PK_A by moving [170.000 ,0.000 ,0.000]
+animate entity bthgrd1 performing action STD_WNORMAL_N_PK_A by moving [0.000 ,-32.000 ,0.000]
+animate entity bthgrd1 performing action STD_SBLOWN_2BK_N_N
+wait 4.800 seconds
+use entity bthexp1
+use entity bthwal1
+use entity bthwal1a
+use entity bthfire1
+use entity bthrl1
+wait 0.150 seconds
+use entity bthexp2
+use entity bthwal2
+use entity bthwal2a
+use entity bthfire2
+use entity bthrl2
+use entity bthglas
+wait 0.300 seconds
+use entity bthexp3
+use entity bthwal3
+use entity bthwal3a
+use entity bthfire3
+use entity bthrl3
+wait 3 seconds
+animate entity bthgrd1 performing action SCRIPT_RELEASE
+exit

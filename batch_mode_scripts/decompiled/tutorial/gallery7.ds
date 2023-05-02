@@ -1,0 +1,102 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity badguy5
+local entity badguy5head
+local entity badguy5legs
+local entity badguy5arms
+local entity gallery7semidoor1
+local entity gallery7semidoor2
+local entity gallery7null
+local int badguy5health
+local int badguy5headhealth
+local int badguy5legshealth
+local int badguy5armshealth
+local int b1
+local int b2
+local int b3
+local int b4
+local int btotal
+global int target7
+
+badguy5 = find entity with targetname "badguy5"
+badguy5head = find entity with targetname "badguy5head"
+badguy5legs = find entity with targetname "badguy5legs"
+badguy5arms = find entity with targetname "badguy5arms"
+gallery7semidoor1 = find entity with targetname "gallery7semidoor1"
+gallery7semidoor2 = find entity with targetname "gallery7semidoor2"
+gallery7null = find entity with targetname "gallery7null"
+target7 = 0
+wait 1.700 seconds
+use entity gallery7semidoor1
+use entity gallery7semidoor2
+wait 0.800 seconds
+label lab_00007
+on target7 == 1 goto lab_00001
+badguy5.movetype = MOVETYPE_PUSH
+badguy5head.movetype = MOVETYPE_PUSH
+badguy5legs.movetype = MOVETYPE_PUSH
+badguy5arms.movetype = MOVETYPE_PUSH
+rotate entity badguy5 by [0.300 ,0.000 ,0.000] over 0.300 seconds
+rotate entity badguy5head by [0.300 ,0.000 ,0.000] over 0.300 seconds
+rotate entity badguy5legs by [0.300 ,0.000 ,0.000] over 0.300 seconds
+rotate entity badguy5arms by [0.300 ,0.000 ,0.000] over 0.300 seconds
+play sound "Cin/Tut/Script/target.wav" for entity gallery7null on channel CHAN_AUTO at volume 0.900
+wait 3.800 seconds
+rotate entity badguy5 by [0.300 ,0.000 ,0.000] over 0.300 seconds
+rotate entity badguy5head by [0.300 ,0.000 ,0.000] over 0.300 seconds
+rotate entity badguy5legs by [0.300 ,0.000 ,0.000] over 0.300 seconds
+rotate entity badguy5arms by [0.300 ,0.000 ,0.000] over 0.300 seconds
+play sound "Cin/Tut/Script/target.wav" for entity gallery7null on channel CHAN_AUTO at volume 0.900
+wait 1.800 seconds
+badguy5health = badguy5.health
+badguy5headhealth = badguy5head.health
+badguy5legshealth = badguy5legs.health
+badguy5armshealth = badguy5arms.health
+if badguy5health == 0
+b1 = 1
+endif
+if badguy5headhealth == 0
+b2 = 1
+endif
+if badguy5legshealth == 0
+b3 = 1
+endif
+if badguy5armshealth == 0
+b4 = 1
+endif
+btotal = b1 + b2
+btotal += b3
+btotal += b4
+if btotal == 4
+exit
+goto lab_00001
+endif
+goto lab_00007
+label lab_00001
+exit

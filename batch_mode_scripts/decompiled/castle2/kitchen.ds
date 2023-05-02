@@ -1,0 +1,62 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity cooker
+local entity kitchensmoke
+local int sig
+
+cooker = find entity with targetname "cooker"
+kitchensmoke = find entity with targetname "kitchensmoke"
+animate entity cooker performing action STD_ETYPING_N_N_N holding for 1.000
+wait 1 seconds
+animate entity cooker performing action STD_ETURN90_LT_A_N signaling sig
+wait for all clearing sig
+animate entity cooker performing action SCRIPT_RELEASE
+wait 30 seconds
+use entity kitchensmoke
+play sound "Impact/Gore/sizzle.wav" for entity kitchensmoke on channel CHAN_AUTO at volume 0.900
+wait 1.200 seconds
+play sound "Impact/Gore/sizzle.wav" for entity kitchensmoke on channel CHAN_AUTO at volume 0.900
+wait 1.200 seconds
+play sound "Impact/Gore/sizzle.wav" for entity kitchensmoke on channel CHAN_AUTO at volume 0.900
+wait 1.200 seconds
+play sound "Impact/Gore/sizzle.wav" for entity kitchensmoke on channel CHAN_AUTO at volume 0.900
+wait 1.200 seconds
+play sound "Impact/Gore/sizzle.wav" for entity kitchensmoke on channel CHAN_AUTO at volume 0.900
+wait 1.200 seconds
+play sound "Impact/Gore/sizzle.wav" for entity kitchensmoke on channel CHAN_AUTO at volume 0.900
+wait 1.200 seconds
+play sound "Impact/Gore/sizzle.wav" for entity kitchensmoke on channel CHAN_AUTO at volume 0.900
+wait 1.200 seconds
+play sound "Impact/Gore/sizzle.wav" for entity kitchensmoke on channel CHAN_AUTO at volume 0.900
+wait 2.500 seconds
+use entity kitchensmoke
+wait 1 seconds
+remove entity kitchensmoke
+unload sound "Impact/Gore/sizzle.wav"
+exit

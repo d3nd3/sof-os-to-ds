@@ -1,0 +1,59 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity manbath
+local entity lobbydr
+local entity mullins
+local entity firstdoor
+local int sig1
+local int manbathhealth
+
+manbath = find entity with targetname "manbath"
+lobbydr = find entity with targetname "lobbydr"
+mullins = find entity player
+firstdoor = find entity with targetname "firstdoor"
+animate entity manbath performing action CCH_XCCHCOWER_UP_A_A signaling sig1
+wait for all clearing sig1
+play sound "cin/jpn2/s41d1.adp" for entity manbath on channel CHAN_VOICE at volume 0.900
+print 28672
+animate entity manbath performing action STD_ITALK_N_A_N holding for 7.200
+animate entity manbath performing action STD_ISTAND_N_A_N
+wait 7.600 seconds
+manbathhealth = manbath.health
+if manbathhealth <= 0
+exit
+endif
+play sound "cin/jpn2/s41d2.adp" for entity mullins on channel CHAN_AUTO at volume 0.900
+print 28673
+wait 1.100 seconds
+use entity lobbydr
+remove entity firstdoor
+unload sound "cin/jpn2/s41d1.adp"
+unload sound "cin/jpn2/s41d2.adp"
+wait 2 seconds
+exit

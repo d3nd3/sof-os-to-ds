@@ -1,0 +1,81 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity man70
+local entity man71
+local entity man72
+local entity man73
+local int health
+local int pop
+local int pop1
+local entity sneak
+
+pop = random from 1 to 4
+pop1 = random from 1 to 3
+man70 = find entity with targetname "shoot70"
+man71 = find entity with targetname "shoot71"
+man72 = find entity with targetname "shoot72"
+man73 = find entity with targetname "shoot73"
+sneak = get entity activator
+man70.health = 3500
+health = man70.health
+man71.health = 3500
+health = man71.health
+man72.health = 3500
+health = man72.health
+man73.health = 3500
+health = man73.health
+if health == 0
+goto lab_00002
+endif
+use entity man70
+use entity man71
+use entity man72
+use entity man73
+label lab_00003
+sneak = get entity activator
+animate entity man70 performing action STD_F_FWD_P_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man71 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man72 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man73 performing action STD_F_FWD_P_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man70 performing action STD_JRUN_FWD_A_A repeating for pop1 times targeting entity sneak
+animate entity man71 performing action STD_JRUN_FWD_A_A repeating for pop times targeting entity sneak
+animate entity man72 performing action STD_JRUN_FWD_A_A repeating for pop1 times targeting entity sneak
+animate entity man73 performing action STD_JRUN_FWD_A_A repeating for pop times targeting entity sneak
+animate entity man70 performing action STD_F_FWD_P_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man71 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man72 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man73 performing action STD_F_FWD_P_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man70 performing action STD_JUPTO_N_A_A repeating for pop1 times targeting entity sneak
+animate entity man71 performing action STD_JUPTO_N_A_A repeating for pop times targeting entity sneak
+animate entity man72 performing action STD_JUPTO_N_A_A repeating for pop1 times targeting entity sneak
+animate entity man73 performing action STD_JUPTO_N_A_A repeating for pop times targeting entity sneak
+wait 0.100 seconds
+goto lab_00003
+label lab_00002
+exit

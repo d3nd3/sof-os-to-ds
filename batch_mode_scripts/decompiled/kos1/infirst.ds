@@ -1,0 +1,42 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity cornerguy1
+local entity shake2
+local entity secdust
+local entity introcloud
+
+cornerguy1 = find entity with targetname "cornerguy1"
+shake2 = find entity with targetname "shake2"
+secdust = find entity with targetname "secdust"
+introcloud = find entity with targetname "introcloud"
+use entity shake2
+use entity secdust
+use entity cornerguy1
+animate entity cornerguy1 performing action SCRIPT_RELEASE
+exit

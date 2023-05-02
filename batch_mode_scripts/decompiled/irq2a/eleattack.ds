@@ -1,0 +1,53 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jim
+local entity eric
+local entity renner
+local entity matt
+local entity jon
+local int sig
+
+jim = find entity with targetname "jim"
+eric = find entity with targetname "eric"
+renner = find entity with targetname "renner"
+matt = find entity with targetname "matt"
+jon = find entity with targetname "jon"
+use entity matt
+animate entity jim performing action STD_XROLL_LT_A_A
+animate entity eric performing action STD_XYELLPOINT_FWD_A_N
+animate entity renner performing action STD_XROLL_RT_A_A
+wait 0.500 seconds
+animate entity eric performing action SCRIPT_RELEASE
+animate entity jon performing action SCRIPT_RELEASE
+animate entity renner performing action SCRIPT_RELEASE
+animate entity jim performing action STD_XROLL_RT_A_A signaling sig
+use entity matt
+wait for all clearing sig
+animate entity jim performing action SCRIPT_RELEASE
+exit

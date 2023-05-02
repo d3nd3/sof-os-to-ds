@@ -1,0 +1,51 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity fallsection
+local entity fallpipe
+local entity fallpipe2
+local entity wander1
+local entity wander2
+
+fallsection = find entity with targetname "fallsection"
+fallpipe = find entity with targetname "fallpipe"
+fallpipe2 = find entity with targetname "fallpipe2"
+wander1 = find entity with targetname "wander1"
+wander2 = find entity with targetname "wander2"
+fallsection.movetype = MOVETYPE_NOCLIP
+fallpipe.movetype = MOVETYPE_NOCLIP
+fallpipe2.movetype = MOVETYPE_NOCLIP
+moverotate entity fallsection from file "fallsect.rof"
+play sound "Impact\Metal\BigMetal.adp" for entity fallsection at volume 0.900
+moverotate entity fallpipe from file "fallpipe.rof"
+moverotate entity fallpipe2 from file "fallpipe2.rof"
+use entity wander1
+use entity wander1
+use entity wander2
+use entity wander2
+exit

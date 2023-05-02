@@ -1,0 +1,58 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity char
+local entity jo
+local vector pos
+
+char = find entity with targetname "char"
+label lab_00003
+jo = get entity activator
+pos = jo.origin
+tank entity char 3
+wait 0.100 seconds
+pos = jo.origin
+tank entity char 3
+wait 0.200 seconds
+pos = jo.origin
+pos += [0.000 ,0.000 ,-34.000]
+tank entity char 2
+wait 0.200 seconds
+pos = jo.origin
+pos += [0.000 ,0.000 ,-34.000]
+tank entity char 2
+wait 0.200 seconds
+pos = jo.origin
+tank entity char 3
+suspend
+if char.health < 0
+goto lab_00002
+endif
+goto lab_00003
+label lab_00002
+exit

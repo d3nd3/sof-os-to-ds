@@ -1,0 +1,155 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity pele
+local entity pelewala
+local entity pelewalb
+local entity pelewalc
+local entity pelewald
+local entity pelepa
+local entity pelepb
+local entity pelepc
+local entity pelepd
+local entity pelepe
+local entity pelepf
+local entity pelepg
+local entity peleph
+local entity pelepi
+local entity pelepj
+local entity pelepk
+local entity pelepl
+local entity peleexp1
+local entity pelelgt1
+local entity ninja1
+local entity elesnd
+local int sig1
+local int sig2
+local int sig3
+local int sig4
+local int sig5
+local int sig6
+local int sig7
+
+pele = find entity with targetname "pele"
+pelewala = find entity with targetname "pelewala"
+pelewalb = find entity with targetname "pelewalb"
+pelewalc = find entity with targetname "pelewalc"
+pelewald = find entity with targetname "pelewald"
+pelepa = find entity with targetname "pelepa"
+pelepb = find entity with targetname "pelepb"
+pelepc = find entity with targetname "pelepc"
+pelepd = find entity with targetname "pelepd"
+pelepe = find entity with targetname "pelepe"
+pelepf = find entity with targetname "pelepf"
+pelepg = find entity with targetname "pelepg"
+peleph = find entity with targetname "peleph"
+pelepi = find entity with targetname "pelepi"
+pelepj = find entity with targetname "pelepj"
+pelepk = find entity with targetname "pelepk"
+pelepl = find entity with targetname "pelepl"
+peleexp1 = find entity with targetname "peleexp1"
+pelelgt1 = find entity with targetname "pelelgt1"
+ninja1 = find entity with targetname "ninja1"
+elesnd = find entity with targetname "elesnd"
+wait 1 seconds
+pelewala.movetype = MOVETYPE_PUSH
+pelewalb.movetype = MOVETYPE_PUSH
+pelewalc.movetype = MOVETYPE_PUSH
+pelewald.movetype = MOVETYPE_PUSH
+pelepa.movetype = MOVETYPE_PUSH
+pelepb.movetype = MOVETYPE_PUSH
+pelepc.movetype = MOVETYPE_PUSH
+pelepd.movetype = MOVETYPE_PUSH
+pelepe.movetype = MOVETYPE_PUSH
+pelepf.movetype = MOVETYPE_PUSH
+pelepg.movetype = MOVETYPE_PUSH
+peleph.movetype = MOVETYPE_PUSH
+pelepi.movetype = MOVETYPE_PUSH
+pelepj.movetype = MOVETYPE_PUSH
+pelepk.movetype = MOVETYPE_PUSH
+pelepl.movetype = MOVETYPE_PUSH
+elesnd.movetype = MOVETYPE_NOCLIP
+use entity elesnd
+move entity elesnd by [0.000 ,0.000 ,0.000] at 120 speed
+move entity pele by [0.000 ,0.000 ,0.000] at 120 speed signaling sig1
+move entity pelewala by [0.000 ,0.000 ,0.000] at 120 speed signaling sig2
+move entity pelewalb by [0.000 ,0.000 ,0.000] at 120 speed signaling sig3
+move entity pelewalc by [0.000 ,0.000 ,0.000] at 120 speed signaling sig4
+move entity pelewald by [0.000 ,0.000 ,0.000] at 120 speed signaling sig5
+move entity pelepa by [0.000 ,0.000 ,0.000] at 120 speed
+move entity pelepb by [0.000 ,0.000 ,0.000] at 120 speed
+move entity pelepc by [0.000 ,0.000 ,0.000] at 120 speed
+move entity pelepd by [0.000 ,0.000 ,0.000] at 120 speed
+move entity pelepe by [0.000 ,0.000 ,0.000] at 120 speed
+move entity pelepf by [0.000 ,0.000 ,0.000] at 120 speed
+move entity pelepg by [0.000 ,0.000 ,0.000] at 120 speed
+move entity peleph by [0.000 ,0.000 ,0.000] at 120 speed
+move entity pelepi by [0.000 ,0.000 ,0.000] at 120 speed
+move entity pelepj by [0.000 ,0.000 ,0.000] at 120 speed
+move entity pelepk by [0.000 ,0.000 ,0.000] at 120 speed
+move entity pelepl by [0.000 ,0.000 ,0.000] at 120 speed
+wait for all clearing sig1,sig2,sig3,sig4,sig5
+use entity elesnd
+pelewala.movetype = MOVETYPE_NONE
+pelewalb.movetype = MOVETYPE_NONE
+pelewalc.movetype = MOVETYPE_NONE
+pelewald.movetype = MOVETYPE_NONE
+pelepa.movetype = MOVETYPE_NONE
+pelepb.movetype = MOVETYPE_NONE
+pelepc.movetype = MOVETYPE_NONE
+pelepd.movetype = MOVETYPE_NONE
+pelepe.movetype = MOVETYPE_NONE
+pelepf.movetype = MOVETYPE_NONE
+pelepg.movetype = MOVETYPE_NONE
+peleph.movetype = MOVETYPE_NONE
+pelepi.movetype = MOVETYPE_NONE
+pelepj.movetype = MOVETYPE_NONE
+pelepk.movetype = MOVETYPE_NONE
+pelepl.movetype = MOVETYPE_NONE
+wait 0.500 seconds
+use entity peleexp1
+use entity pelelgt1
+use entity pelewala
+use entity pelewalb
+use entity pelewalc
+use entity pelewald
+wait 0.250 seconds
+use entity pelelgt1
+wait 0.200 seconds
+use entity pelelgt1
+wait 0.500 seconds
+use entity ninja1
+animate entity ninja1 performing action STD_FVIOLENT_DWN_P_N
+animate entity ninja1 performing action SCRIPT_RELEASE
+use entity peleph
+wait 0.250 seconds
+use entity pelepf
+wait 0.400 seconds
+use entity pelepa
+wait 2 seconds
+exit

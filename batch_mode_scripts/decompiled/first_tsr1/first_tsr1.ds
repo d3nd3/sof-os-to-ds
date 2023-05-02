@@ -1,0 +1,100 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity cam
+local entity camn
+local entity killerb
+local entity killerc
+local entity dead
+local entity adead
+local entity bdead
+local entity fem
+
+cam = find entity with targetname "cam"
+camn = find entity with targetname "camn"
+killerb = find entity with targetname "killerb"
+killerc = find entity with targetname "killerc"
+dead = find entity with targetname "dead"
+adead = find entity with targetname "adead"
+bdead = find entity with targetname "bdead"
+fem = find entity with targetname "fem"
+cam.movetype = MOVETYPE_NOCLIP
+camn.movetype = MOVETYPE_NOCLIP
+enable cinematics
+use entity killerb
+use entity killerc
+use entity dead
+use entity adead
+use entity bdead
+use entity fem
+use entity cam
+move entity cam by [0.000 ,0.000 ,0.000] at 35 speed
+animate entity dead performing action STD_ETALK_N_A_N
+wait 3 seconds
+animate entity dead performing action STD_EHEADSET_FRM_P_N
+animate entity fem performing action STD_EHEADNOD_N_A_N
+wait 0.400 seconds
+move entity cam by [0.000 ,0.000 ,0.000] at 55 speed
+move entity camn by [0.000 ,0.000 ,0.000] at 55 speed
+wait 3.500 seconds
+animate entity killerc performing action WALK by moving [8.000 ,-150.000 ,0.000]
+animate entity dead performing action STD_ETALKBOTH_N_A_N
+animate entity killerb performing action WALK by moving [-8.000 ,-120.000 ,0.000]
+wait 2 seconds
+animate entity killerb performing action WALK by moving [-100.000 ,-92.000 ,0.000]
+wait 2.200 seconds
+animate entity adead performing action STD_ETALKBOTH_N_A_N
+wait 1.100 seconds
+animate entity killerc performing action STD_FATTITUDE_N_P_A targeting entity dead
+wait 0.100 seconds
+use entity cam
+disable cinematics
+animate entity killerc performing action STD_F_FWD_P_2 targeting entity dead
+wait 0.200 seconds
+animate entity dead performing action STD_SHEAD_2FRNT_N_N
+animate entity killerc performing action WALK by moving [0.000 ,-110.000 ,0.000]
+wait 0.200 seconds
+animate entity fem performing action RUN by moving [-180.000 ,-230.000 ,0.000]
+animate entity bdead performing action RUN by moving [0.000 ,-30.000 ,0.000]
+wait 0.200 seconds
+animate entity killerc performing action STD_F_FWD_P_2 targeting entity bdead kill nulltarget HEAD
+wait 0.300 seconds
+animate entity killerb performing action STD_F_FWD_S_2 targeting entity fem
+wait 0.200 seconds
+animate entity fem performing action DEATH
+animate entity bdead performing action STD_STOKNEES_2BK_N_N
+animate entity killerb performing action RUN by moving [0.000 ,-80.000 ,0.000]
+wait 0.200 seconds
+animate entity killerb performing action STD_F_FWD_P_2 targeting entity adead
+wait 0.300 seconds
+animate entity killerb performing action STD_F_FWD_S_2 targeting entity bdead
+animate entity killerc performing action SCRIPT_RELEASE
+animate entity killerb performing action SCRIPT_RELEASE
+animate entity fem performing action SCRIPT_RELEASE
+animate entity bdead performing action SCRIPT_RELEASE
+exit

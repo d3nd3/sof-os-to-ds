@@ -1,0 +1,107 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity hudsam
+local entity samdoor3
+local entity huddoor1
+local entity confdoor
+local entity confdoorclip
+local entity leandoor
+local entity confnull
+local entity confwall
+local int sig
+
+hudsam = find entity with targetname "hudsam"
+samdoor3 = find entity with targetname "samdoor3"
+huddoor1 = find entity with targetname "huddoor1"
+confdoor = find entity with targetname "confdoor"
+confdoorclip = find entity with targetname "confdoorclip"
+leandoor = find entity with targetname "leandoor"
+confnull = find entity with targetname "confnull"
+confwall = find entity with targetname "confwall"
+hudsam.wait = 0
+use entity huddoor1
+print 33306
+play sound "cin/tut/cond1.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 11.600
+animate entity hudsam performing action STD_WNORMAL_N_PK_A by moving to [704.000 ,528.000 ,128.000]
+wait 3 seconds
+hudsam.wait = 1
+wait 3.900 seconds
+print 33307
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 4.200
+wait 4.200 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 1.100 seconds
+print 33308
+play sound "cin/tut/cond2.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+hudsam.wait = 0
+animate entity hudsam showing emotion EMOTION_TALK holding for 6.100
+animate entity hudsam performing action STD_WNORMAL_N_PK_A by moving to [960.000 ,480.000 ,128.000]
+wait 3 seconds
+move entity leandoor by [0.000 ,0.000 ,0.000] over 1 seconds
+play sound "Cin/Tut/Script/conmetal.wav" for entity confnull on channel CHAN_AUTO at volume 0.900
+wait 1 seconds
+wait 2.300 seconds
+print 33309
+hudsam.wait = 1
+play sound "cin/tut/cond3.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 2.500
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.500
+wait 2.500 seconds
+suspend
+print 33310
+play sound "cin/tut/cond4.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 3.900
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.900
+wait 3.900 seconds
+use entity confwall
+suspend
+print 33311
+play sound "cin/tut/cond5.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 5.100
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 4.300
+wait 4.300 seconds
+animate entity hudsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 1.400 seconds
+print 33312
+play sound "cin/tut/cond6.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 4.500
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.500
+wait 2.500 seconds
+hudsam.wait = 0
+animate entity hudsam performing action STD_WNORMAL_N_PK_A by moving to [952.000 ,320.000 ,128.000] signaling sig
+wait for all clearing sig
+move entity samdoor3 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+animate entity hudsam performing action STD_WNORMAL_N_PK_A by moving to [952.000 ,208.000 ,128.000] signaling sig
+wait for all clearing sig
+move entity samdoor3 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+use entity confdoorclip
+use entity confdoor
+wait 0.500 seconds
+exit

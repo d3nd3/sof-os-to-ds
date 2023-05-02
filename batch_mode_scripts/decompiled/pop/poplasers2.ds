@@ -1,0 +1,89 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity man60x
+local entity man61x
+local entity man62x
+local entity man63x
+local int health
+local int pop
+local int pop1
+local entity sneak
+
+pop = random from 1 to 4
+pop1 = random from 1 to 3
+man60x = find entity with targetname "shoot60x"
+man61x = find entity with targetname "shoot61x"
+man62x = find entity with targetname "shoot62x"
+man63x = find entity with targetname "shoot63x"
+sneak = get entity activator
+man60x.health = 2500
+health = man60x.health
+man61x.health = 2500
+health = man61x.health
+man62x.health = 2500
+health = man62x.health
+man63x.health = 2500
+health = man63x.health
+if health == 0
+goto lab_00002
+endif
+use entity man60x
+use entity man61x
+use entity man62x
+use entity man63x
+label lab_00003
+sneak = get entity activator
+animate entity man60x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man61x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man62x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man63x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man60x performing action STD_XROLL_RT_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man61x performing action STD_XROLL_LT_A_A repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man62x performing action STD_XROLL_LT_A_A repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man63x performing action STD_XROLL_RT_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man60x performing action STD_XSTARTLED_N_A_A repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man61x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man62x performing action STD_XSTARTLED_N_A_A repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man63x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man60x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man61x performing action STD_XSTARTLED_N_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man62x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man63x performing action STD_XSTARTLED_N_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man60x performing action STD_EJUMPRAIL_N_A_N repeating for pop1 times targeting entity sneak
+animate entity man61x performing action STD_EJUMPRAIL_N_A_N repeating for pop times targeting entity sneak
+animate entity man62x performing action STD_EJUMPRAIL_N_A_N repeating for pop1 times targeting entity sneak
+animate entity man63x performing action STD_EJUMPRAIL_N_A_N repeating for pop times targeting entity sneak
+animate entity man60x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+animate entity man61x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man62x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man63x performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
+wait 0.100 seconds
+goto lab_00003
+label lab_00002
+exit

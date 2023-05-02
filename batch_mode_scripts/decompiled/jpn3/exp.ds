@@ -1,0 +1,67 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity pelepa
+local entity pelepb
+local entity pelepc
+local entity pelepd
+local entity pelepe
+local entity pelepf
+local entity pelepg
+local entity peleph
+local entity pelepi
+local entity pelepj
+local entity pelepk
+local entity pelepl
+
+pelepa = find entity with targetname "pelepa"
+pelepb = find entity with targetname "pelepb"
+pelepc = find entity with targetname "pelepc"
+pelepd = find entity with targetname "pelepd"
+pelepe = find entity with targetname "pelepe"
+pelepf = find entity with targetname "pelepf"
+pelepg = find entity with targetname "pelepg"
+peleph = find entity with targetname "peleph"
+pelepi = find entity with targetname "pelepi"
+pelepj = find entity with targetname "pelepj"
+pelepk = find entity with targetname "pelepk"
+pelepl = find entity with targetname "pelepl"
+use entity pelepa
+use entity pelepb
+use entity pelepc
+use entity pelepd
+use entity pelepe
+use entity pelepf
+use entity pelepg
+use entity peleph
+use entity pelepi
+use entity pelepj
+use entity pelepk
+use entity pelepl
+wait 2 seconds
+exit

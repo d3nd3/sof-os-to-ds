@@ -1,0 +1,91 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity gun
+local entity gunguy
+local int guyhealth
+local entity tk
+local entity guncam1
+local entity gunnull1
+local int sig1
+
+tk = find entity with targetname "tk"
+gun = find entity with targetname "biggun"
+gunguy = find entity with targetname "gunguy"
+guyhealth = gunguy.health
+guncam1 = find entity with targetname "guncam1"
+gunnull1 = find entity with targetname "gunnull1"
+guncam1.movetype = MOVETYPE_NOCLIP
+gunnull1.movetype = MOVETYPE_NOCLIP
+use entity gunguy
+unload sound "player/foot/wood1.wav"
+unload sound "player/foot/wood2.wav"
+unload sound "player/foot/wood3.wav"
+unload sound "player/foot/wood4.wav"
+unload sound "player/stone/stone1.wav"
+unload sound "player/foot/stone2.wav"
+unload sound "player/foot/stone3.wav"
+unload sound "player/foot/stone4.wav"
+unload sound "weapons/rocket/putin.wav"
+unload sound "weapons/rocket/pullout.wav"
+wait 0.200 seconds
+use entity guncam1
+play sound "av/bgun/whoopass8.wav" for entity gunguy on channel CHAN_VOICE at volume 0.900
+wait 3 seconds
+unload sound "av/bgun/whoopass8.wav"
+move entity guncam1 by [0.000 ,0.000 ,0.000] over 2 seconds signaling sig1
+wait for all clearing sig1
+animate entity gunguy performing action STD_XALARMPUSH_N_A_N
+wait 0.500 seconds
+use entity gun
+wait 2 seconds
+play sound "av/bgun/diesob8.wav" for entity gunguy on channel CHAN_VOICE at volume 0.900
+wait 2 seconds
+animate entity gunguy performing action STD_XALARMPUSH_N_A_N
+wait 0.500 seconds
+unload sound "av/bgun/diesob8.wav"
+use entity gun
+wait 3 seconds
+use entity guncam1
+remove entity guncam1
+remove entity gunnull1
+use entity gun
+wait 0.500 seconds
+suspend
+label lab_00002
+guyhealth = gunguy.health
+if guyhealth == 0
+tank entity tk 1
+exit
+endif
+animate entity gunguy performing action STD_XALARMPUSH_N_A_N
+use entity gun
+wait 0.200 seconds
+suspend
+goto lab_00002
+exit

@@ -1,0 +1,82 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity badguy8
+local entity badguy8head
+local entity badguy8legs
+local entity gallery10null
+local int badguy8health
+local int badguy8headhealth
+local int badguy8legshealth
+local int b1
+local int b2
+local int b3
+local int btotal
+global int target10
+
+badguy8 = find entity with targetname "badguy8"
+badguy8head = find entity with targetname "badguy8head"
+badguy8legs = find entity with targetname "badguy8legs"
+gallery10null = find entity with targetname "gallery10null"
+target10 = 0
+label lab_00006
+on target10 == 1 goto lab_00001
+badguy8.movetype = MOVETYPE_PUSH
+badguy8head.movetype = MOVETYPE_PUSH
+badguy8legs.movetype = MOVETYPE_PUSH
+move entity badguy8 by [0.300 ,0.000 ,0.000] over 0.300 seconds
+move entity badguy8head by [0.300 ,0.000 ,0.000] over 0.300 seconds
+move entity badguy8legs by [0.300 ,0.000 ,0.000] over 0.300 seconds
+play sound "Cin/Tut/Script/target.wav" for entity gallery10null on channel CHAN_AUTO at volume 0.900
+wait 3.300 seconds
+move entity badguy8 by [0.300 ,0.000 ,0.000] over 0.300 seconds
+move entity badguy8head by [0.300 ,0.000 ,0.000] over 0.300 seconds
+move entity badguy8legs by [0.300 ,0.000 ,0.000] over 0.300 seconds
+play sound "Cin/Tut/Script/target.wav" for entity gallery10null on channel CHAN_AUTO at volume 0.900
+wait 1.300 seconds
+badguy8health = badguy8.health
+badguy8headhealth = badguy8head.health
+badguy8legshealth = badguy8legs.health
+if badguy8health == 0
+b1 = 1
+endif
+if badguy8headhealth == 0
+b2 = 1
+endif
+if badguy8legshealth == 0
+b3 = 1
+endif
+btotal = b1 + b2
+btotal += b3
+if btotal == 3
+exit
+goto lab_00001
+endif
+goto lab_00006
+label lab_00001
+exit

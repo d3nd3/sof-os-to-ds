@@ -1,0 +1,61 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity fuego
+local entity abum
+local entity bbum
+local entity cbum
+
+cache sound "ambient/cin/enemy/ra1/ger1/wake5.wav"
+fuego = find entity with targetname "fuego"
+abum = find entity with targetname "abum"
+bbum = find entity with targetname "bbum"
+cbum = find entity with targetname "cbum"
+play sound "ambient/cin/enemy/ra1/ger1/wake5.wav" for entity fuego on channel CHAN_AUTO at volume 0.900
+label lab_00003
+jo = get entity activator
+animate entity fuego performing action STD_F_FWD_S_2 targeting entity jo
+animate entity abum performing action STD_FATTITUDE_N_P_A targeting entity jo kill nulltarget HEAD
+animate entity bbum performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget GUT
+animate entity cbum performing action STD_FATTITUDE_N_P_A targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+if fuego.health < 0
+if abum.health < 0
+if bbum.health < 0
+if cbum.health < 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+animate entity fuego performing action SCRIPT_RELEASE
+animate entity abum performing action SCRIPT_RELEASE
+animate entity bbum performing action SCRIPT_RELEASE
+animate entity cbum performing action SCRIPT_RELEASE
+exit

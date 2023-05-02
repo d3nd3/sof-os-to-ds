@@ -1,0 +1,310 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy
+local entity johnclimb
+local entity johnroll
+local entity johnwalk
+local entity johntalk
+local entity sabre1
+local entity sabrewalk
+local entity sabreyell
+local entity sabrefall
+local entity blood
+local entity cam1
+local entity cam2
+local entity cam3
+local entity cam3t
+local entity cam4
+local entity cam5
+local entity cam6
+local entity cam7
+local entity cam8
+local entity cam9
+local entity rthead
+local entity rtbody
+local entity rttail
+local entity rtrtwingout
+local entity rtrtwingin
+local entity rtlfwingout
+local entity rtlfwingin
+local entity lfhead
+local entity lfbody
+local entity lftail
+local entity fade
+local int sig
+
+cache sound "cin/nyc3/c41d1.adp"
+cache sound "cin/nyc3/c41d2.adp"
+cache sound "cin/nyc3/c41d3.adp"
+cache sound "cin/nyc3/c41d4.adp"
+cache sound "cin/nyc3/c41d5.adp"
+cache sound "cin/nyc3/c41d6.adp"
+cache sound "cin/nyc3/c41d7.adp"
+cache sound "cin/nyc3/c41d8.adp"
+cache sound "cin/nyc3/c41d9.adp"
+cache sound "cin/nyc3/falling.adp"
+cache sound "impact/gore/splat.adp"
+cache roff "nyc3_outro_cam3.rof"
+cache roff "nyc3_outro_cam5.rof"
+cache roff "nyc3_outro_cam6.rof"
+cache roff "nyc3_outro_brthead.rof"
+cache roff "nyc3_outro_brtbody.rof"
+cache roff "nyc3_outro_brttail.rof"
+cache roff "nyc3_outro_brtrtwingout.rof"
+cache roff "nyc3_outro_brtrtwingin.rof"
+cache roff "nyc3_outro_brtlfwingout.rof"
+cache roff "nyc3_outro_brtlfwingin.rof"
+cache roff "nyc3_outro_blfhead.rof"
+cache roff "nyc3_outro_blfbody.rof"
+cache roff "nyc3_outro_blftail.rof"
+cam1 = find entity with targetname "outrocam1"
+enable cinematics
+use entity cam1
+cam2 = find entity with targetname "outrocam2"
+cam3 = find entity with targetname "outrocam3"
+cam3t = find entity with targetname "t207"
+cam4 = find entity with targetname "outrocam4"
+cam5 = find entity with targetname "outrocam5"
+cam6 = find entity with targetname "outrocam6"
+cam7 = find entity with targetname "outrocam7"
+cam8 = find entity with targetname "outrocam8"
+cam9 = find entity with targetname "outrocamdrop"
+guy = find entity with targetname "outroguy1"
+johnclimb = find entity with targetname "outrojohn1"
+johnroll = find entity with targetname "outrojohn2"
+johnwalk = find entity with targetname "outrojohn3"
+johntalk = find entity with targetname "outrojohn4"
+sabre1 = find entity with targetname "outrosabre1"
+sabrewalk = find entity with targetname "outrosabre2"
+sabreyell = find entity with targetname "outrosabre3"
+sabrefall = find entity with targetname "outrosabrefall"
+blood = find entity with targetname "outroblood"
+rthead = find entity with targetname "brthead"
+rtbody = find entity with targetname "brtbody"
+rttail = find entity with targetname "brttail"
+rtrtwingout = find entity with targetname "brtrtwingout"
+rtrtwingin = find entity with targetname "brtrtwingin"
+rtlfwingout = find entity with targetname "brtlfwingout"
+rtlfwingin = find entity with targetname "brtlfwingin"
+lfhead = find entity with targetname "blfhead"
+lfbody = find entity with targetname "blfbody"
+lftail = find entity with targetname "blftail"
+fade = find entity with targetname "outrofadeout"
+moverotate entity rthead from file "nyc3_outro_brthead.rof"
+moverotate entity rtbody from file "nyc3_outro_brtbody.rof"
+moverotate entity rttail from file "nyc3_outro_brttail.rof"
+moverotate entity rtrtwingout from file "nyc3_outro_brtrtwingout.rof"
+moverotate entity rtrtwingin from file "nyc3_outro_brtrtwingin.rof"
+moverotate entity rtlfwingout from file "nyc3_outro_brtlfwingout.rof"
+moverotate entity rtlfwingin from file "nyc3_outro_brtlfwingin.rof"
+moverotate entity lfhead from file "nyc3_outro_blfhead.rof"
+moverotate entity lfbody from file "nyc3_outro_blfbody.rof"
+moverotate entity lftail from file "nyc3_outro_blftail.rof"
+animate entity johnclimb performing action STD_XLADDERFRM_UP_A_A
+animate entity sabre1 performing action STD_EAUTOSWEEP_N_PM_A
+animate entity sabre1 performing action STD_SGUNFROMHAND_N_N_N
+wait 1.500 seconds
+use entity cam1
+remove entity johnclimb
+use entity cam2
+animate entity johnroll performing action STD_XROLL_RT_A_A signaling sig
+wait for all clearing sig
+animate entity johnroll performing action STD_F_FWD_P_2 targeting entity sabre1 nulltarget GUNHAND holding for 1.250
+wait 1.250 seconds
+use entity cam2
+remove entity sabre1
+remove entity johnroll
+use entity sabrewalk
+use entity johnwalk
+animate entity sabrewalk showing emotion EMOTION_ANGRY holding for 2.000
+animate entity johnwalk showing emotion EMOTION_ANGRY holding for 2.000
+use entity cam3
+moverotate entity cam3 from file "nyc3_outro_cam3.rof"
+moverotate entity cam3t from file "nyc3_outro_cam3.rof"
+moverotate entity rthead from file "nyc3_outro_brthead.rof"
+moverotate entity rtbody from file "nyc3_outro_brtbody.rof"
+moverotate entity rttail from file "nyc3_outro_brttail.rof"
+moverotate entity rtrtwingout from file "nyc3_outro_brtrtwingout.rof"
+moverotate entity rtrtwingin from file "nyc3_outro_brtrtwingin.rof"
+moverotate entity rtlfwingout from file "nyc3_outro_brtlfwingout.rof"
+moverotate entity rtlfwingin from file "nyc3_outro_brtlfwingin.rof"
+moverotate entity lfhead from file "nyc3_outro_blfhead.rof"
+moverotate entity lfbody from file "nyc3_outro_blfbody.rof"
+moverotate entity lftail from file "nyc3_outro_blftail.rof"
+animate entity sabrewalk performing action STD_WBACKWARDS_N_A_N by moving [96.000 ,0.000 ,0.000] holding for 2.000
+animate entity johnwalk performing action STD_WAIM_FWD_P_2 by moving [-135.000 ,0.000 ,0.000] holding for 2.000
+wait 2 seconds
+use entity cam3
+remove entity sabrewalk
+remove entity johnwalk
+animate entity sabreyell showing emotion EMOTION_TALKANGRY holding for 2.400
+use entity cam4
+animate entity sabreyell performing action STD_ESABREBLUFF_N_A_A holding for 2.400
+wait 0.100 seconds
+print 27142
+play sound "cin/nyc3/c41d1.adp" for entity sabreyell on channel CHAN_AUTO at volume 0.900
+wait 2.400 seconds
+animate entity johntalk showing emotion EMOTION_TALKANGRY holding for 6.800
+animate entity sabreyell showing emotion EMOTION_ANGRY holding for 6.800
+wait 0.100 seconds
+animate entity johntalk performing action STD_A_FWD_P_2 holding for 6.800
+animate entity sabreyell performing action STD_ISTAND_N_A_N holding for 6.800
+wait 0.100 seconds
+use entity cam4
+use entity cam5
+moverotate entity cam5 from file "nyc3_outro_cam5.rof"
+wait 0.100 seconds
+print 27143
+play sound "cin/nyc3/c41d2.adp" for entity johntalk on channel CHAN_AUTO at volume 0.900
+wait 1.900 seconds
+wait 0.100 seconds
+print 27144
+play sound "cin/nyc3/c41d3.adp" for entity sabreyell on channel CHAN_AUTO at volume 0.900
+wait 0.900 seconds
+print 27145
+play sound "cin/nyc3/c41d4.adp" for entity johntalk on channel CHAN_AUTO at volume 0.900
+wait 3.600 seconds
+animate entity sabreyell showing emotion EMOTION_TALKANGRY holding for 4.500
+animate entity johntalk showing emotion EMOTION_ANGRY holding for 4.500
+wait 0.100 seconds
+use entity cam5
+use entity cam6
+moverotate entity cam6 from file "nyc3_outro_cam6.rof"
+animate entity sabreyell performing action STD_ETALK_N_A_N holding for 4.400
+animate entity johntalk performing action STD_A_FWD_P_2 holding for 4.400
+wait 0.100 seconds
+print 27146
+play sound "cin/nyc3/c41d5.adp" for entity sabreyell on channel CHAN_AUTO at volume 0.900
+wait 4.200 seconds
+animate entity johntalk showing emotion EMOTION_TALKANGRY holding for 1.300
+animate entity sabreyell showing emotion EMOTION_ANGRY holding for 1.300
+wait 0.100 seconds
+animate entity sabreyell performing action STD_ETALK_N_A_N holding for 1.300
+animate entity johntalk performing action STD_A_FWD_P_2 holding for 1.300
+print 27147
+play sound "cin/nyc3/c41d6.adp" for entity johntalk on channel CHAN_AUTO at volume 0.900
+wait 1.200 seconds
+animate entity sabreyell showing emotion EMOTION_TALKANGRY holding for 1.600
+animate entity johntalk showing emotion EMOTION_ANGRY holding for 1.000
+wait 0.100 seconds
+animate entity sabreyell performing action STD_ETALK_N_A_N holding for 1.600
+animate entity johntalk performing action STD_A_FWD_P_2 holding for 1.600
+print 27148
+play sound "cin/nyc3/c41d7.adp" for entity sabreyell on channel CHAN_AUTO at volume 0.900
+wait 1 seconds
+animate entity johntalk showing emotion EMOTION_TALKANGRY holding for 0.400
+print 27149
+play sound "cin/nyc3/c41d8.adp" for entity johntalk on channel CHAN_AUTO at volume 0.900
+wait 0.500 seconds
+animate entity johntalk showing emotion EMOTION_TALKANGRY holding for 0.400
+animate entity sabreyell showing emotion EMOTION_ANGRY holding for 0.500
+wait 0.100 seconds
+animate entity sabreyell performing action STD_ETALK_N_A_N holding for 0.300
+animate entity johntalk performing action STD_A_FWD_P_2 holding for 0.400
+wait 0.400 seconds
+use entity cam6
+use entity cam7
+wait 0.100 seconds
+print 27150
+play sound "cin/nyc3/c41d9.adp" for entity sabreyell on channel CHAN_AUTO at volume 0.900
+animate entity sabreyell showing emotion EMOTION_TALKANGRY holding for 1.200
+wait 1.200 seconds
+animate entity sabreyell showing emotion EMOTION_ANGRY holding for 0.300
+wait 0.200 seconds
+animate entity sabreyell showing emotion EMOTION_TALKANGRY holding for 0.300
+wait 0.200 seconds
+animate entity sabreyell showing emotion EMOTION_ANGRY holding for 1.300
+animate entity johntalk showing emotion EMOTION_TALKANGRY holding for 10.000
+wait 0.500 seconds
+use entity cam7
+remove entity rthead
+remove entity rtbody
+remove entity rttail
+remove entity rtrtwingout
+remove entity rtrtwingin
+remove entity rtlfwingout
+remove entity rtlfwingin
+remove entity lfhead
+remove entity lfbody
+remove entity lftail
+use entity cam8
+animate entity johntalk performing action STD_FRAPID_N_P_2 targeting entity sabreyell kill nulltarget CHEST
+animate entity johntalk performing action STD_FRAPID_N_P_2 targeting entity sabreyell kill nulltarget CHEST
+animate entity johntalk performing action STD_F_FWD_P_2 targeting entity sabreyell kill nulltarget CHEST
+animate entity johntalk performing action STD_A_FWD_P_2 holding for 10.000
+animate entity sabreyell performing action STD_ISTAND_N_A_N holding for 0.300
+wait 0.300 seconds
+animate entity sabreyell performing action STD_SSABREDEATH_BK_N_N
+wait 0.500 seconds
+use entity fade
+remove entity sabreyell
+use entity sabrefall
+setcvar cvar "timescale" to 0.600000
+animate entity sabrefall performing action STD_SSABREDEATH_BK_N_N
+use entity cam8
+remove entity guy
+use entity cam9
+wait 0.100 seconds
+play sound "cin/nyc3/falling.adp" for entity sabrefall on channel CHAN_AUTO at volume 0.900
+wait 1.400 seconds
+play sound "impact/gore/splat.adp" for entity sabrefall on channel CHAN_AUTO at volume 0.900
+use entity blood
+wait 2 seconds
+setcvar cvar "timescale" to 1.000000
+disable cinematics
+unload sound "cin/nyc3/c41d1.adp"
+unload sound "cin/nyc3/c41d2.adp"
+unload sound "cin/nyc3/c41d3.adp"
+unload sound "cin/nyc3/c41d4.adp"
+unload sound "cin/nyc3/c41d5.adp"
+unload sound "cin/nyc3/c41d6.adp"
+unload sound "cin/nyc3/c41d7.adp"
+unload sound "cin/nyc3/c41d8.adp"
+unload sound "cin/nyc3/c41d9.adp"
+unload sound "cin/nyc3/falling.adp"
+unload sound "impact/gore/splat.adp"
+unload roff "nyc3_outro_cam3.rof"
+unload roff "nyc3_outro_cam5.rof"
+unload roff "nyc3_outro_cam6.rof"
+unload roff "nyc3_outro_brthead.rof"
+unload roff "nyc3_outro_brtbody.rof"
+unload roff "nyc3_outro_brttail.rof"
+unload roff "nyc3_outro_brtrtwingout.rof"
+unload roff "nyc3_outro_brtrtwingin.rof"
+unload roff "nyc3_outro_brtlfwingout.rof"
+unload roff "nyc3_outro_brtlfwingin.rof"
+unload roff "nyc3_outro_blfhead.rof"
+unload roff "nyc3_outro_blfbody.rof"
+unload roff "nyc3_outro_blftail.rof"
+setcvar cvar "stat_moneyadd" to 50000.000000
+setcvar cvar "menu_mail_available" to 1.000000
+setcvar cvar "menu_mail_file" to "maps/mail_sud1"
+setcvar cvar "menu_nextmap" to "sud1"
+run console command "intermission acc"
+exit

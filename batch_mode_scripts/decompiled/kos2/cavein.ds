@@ -1,0 +1,81 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy1
+local entity bbrush
+local entity barrel
+local entity dust1
+local entity dust2
+local entity dust3
+local entity dust4
+local entity fire1
+local entity fire2
+local entity fire3
+local entity hurt
+local entity dirt
+local entity ex1
+local entity ex2
+local entity beam
+local int sig1
+
+guy1 = find entity with targetname "caveinguy1"
+bbrush = find entity with targetname "caveinbarrel"
+barrel = find entity with targetname "caveinroof"
+dust1 = find entity with targetname "caveindust1"
+dust2 = find entity with targetname "caveindust2"
+dust3 = find entity with targetname "caveindust3"
+dust4 = find entity with targetname "caveindust4"
+fire1 = find entity with targetname "churchfire1"
+fire2 = find entity with targetname "churchfire2"
+fire3 = find entity with targetname "churchfire3"
+hurt = find entity with targetname "churchhurt"
+dirt = find entity with targetname "caveindirt"
+ex1 = find entity with targetname "caveinex1"
+ex2 = find entity with targetname "caveinex2"
+beam = find entity with targetname "caveinbeam"
+animate entity guy1 performing action STD_R_N_MRS_2 by moving [8.000 ,-96.000 ,0.000]
+animate entity guy1 performing action SCRIPT_RELEASE
+use entity barrel
+wait 0.200 seconds
+use entity dust1
+use entity dust3
+use entity bbrush
+use entity ex1
+wait 0.200 seconds
+use entity dust2
+use entity dust4
+use entity ex2
+use entity dirt
+moverotate entity beam from file "kos2_cavein_beam.rof"
+wait 1.200 seconds
+unload roff "kos2_cavein_beam.rof"
+remove entity fire1
+remove entity fire2
+remove entity fire3
+remove entity hurt
+exit

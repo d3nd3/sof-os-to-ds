@@ -1,0 +1,167 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity sabrerun
+local entity sabre
+local entity john
+local entity ex1
+local entity ex2
+local entity ex3
+local entity ex4
+local entity smoke1
+local entity smoke2
+local entity grenade
+local entity cam1
+local entity cam2
+local entity cam3
+local entity cam4
+local entity cam5
+local entity cam6
+local entity target3
+local entity fade
+local entity sign
+local entity sause
+local entity exsause
+local entity fadeout
+local entity playerfade
+local entity barrel1
+local entity fire1
+local entity barrel2
+local entity fire2
+local entity change
+local int sig
+local int sig1
+
+cache roff "nyc1_outro_exbarrel.rof"
+cache sound "cin/nyc1/script/grenbounce.wav"
+cam1 = find entity with targetname "cam1out"
+sabrerun = find entity with targetname "outrosabrerun"
+sabre = find entity with targetname "sabreout"
+john = find entity with targetname "johnout"
+ex1 = find entity with targetname "ex1out"
+ex2 = find entity with targetname "ex2out"
+ex3 = find entity with targetname "ex3out"
+ex4 = find entity with targetname "ex4out"
+smoke1 = find entity with targetname "smoke1out"
+smoke2 = find entity with targetname "smoke2out"
+grenade = find entity with targetname "grenadeout"
+cam2 = find entity with targetname "cam2out"
+cam3 = find entity with targetname "cam3out"
+cam4 = find entity with targetname "cam4out"
+cam5 = find entity with targetname "cam5out"
+cam6 = find entity with targetname "cam6out"
+fade = find entity with targetname "outrofade"
+sign = find entity with targetname "outrosign"
+sause = find entity with targetname "outrosause"
+exsause = find entity with targetname "exsause"
+change = find entity with targetname "changelevel"
+target3 = find entity with targetname "t325"
+barrel1 = find entity with targetname "outrobar1"
+fire1 = find entity with targetname "outrobarfire1"
+barrel2 = find entity with targetname "outrobar2"
+fire2 = find entity with targetname "outrobarfire2"
+fadeout = find entity with targetname "introfadeout"
+playerfade = find entity with targetname "introfadeplay"
+animate entity sabrerun performing action STD_R_N_PK_N by moving [0.000 ,-96.000 ,0.000]
+animate entity sabrerun performing action STD_R_N_PK_N by moving [136.000 ,-88.000 ,0.000] signaling sig
+wait for all clearing sig
+use entity cam1
+enable cinematics
+grenade.movetype = MOVETYPE_NOCLIP
+sabre.movetype = MOVETYPE_NOCLIP
+john.movetype = MOVETYPE_NOCLIP
+use entity sabre
+animate entity sabre performing action STD_R_N_PK_N by moving [0.000 ,-158.000 ,0.000]
+animate entity sabre performing action STD_R_N_PK_N by moving [-300.000 ,0.000 ,0.000] signaling sig
+wait 2 seconds
+use entity john
+wait for all clearing sig
+animate entity john performing action STD_R_N_PK_N by moving [0.000 ,-176.000 ,0.000]
+animate entity john performing action STD_R_N_PK_N by moving [-16.000 ,0.000 ,0.000]
+animate entity john performing action CCH_IREADY_N_A_A
+animate entity sabre performing action STD_JDOWN_N_A_A by moving [-88.000 ,0.000 ,16.000]
+wait 1 seconds
+animate entity john performing action CCH_TLOBGRENADE_N_A_N
+wait 0.250 seconds
+use entity cam1
+remove entity sabre
+use entity cam2
+wait 1.550 seconds
+use entity cam2
+use entity cam5
+wait 1.250 seconds
+use entity cam5
+use entity cam3
+use entity grenade
+moverotate entity grenade from file "ny_nyc1_outro_grenade.rof"
+moverotate entity cam3 from file "ny_nyc1_outro_cam2.rof"
+moverotate entity target3 from file "ny_nyc1_outro_cam2.rof"
+wait 0.500 seconds
+play sound "cin/nyc1/script/grenbounce.wav" for entity grenade on channel CHAN_AUTO at volume 0.900
+wait 1 seconds
+play sound "cin/nyc1/script/grenbounce.wav" for entity grenade on channel CHAN_AUTO at volume 0.900
+wait 0.200 seconds
+play sound "cin/nyc1/script/grenbounce.wav" for entity grenade on channel CHAN_AUTO at volume 0.900
+use entity cam3
+use entity cam4
+wait 0.750 seconds
+use entity cam4
+unload roff "ny_nyc1_outro_grenade.rof"
+unload roff "ny_nyc1_outro_cam2.rof"
+use entity cam1
+use entity fade
+wait 0.200 seconds
+animate entity john performing action STD_R_N_PK_N by moving [16.000 ,0.000 ,0.000]
+animate entity john performing action STD_JDIVE2PRONE_N_A_N holding for 5.000
+wait 0.300 seconds
+use entity ex2
+use entity sause
+use entity exsause
+wait 0.400 seconds
+use entity fire1
+moverotate entity barrel1 from file "nyc1_outro_exbarrel.rof"
+moverotate entity fire1 from file "nyc1_outro_exbarrel.rof"
+use entity ex3
+use entity sign
+setcvar cvar "timescale" to 0.400000
+wait 0.200 seconds
+use entity fire2
+moverotate entity barrel2 from file "nyc1_outro_exbarrel.rof"
+moverotate entity fire2 from file "nyc1_outro_exbarrel.rof"
+use entity ex4
+wait 0.400 seconds
+use entity ex4
+wait 0.200 seconds
+use entity ex4
+wait 1 seconds
+setcvar cvar "timescale" to 1.000000
+setcvar cvar "menu_nextmap" to "nyc2"
+run console command "intermission blankscreen"
+disable cinematics
+unload roff "nyc1_outro_exbarrel.rof"
+exit

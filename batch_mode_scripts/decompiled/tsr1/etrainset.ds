@@ -1,0 +1,49 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity rtskinhead1
+local entity rtskinhead2
+local entity rtskinhead3
+local entity skintrain
+local entity trainplay
+
+rtskinhead1 = find entity with targetname "rtskinhead1"
+rtskinhead2 = find entity with targetname "rtskinhead2"
+rtskinhead3 = find entity with targetname "rtskinhead3"
+skintrain = find entity with targetname "skintrain"
+trainplay = find entity with targetname "player"
+use entity rtskinhead1
+use entity rtskinhead2
+use entity skintrain
+animate entity rtskinhead1 performing action CCH_A_FWD_MS_2 targeting entity trainplay
+animate entity rtskinhead1 performing action SCRIPT_RELEASE
+animate entity rtskinhead3 performing action CCH_A_FWD_MS_2 targeting entity trainplay
+animate entity rtskinhead3 performing action SCRIPT_RELEASE
+animate entity rtskinhead2 performing action CCH_A_FWD_P_2 targeting entity trainplay
+animate entity rtskinhead2 performing action SCRIPT_RELEASE
+exit

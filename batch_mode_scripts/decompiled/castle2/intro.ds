@@ -1,0 +1,91 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity introjohn
+local entity guard
+local entity lift
+local entity introcam1
+local entity introcam2
+local entity cam2target
+local entity introsound
+local entity fadeout
+local entity fadein
+local int sig
+
+introjohn = find entity with targetname "introjohn"
+guard = find entity with targetname "guard"
+lift = find entity with targetname "lift"
+introcam1 = find entity with targetname "introcam1"
+introcam2 = find entity with targetname "introcam2"
+cam2target = find entity with targetname "cam2target"
+introsound = find entity with targetname "introsound"
+fadeout = find entity with targetname "fadeout"
+fadein = find entity with targetname "fadein"
+enable cinematics
+use entity introcam1
+animate entity guard performing action STD_ISMOKE_FRM_A_N signaling sig
+wait for all clearing sig
+animate entity guard performing action STD_WPATROL_N_MRS_2 by moving to [-1584.000 ,32.000 ,-344.000] signaling sig
+wait for all clearing sig
+animate entity guard performing action STD_WPATROL_N_MRS_2 by moving to [-1280.000 ,32.000 ,-344.000]
+animate entity introjohn performing action STD_IGUNUP_N_A_N holding for 5.200
+wait 0.800 seconds
+move entity lift by [0.000 ,0.000 ,0.000] over 4 seconds
+use entity introsound
+wait 1.300 seconds
+use entity introcam1
+use entity introcam2
+cam2target.movetype = MOVETYPE_NOCLIP
+wait 2.400 seconds
+use entity introsound
+play sound "Misc/Script/ElevEnd.wav" for entity introsound on channel CHAN_AUTO at volume 0.900
+wait 0.500 seconds
+wait 0.400 seconds
+animate entity introjohn performing action STD_WNORMAL_N_PK_A by moving [96.000 ,0.000 ,0.000] signaling sig
+wait for all clearing sig
+animate entity introjohn performing action STD_IGUNUP_N_A_N holding for 9.000
+move entity lift by [0.000 ,0.000 ,0.000] over 4 seconds
+use entity introsound
+wait 0.500 seconds
+moverotate entity introcam2 from file "ger2_introcam2.rof"
+wait 3 seconds
+use entity introsound
+play sound "Misc/Script/ElevEnd.wav" for entity introsound on channel CHAN_AUTO at volume 0.900
+wait 0.500 seconds
+remove entity introsound
+wait 4 seconds
+use entity fadeout
+wait 1 seconds
+use entity introcam2
+disable cinematics
+use entity fadein
+animate entity guard performing action SCRIPT_RELEASE
+remove entity introjohn
+unload roff "ger2_introcam2.rof"
+unload sound "Misc/Script/ElevEnd.wav"
+exit

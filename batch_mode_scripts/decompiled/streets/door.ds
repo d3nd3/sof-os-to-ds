@@ -1,0 +1,73 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity cameraxxg
+local entity cameraxxh
+local entity cameraxxj
+local entity char
+local entity puertaxx
+local entity final
+local entity mullins
+local entity man38
+local entity man37
+local entity man36
+local entity man35
+local entity girl
+
+cameraxxg = find entity with targetname "cameraxxg"
+cameraxxh = find entity with targetname "cameraxxh"
+cameraxxj = find entity with targetname "cameraxxj"
+final = find entity with targetname "final"
+puertaxx = find entity with targetname "puertaxx"
+char = find entity with targetname "char"
+mullins = find entity with targetname "mullins"
+man38 = find entity with targetname "man38"
+man37 = find entity with targetname "man37"
+man36 = find entity with targetname "man36"
+man35 = find entity with targetname "man35"
+girl = find entity with targetname "girl"
+wait 4 seconds
+remove entity char
+remove entity puertaxx
+remove entity man38
+remove entity man37
+remove entity man36
+remove entity man35
+use entity cameraxxg
+use entity mullins
+use entity girl
+wait 9 seconds
+use entity cameraxxh
+wait 6 seconds
+use entity cameraxxj
+wait 6 seconds
+use entity cameraxxj
+enable trigger entity final
+remove entity mullins
+remove entity girl
+exit

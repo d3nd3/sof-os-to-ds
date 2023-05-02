@@ -1,0 +1,82 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity ha
+local entity jo
+local entity tero
+local entity vid
+local int sig
+local int sih
+local entity msgfin
+local entity viz
+local entity app
+local entity bpp
+local entity cpp
+local entity dpp
+local entity epp
+
+ha = find entity with targetname "ha"
+jo = find entity with targetname "jo"
+tero = find entity with targetname "tero"
+vid = find entity with targetname "vid"
+viz = find entity with targetname "viz"
+msgfin = find entity with targetname "msgfin"
+app = find entity with targetname "app"
+bpp = find entity with targetname "bpp"
+cpp = find entity with targetname "cpp"
+dpp = find entity with targetname "dpp"
+epp = find entity with targetname "epp"
+remove entity app
+remove entity bpp
+remove entity cpp
+remove entity dpp
+remove entity epp
+use entity vid
+use entity ha
+use entity tero
+use entity jo
+vid.movetype = MOVETYPE_NOCLIP
+enable cinematics
+animate entity tero performing action STD_L_N_MS_2
+wait 1.200 seconds
+animate entity tero performing action STD_ETURN90_LT_A_N
+move entity vid by [0.000 ,0.000 ,0.000] at 100 speed
+animate entity jo performing action RUN by moving [0.000 ,96.000 ,0.000] signaling sih
+wait for all clearing sih
+animate entity jo performing action STD_A_FWD_P_2 targeting entity tero holding for 6.000
+wait 3.300 seconds
+animate entity ha performing action WALK by moving [64.000 ,-180.000 ,0.000]
+wait 4.200 seconds
+animate entity jo performing action STD_F_FWD_P_CB targeting entity viz
+animate entity tero performing action STD_STOKNEES_2BK_N_N
+wait 4.500 seconds
+disable cinematics
+use entity vid
+use entity msgfin
+remove entity jo
+exit

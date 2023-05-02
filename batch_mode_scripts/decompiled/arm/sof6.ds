@@ -1,0 +1,114 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+global int count2
+global int runcomputer2
+local entity sam
+local entity splayer
+local entity lockeddoor
+local entity fakedoor
+local entity dieforkeith
+local entity joe
+local int sig1
+
+dieforkeith = find entity with scripttarget "dieforkeith"
+splayer = get entity activator
+sam = find entity with targetname "sam"
+lockeddoor = find entity with scripttarget "lockeddoor"
+fakedoor = find entity with targetname "fakedoor"
+joe = find entity with targetname "joe"
+label lab_00002
+sam.health = 9999
+if count2 == 1
+wait 3 seconds
+animate entity sam showing emotion EMOTION_TALK holding for 4.000
+animate entity sam performing action STD_ETALK_N_A_N holding for 4.000
+play sound "cin/arm3/s35d3.adp" for entity splayer on channel CHAN_AUTO at volume 0.900
+print 31746
+wait 4.000 seconds
+animate entity sam performing action STD_IETALKPOSE_N_A_N holding for 9.300
+wait 0.500 seconds
+play sound "cin/arm3/s35d4.adp" for entity sam on channel CHAN_AUTO at volume 0.900
+print 31747
+wait 8.800 seconds
+animate entity sam showing emotion EMOTION_TALK holding for 4.500
+animate entity sam performing action STD_ETALK_N_A_N holding for 4.500
+play sound "cin/arm3/s35d5.adp" for entity splayer on channel CHAN_AUTO at volume 0.900
+print 31748
+wait 4.500 seconds
+animate entity sam performing action STD_IETALKPOSE_N_A_N holding for 1.050
+wait 0.250 seconds
+play sound "cin/arm3/s35d6.adp" for entity splayer on channel CHAN_AUTO at volume 0.900
+print 31749
+wait 0.800 seconds
+animate entity sam showing emotion EMOTION_TALK holding for 1.900
+animate entity sam performing action STD_ETALK_N_A_N holding for 1.900
+play sound "cin/arm3/s35d7.adp" for entity sam on channel CHAN_AUTO at volume 0.900
+print 31750
+wait 1.900 seconds
+animate entity sam performing action STD_IETALKPOSE_N_A_N holding for 2.500
+wait 0.500 seconds
+play sound "cin/arm3/s35d8.adp" for entity sam on channel CHAN_AUTO at volume 0.900
+print 31751
+wait 2 seconds
+animate entity sam showing emotion EMOTION_TALK holding for 2.400
+animate entity sam performing action STD_ETALK_N_A_N holding for 2.400
+play sound "cin/arm3/s35d9.adp" for entity splayer on channel CHAN_AUTO at volume 0.900
+print 31752
+wait 2.400 seconds
+animate entity sam performing action STD_IETALKPOSE_N_A_N holding for 2.900
+wait 0.500 seconds
+play sound "cin/arm3/s35d10.adp" for entity splayer on channel CHAN_AUTO at volume 0.900
+print 31753
+wait 2.400 seconds
+animate entity sam showing emotion EMOTION_TALK holding for 0.800
+animate entity sam performing action STD_ETALK_N_A_N holding for 0.800
+play sound "cin/arm3/s35d11.adp" for entity splayer on channel CHAN_AUTO at volume 0.900
+print 31754
+wait 0.800 seconds
+animate entity sam performing action STD_IETALKPOSE_N_A_N holding for 2.250
+wait 0.500 seconds
+play sound "cin/arm3/s35d12.adp" for entity splayer on channel CHAN_AUTO at volume 0.900
+print 31755
+wait 1.750 seconds
+animate entity sam showing emotion EMOTION_TALK holding for 1.800
+animate entity sam performing action STD_ETALK_N_A_N holding for 1.800
+play sound "cin/arm3/s35d13.adp" for entity splayer on channel CHAN_AUTO at volume 0.900
+print 31756
+wait 2 seconds
+use entity joe
+wait 2 seconds
+runcomputer2 = 1
+remove entity dieforkeith
+sam.health = 100
+animate entity sam performing action SCRIPT_RELEASE
+exit
+endif
+suspend
+goto lab_00002
+exit

@@ -1,0 +1,47 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity boom2a
+local entity boom2b
+local entity boom2c
+local entity boomshak2a
+local entity boomshak2b
+
+boom2a = find entity with targetname "boom2a"
+boom2b = find entity with targetname "boom2b"
+boom2c = find entity with targetname "boom2c"
+boomshak2a = find entity with targetname "boomshak2a"
+boomshak2b = find entity with targetname "boomshak2b"
+use entity boom2a
+use entity boomshak2a
+use entity boomshak2b
+wait 0.400 seconds
+use entity boom2b
+wait 0.200 seconds
+use entity boom2c
+exit

@@ -1,0 +1,59 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jumper1
+local entity jumper2
+local entity box
+local entity first_floor_jersey
+local entity sec_floor_jersey
+
+cache roff "nyc3_boardjump_jumper1.rof"
+cache roff "ny_streets_boardbox.rof"
+box = find entity with targetname "boardbox"
+jumper1 = find entity with targetname "boardjumper1"
+jumper2 = find entity with targetname "boardjumper2"
+first_floor_jersey = find entity with targetname "first_floor_jersey"
+sec_floor_jersey = find entity with targetname "t17"
+use entity jumper1
+moverotate entity jumper1 from file "nyc3_boardjump_jumper1.rof"
+animate entity jumper1 performing action STD_JDROP_N_A_A
+wait 0.250 seconds
+animate entity jumper1 performing action SCRIPT_RELEASE
+moverotate entity jumper2 from file "nyc3_boardjump_jumper1.rof"
+animate entity jumper2 performing action PRN_XFALLING_N_N_N
+animate entity jumper2 performing action PRN_XFALLLAND_N_N_N
+animate entity jumper2 performing action SCRIPT_RELEASE
+wait 1.500 seconds
+use entity first_floor_jersey
+moverotate entity box from file "ny_streets_boardbox.rof"
+wait 1.500 seconds
+use entity sec_floor_jersey
+use entity box
+unload roff "nyc3_boardjump_jumper1.rof"
+unload roff "ny_streets_boardbox.rof"
+exit

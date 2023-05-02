@@ -1,0 +1,78 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy1
+local entity guy2
+local entity guy3
+local entity guy4
+local entity guy5
+local entity ex1
+local entity ex2
+local entity wall1
+local entity wall2
+local entity wall3
+local entity shake
+local entity you
+
+guy1 = find entity with targetname "wallexguy1"
+guy2 = find entity with targetname "wallexguy2"
+guy3 = find entity with targetname "wallexguy3"
+guy4 = find entity with targetname "wallexguy4"
+guy5 = find entity with targetname "wallexguy5"
+ex1 = find entity with targetname "wallexex1"
+ex2 = find entity with targetname "wallexex2"
+wall1 = find entity with targetname "wallexbb1"
+wall2 = find entity with targetname "wallexbb2"
+wall3 = find entity with targetname "wallexbb3"
+shake = find entity with targetname "wallexshake"
+you = find entity player
+play sound "Cin/KOS2/Script/BigGun.adp" for entity you on channel CHAN_AUTO at volume 0.900
+use entity shake
+use entity ex1
+wait 0.100 seconds
+use entity wall1
+wait 0.100 seconds
+use entity wall2
+wait 0.100 seconds
+use entity wall3
+use entity ex2
+play sound "Impact/Wood/Crash1.adp" for entity guy1 on channel CHAN_AUTO at volume 0.900
+animate entity guy1 performing action STD_JRUN_FWD_A_A by moving [0.000 ,-64.000 ,0.000]
+animate entity guy1 performing action SCRIPT_RELEASE
+use entity guy2
+use entity guy3
+wait 0.500 seconds
+animate entity guy4 performing action STD_R_N_MRS_2 by moving [-112.000 ,0.000 ,0.000]
+animate entity guy4 performing action STD_R_N_MRS_2 by moving [0.000 ,184.000 ,0.000]
+animate entity guy4 performing action STD_R_N_MRS_2 by moving [-16.000 ,0.000 ,0.000]
+animate entity guy4 performing action SCRIPT_RELEASE
+animate entity guy5 performing action STD_R_N_MRS_2 by moving [-176.000 ,0.000 ,0.000]
+animate entity guy5 performing action STD_R_N_MRS_2 by moving [0.000 ,96.000 ,0.000]
+animate entity guy5 performing action STD_R_N_MRS_2 by moving [-16.000 ,0.000 ,0.000]
+animate entity guy5 performing action SCRIPT_RELEASE
+exit

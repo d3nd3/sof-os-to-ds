@@ -1,0 +1,91 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity stall1
+local entity stall2
+local entity new_kick_stall
+local entity new_kick_stall_push
+local entity backbystairs
+local entity lstallguy1
+local entity lstallguy2
+local entity lstallguy3
+local entity setup
+local entity stallshooter
+local entity originalwall
+local entity raf_clipdoor
+local entity new_clip_stall
+local int sig1
+local int sig2
+
+stall1 = find entity with targetname "stall1"
+stall2 = find entity with targetname "stall2"
+new_kick_stall = find entity with targetname "new_kick_stall"
+new_kick_stall_push = find entity with targetname "new_kick_stall_push"
+backbystairs = find entity with targetname "backbystairs"
+lstallguy1 = find entity with targetname "lstallguy1"
+lstallguy2 = find entity with targetname "lstallguy2"
+lstallguy3 = find entity with targetname "lstallguy3"
+stallshooter = find entity with targetname "stallshooter"
+setup = find entity with targetname "setup"
+originalwall = find entity with targetname "originalwall"
+raf_clipdoor = find entity with targetname "raf_clipdoor"
+new_clip_stall = find entity with targetname "new_clip_stall"
+if lstallguy1.health > 0
+animate entity lstallguy1 performing action STD_XKICKDOOR_N_A_A
+wait 0.250 seconds
+moverotate entity stall1 from file "gbnyc_stall.rof"
+play sound "impact/door/kickdoor.wav" for entity stall1 at volume 0.900
+animate entity lstallguy1 performing action STD_R_N_MRS_2 by moving [-64.000 ,0.000 ,0.000]
+animate entity lstallguy1 performing action SCRIPT_RELEASE
+endif
+if lstallguy2.health > 0
+animate entity lstallguy2 performing action STD_XKICKDOOR_N_A_A
+wait 0.250 seconds
+moverotate entity stall2 from file "generic_door_cw.rof"
+play sound "impact/door/kickdoor.wav" for entity stall2 at volume 0.900
+use entity new_clip_stall
+animate entity lstallguy2 performing action STD_R_N_MRS_2 by moving [-64.000 ,0.000 ,0.000]
+animate entity lstallguy2 performing action SCRIPT_RELEASE
+endif
+wait 1 seconds
+if lstallguy3.health > 0
+animate entity lstallguy3 performing action STD_XKICKDOOR_N_A_A
+wait 0.250 seconds
+use entity new_kick_stall_push
+wait 0.200 seconds
+use entity new_kick_stall_push
+moverotate entity new_kick_stall from file "generic_door_ccw.rof"
+use entity raf_clipdoor
+play sound "impact/door/kickdoor.wav" for entity stall2 at volume 0.900
+animate entity lstallguy3 performing action STD_R_N_MRS_2 by moving [64.000 ,0.000 ,0.000]
+animate entity lstallguy3 performing action SCRIPT_RELEASE
+endif
+use entity setup
+use entity stallshooter
+animate entity stallshooter performing action SCRIPT_RELEASE
+exit

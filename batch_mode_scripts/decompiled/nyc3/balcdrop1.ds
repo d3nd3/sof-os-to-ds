@@ -1,0 +1,39 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy
+local entity rail
+
+guy = find entity with targetname "balcdropguy"
+rail = find entity with targetname "balcdroprail"
+moverotate entity rail from file "nyc3_balcdroprail.rof"
+wait 0.100 seconds
+animate entity guy performing action PRN_XFALLING_N_N_N by moving [0.000 ,-100.000 ,0.000]
+animate entity guy performing action PRN_XFALLLAND_N_N_N
+unload roff "nyc3_balcdroprail.rof"
+exit

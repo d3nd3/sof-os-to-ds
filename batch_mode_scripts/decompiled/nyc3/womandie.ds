@@ -1,0 +1,54 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy
+local entity guy1
+local entity lady
+local int sig1
+
+guy = find entity with targetname "wdguy1"
+guy1 = find entity with targetname "wdguy2"
+lady = find entity with targetname "wdlady"
+use entity guy
+use entity guy1
+use entity lady
+wait 0.500 seconds
+animate entity guy performing action STD_XYELLATYOU_N_A_A
+animate entity guy1 performing action CCH_A_FWD_MS_2
+animate entity lady performing action STD_RAFRAID_N_N_N by moving [-500.000 ,0.000 ,0.000] signaling sig1
+play sound "cin/nyc3/script/screamlng.adp" for entity lady on channel CHAN_VOICE at volume 0.900
+wait for all clearing sig1
+animate entity lady performing action SCRIPT_RELEASE
+animate entity guy performing action STD_FGANGBANGER_N_M_2 targeting entity lady kill nulltarget CHEST
+animate entity guy1 performing action STD_FSWATSTYLE_FWD_M_2 targeting entity lady kill nulltarget HEAD
+animate entity guy performing action SCRIPT_RELEASE
+animate entity guy1 performing action STD_R_N_MRS_2 by moving [-300.000 ,0.000 ,0.000]
+animate entity guy1 performing action SCRIPT_RELEASE
+wait 6 seconds
+unload sound "cin/nyc3/script/screamlng.adp"
+exit

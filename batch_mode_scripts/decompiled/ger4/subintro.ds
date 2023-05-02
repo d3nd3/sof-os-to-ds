@@ -1,0 +1,155 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity introcam1
+local entity introcam2
+local entity introcam3
+local entity introtarget1
+local entity introjohn
+local entity introdekker
+local entity introlights
+local entity introdoor
+local entity introdoor2
+local entity introthug1
+local entity introthug2
+local entity introthug3
+local entity introthug4
+local entity fadeout
+local entity fadein
+local entity turnmeon
+local entity player1
+local entity wave1go
+local int sig1
+local int sig2
+
+introcam1 = find entity with targetname "introcam1"
+enable cinematics
+use entity introcam1
+introcam2 = find entity with targetname "introcam2"
+introcam3 = find entity with targetname "introcam3"
+introtarget1 = find entity with targetname "introtarget1"
+introjohn = find entity with targetname "introjohn"
+introdekker = find entity with targetname "introdekker"
+introlights = find entity with targetname "introlights"
+introdoor = find entity with targetname "introdoor"
+introdoor2 = find entity with targetname "introdoor2"
+introthug1 = find entity with targetname "introthug1"
+introthug2 = find entity with targetname "introthug2"
+introthug3 = find entity with targetname "introthug3"
+introthug4 = find entity with targetname "introthug4"
+fadeout = find entity with targetname "fadeout"
+fadein = find entity with targetname "fadein"
+turnmeon = find entity with targetname "turnmeon"
+wave1go = find entity with targetname "wave1go"
+player1 = get entity activator
+cache sound "cin/ger4/c76d1.adp"
+cache sound "cin/ger4/c76d2.adp"
+cache sound "ambient/gen/airgas/airbrst2.adp"
+cache roff "ger4_introcam.rof"
+introtarget1.movetype = MOVETYPE_NOCLIP
+introcam1.movetype = MOVETYPE_NOCLIP
+animate entity introjohn performing action STD_WNORMAL_N_PK_A by moving [0.000 ,64.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity introjohn performing action STD_EFRMSHADOW_N_P_N
+wait 3.200 seconds
+move entity introcam1 by [3.400 ,0.000 ,0.000] over 3.400 seconds
+move entity introtarget1 by [3.400 ,0.000 ,0.000] over 3.400 seconds
+wait 0.700 seconds
+animate entity introjohn performing action STD_IGUNUP_N_A_N holding for 2.700
+wait 2.700 seconds
+animate entity introjohn performing action STD_IALERTTRN_LT_P_N holding for 1.300
+use entity introlights
+wait 1 seconds
+play sound "ambient/gen/airgas/airbrst2.adp" for entity introjohn on channel CHAN_AUTO at volume 0.900
+wait 0.300 seconds
+animate entity introjohn performing action STD_IALERT_N_P_N holding for 2.000
+wait 0.700 seconds
+play sound "ambient/gen/airgas/airbrst2.adp" for entity introjohn on channel CHAN_AUTO at volume 0.900
+wait 1 seconds
+play sound "ambient/gen/airgas/airbrst2.adp" for entity introjohn on channel CHAN_AUTO at volume 0.900
+wait 0.300 seconds
+animate entity introjohn performing action STD_IALERTTRN_LT_P_N holding for 1.300
+wait 0.700 seconds
+play sound "ambient/gen/airgas/airbrst2.adp" for entity introjohn on channel CHAN_AUTO at volume 0.900
+wait 0.600 seconds
+animate entity introjohn performing action STD_IALERT_N_P_N holding for 5.000
+wait 0.400 seconds
+play sound "ambient/gen/airgas/airbrst2.adp" for entity introjohn on channel CHAN_AUTO at volume 0.900
+wait 0.200 seconds
+use entity introcam1
+player1.origin = introjohn.origin
+player1.angles = introjohn.angles
+use entity introcam2
+play sound "cin/ger4/c76d1.adp" for entity introdekker on channel CHAN_AUTO at volume 0.900
+print 26369
+animate entity introdekker performing action STD_ITALK_N_A_N holding for 4.300
+wait 3 seconds
+wait 1.300 seconds
+use entity introcam2
+introcam3.movetype = MOVETYPE_NOCLIP
+use entity introcam3
+play sound "cin/ger4/c76d2.adp" for entity introdekker on channel CHAN_AUTO at volume 0.900
+print 26370
+animate entity introjohn performing action STD_IALERT_N_P_N holding for 1.000
+animate entity introdekker performing action STD_WNORMAL_N_PK_A by moving to [960.000 ,3736.000 ,-824.000]
+wait 1 seconds
+animate entity introjohn performing action STD_IALERTTRN_LT_P_N
+move entity introdoor by [0.500 ,0.000 ,0.000] over 0.500 seconds
+moverotate entity introcam3 from file "ger4_introcam.rof"
+wait 1.300 seconds
+animate entity introjohn performing action STD_IALERT_N_P_N holding for 5.500
+animate entity introdekker performing action STD_WNORMAL_N_PK_A by moving to [912.000 ,3736.000 ,-824.000]
+wait 0.500 seconds
+use entity fadeout
+wait 0.500 seconds
+use entity introdoor2
+animate entity introdekker performing action STD_WNORMAL_N_PK_A by moving to [912.000 ,3896.000 ,-824.000]
+wait 2.500 seconds
+remove entity introdekker
+animate entity introthug1 performing action STD_R_N_MRS_2 by moving [0.000 ,-320.000 ,0.000]
+animate entity introthug2 performing action STD_R_N_MRS_2 by moving [0.000 ,-320.000 ,0.000]
+use entity introthug3
+animate entity introthug4 performing action STD_R_N_MRS_2 by moving [448.000 ,0.000 ,0.000]
+wait 0.700 seconds
+use entity introcam3
+playsong 1
+use entity fadein
+disable cinematics
+animate entity introthug1 performing action SCRIPT_RELEASE
+animate entity introthug2 performing action SCRIPT_RELEASE
+animate entity introthug3 performing action SCRIPT_RELEASE
+animate entity introthug4 performing action SCRIPT_RELEASE
+wait 0.200 seconds
+remove entity introjohn
+wait 30 seconds
+use entity wave1go
+unload sound "cin/ger4/c76d1.adp"
+unload sound "cin/ger4/c76d2.adp"
+unload sound "ambient/gen/airgas/airbrst2.adp"
+unload roff "ger4_introcam.rof"
+exit

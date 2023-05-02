@@ -1,0 +1,63 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity fa
+local entity fb
+local entity fc
+
+cache sound "cin/enemy/ra1/ger1/wake1.wav"
+fa = find entity with targetname "fa"
+fb = find entity with targetname "fb"
+fc = find entity with targetname "fc"
+use entity fa
+use entity fb
+use entity fc
+fa.health += 40
+fb.health += 40
+fc.health += 40
+animate entity fc performing action STD_XROLL_LT_A_A
+play sound "cin/enemy/ra1/ger1/wake1.wav" for entity fa on channel CHAN_AUTO at volume 0.900
+wait 0.400 seconds
+label lab_00003
+jo = get entity activator
+animate entity fa performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
+animate entity fb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity fc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+if fa.health < 0
+if fb.health < 0
+if fc.health < 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+animate entity fa performing action SCRIPT_RELEASE
+animate entity fb performing action SCRIPT_RELEASE
+animate entity fc performing action SCRIPT_RELEASE
+exit

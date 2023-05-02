@@ -1,0 +1,44 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity runningguy
+local entity deadswatguy1
+local entity swatkiller
+local entity gumball1
+local int sig1
+
+runningguy = find entity with targetname "runningguy"
+deadswatguy1 = find entity with targetname "deadswatguy1"
+swatkiller = find entity with targetname "swatkiller"
+use entity deadswatguy1
+use entity runningguy
+animate entity swatkiller performing action SCRIPT_RELEASE
+animate entity deadswatguy1 performing action LB_XLEANUPSHOOT_N_P_N targeting entity swatkiller
+animate entity deadswatguy1 performing action SCRIPT_RELEASE
+remove entity runningguy
+exit

@@ -1,0 +1,47 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity p1
+local entity p2
+local entity p3
+local entity p4
+local entity p5
+
+p1 = find entity with targetname "p1"
+p2 = find entity with targetname "p2"
+p3 = find entity with targetname "p3"
+p4 = find entity with targetname "p4"
+p5 = find entity with targetname "p5"
+wait 0.200 seconds
+remove entity p1
+remove entity p2
+wait 0.200 seconds
+remove entity p3
+remove entity p4
+remove entity p5
+exit

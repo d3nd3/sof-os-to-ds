@@ -1,0 +1,46 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guard7
+local entity guard8
+local entity guard11
+
+guard7 = find entity with targetname "guard7"
+guard8 = find entity with targetname "guard8"
+guard11 = find entity with targetname "guard11"
+use entity guard7
+use entity guard8
+use entity guard11
+animate entity guard7 performing action STD_ISMOKE_TO_A_N holding for 45.000
+animate entity guard8 performing action STD_ISMOKE_N_A_N holding for 45.000
+animate entity guard11 performing action STD_IALERT_N_MRS_2 holding for 45.000
+wait 15 seconds
+animate entity guard7 performing action SCRIPT_RELEASE
+animate entity guard8 performing action SCRIPT_RELEASE
+animate entity guard11 performing action SCRIPT_RELEASE
+exit

@@ -1,0 +1,48 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity driveby
+local entity walker1
+local entity walker2
+local entity trucksnd
+local int sig
+
+driveby = find entity with targetname "driveby"
+walker1 = find entity with targetname "walker1"
+walker2 = find entity with targetname "walker2"
+trucksnd = find entity with targetname "trucksnd"
+moverotate entity driveby from file "irq2b_driveby.rof" signaling sig
+moverotate entity trucksnd from file "irq2b_driveby.rof"
+play sound "Ambient/Locs/Truck/MoveLP.wav" for entity driveby on channel CHAN_AUTO at volume 0.900
+wait 0.100 seconds
+use entity walker1
+use entity walker2
+wait for all clearing sig
+remove entity driveby
+remove entity trucksnd
+exit

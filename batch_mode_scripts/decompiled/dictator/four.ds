@@ -1,0 +1,65 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+global int etat
+local entity jo
+local entity third
+local entity fa
+local entity fb
+local entity fc
+
+fa = find entity with targetname "fa"
+fb = find entity with targetname "fb"
+fc = find entity with targetname "fc"
+third = find entity with targetname "third"
+use entity third
+wait 0.200 seconds
+fb.health += 80
+fc.health += 80
+jo = get entity activator
+animate entity fc performing action RUN by moving [0.000 ,120.000 ,0.000]
+wait 0.100 seconds
+animate entity fa performing action CCH_F_FWD_L_2 targeting entity jo
+wait 0.300 seconds
+animate entity fa performing action CCH_F_FWD_L_2 targeting entity jo
+wait 0.300 seconds
+label lab_00003
+jo = get entity activator
+animate entity fa performing action CCH_F_FWD_L_2 targeting entity jo
+animate entity fc performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
+animate entity fb performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget CHEST
+wait 0.400 seconds
+if fa.health < 0
+if fb.health < 0
+if fc.health < 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+exit

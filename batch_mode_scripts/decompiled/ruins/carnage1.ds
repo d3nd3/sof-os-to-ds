@@ -1,0 +1,89 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity pa
+local entity pb
+local entity pc
+local entity pd
+local entity pe
+
+pa = find entity with targetname "pa"
+pb = find entity with targetname "pb"
+pc = find entity with targetname "pc"
+pd = find entity with targetname "pd"
+pe = find entity with targetname "pe"
+use entity pa
+use entity pb
+use entity pc
+use entity pd
+use entity pe
+pa.health += 40
+pb.health += 40
+pc.health += 40
+pd.health += 40
+pe.health += 40
+jo = get entity activator
+animate entity pe performing action RUN by moving [0.000 ,-200.000 ,0.000]
+animate entity pa performing action STD_XROLL_RT_A_A
+wait 0.400 seconds
+animate entity pa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+suspend
+animate entity pc performing action RUN by moving [0.000 ,-70.000 ,0.000]
+animate entity pa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+suspend
+wait 0.200 seconds
+animate entity pc performing action RUN by moving [-120.000 ,0.000 ,0.000]
+animate entity pe performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget GUT
+animate entity pa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity pb performing action STD_XROLL_LT_A_A
+wait 0.400 seconds
+animate entity pd performing action SCRIPT_RELEASE
+suspend
+label lab_00003
+jo = get entity activator
+animate entity pa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity pb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget GUT
+animate entity pc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget GROIN
+animate entity pe performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+if pa.health < 0
+if pb.health < 0
+if pc.health < 0
+if pd.health < 0
+if pe.health < 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+animate entity pa performing action SCRIPT_RELEASE
+animate entity pb performing action SCRIPT_RELEASE
+animate entity pc performing action SCRIPT_RELEASE
+animate entity pe performing action SCRIPT_RELEASE
+exit

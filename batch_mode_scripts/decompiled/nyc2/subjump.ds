@@ -1,0 +1,76 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jumper
+local entity boss
+local entity cover
+local entity sign
+local entity train
+local entity arm
+local entity head
+local entity hurt
+local entity spew
+local int sig1
+local int sig2
+local int sig3
+
+jumper = find entity with targetname "jumper"
+boss = find entity with targetname "skinb6"
+cover = find entity with targetname "skinb6cover"
+sign = find entity with targetname "skinb6sign"
+train = find entity with targetname "train"
+head = find entity with targetname "head"
+arm = find entity with targetname "arm"
+hurt = find entity with targetname "jumphurt"
+spew = find entity with targetname "spewer"
+jumper.movetype = MOVETYPE_NOCLIP
+use entity jumper
+use entity cover
+use entity boss
+animate entity cover performing action STD_XSTARTLED_N_A_A
+animate entity jumper performing action STD_JDOWN_N_A_A
+animate entity jumper performing action STD_SELECTROCUTE_N_N_N holding for 0.200
+wait 0.200 seconds
+use entity train
+play sound "Ambient/Locs/Subway/Train/Horn2.wav" for entity train at volume 1.000
+wait 0.500 seconds
+play sound "Enemy/Dth/Skin/Scream1.wav" for entity jumper at volume 0.900
+wait 0.300 seconds
+use entity spew
+remove entity jumper
+remove entity boss
+play sound "Ambient/Doors/Norm/Metal/SwngHvy1/Opn.wav" for entity cover at volume 0.900
+wait 0.800 seconds
+play sound "Ambient/Doors/Norm/Metal/SwngHvy1/Cls.wav" for entity cover at volume 0.900
+wait 0.800 seconds
+animate entity cover performing action SCRIPT_RELEASE
+use entity sign
+use entity hurt
+wait 0.500 seconds
+remove entity train
+exit

@@ -1,0 +1,61 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity kicker
+local entity runner
+local entity lady
+local entity guy
+local entity door
+local int sig1
+
+kicker = find entity with targetname "elkick"
+runner = find entity with targetname "elrun"
+lady = find entity with targetname "elwoman"
+guy = find entity with targetname "elstay"
+door = find entity with targetname "eldoor"
+use entity lady
+use entity guy
+use entity kicker
+use entity runner
+animate entity lady performing action CCH_XCCHCOWER2_MID_A_A
+animate entity lady performing action SCRIPT_RELEASE
+play sound "cin/nyc3/script/cry.adp" for entity lady on channel CHAN_AUTO at volume 0.900
+animate entity runner performing action STD_R_N_MRS_2 by moving [-72.000 ,-12.000 ,0.000]
+animate entity runner performing action STD_R_N_MRS_2 by moving [-52.000 ,-32.000 ,0.000]
+animate entity runner performing action SCRIPT_RELEASE
+wait 0.500 seconds
+animate entity guy performing action CCH_XCROUCH_UP_MRS_2 holding for 1.000
+animate entity guy performing action STD_F_FWD_S_2 targeting entity lady kill nulltarget HEAD
+animate entity guy performing action SCRIPT_RELEASE
+animate entity kicker performing action STD_XKICKDOOR_N_A_A
+play sound "impact/door/kickdoor.wav" for entity door at volume 0.900
+wait 0.100 seconds
+moverotate entity door from file "ny_streets_eldoor.rof"
+animate entity kicker performing action SCRIPT_RELEASE
+unload roff "ny_streets_eldoor.rof"
+exit

@@ -1,0 +1,77 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+global int diebitch
+local entity fuel
+local entity clip
+local entity sideh
+local entity sideclip
+local entity toph
+local entity valve
+local entity cam
+local entity cd
+local entity you
+local entity mess
+local entity pipeactive
+local entity killplayer
+local entity die
+local int sig
+
+cache roff "sib1_floodpipe_tophatch_cl.rof"
+cache roff "sib1_floodpipe_valve_cl.rof"
+cam = find entity with targetname "floodcam"
+enable cinematics
+label lab_00001
+fuel = find entity with targetname "fuel"
+clip = find entity with targetname "floodclip"
+sideh = find entity with targetname "sidehatch"
+sideclip = find entity with targetname "openhatch"
+toph = find entity with targetname "tophatch"
+valve = find entity with targetname "floodvalve"
+cd = find entity with targetname "countdown"
+you = find entity player
+mess = find entity with targetname "pipemess"
+pipeactive = find entity with targetname "pipeactive"
+killplayer = find entity with targetname "killplayer"
+die = find entity with targetname "t215"
+use entity sideclip
+wait 0.500 seconds
+rotate entity sideh by [0.000 ,0.000 ,0.000]
+use entity sideclip
+diebitch = 1
+moverotate entity toph from file "sib1_floodpipe_tophatch_cl.rof" signaling sig
+moverotate entity valve from file "sib1_floodpipe_valve_cl.rof"
+wait for all clearing sig
+wait 3 seconds
+diebitch = 0
+use entity clip
+use entity mess
+suspend
+goto lab_00001
+disable cinematics
+exit

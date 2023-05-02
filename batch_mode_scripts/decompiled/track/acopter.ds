@@ -1,0 +1,110 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local vector pos
+local entity una
+local entity unb
+local entity unc
+local entity und
+local entity une
+local entity unf
+local entity ung
+local entity aheli
+
+aheli = find entity with targetname "aheli"
+una = find entity with targetname "una"
+unb = find entity with targetname "unb"
+unc = find entity with targetname "unc"
+und = find entity with targetname "und"
+une = find entity with targetname "une"
+unf = find entity with targetname "unf"
+ung = find entity with targetname "ung"
+wait 0.200 seconds
+helicopter entity aheli 35
+helicopter entity aheli 36
+helicopter entity aheli 37
+helicopter entity aheli 38
+helicopter entity aheli 42
+helicopter entity aheli 42
+helicopter entity aheli 42
+helicopter entity aheli 42
+helicopter entity aheli 24
+helicopter entity aheli 26
+helicopter entity aheli 41
+wait 0.200 seconds
+use entity una
+use entity unb
+use entity unc
+use entity und
+use entity une
+use entity unf
+use entity ung
+una.health += 60
+unb.health += 60
+unc.health += 60
+und.health += 60
+une.health += 60
+unf.health += 60
+ung.health += 60
+animate entity unf performing action SCRIPT_RELEASE
+animate entity ung performing action SCRIPT_RELEASE
+label lab_00003
+jo = get entity activator
+animate entity una performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
+animate entity unb performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+wait 0.100 seconds
+animate entity una performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity unb performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+animate entity unc performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity und performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity une performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+if aheli.health < 0
+if una.health <= 0
+if unb.health <= 0
+if unc.health <= 0
+if und.health <= 0
+if une.health <= 0
+goto lab_00002
+endif
+suspend
+reset ai for entity una
+reset ai for entity unb
+reset ai for entity unc
+reset ai for entity und
+reset ai for entity une
+goto lab_00003
+label lab_00002
+wait 0.200 seconds
+animate entity una performing action SCRIPT_RELEASE
+animate entity unb performing action SCRIPT_RELEASE
+animate entity unc performing action SCRIPT_RELEASE
+animate entity und performing action SCRIPT_RELEASE
+animate entity une performing action SCRIPT_RELEASE
+exit

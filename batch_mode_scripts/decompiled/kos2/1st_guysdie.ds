@@ -1,0 +1,66 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity gguy1
+local entity gguy2
+local entity bguy1
+local entity bguy2
+local entity board
+local entity dirt
+local entity ex1
+local entity grenade
+local int sig
+
+gguy1 = find entity with targetname "gguy1"
+gguy2 = find entity with targetname "gguy2"
+bguy1 = find entity with targetname "bguy1"
+bguy2 = find entity with targetname "bguy2"
+board = find entity with targetname "bguy1board"
+dirt = find entity with targetname "dirt"
+ex1 = find entity with targetname "dirtex1"
+grenade = find entity with targetname "grenade"
+moverotate entity grenade from file "kos2_1st_guysdie_grenade.rof"
+moverotate entity gguy1 from file "kos2_1st_guysdie_guy1.rof"
+moverotate entity gguy2 from file "kos2_1st_guysdie_guy2.rof"
+wait 0.600 seconds
+remove entity grenade
+animate entity gguy1 performing action STD_SSTUMBLE_2BK_P_N
+animate entity gguy2 performing action STD_SSTUMBLE_2BK_P_N
+use entity ex1
+use entity dirt
+wait 1.400 seconds
+remove entity gguy1
+remove entity gguy2
+animate entity bguy1 performing action STD_R_N_MRS_2 by moving [200.000 ,-64.000 ,0.000]
+animate entity bguy2 performing action STD_R_N_MRS_2 by moving [248.000 ,-48.000 ,0.000]
+animate entity bguy1 performing action SCRIPT_RELEASE
+animate entity bguy2 performing action SCRIPT_RELEASE
+unload roff "kos2_1st_guysdie_grenade.rof"
+unload roff "kos2_1st_guysdie_guy2.rof"
+unload roff "kos2_1st_guysdie_guy1.rof"
+exit

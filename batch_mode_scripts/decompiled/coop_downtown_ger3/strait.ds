@@ -1,0 +1,68 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity gal
+local entity gol
+local entity jo
+local int sig1
+local int sig2
+local int sig3
+local int sig4
+
+gal = find entity with targetname "gal"
+gol = find entity with targetname "gol"
+use entity gal
+use entity gol
+gal.health += 10
+gol.health += 80
+animate entity gal performing action RUN by moving [80.000 ,0.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity gal performing action RUN by moving [0.000 ,240.000 ,0.000] signaling sig2
+wait for all clearing sig2
+jo = get entity activator
+animate entity gal performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+suspend
+jo = get entity activator
+animate entity gal performing action CCH_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
+suspend
+wait 0.100 seconds
+animate entity gal performing action RUN by moving [0.000 ,15.000 ,0.000] signaling sig3
+wait for all clearing sig3
+goto lab_00001
+label lab_00001
+suspend
+animate entity gal performing action SCRIPT_RELEASE
+animate entity gol performing action RUN by moving [90.000 ,0.000 ,0.000] signaling sig4
+wait for all clearing sig4
+animate entity gol performing action RUN by moving [0.000 ,4.000 ,0.000]
+animate entity gol performing action SCRIPT_RELEASE
+wait 0.500 seconds
+goto lab_00002
+label lab_00002
+exit

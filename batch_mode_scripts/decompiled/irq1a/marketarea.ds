@@ -1,0 +1,58 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity tableleft
+local entity tableright
+local entity marketsold1
+local entity marketsold2
+local entity marketcrawl
+local entity marketbackguy1
+
+tableleft = find entity with targetname "tableleft"
+tableright = find entity with targetname "tableright"
+marketsold1 = find entity with targetname "marketsold1"
+marketsold2 = find entity with targetname "marketsold2"
+marketcrawl = find entity with targetname "marketcrawl"
+marketbackguy1 = find entity with targetname "marketbackguy1"
+animate entity marketcrawl performing action STD_XGOPRONE_N_A_A
+animate entity marketcrawl performing action A4_ASCRAMBLE_N_A_N by moving [128.000 ,0.000 ,0.000]
+animate entity marketcrawl performing action SCRIPT_RELEASE
+animate entity marketsold1 performing action STD_EFLIPTABLE_N_A_N
+wait 0.250 seconds
+moverotate entity tableleft from file "Irq1a_mtable1.rof"
+play sound "Impact/Wood/TableCrsh.wav" for entity tableleft on channel CHAN_AUTO at volume 0.900
+animate entity marketsold1 performing action SCRIPT_RELEASE
+use entity marketbackguy1
+use entity marketbackguy1
+wait 0.700 seconds
+animate entity marketsold2 performing action STD_EFLIPTABLE_N_A_N
+wait 0.250 seconds
+moverotate entity tableright from file "Irq1a_mtable1.rof"
+play sound "Impact/Wood/TableCrsh.wav" for entity tableright on channel CHAN_AUTO at volume 0.900
+animate entity marketsold2 performing action SCRIPT_RELEASE
+exit

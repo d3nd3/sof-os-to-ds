@@ -1,0 +1,75 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity el
+local entity geartrt
+local entity geartlf
+local entity gearbrt
+local entity gearblf
+local entity chainrt
+local entity chainlf
+local entity guys1
+local entity guys2
+local entity guys3
+local entity liftsnd
+local int sig
+
+el = find entity with targetname "lupel"
+geartrt = find entity with targetname "lupgeartrt"
+geartlf = find entity with targetname "lupgeartlf"
+gearbrt = find entity with targetname "lupgearbrt"
+gearblf = find entity with targetname "lupgearblf"
+chainlf = find entity with targetname "lupchdn"
+chainrt = find entity with targetname "lupchup"
+guys1 = find entity with targetname "elguys1"
+guys2 = find entity with targetname "elguys2"
+guys3 = find entity with targetname "elguys3"
+liftsnd = find entity with targetname "liftupsnd"
+use entity liftsnd
+moverotate entity el from file "sud3_liftup_el.rof"
+moverotate entity geartrt from file "sud3_liftup_geartlf.rof"
+moverotate entity geartlf from file "sud3_liftup_geartlf.rof"
+moverotate entity gearbrt from file "sud3_liftup_gearblf.rof"
+moverotate entity gearblf from file "sud3_liftup_gearblf.rof"
+moverotate entity chainrt from file "sud3_liftup_chainrt.rof"
+moverotate entity chainlf from file "sud3_liftup_chainlf.rof"
+moverotate entity guys1 from file "sud3_liftup_el.rof"
+moverotate entity guys2 from file "sud3_liftup_el.rof"
+moverotate entity guys3 from file "sud3_liftup_el.rof" signaling sig
+wait for all clearing sig
+remove entity guys1
+remove entity guys3
+remove entity guys2
+remove entity liftsnd
+unload roff "sud3_liftup_el.rof"
+unload roff "sud3_liftup_geartlf.rof"
+unload roff "sud3_liftup_gearblf.rof"
+unload roff "sud3_liftup_chainlf.rof"
+unload roff "sud3_liftup_chainrt.rof"
+unload roff "sud3_liftup_el.rof"
+exit

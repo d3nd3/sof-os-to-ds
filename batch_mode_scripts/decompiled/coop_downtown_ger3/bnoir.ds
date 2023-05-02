@@ -1,0 +1,63 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity sombre4
+local entity sombre2
+local entity sombre3
+local entity jo
+
+sombre4 = find entity with targetname "sombre4"
+sombre3 = find entity with targetname "sombre3"
+sombre2 = find entity with targetname "sombre2"
+use entity sombre4
+use entity sombre2
+use entity sombre3
+animate entity sombre4 performing action WALK by moving [-50.000 ,-15.000 ,0.000]
+label lab_00003
+jo = get entity activator
+animate entity sombre3 performing action STD_FVIOLENT_DWN_M_2 targeting entity jo
+animate entity sombre2 performing action CCH_F_FWD_M_2 targeting entity jo
+wait 0.100 seconds
+animate entity sombre4 performing action STD_FVIOLENT_DWN_M_2 targeting entity jo kill nulltarget HEAD
+wait 0.100 seconds
+suspend
+jo = get entity activator
+animate entity sombre2 performing action STD_FVIOLENT_DWN_M_2 targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+suspend
+animate entity sombre3 performing action STD_FVIOLENT_DWN_M_2 targeting entity jo kill nulltarget HEAD
+wait 0.100 seconds
+if sombre2.health <= 0
+if sombre3.health <= 0
+if sombre4.health <= 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+exit

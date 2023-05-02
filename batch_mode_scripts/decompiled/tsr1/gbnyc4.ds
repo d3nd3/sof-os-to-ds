@@ -1,0 +1,44 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity camroom_door
+local entity camroom_hole
+local entity openin
+local int sig1
+local int sig2
+
+camroom_door = find entity with targetname "camroom_door"
+camroom_hole = find entity with targetname "camroom_hole"
+openin = find entity with targetname "openin"
+camroom_hole.movetype = MOVETYPE_NOCLIP
+rotate entity camroom_door by [0.000 ,0.000 ,0.000] at 90 speed signaling sig1
+rotate entity camroom_hole by [0.000 ,0.000 ,0.000] at 90 speed signaling sig2
+wait for all clearing sig1,sig2
+use entity openin
+camroom_hole.movetype = MOVETYPE_NONE
+exit

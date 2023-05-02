@@ -1,0 +1,44 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jumper2
+local entity trapdr2
+local entity relay2
+
+jumper2 = find entity with targetname "jumper2"
+trapdr2 = find entity with targetname "trapdr2"
+relay2 = find entity with targetname "relay2"
+use entity jumper2
+use entity trapdr2
+play sound "Impact/Door/VentOpn.wav" for entity trapdr2 at volume 0.900
+animate entity jumper2 performing action STD_JDROP_N_A_A by moving [0.000 ,0.000 ,-128.000]
+animate entity jumper2 performing action SCRIPT_RELEASE
+wait 3 seconds
+remove entity relay2
+wait 2 seconds
+exit

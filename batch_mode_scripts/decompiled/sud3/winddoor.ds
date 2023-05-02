@@ -1,0 +1,70 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity fansnd
+local entity windtrig
+local entity light1
+local entity light2
+local entity light3
+local entity fan1
+local entity fan2
+local entity fan3
+local entity fan4
+local entity bars
+local entity guy
+local entity blastdoor
+local int sig
+
+fansnd = find entity with targetname "fansnd"
+windtrig = find entity with targetname "windtrig"
+bars = find entity with targetname "windbars"
+light1 = find entity with targetname "windlight1"
+light2 = find entity with targetname "windlight2"
+light3 = find entity with targetname "windlight3"
+fan1 = find entity with targetname "windfan1"
+fan2 = find entity with targetname "windfan2"
+fan3 = find entity with targetname "windfan3"
+fan4 = find entity with targetname "windfan4"
+guy = find entity with targetname "windguy"
+blastdoor = find entity with targetname "mrblastdoor"
+use entity blastdoor
+wait 0.300 seconds
+use entity fan1
+use entity fan2
+use entity fan3
+use entity fan4
+use entity light1
+use entity light2
+use entity light3
+use entity guy
+wait 1 seconds
+use entity blastdoor
+remove entity fansnd
+remove entity windtrig
+remove entity bars
+exit

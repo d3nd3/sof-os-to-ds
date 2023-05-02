@@ -1,0 +1,195 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity stn4ex1
+local entity stn4exp1
+local entity stn4ex2
+local entity stn4exp2
+local entity stn4exp3
+local entity stn4exp4
+local entity stn4exp5
+local entity stn4exp6
+local entity stn4exp7
+local entity stn4ex8
+local entity stn4exp8
+local entity stn4smk1
+local entity stn4smk2
+local entity stn4smk3
+local entity bkpipe1
+local entity bkpipe2
+local entity stn4guy
+local entity stn4guy2
+local entity stn4gate
+local entity camera0
+local entity cam0target
+local entity blowntank
+local entity blowntankpipe
+local entity blowntop
+local entity goodtank
+local entity pipebreak1
+local entity bpipe1
+local entity bpipe2
+local entity btoss1
+local entity btoss2
+local entity goodpipe
+local entity badpipe
+local entity tipper
+local entity exp1
+local entity exp2
+local entity exp3
+local entity exp4
+local entity exp5
+local entity exp6
+local entity aftershock
+local entity camera1
+local entity onedowntrig
+local entity irq3bfadeout
+local entity irq3bfadein
+local entity outcounter
+local entity stn2snd01
+local entity stn2snd02
+local entity stn2john
+local entity stn2place
+local entity stn2console
+local entity stn2boom
+local entity player2
+local entity s2wheel
+
+stn2place = find entity with targetname "stn2place"
+camera0 = find entity with targetname "clcam0"
+cam0target = find entity with targetname "clcam0_target"
+stn4ex1 = find entity with targetname "stn4ex1"
+stn4exp1 = find entity with targetname "stn4exp1"
+stn4ex2 = find entity with targetname "stn4ex2"
+stn4exp2 = find entity with targetname "stn4exp2"
+stn4exp3 = find entity with targetname "stn4exp3"
+stn4exp4 = find entity with targetname "stn4exp4"
+stn4exp5 = find entity with targetname "stn4exp5"
+stn4exp6 = find entity with targetname "stn4exp6"
+stn4exp7 = find entity with targetname "stn4exp7"
+stn4ex8 = find entity with targetname "stn4ex8"
+stn4exp8 = find entity with targetname "stn4exp8"
+stn4smk1 = find entity with targetname "stn4smk1"
+stn4smk2 = find entity with targetname "stn4smk2"
+stn4smk3 = find entity with targetname "stn4smk3"
+bkpipe1 = find entity with targetname "bkpipe1"
+bkpipe2 = find entity with targetname "bkpipe2"
+stn4guy = find entity with targetname "stn4guy"
+stn4guy2 = find entity with targetname "stn4guy2"
+stn4gate = find entity with targetname "stn4gate"
+blowntank = find entity with targetname "clblowntank"
+blowntankpipe = find entity with targetname "clblowntankpipe"
+blowntop = find entity with targetname "clblowntanktop"
+goodtank = find entity with targetname "clgoodtank"
+pipebreak1 = find entity with targetname "clshatter1"
+bpipe1 = find entity with targetname "clpiece1"
+bpipe2 = find entity with targetname "clpiece2"
+btoss1 = find entity with targetname "cltoss1"
+btoss2 = find entity with targetname "cltoss2"
+badpipe = find entity with targetname "clbadpipeagain"
+goodpipe = find entity with targetname "clgoodpipe"
+tipper = find entity with targetname "cltipper"
+exp1 = find entity with targetname "clexp1"
+exp2 = find entity with targetname "clexp2"
+exp3 = find entity with targetname "clexp3"
+exp4 = find entity with targetname "clexp4"
+exp5 = find entity with targetname "clexp5"
+exp6 = find entity with targetname "clexp6"
+aftershock = find entity with targetname "aftershock"
+camera1 = find entity with targetname "clcam1"
+onedowntrig = find entity with targetname "onedowntrig"
+irq3bfadeout = find entity with targetname "irq3bfadeout"
+irq3bfadein = find entity with targetname "irq3bfadein"
+outcounter = find entity with targetname "outcounter"
+stn2snd01 = find entity with targetname "stn2snd01"
+stn2snd02 = find entity with targetname "stn2snd02"
+stn2john = find entity with targetname "stn2john"
+stn2console = find entity with targetname "stn2console"
+stn2boom = find entity with targetname "stn2boom"
+s2wheel = find entity with targetname "s2wheel"
+player2 = get entity activator
+wait 1.600 seconds
+use entity stn4ex2
+use entity stn4exp2
+animate entity stn4guy performing action STD_SBLOWN_2BK_N_N
+wait 0.900 seconds
+wait 0.300 seconds
+use entity stn4smk2
+use entity stn4exp3
+wait 0.200 seconds
+use entity stn4smk1
+wait 0.300 seconds
+play sound "Impact/Metal/Long1.adp" for entity stn2snd01 on channel CHAN_AUTO at volume 0.900
+use entity stn4exp4
+use entity bkpipe2
+wait 0.200 seconds
+use entity stn4exp5
+use entity bkpipe1
+wait 0.300 seconds
+use entity stn4exp6
+wait 0.400 seconds
+use entity stn4exp7
+wait 0.300 seconds
+use entity stn4exp8
+use entity stn4ex8
+wait 0.400 seconds
+use entity stn4smk3
+wait 1 seconds
+wait 1.500 seconds
+use entity exp1
+play sound "Impact/Metal/Long2.adp" for entity stn2snd02 on channel CHAN_AUTO at volume 0.900
+wait 0.200 seconds
+use entity exp4
+use entity goodtank
+use entity blowntank
+use entity blowntankpipe
+blowntop.movetype = MOVETYPE_NOCLIP
+blowntop.angle_velocity = [0.000 ,250.000 ,0.000]
+blowntop.velocity = [50.000 ,600.000 ,100.000]
+wait 0.200 seconds
+use entity badpipe
+use entity goodpipe
+use entity blowntop
+wait 0.200 seconds
+use entity exp5
+rotate entity tipper to [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity tipper by [0.200 ,0.000 ,0.000] over 0.200 seconds
+wait 0.200 seconds
+use entity exp6
+use entity exp2
+wait 0.200 seconds
+use entity exp3
+use entity pipebreak1
+use entity bpipe1
+use entity bpipe2
+wait 1 seconds
+use entity outcounter
+use entity onedowntrig
+use entity aftershock
+wait 0.200 seconds
+exit

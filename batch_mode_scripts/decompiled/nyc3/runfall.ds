@@ -1,0 +1,67 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity board
+local entity guy
+local entity you
+local entity guy1
+local entity hurt
+local entity push
+local entity guy2
+local int sig1
+
+cache sound "cin/nyc3/script/dropkick.wav"
+cache sound "Impact/Player/Hit4.wav"
+board = find entity with targetname "runfallboard"
+guy = find entity with targetname "runfallguy"
+you = find entity player
+guy1 = find entity with targetname "rfguy1"
+hurt = find entity with targetname "rfhurt"
+push = find entity with targetname "rfpush"
+guy2 = find entity with targetname "rfguy2"
+use entity guy1
+use entity guy2
+wait 0.100 seconds
+animate entity guy2 performing action SCRIPT_RELEASE
+animate entity guy1 performing action STD_R_N_MRS_2 by moving [-110.000 ,0.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity guy1 performing action STD_MNINJAKICK_N_A_B
+play sound "cin/nyc3/script/dropkick.wav" for entity guy1 on channel CHAN_AUTO at volume 0.900
+wait 0.500 seconds
+play sound "Impact/Player/Hit4.wav" for entity you on channel CHAN_AUTO at volume 0.900
+use entity hurt
+use entity push
+wait 0.100 seconds
+remove entity hurt
+remove entity push
+animate entity guy1 performing action SCRIPT_RELEASE
+wait 1 seconds
+use entity board
+animate entity guy performing action STD_JDROP_N_A_A
+animate entity guy performing action SCRIPT_RELEASE
+exit

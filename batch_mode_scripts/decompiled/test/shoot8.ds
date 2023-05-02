@@ -1,0 +1,58 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity me
+local entity guy11
+local entity guy12
+local entity guy13
+local entity guy14
+local int sig1
+
+guy11 = find entity with targetname "guy11"
+guy12 = find entity with targetname "guy12"
+guy13 = find entity with targetname "guy13"
+guy14 = find entity with targetname "guy14"
+me = get entity activator
+guy11.health = 2500
+guy12.health = 2500
+guy13.health = 2500
+guy14.health = 2500
+use entity guy11
+use entity guy12
+use entity guy13
+use entity guy14
+label lab_00001
+animate entity guy11 performing action CCH_F_FWD_S_2 repeating for 5 times targeting entity me
+animate entity guy12 performing action CCH_F_FWD_S_2 repeating for 5 times targeting entity me
+animate entity guy13 performing action CCH_F_FWD_S_2 repeating for 5 times targeting entity me
+animate entity guy14 performing action CCH_F_FWD_S_2 repeating for 5 times targeting entity me signaling sig1
+wait for all clearing sig1
+wait 0.100 seconds
+suspend
+goto lab_00001
+exit

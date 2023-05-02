@@ -1,0 +1,95 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity man15
+local entity man16
+local entity man17
+local entity man18
+local int health
+local int pop
+local entity sneak
+
+pop = random from 1 to 4
+man15 = find entity with targetname "shoot15"
+man16 = find entity with targetname "shoot16"
+man17 = find entity with targetname "shoot17"
+man18 = find entity with targetname "shoot18"
+sneak = get entity activator
+man15.health = 2500
+health = man15.health
+man16.health = 2500
+health = man16.health
+man17.health = 2500
+health = man17.health
+man18.health = 2500
+health = man18.health
+if health == 0
+goto lab_00002
+endif
+use entity man15
+use entity man16
+use entity man17
+use entity man18
+label lab_00003
+sneak = get entity activator
+animate entity man15 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man16 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man17 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man18 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man15 performing action STD_XROLL_RT_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man16 performing action STD_XROLL_LT_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man17 performing action STD_XROLL_LT_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man18 performing action STD_XROLL_RT_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man15 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man16 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man17 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man18 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man15 performing action STD_XROLL_LT_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man16 performing action STD_XROLL_RT_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man17 performing action STD_XROLL_RT_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man18 performing action STD_XROLL_LT_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man15 performing action STD_XSTARTLED_N_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man16 performing action STD_XSTARTLED_N_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man17 performing action STD_XSTARTLED_N_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man18 performing action STD_XSTARTLED_N_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man15 performing action CCH_IREADY_N_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man16 performing action CCH_IREADY_N_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man17 performing action CCH_IREADY_N_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man18 performing action CCH_IREADY_N_A_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man15 performing action STD_RAIMSTRAF_RT_MRS_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man16 performing action STD_RAIMSTRAF_RT_MRS_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man17 performing action STD_RAIMSTRAF_RT_MRS_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man18 performing action STD_RAIMSTRAF_RT_MRS_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man15 performing action STD_RDYNAMIC_N_A_N repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man16 performing action STD_RDYNAMIC_N_A_N repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man17 performing action STD_RDYNAMIC_N_A_N repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man18 performing action STD_RDYNAMIC_N_A_N repeating for pop times targeting entity sneak kill nulltarget HEAD
+wait 0.100 seconds
+goto lab_00003
+label lab_00002
+exit

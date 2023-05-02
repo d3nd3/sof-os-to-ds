@@ -1,0 +1,73 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity genrt
+local entity genlf
+local entity cam
+local entity gate
+local entity ex1
+local entity ex2
+local entity ex3
+local entity ex4
+local entity ex5
+local entity activate
+local entity electro
+local int sig1
+
+electro = find entity with targetname "gens"
+genrt = find entity with targetname "genrt"
+genlf = find entity with targetname "genlf"
+cam = find entity with targetname "gencam"
+gate = find entity with targetname "gengate"
+ex1 = find entity with targetname "exlfin"
+ex2 = find entity with targetname "exrtin"
+ex3 = find entity with targetname "exlfout"
+ex4 = find entity with targetname "exrtout"
+ex5 = find entity with targetname "exgate"
+activate = find entity with targetname "genactivate"
+remove entity electro
+use entity ex3
+use entity ex4
+wait 0.300 seconds
+use entity genrt
+use entity ex2
+wait 0.250 seconds
+use entity genlf
+use entity ex1
+wait 2 seconds
+use entity cam
+enable cinematics
+use entity ex5
+wait 0.200 seconds
+moverotate entity gate from file "ny_nyc1_gengate.rof" signaling sig1
+wait for all clearing sig1
+wait 0.250 seconds
+disable cinematics
+use entity cam
+use entity activate
+exit

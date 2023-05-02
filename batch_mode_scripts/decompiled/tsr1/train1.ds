@@ -1,0 +1,65 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity train2
+local entity trainvictim1
+local entity pusher
+local entity shake1
+local entity trainexplosion
+local entity brokensign
+local entity trainsmokegen
+local int health
+local int sig1
+
+train2 = find entity with targetname "train2"
+trainvictim1 = find entity with targetname "trainvictim1"
+pusher = find entity with targetname "pusher"
+shake1 = find entity with targetname "shake1"
+brokensign = find entity with targetname "brokensign"
+trainexplosion = find entity with targetname "trainexplosion"
+trainsmokegen = find entity with targetname "trainsmokegen"
+health = pusher.health
+if health <= 0
+use entity train2
+animate entity trainvictim1 performing action SCRIPT_RELEASE
+exit
+endif
+animate entity pusher performing action STD_F_FWD_S_2 targeting entity trainvictim1
+animate entity pusher performing action SCRIPT_RELEASE
+animate entity trainvictim1 performing action STD_SBLOWN_2BK_N_N by moving [64.000 ,0.000 ,0.000]
+play sound "Speech/tsr1/npc/eb9-11.adp" for entity trainvictim1 at volume 0.900
+wait 1.250 seconds
+use entity train2
+wait 0.750 seconds
+remove entity trainvictim1
+wait 3 seconds
+use entity shake1
+use entity trainexplosion
+rotate entity train2 by [0.000 ,0.000 ,0.000] at 150 speed signaling sig1
+wait for all clearing sig1
+exit

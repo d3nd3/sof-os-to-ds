@@ -1,0 +1,36 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity crsoldier2
+local int sig1
+
+crsoldier2 = find entity with targetname "crsoldier2"
+animate entity crsoldier2 performing action STD_XROLL_LT_A_A signaling sig1
+wait for all clearing sig1
+animate entity crsoldier2 performing action SCRIPT_RELEASE
+exit

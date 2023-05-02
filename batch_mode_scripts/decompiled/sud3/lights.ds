@@ -1,0 +1,45 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity spark
+local entity light1
+local entity light2
+local entity light3
+local entity light4
+
+spark = find entity with targetname "lspark"
+light1 = find entity with targetname "ll1"
+light2 = find entity with targetname "ll2"
+light3 = find entity with targetname "ll3"
+light4 = find entity with targetname "ll4"
+use entity spark
+use entity light1
+use entity light2
+use entity light3
+use entity light4
+exit

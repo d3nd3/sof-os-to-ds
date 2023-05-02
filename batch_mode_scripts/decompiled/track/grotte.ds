@@ -1,0 +1,65 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity t81
+local entity t82
+local entity t83
+
+t81 = find entity with targetname "t81"
+t82 = find entity with targetname "t82"
+t83 = find entity with targetname "t83"
+use entity t81
+use entity t82
+use entity t83
+t81.health += 100
+t82.health += 100
+t83.health += 100
+suspend
+label lab_00003
+jo = get entity activator
+animate entity t81 performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity t82 performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity t83 performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+suspend
+jo = get entity activator
+animate entity t81 performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity t82 performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget LSHOULDER
+animate entity t83 performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget RSHOULDER
+if t81.health <= 0
+if t82.health <= 0
+if t83.health <= 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+animate entity t81 performing action SCRIPT_RELEASE
+animate entity t82 performing action SCRIPT_RELEASE
+animate entity t83 performing action SCRIPT_RELEASE
+exit

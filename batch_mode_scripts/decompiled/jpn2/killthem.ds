@@ -1,0 +1,91 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity killthemcam1
+local entity salutedr1
+local entity salutedr2
+local entity salutedr3
+local entity salutedr4
+local entity killthemdekker
+local entity killthemninja1
+local entity killthemninja2
+local entity killthemninja1a
+local entity killthemninja2a
+local entity jpn2fadeout
+local entity jpn2fadein
+local entity activedoor
+local int sig1
+local int sig2
+
+killthemcam1 = find entity with targetname "killthemcam1"
+salutedr1 = find entity with targetname "salutedr1"
+salutedr2 = find entity with targetname "salutedr2"
+salutedr3 = find entity with targetname "salutedr3"
+salutedr4 = find entity with targetname "salutedr4"
+killthemdekker = find entity with targetname "killthemdekker"
+killthemninja1 = find entity with targetname "killthemninja1"
+killthemninja2 = find entity with targetname "killthemninja2"
+killthemninja1a = find entity with targetname "killthemninja1a"
+killthemninja2a = find entity with targetname "killthemninja2a"
+jpn2fadeout = find entity with targetname "jpn2fadeout"
+jpn2fadein = find entity with targetname "jpn2fadein"
+activedoor = find entity with targetname "activedoor"
+use entity activedoor
+use entity killthemdekker
+use entity killthemninja1
+use entity killthemninja1
+use entity salutedr1
+use entity salutedr2
+use entity salutedr3
+use entity salutedr4
+animate entity killthemdekker performing action STD_EHEADSHAKE_N_A_N holding for 4.900
+play sound "cin/jpn2/c57d1.adp" for entity killthemdekker on channel CHAN_AUTO at volume 0.900
+print 28678
+animate entity killthemninja1 performing action STD_ININJA_N_P_N signaling sig1 holding for 1.800
+animate entity killthemninja2 performing action STD_ININJA_N_P_N signaling sig2 holding for 1.800
+wait for all clearing sig1,sig2
+wait 1.200 seconds
+rotate entity killthemninja2 by [0.000 ,0.000 ,0.000]
+animate entity killthemninja2 performing action STD_XHANDSPRING_FWD_A_N
+rotate entity killthemninja1 by [0.000 ,0.000 ,0.000]
+animate entity killthemninja1 performing action STD_JTHROWSTAR_FWD_A_N
+wait 0.900 seconds
+use entity salutedr1
+use entity salutedr2
+use entity salutedr3
+use entity salutedr4
+wait 3 seconds
+use entity activedoor
+remove entity killthemdekker
+remove entity killthemninja1
+remove entity killthemninja2
+use entity killthemninja1a
+use entity killthemninja2a
+wait 2 seconds
+unload sound "cin/jpn2/c57d1.adp"
+exit

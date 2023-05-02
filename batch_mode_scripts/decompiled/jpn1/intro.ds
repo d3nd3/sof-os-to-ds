@@ -1,0 +1,62 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity introcam1
+local entity intronull1
+local entity intromullins
+local entity introfade
+local entity introfadein
+local int sig1
+local int sig2
+
+introcam1 = find entity with targetname "introcam1"
+intronull1 = find entity with targetname "intronull1"
+intromullins = find entity with targetname "intromullins"
+introfade = find entity with targetname "introfade"
+introfadein = find entity with targetname "introfadein"
+enable cinematics
+use entity introcam1
+use entity intronull1
+use entity intromullins
+moverotate entity introcam1 from file "jpn1introcam1.rof" signaling sig1
+moverotate entity intronull1 from file "jpn1intronull1.rof" signaling sig2
+animate entity intromullins performing action STD_IGUNUP_N_A_N holding for 5.000
+wait 2 seconds
+print 28173
+wait for all clearing sig1,sig2
+animate entity intromullins performing action STD_EFRMSHADOW_N_P_N signaling sig1
+wait for all clearing sig1
+use entity introfade
+animate entity intromullins performing action STD_IGUNUP_N_A_N signaling sig1
+wait for all clearing sig1
+use entity introcam1
+use entity intronull1
+use entity introfadein
+disable cinematics
+remove entity intromullins
+exit

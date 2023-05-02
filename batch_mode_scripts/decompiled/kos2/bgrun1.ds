@@ -1,0 +1,55 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy1
+local entity guy2
+local entity guy3
+local entity you
+local int sig1
+
+guy1 = find entity with targetname "bgrunguy1"
+guy2 = find entity with targetname "bgrunguy2"
+guy3 = find entity with targetname "bgrunguy3"
+you = find entity player
+animate entity guy1 performing action STD_R_N_MRS_2 by moving [0.000 ,-130.000 ,0.000]
+animate entity guy1 performing action STD_R_N_MRS_2 by moving [-16.000 ,0.000 ,0.000]
+animate entity guy1 performing action CCH_F_FWD_M_2 holding for 2.000
+animate entity guy1 performing action SCRIPT_RELEASE
+animate entity guy2 performing action STD_R_N_MRS_2 by moving [0.000 ,-180.000 ,0.000]
+animate entity guy2 performing action STD_R_N_MRS_2 by moving [16.000 ,-64.000 ,0.000]
+animate entity guy2 performing action STD_R_N_MRS_2 by moving [-32.000 ,-32.000 ,0.000]
+animate entity guy2 performing action STD_F_FWD_M_2 holding for 1.500
+animate entity guy2 performing action SCRIPT_RELEASE
+animate entity guy3 performing action STD_R_N_MRS_2 by moving [-80.000 ,0.000 ,0.000]
+animate entity guy3 performing action STD_TGRENADE_N_A_N
+animate entity guy3 performing action STD_EJUMPRAIL_N_A_N by moving [-125.000 ,0.000 ,0.000]
+animate entity guy3 performing action STD_R_N_MRS_2 by moving [-88.000 ,0.000 ,0.000]
+animate entity guy3 performing action STD_F_FWD_S_2 targeting entity you
+animate entity guy3 performing action STD_F_FWD_S_2 targeting entity you
+animate entity guy3 performing action SCRIPT_RELEASE
+exit

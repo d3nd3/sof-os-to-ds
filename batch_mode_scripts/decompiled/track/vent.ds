@@ -1,0 +1,78 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity t61
+local entity t62
+local entity t63
+local entity t64
+
+t61 = find entity with targetname "t61"
+t62 = find entity with targetname "t62"
+t63 = find entity with targetname "t63"
+t64 = find entity with targetname "t64"
+use entity t61
+use entity t62
+use entity t63
+use entity t64
+wait 0.100 seconds
+t61.health += 50
+t62.health += 50
+t63.health += 50
+t64.health += 50
+wait 0.100 seconds
+label lab_00003
+jo = get entity activator
+reset ai for entity t61
+reset ai for entity t62
+reset ai for entity t63
+reset ai for entity t64
+animate entity t62 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t63 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+suspend
+jo = get entity activator
+animate entity t61 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget LSHOULDER
+animate entity t64 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t62 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t63 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+if t61.health <= 0
+if t62.health <= 0
+if t63.health <= 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+reset ai for entity t61
+reset ai for entity t62
+reset ai for entity t63
+animate entity t61 performing action SCRIPT_RELEASE
+animate entity t62 performing action SCRIPT_RELEASE
+animate entity t63 performing action SCRIPT_RELEASE
+animate entity t64 performing action SCRIPT_RELEASE
+exit

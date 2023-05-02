@@ -1,0 +1,45 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity sprayer1
+local entity sprayer2
+local entity sneak
+
+sneak = find entity player
+sprayer1 = find entity with targetname "sprayer1"
+sprayer2 = find entity with targetname "sprayer2"
+use entity sprayer1
+use entity sprayer2
+animate entity sprayer1 performing action STD_FAUTOSWEEP_N_PM_A repeating for 3 times targeting entity sneak
+animate entity sprayer2 performing action STD_FAUTOSWEEP_N_PM_A repeating for 3 times targeting entity sneak
+wait 3 seconds
+animate entity sprayer1 performing action STD_F_FWD_M_2 targeting entity sneak
+animate entity sprayer1 performing action SCRIPT_RELEASE
+animate entity sprayer2 performing action STD_F_FWD_M_2 targeting entity sneak
+animate entity sprayer2 performing action SCRIPT_RELEASE
+exit

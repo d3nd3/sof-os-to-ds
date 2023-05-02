@@ -1,0 +1,51 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity mapreader
+local int sig
+global int condition
+
+mapreader = find entity with targetname "mapreader"
+condition = 0
+mapreader.movetype = MOVETYPE_NOCLIP
+animate entity mapreader performing action STD_WNORMAL_N_PK_A by moving [0.000 ,-32.000 ,0.000] signaling sig
+wait for all clearing sig
+label lab_00003
+animate entity mapreader performing action STD_ILEAN_N_P_N
+wait 1.800 seconds
+if condition == 1
+animate entity mapreader performing action STD_ILEANLOOK_FRM_PK_N by moving [0.000 ,16.000 ,0.000] signaling sig
+wait for all clearing sig
+mapreader.movetype = MOVETYPE_STEP
+animate entity mapreader performing action SCRIPT_RELEASE
+wait 1 seconds
+goto lab_00002
+endif
+goto lab_00003
+label lab_00002
+exit

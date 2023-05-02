@@ -1,0 +1,57 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity smvent1
+local entity smvent2
+local entity smvent3
+local entity smventexp1
+local entity smventexp2
+
+smvent1 = find entity with targetname "smvent1"
+smvent2 = find entity with targetname "smvent2"
+smvent3 = find entity with targetname "smvent3"
+smventexp1 = find entity with targetname "smventexp1"
+smventexp2 = find entity with targetname "smventexp2"
+smvent1.movetype = MOVETYPE_NOCLIP
+smvent2.movetype = MOVETYPE_NOCLIP
+smvent3.movetype = MOVETYPE_NOCLIP
+smventexp1.movetype = MOVETYPE_NOCLIP
+smventexp2.movetype = MOVETYPE_NOCLIP
+wait 0.300 seconds
+use entity smventexp1
+wait 0.100 seconds
+moverotate entity smvent1 from file "sib3_smallvent1.rof"
+moverotate entity smvent2 from file "sib3_smallvent2.rof"
+moverotate entity smvent3 from file "sib3_smallvent3.rof"
+wait 0.100 seconds
+use entity smventexp2
+wait 1.500 seconds
+unload roff "sib3_smallvent1.rof"
+unload roff "sib3_smallvent2.rof"
+unload roff "sib3_smallvent3.rof"
+exit

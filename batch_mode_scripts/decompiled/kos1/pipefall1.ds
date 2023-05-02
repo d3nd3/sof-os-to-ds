@@ -1,0 +1,44 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity pipebomb
+local entity pipehalf1
+local entity swapguya
+local entity shootplay
+
+pipebomb = find entity with targetname "pipebomb"
+pipehalf1 = find entity with targetname "pipehalf1"
+swapguya = find entity with targetname "swapguya"
+shootplay = find entity player
+use entity pipebomb
+use entity swapguya
+wait 0.250 seconds
+play sound "Impact\Metal\BigMetal.adp" for entity pipehalf1 at volume 0.900
+moverotate entity pipehalf1 from file "pfall1.rof"
+animate entity swapguya performing action SCRIPT_RELEASE
+exit

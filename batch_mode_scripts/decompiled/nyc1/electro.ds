@@ -1,0 +1,97 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy
+local entity genrt
+local entity genlf
+local entity spark1
+local entity spark2
+local entity spark3
+local entity cam
+local entity gate
+local entity ex1
+local entity ex2
+local entity ex3
+local entity ex4
+local entity ex5
+local entity activate
+local entity generators
+local entity fadeout
+local entity playerfade
+local entity bb
+local int sig1
+
+generators = find entity with targetname "t358"
+guy = find entity with targetname "electroguy"
+genrt = find entity with targetname "genrt"
+genlf = find entity with targetname "genlf"
+spark1 = find entity with targetname "elspark1"
+spark2 = find entity with targetname "elspark2"
+spark3 = find entity with targetname "elspark3"
+cam = find entity with targetname "gencam"
+gate = find entity with targetname "gengate"
+ex1 = find entity with targetname "exlfin"
+ex2 = find entity with targetname "exrtin"
+ex3 = find entity with targetname "exlfout"
+ex4 = find entity with targetname "exrtout"
+ex5 = find entity with targetname "exgate"
+activate = find entity with targetname "genactivate"
+fadeout = find entity with targetname "introfadeout"
+playerfade = find entity with targetname "introfadeplay"
+bb = find entity with targetname "electrobb"
+remove entity generators
+remove entity bb
+animate entity guy performing action STD_SELECTROCUTE_N_N_N holding for 3.000
+play sound "cin/nyc1/script/elecdth.adp" for entity guy on channel CHAN_AUTO at volume 0.900
+use entity spark1
+use entity spark2
+use entity spark3
+wait 3 seconds
+use entity ex3
+use entity ex4
+remove entity spark1
+remove entity spark2
+remove entity spark3
+animate entity guy performing action STD_SONFIRE_2BK_N_N
+wait 0.300 seconds
+use entity genrt
+use entity ex2
+wait 0.250 seconds
+use entity genlf
+use entity ex1
+use entity cam
+enable cinematics
+use entity ex5
+wait 0.200 seconds
+moverotate entity gate from file "ny_nyc1_gengate.rof"
+wait 3 seconds
+use entity cam
+disable cinematics
+use entity activate
+use entity playerfade
+exit

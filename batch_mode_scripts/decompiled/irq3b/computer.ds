@@ -1,0 +1,59 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity elevat1
+local entity elevat2
+local entity ele3_doorb
+local entity el_1_lowerdoor
+local entity offline1
+local entity offline2
+local entity mullins
+
+elevat1 = find entity with targetname "elevat1"
+elevat2 = find entity with targetname "elevat2"
+ele3_doorb = find entity with targetname "ele3_doorb"
+el_1_lowerdoor = find entity with targetname "el_1_lowerdoor"
+mullins = find entity player
+offline1 = find entity with targetname "offline1"
+offline2 = find entity with targetname "offline2"
+wait 0.100 seconds
+play sound "cin/irq3b/s46d2.adp" for entity mullins on channel CHAN_AUTO at volume 0.900
+print 29697
+wait 7.100 seconds
+play sound "cin/irq3b/s46d3.adp" for entity mullins on channel CHAN_AUTO at volume 0.900
+print 29698
+use entity elevat1
+use entity elevat2
+remove entity offline1
+remove entity offline2
+use entity ele3_doorb
+use entity el_1_lowerdoor
+wait 3 seconds
+unload sound "cin/irq3b/s46d2.adp"
+unload sound "cin/irq3b/s46d3.adp"
+exit

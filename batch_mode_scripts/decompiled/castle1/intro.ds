@@ -1,0 +1,72 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity intro1
+local entity intro1n
+local entity introguard1
+local entity introguard2
+local entity introjohn
+local int sig1
+
+intro1 = find entity with targetname "intro1"
+enable cinematics
+use entity intro1
+intro1n = find entity with targetname "intro1n"
+introguard1 = find entity with targetname "introguard1"
+introguard2 = find entity with targetname "introguard2"
+introjohn = find entity with targetname "introjohn"
+intro1.movetype = MOVETYPE_NOCLIP
+intro1n.movetype = MOVETYPE_NOCLIP
+print 32000
+animate entity introguard1 performing action STD_ISMOKE_FRM_A_N signaling sig1
+wait for all clearing sig1
+animate entity introguard1 performing action STD_WPATROL_N_MRS_2 by moving [-64.000 ,0.000 ,0.000]
+animate entity introguard1 performing action STD_WPATROL_N_MRS_2 by moving [-64.000 ,-40.000 ,0.000]
+animate entity introguard1 performing action STD_WPATROL_N_MRS_2 by moving [-256.000 ,0.000 ,0.000]
+wait 2 seconds
+moverotate entity intro1 from file "castle1_intro_cam.rof"
+moverotate entity intro1n from file "castle1_intro_cam.rof"
+wait 5 seconds
+use entity introguard2
+wait 6 seconds
+use entity introjohn
+introjohn.movetype = MOVETYPE_NOCLIP
+animate entity introjohn performing action STD_ECLIMBLEDGE_UP_A_N signaling sig1
+play sound "CIN/GER1/Script/WtrOut.adp" for entity introjohn on channel CHAN_AUTO at volume 0.900
+wait for all clearing sig1
+introjohn.movetype = MOVETYPE_STEP
+animate entity introjohn performing action STD_EFRMSHADOW_N_P_N
+wait 3 seconds
+use entity intro1
+disable cinematics
+remove entity introguard1
+remove entity introguard2
+remove entity introjohn
+unload roff "castle1_intro_cam.rof"
+unload sound "CIN/GER1/Script/WtrOut.adp"
+exit

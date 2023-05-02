@@ -1,0 +1,48 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy1
+local int health
+local entity sneak
+local int sig1
+
+guy1 = find entity with targetname "tun4"
+sneak = get entity activator
+use entity guy1
+label lab_00003
+health = guy1.health
+if health == 0
+goto lab_00002
+endif
+reset ai for entity guy1
+animate entity guy1 performing action CCH_F_FWD_L_2 targeting entity sneak kill nulltarget HEAD
+animate entity guy1 performing action CCH_RAIM_N_L_2 targeting entity sneak kill nulltarget HEAD
+suspend
+goto lab_00003
+label lab_00002
+exit

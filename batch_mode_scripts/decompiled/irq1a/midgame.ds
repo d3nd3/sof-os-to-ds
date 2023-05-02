@@ -1,0 +1,220 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity midcam1
+local entity midcam2
+local entity midcam3
+local entity midcam4
+local entity midcam5
+local entity midcam6
+local entity midcam7
+local entity midcam8
+local entity midcam9
+local entity midcam10
+local entity midcam10target
+local entity middoor
+local entity midjohn
+local entity midjohn2
+local entity midhawk
+local entity midhawk2
+local entity midsold1
+local entity midsold2
+local entity midsold3
+local entity midtable
+local entity midcarpet
+local entity player1
+local entity shutcindoors1
+local entity leaningguy
+local entity hidegun
+local entity mid_fadein
+local entity mid_fadeout
+local int sig
+local int originalDoorMovetype
+
+cache sound "cin/irq1a/c28d1.adp"
+cache sound "cin/irq1a/c28d2.adp"
+cache sound "cin/irq1a/c28d3.adp"
+cache sound "cin/irq1a/c28d4.adp"
+cache sound "cin/irq1a/c28d5.adp"
+cache sound "cin/irq1a/c28d6.adp"
+cache sound "cin/irq1a/c28d7.adp"
+cache roff "irq1a_midgame_midhawk.rof"
+midcam1 = find entity with targetname "midcam1"
+midcam2 = find entity with targetname "midcam2"
+midcam3 = find entity with targetname "midcam3"
+midcam4 = find entity with targetname "midcam4"
+midcam5 = find entity with targetname "midcam5"
+midcam6 = find entity with targetname "midcam6"
+midcam7 = find entity with targetname "midcam7"
+midcam8 = find entity with targetname "midcam8"
+midcam9 = find entity with targetname "midcam9"
+midcam10 = find entity with targetname "midcam10"
+midcam10target = find entity with targetname "midcam10target"
+middoor = find entity with targetname "middoor"
+midjohn = find entity with targetname "midjohn"
+midjohn2 = find entity with targetname "midjohn2"
+midhawk = find entity with targetname "midhawk"
+midhawk2 = find entity with targetname "midhawk2"
+midsold1 = find entity with targetname "midsold1"
+midsold2 = find entity with targetname "midsold2"
+midsold3 = find entity with targetname "midsold3"
+midtable = find entity with targetname "midtable"
+midcarpet = find entity with targetname "midcarpet"
+shutcindoors1 = find entity with targetname "shutcindoors1"
+leaningguy = find entity with targetname "leaningguy"
+hidegun = find entity with targetname "hidegun"
+mid_fadein = find entity with targetname "mid_fadein"
+mid_fadeout = find entity with targetname "mid_fadeout"
+player1 = get entity activator
+originalDoorMovetype = middoor.movetype
+middoor.movetype = MOVETYPE_NOCLIP
+use entity mid_fadein
+wait 0.700 seconds
+enable cinematics
+use entity midcam1
+use entity mid_fadeout
+animate entity midhawk performing action STD_ISTAND_N_A_N holding for 1.200
+wait 0.500 seconds
+animate entity midjohn performing action STD_WNORMAL_N_PK_A by moving [48.000 ,-64.000 ,0.000]
+wait 0.700 seconds
+use entity midcam1
+remove entity midjohn
+use entity midjohn2
+use entity midcam2
+wait 0.100 seconds
+animate entity midjohn2 performing action STD_IETALKPOSE_N_A_N holding for 4.000
+animate entity midhawk showing emotion EMOTION_TALK holding for 4.500
+animate entity midhawk performing action STD_ETALK_N_A_N holding for 2.600
+animate entity midhawk performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+animate entity midhawk performing action STD_ETALK_N_A_N holding for 2.100
+play sound "cin/irq1a/c28d1.adp" for entity midhawk on channel CHAN_AUTO at volume 0.900
+print 32768
+wait 5.500 seconds
+use entity midcam2
+use entity midcam3
+animate entity midhawk performing action STD_IETALKPOSE_N_A_N holding for 2.000
+wait 0.100 seconds
+animate entity midjohn2 showing emotion EMOTION_TALK holding for 2.000
+animate entity midjohn2 performing action STD_ETALKLEFT_N_A_N holding for 0.800
+animate entity midjohn2 performing action STD_ETALK_N_A_N holding for 1.200
+play sound "cin/irq1a/c28d2.adp" for entity midjohn2 on channel CHAN_AUTO at volume 0.900
+print 32769
+wait 2.000 seconds
+use entity midcam3
+use entity midcam4
+wait 0.100 seconds
+animate entity midjohn2 performing action STD_IETALKPOSE_N_A_N holding for 4.700
+animate entity midhawk showing emotion EMOTION_TALK holding for 4.700
+animate entity midhawk performing action STD_ETALK_N_A_N holding for 4.700
+play sound "cin/irq1a/c28d3.adp" for entity midhawk on channel CHAN_AUTO at volume 0.900
+print 32770
+wait 4.700 seconds
+use entity midcam4
+use entity midcam5
+wait 0.100 seconds
+animate entity midjohn2 showing emotion EMOTION_TALK holding for 1.500
+animate entity midjohn2 performing action STD_ETALK_N_A_N holding for 1.500
+play sound "cin/irq1a/c28d4.adp" for entity midhawk on channel CHAN_AUTO at volume 0.900
+print 32771
+wait 1.500 seconds
+use entity midcam5
+use entity midcam6
+wait 0.100 seconds
+animate entity midhawk showing emotion EMOTION_TALK holding for 4.700
+animate entity midhawk performing action STD_ETALKLEFT_N_A_N holding for 0.800
+animate entity midhawk performing action STD_ETALK_N_A_N holding for 3.900
+play sound "cin/irq1a/c28d5.adp" for entity midhawk on channel CHAN_AUTO at volume 0.900
+print 32772
+wait 4.500 seconds
+animate entity midhawk performing action STD_WNORMAL_N_PK_A by moving [64.000 ,0.000 ,0.000]
+wait 1.300 seconds
+animate entity midjohn2 performing action STD_WNORMAL_N_PK_A by moving [0.000 ,-50.000 ,0.000]
+animate entity midjohn2 performing action STD_WNORMAL_N_PK_A by moving [-170.000 ,0.000 ,0.000]
+remove entity midhawk
+wait 1.500 seconds
+use entity middoor
+use entity midsold1
+use entity midsold2
+use entity midsold3
+animate entity midsold1 performing action STD_EWALLLOOK_RT_MRS_2 holding for 6.000
+wait 1 seconds
+animate entity midsold2 performing action STD_EWALLLOOK_LT_MRS_2 holding for 5.000
+middoor.movetype = MOVETYPE_PUSH
+use entity midhawk2
+use entity midcam6
+midcam8.movetype = MOVETYPE_NOCLIP
+use entity midcam8
+move entity midcam8 by [0.000 ,0.000 ,0.000] at 2 speed
+animate entity midsold3 performing action STD_EPOUNDDOOR_N_A_N holding for 4.800
+wait 0.100 seconds
+play sound "cin/irq1a/c28d6.adp" for entity midsold3 on channel CHAN_AUTO at volume 0.900
+print 32773
+wait 2.500 seconds
+use entity middoor
+remove entity midjohn2
+wait 0.800 seconds
+use entity midcam8
+midcam9.movetype = MOVETYPE_NOCLIP
+use entity midcam9
+move entity midcam9 by [0.000 ,0.000 ,0.000] at 2 speed
+wait 0.100 seconds
+remove entity midsold1
+remove entity midsold2
+remove entity midsold3
+animate entity midhawk2 showing emotion EMOTION_TALK holding for 2.000
+animate entity midhawk2 performing action STD_ETALKLKLT_MID_A_N holding for 2.500
+play sound "cin/irq1a/c28d7.adp" for entity midhawk2 on channel CHAN_AUTO at volume 0.900
+print 32774
+wait 2 seconds
+use entity midcam9
+use entity midcam10
+animate entity midhawk2 performing action STD_R_N_PK_N by moving [0.000 ,312.000 ,0.000]
+animate entity midhawk2 performing action STD_R_N_PK_N by moving [-208.000 ,0.000 ,0.000] signaling sig
+wait for all clearing sig
+remove entity midhawk2
+use entity shutcindoors1
+wait 0.700 seconds
+player1.origin = [-512.000 ,-1696.000 ,40.000]
+use entity mid_fadein
+wait 0.700 seconds
+use entity midcam10
+disable cinematics
+use entity mid_fadeout
+use entity hidegun
+remove entity midjohn2
+remove entity leaningguy
+unload sound "cin/irq1a/c28d1.adp"
+unload sound "cin/irq1a/c28d2.adp"
+unload sound "cin/irq1a/c28d3.adp"
+unload sound "cin/irq1a/c28d4.adp"
+unload sound "cin/irq1a/c28d5.adp"
+unload sound "cin/irq1a/c28d6.adp"
+unload sound "cin/irq1a/c28d7.adp"
+unload roff "irq1a_midgame_midhawk.rof"
+middoor.movetype = originalDoorMovetype
+exit

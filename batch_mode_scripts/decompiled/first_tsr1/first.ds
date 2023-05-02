@@ -1,0 +1,55 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity cam
+local entity camn
+local entity killer
+local entity dead
+local int sig
+
+cam = find entity with targetname "cam"
+camn = find entity with targetname "camn"
+killer = find entity with targetname "killer"
+dead = find entity with targetname "dead"
+cam.movetype = MOVETYPE_NOCLIP
+camn.movetype = MOVETYPE_NOCLIP
+enable cinematics
+use entity killer
+use entity dead
+use entity cam
+move entity cam by [0.000 ,0.000 ,0.000] at 15 speed signaling sig
+wait for all clearing sig
+animate entity killer performing action WALK by moving [100.000 ,0.000 ,0.000]
+wait 2 seconds
+animate entity dead performing action STD_XAFRAIDSHAKE_N_N_N
+wait 0.400 seconds
+animate entity killer performing action STD_F_FWD_S_2 targeting entity dead
+wait 5 seconds
+use entity cam
+disable cinematics
+exit

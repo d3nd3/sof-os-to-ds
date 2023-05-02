@@ -1,0 +1,65 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity boss
+local entity door
+local entity cover1
+local entity cover2
+local entity cover3
+local int sig1
+
+boss = find entity with targetname "skinb4"
+door = find entity with targetname "skinb4door"
+cover1 = find entity with targetname "coverdoor"
+cover2 = find entity with targetname "coverhall"
+cover3 = find entity with targetname "t136"
+boss.movetype = MOVETYPE_NOCLIP
+use entity boss
+use entity cover1
+use entity cover2
+use entity cover3
+wait 0.500 seconds
+animate entity boss performing action STD_R_N_PK_N by moving [304.000 ,136.000 ,0.000]
+wait 0.500 seconds
+animate entity cover1 performing action STD_XKICKDOOR_N_A_A
+animate entity cover1 performing action SCRIPT_RELEASE
+play sound "impact/door/kickdoor.wav" for entity cover1 at volume 0.900
+wait 0.100 seconds
+moverotate entity door from file "ny_skinb4door.rof"
+wait 0.250 seconds
+animate entity cover1 performing action SCRIPT_RELEASE
+remove entity boss
+animate entity cover2 performing action STD_R_N_MRS_2 by moving [-32.000 ,-64.000 ,0.000]
+animate entity cover2 performing action SCRIPT_RELEASE
+animate entity cover3 performing action STD_R_N_MRS_2 by moving [-112.000 ,0.000 ,0.000]
+animate entity cover3 performing action STD_R_N_MRS_2 by moving [-240.000 ,-224.000 ,0.000]
+animate entity cover3 performing action STD_R_N_MRS_2 by moving [0.000 ,-64.000 ,0.000]
+wait 0.400 seconds
+animate entity cover3 performing action SCRIPT_RELEASE
+unload roff "ny_skinb4door.rof"
+exit

@@ -1,0 +1,247 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity irq2b_outheli
+local entity irq2b_outamu
+local entity irq2b_outjohn1
+local entity irq2b_outjohn2
+local entity irq2b_outfader
+local entity irq2b_changelevel
+local entity irq2b_outcam1
+local entity irq2b_outcam2
+local entity irq2b_outcam3
+local entity irq2b_outcam4
+local entity irq2b_outcam5
+local entity irq2b_outcam6
+local entity irq2b_outcam7
+local entity irq2b_outcam7null
+local entity irq2b_outwp1
+local entity irq2b_outwp2
+local entity irq2b_outwp3
+local vector vAmuPos
+local vector vJohnPos
+local vector vJohnWP1
+local vector vJohnWP2
+local vector vJohnWP3
+local int sig1
+local int sig2
+local int sig3
+
+cache sound "cin/irq2b/c64d1.adp"
+cache sound "cin/irq2b/c64d2.adp"
+cache sound "cin/irq2b/c64d3.adp"
+cache sound "cin/irq2b/c64d4.adp"
+cache sound "cin/irq2b/c64d5.adp"
+cache sound "cin/irq2b/c64d6.adp"
+cache sound "cin/irq2b/c64d7.adp"
+cache sound "cin/irq2b/c64d8.adp"
+cache sound "cin/irq2b/c64d9.adp"
+cache sound "cin/irq2b/c64d10.adp"
+cache sound "cin/irq2b/c64d11.adp"
+cache sound "cin/irq2b/c64d12.adp"
+cache sound "cin/irq2b/c64d13.adp"
+cache sound "cin/irq2b/c64d14.adp"
+cache sound "cin/irq2b/c64d15.adp"
+cache sound "cin/IRQ2b/Script/HeliShoot.adp"
+enable cinematics
+irq2b_outheli = find entity with targetname "irq2b_outheli"
+irq2b_outamu = find entity with targetname "irq2b_outamu"
+irq2b_outjohn1 = find entity with targetname "irq2b_outjohn1"
+irq2b_outjohn2 = find entity with targetname "irq2b_outjohn2"
+irq2b_outfader = find entity with targetname "irq2b_outfader"
+irq2b_changelevel = find entity with targetname "irq2b_changelevel"
+irq2b_outcam1 = find entity with targetname "irq2b_outcam1"
+irq2b_outcam2 = find entity with targetname "irq2b_outcam2"
+irq2b_outcam3 = find entity with targetname "irq2b_outcam3"
+irq2b_outcam4 = find entity with targetname "irq2b_outcam4"
+irq2b_outcam5 = find entity with targetname "irq2b_outcam5"
+irq2b_outcam6 = find entity with targetname "irq2b_outcam6"
+irq2b_outcam7 = find entity with targetname "irq2b_outcam7"
+irq2b_outcam7null = find entity with targetname "irq2b_outcam7null"
+irq2b_outwp1 = find entity with targetname "irq2b_outwp1"
+irq2b_outwp2 = find entity with targetname "irq2b_outwp2"
+irq2b_outwp3 = find entity with targetname "irq2b_outwp3"
+irq2b_outheli.movetype = MOVETYPE_NOCLIP
+irq2b_outcam1.movetype = MOVETYPE_NOCLIP
+irq2b_outcam5.movetype = MOVETYPE_NOCLIP
+irq2b_outcam7null.movetype = MOVETYPE_NOCLIP
+vJohnWP1 = irq2b_outwp1.origin
+vJohnWP2 = irq2b_outwp2.origin
+vJohnWP3 = irq2b_outwp3.origin
+vJohnPos = irq2b_outjohn1.origin
+move entity irq2b_outcam7null to vJohnPos
+use entity irq2b_outjohn1
+use entity irq2b_outcam7
+wait 0.100 seconds
+animate entity irq2b_outjohn1 performing action STD_R_N_PK_N by moving to vJohnWP1 signaling sig1
+label lab_00002
+if sig1 < 1
+vJohnPos = irq2b_outjohn1.origin
+move entity irq2b_outcam7null to vJohnPos
+wait 0.100 seconds
+goto lab_00002
+endif
+animate entity irq2b_outjohn1 performing action STD_R_N_PK_N by moving to vJohnWP2 signaling sig2
+label lab_00004
+if sig2 < 1
+vJohnPos = irq2b_outjohn1.origin
+move entity irq2b_outcam7null to vJohnPos
+wait 0.100 seconds
+goto lab_00004
+endif
+animate entity irq2b_outjohn1 performing action STD_R_N_PK_N by moving to vJohnWP3 signaling sig3
+label lab_00006
+if sig3 < 1
+vJohnPos = irq2b_outjohn1.origin
+move entity irq2b_outcam7null to vJohnPos
+wait 0.100 seconds
+goto lab_00006
+endif
+use entity irq2b_outcam7
+remove entity irq2b_outjohn1
+use entity irq2b_outjohn2
+use entity irq2b_outcam1
+wait 0.100 seconds
+animate entity irq2b_outamu performing action CCH_XCCHCOWER2_MID_A_A holding for 23.900
+animate entity irq2b_outjohn2 showing emotion EMOTION_TALK holding for 1.000
+animate entity irq2b_outjohn2 performing action STD_IETALKPOSE_N_A_N holding for 1.000
+print 30478
+play sound "cin/irq2b/c64d1.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 1.500 seconds
+print 30479
+play sound "cin/irq2b/c64d2.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 2.500 seconds
+animate entity irq2b_outjohn2 showing emotion EMOTION_TALK holding for 1.000
+animate entity irq2b_outjohn2 performing action STD_IETALKPOSE_N_A_N holding for 1.000
+print 30480
+play sound "cin/irq2b/c64d3.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 1.500 seconds
+use entity irq2b_outcam1
+use entity irq2b_outcam2
+wait 0.100 seconds
+print 30481
+play sound "cin/irq2b/c64d4.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 0.500 seconds
+animate entity irq2b_outjohn2 showing emotion EMOTION_TALK holding for 1.000
+animate entity irq2b_outjohn2 performing action STD_IETALKPOSE_N_A_N holding for 1.000
+print 30482
+play sound "cin/irq2b/c64d5.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 2.000 seconds
+print 30483
+play sound "cin/irq2b/c64d6.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 1.500 seconds
+use entity irq2b_outcam2
+use entity irq2b_outcam3
+wait 0.100 seconds
+animate entity irq2b_outjohn2 showing emotion EMOTION_TALK holding for 1.000
+animate entity irq2b_outjohn2 performing action STD_IETALKPOSE_N_A_N holding for 1.000
+print 30484
+play sound "cin/irq2b/c64d7.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 0.800 seconds
+print 30485
+play sound "cin/irq2b/c64d8.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 3.200 seconds
+animate entity irq2b_outjohn2 showing emotion EMOTION_TALK holding for 1.000
+animate entity irq2b_outjohn2 performing action STD_IETALKPOSE_N_A_N holding for 1.000
+print 30486
+play sound "cin/irq2b/c64d9.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 3.500 seconds
+move entity irq2b_outcam1 by [0.000 ,0.000 ,0.000] at 5 speed
+use entity irq2b_outcam3
+use entity irq2b_outcam1
+wait 0.100 seconds
+print 30487
+play sound "cin/irq2b/c64d10.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 2.500 seconds
+animate entity irq2b_outjohn2 showing emotion EMOTION_TALK holding for 1.000
+animate entity irq2b_outjohn2 performing action STD_IETALKPOSE_N_A_N holding for 1.000
+print 30488
+play sound "cin/irq2b/c64d11.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 1.500 seconds
+print 30489
+play sound "cin/irq2b/c64d12.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 2.500 seconds
+use entity irq2b_outcam1
+use entity irq2b_outcam3
+wait 0.100 seconds
+animate entity irq2b_outjohn2 showing emotion EMOTION_TALK holding for 1.000
+animate entity irq2b_outjohn2 performing action STD_IETALKPOSE_N_A_N holding for 1.000
+print 30490
+play sound "cin/irq2b/c64d13.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 1.500 seconds
+print 30491
+play sound "cin/irq2b/c64d14.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 0.100 seconds
+use entity irq2b_outcam3
+use entity irq2b_outcam4
+wait 0.100 seconds
+print 30492
+play sound "cin/irq2b/c64d15.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
+wait 0.200 seconds
+move entity irq2b_outheli by [0.000 ,0.000 ,0.000] at 60 speed
+wait 2.500 seconds
+move entity irq2b_outcam4 by [0.000 ,0.000 ,0.000] at 5 speed
+use entity irq2b_outcam4
+use entity irq2b_outheli
+play sound "cin/IRQ2b/Script/HeliShoot.adp" for entity irq2b_outcam5 on channel CHAN_NO_PHS_ADD at volume 0.900
+use entity irq2b_outcam5
+wait 1.500 seconds
+use entity irq2b_outcam5
+use entity irq2b_outheli
+setcvar cvar "timescale" to 0.500000
+use entity irq2b_outcam6
+vAmuPos = irq2b_outamu.origin
+animate entity irq2b_outjohn2 performing action STD_RGUNUP_N_P_2 by moving [284.000 ,250.000 ,0.000]
+helicopter entity irq2b_outheli 26
+helicopter entity irq2b_outheli 29
+wait 2 seconds
+helicopter entity irq2b_outheli 27
+setcvar cvar "timescale" to 1.000000
+use entity irq2b_outfader
+wait 3 seconds
+use entity irq2b_outcam6
+setcvar cvar "menu_nextmap" to "irq3b"
+run console command "intermission blankscreen"
+disable cinematics
+unload sound "cin/irq2b/c64d1.adp"
+unload sound "cin/irq2b/c64d2.adp"
+unload sound "cin/irq2b/c64d3.adp"
+unload sound "cin/irq2b/c64d4.adp"
+unload sound "cin/irq2b/c64d5.adp"
+unload sound "cin/irq2b/c64d6.adp"
+unload sound "cin/irq2b/c64d7.adp"
+unload sound "cin/irq2b/c64d8.adp"
+unload sound "cin/irq2b/c64d9.adp"
+unload sound "cin/irq2b/c64d10.adp"
+unload sound "cin/irq2b/c64d11.adp"
+unload sound "cin/irq2b/c64d12.adp"
+unload sound "cin/irq2b/c64d13.adp"
+unload sound "cin/irq2b/c64d14.adp"
+unload sound "cin/irq2b/c64d15.adp"
+unload sound "cin/IRQ2b/Script/HeliShoot.adp"
+exit

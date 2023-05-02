@@ -1,0 +1,93 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity sib2_outro2
+local entity sib2_outro3
+local entity sib2_player
+local entity sib2_guard2
+local entity sib2_enddoor
+local entity sib2_fadeout
+local entity sib2_levelchange
+local entity sib2fadein
+local entity sib2fadeout
+local int sig
+local int ericwait1
+local entity sib2_outro1
+
+sib2_outro1 = find entity with targetname "sib2_outro1"
+cache sound "cin/sib2/c23d1.adp"
+cache sound "cin/sib2/c23d2.adp"
+sib2_outro2 = find entity with targetname "sib2_outro2"
+sib2_outro3 = find entity with targetname "sib2_outro3"
+sib2_player = find entity with targetname "sib2_player"
+sib2_guard2 = find entity with targetname "sib2_guard2"
+sib2_enddoor = find entity with targetname "sib2_enddoor"
+sib2_fadeout = find entity with targetname "sib2_fadeout"
+sib2_levelchange = find entity with targetname "sib2_levelchange"
+sib2fadein = find entity with targetname "sib2fadein"
+sib2fadeout = find entity with targetname "sib2fadout"
+use entity sib2fadeout
+wait 1 seconds
+use entity sib2fadein
+enable cinematics
+use entity sib2_outro1
+use entity sib2_player
+animate entity sib2_player performing action STD_WJOGGUNUP_N_P_A by moving to [2160.000 ,1160.000 ,-344.000] signaling sig
+wait for all clearing sig
+use entity sib2_outro1
+rotate entity sib2_player by [0.000 ,0.000 ,0.000]
+use entity sib2_outro2
+animate entity sib2_player performing action STD_IGUNUP_N_A_N
+use entity sib2_enddoor
+wait 2.500 seconds
+use entity sib2_outro2
+use entity sib2_outro3
+wait 0.100 seconds
+use entity sib2_guard2
+animate entity sib2_guard2 performing action STD_R_N_PK_N by moving to [2020.000 ,1160.000 ,-344.000] signaling ericwait1
+wait for all clearing ericwait1
+play sound "cin/sib2/c23d1.adp" for entity sib2_guard2 on channel CHAN_AUTO at volume 0.900
+print 30981
+animate entity sib2_guard2 performing action STD_EHANDTALK_TO_P_N
+wait 2.500 seconds
+play sound "cin/sib2/c23d2.adp" for entity sib2_guard2 on channel CHAN_AUTO at volume 0.900
+print 30982
+animate entity sib2_guard2 performing action STD_EHANDTALK_N_P_N
+animate entity sib2_guard2 performing action STD_EHANDTALK_FRM_P_N
+animate entity sib2_guard2 performing action STD_IALERT_N_P_N
+wait 3 seconds
+use entity sib2_fadeout
+wait 4 seconds
+setcvar cvar "menu_nextmap" to "sib3"
+run console command "intermission blankscreen"
+unload sound "cin/sib2/c23d1.adp"
+unload sound "cin/sib2/c23d2.adp"
+remove entity sib2_player
+remove entity sib2_guard2
+disable cinematics
+exit

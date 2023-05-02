@@ -1,0 +1,78 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity gateguard
+local entity gateguard2
+local entity roundwallguy
+local entity fruitguy1
+local entity hidegun
+local int sig1
+
+gateguard = find entity with targetname "gateguard"
+gateguard2 = find entity with targetname "gateguard2"
+roundwallguy = find entity with targetname "roundwallguy"
+fruitguy1 = find entity with targetname "fruitguy1"
+hidegun = find entity with targetname "hidegun"
+use entity gateguard
+use entity gateguard2
+wait 1 seconds
+hidegun.wait = -1
+use entity hidegun
+if hidegun.count == 0
+goto lab_00002
+endif
+print 32775
+if gateguard.health < 100
+if hidegun.count == 1
+use entity hidegun
+endif
+goto lab_00002
+endif
+animate entity gateguard performing action STD_ECOMEHERE_N_A_N
+play sound "cin\irq1a\s16d1.adp" for entity gateguard at volume 0.900
+print 32775
+wait 3 seconds
+animate entity gateguard performing action STD_XYELLATYOU_N_A_A signaling sig1
+play sound "cin\irq1a\s16d2.adp" for entity gateguard at volume 0.900
+print 32776
+wait for all clearing sig1
+hidegun.wait = -1
+use entity hidegun
+if hidegun.count == 1
+use entity hidegun
+endifendiflabel lab_00002
+reset ai for entity gateguard
+reset ai for entity gateguard2
+reset ai for entity fruitguy1
+reset ai for entity roundwallguy
+animate entity gateguard performing action SCRIPT_RELEASE
+animate entity gateguard2 performing action SCRIPT_RELEASE
+animate entity fruitguy1 performing action SCRIPT_RELEASE
+animate entity roundwallguy performing action SCRIPT_RELEASE
+use entity roundwallguy
+exit

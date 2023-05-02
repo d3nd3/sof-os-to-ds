@@ -1,0 +1,44 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity endmover
+local entity endmovecrate
+local int sig1
+local int health
+
+endmover = find entity with targetname "endmover"
+endmovecrate = find entity with targetname "endmovecrate"
+on endmover.health < 100 goto lab_00001
+animate entity endmover performing action STD_EPUSHCRATE_N_N_N by moving [0.000 ,128.000 ,0.000]
+move entity endmovecrate by [0.000 ,0.000 ,0.000] at 32 speed signaling sig1
+wait for all clearing sig1
+endmovecrate.movetype = MOVETYPE_PUSH
+label lab_00001
+animate entity endmover performing action SCRIPT_RELEASE
+endmovecrate.movetype = MOVETYPE_PUSH
+exit

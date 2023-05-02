@@ -1,0 +1,57 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity bo
+local entity ba
+local entity bi
+local entity roquette
+local entity bb
+local entity bgren
+local entity pa1
+local entity pa2
+local entity cour
+
+cour = find entity with targetname "cour"
+pa1 = find entity with targetname "pa1"
+pa2 = find entity with targetname "pa2"
+roquette = find entity with targetname "roquette"
+bb = find entity with targetname "bb"
+bgren = find entity with targetname "bgren"
+ba = find entity with targetname "ba"
+bi = find entity with targetname "bi"
+bo = find entity with targetname "bo"
+remove entity cour
+remove entity pa1
+remove entity pa2
+remove entity roquette
+remove entity bb
+remove entity bgren
+remove entity ba
+remove entity bi
+remove entity bo
+exit

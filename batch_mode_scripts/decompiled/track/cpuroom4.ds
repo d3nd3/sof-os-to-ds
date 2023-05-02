@@ -1,0 +1,111 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity t91
+local entity t92
+local entity t93
+local entity t94
+local entity eg
+local int a
+
+t91 = find entity with targetname "t91"
+t92 = find entity with targetname "t92"
+t93 = find entity with targetname "t93"
+t94 = find entity with targetname "t94"
+use entity t91
+use entity t92
+use entity t93
+use entity t94
+wait 0.100 seconds
+a = 0
+t91.health += 50
+t92.health += 50
+t93.health += 50
+t94.health += 50
+wait 0.100 seconds
+label lab_00007
+jo = get entity activator
+reset ai for entity t91
+reset ai for entity t92
+reset ai for entity t93
+reset ai for entity t94
+animate entity t92 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget CHEST
+animate entity t93 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget LSHOULDER
+suspend
+jo = get entity activator
+animate entity t91 performing action STD_F_FWD_R_2 targeting entity jo
+animate entity t94 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t92 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget GROIN
+animate entity t93 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget GUT
+if a == 6
+goto lab_00002
+endif
+if a == 9
+goto lab_00004
+endif
+if t91.health <= 0
+if t92.health <= 0
+if t93.health <= 0
+if t94.health <= 0
+goto lab_00006
+endif
+suspend
+a += 1
+goto lab_00007
+label lab_00002
+animate entity t91 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t94 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t92 performing action STD_F_FWD_R_2 targeting entity jo
+animate entity t93 performing action STD_XROLL_LT_A_A
+wait 0.400 seconds
+animate entity t91 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t94 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t92 performing action STD_F_FWD_R_2 targeting entity jo
+suspend
+goto lab_00007
+label lab_00004
+animate entity t91 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t94 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t93 performing action STD_F_FWD_R_2 targeting entity jo
+animate entity t94 performing action STD_XROLL_LT_A_A
+wait 0.400 seconds
+animate entity t91 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t94 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity t93 performing action STD_F_FWD_R_2 targeting entity jo
+suspend
+goto lab_00007
+label lab_00006
+reset ai for entity t91
+reset ai for entity t92
+reset ai for entity t93
+animate entity t91 performing action SCRIPT_RELEASE
+animate entity t92 performing action SCRIPT_RELEASE
+animate entity t93 performing action SCRIPT_RELEASE
+animate entity t94 performing action SCRIPT_RELEASE
+exit

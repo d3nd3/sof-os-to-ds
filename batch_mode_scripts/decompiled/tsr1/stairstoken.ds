@@ -1,0 +1,49 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity topstairguy1
+local entity topstairbad1
+local entity host_count
+
+topstairguy1 = find entity with targetname "topstairguy1"
+topstairbad1 = find entity with targetname "topstairbad1"
+host_count = find entity with targetname "host_count"
+on topstairbad1.health < 100 goto lab_00001
+animate entity topstairguy1 performing action STD_XFEARWAVE_N_N_N
+play sound "speech/tsr1/npc/eb9-3.adp" for entity topstairguy1 at volume 0.900
+animate entity topstairbad1 performing action STD_XYELLATYOU_N_A_A
+wait 1.000 seconds
+play sound "speech/tsr1/skn/bt9-4.adp" for entity topstairbad1 at volume 0.900
+label lab_00002
+animate entity topstairbad1 performing action SCRIPT_RELEASE
+animate entity topstairguy1 performing action SCRIPT_RELEASE
+exit
+label lab_00001
+reset ai for entity topstairbad1
+goto lab_00002
+exit

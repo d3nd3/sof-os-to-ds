@@ -1,0 +1,48 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity yop
+local entity jo
+local int rnd
+local float prout
+
+yop = find entity with targetname "yop"
+use entity yop
+yop.health += 80
+label lab_00003
+jo = get entity activator
+animate entity yop performing action STD_F_FWD_S_2 targeting entity jo
+wait 0.300 seconds
+suspend
+if yop.health <= 0
+goto lab_00002
+endif
+goto lab_00003
+label lab_00002
+animate entity yop performing action SCRIPT_RELEASE
+exit

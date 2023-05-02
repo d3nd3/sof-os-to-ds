@@ -1,0 +1,37 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity spawnsss
+local entity spawnaaa
+
+spawnsss = find entity with targetname "spawn4"
+spawnaaa = spawn entity with fields "classname" = "info_player_deathmatch" , "origin" = [976.000 ,-680.000 ,-144.000] , "angle" = 90
+use entity spawnaaa
+wait 0.200 seconds
+remove entity spawnsss
+exit

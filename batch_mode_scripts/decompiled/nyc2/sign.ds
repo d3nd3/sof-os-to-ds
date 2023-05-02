@@ -1,0 +1,51 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity sign
+local entity sparks
+local entity ex1
+local entity ex2
+local entity steam
+
+sign = find entity with targetname "sign"
+sparks = find entity with targetname "signsparks"
+ex1 = find entity with targetname "signex1"
+ex2 = find entity with targetname "signex2"
+steam = find entity with targetname "steam"
+wait 1 seconds
+use entity ex1
+use entity sparks
+moverotate entity sign from file "ny_steam_sign.rof"
+wait 1 seconds
+use entity sparks
+wait 0.250 seconds
+use entity ex2
+wait 0.250 seconds
+use entity steam
+unload roff "ny_steam_sign.rof"
+exit

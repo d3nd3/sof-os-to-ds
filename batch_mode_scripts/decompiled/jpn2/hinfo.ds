@@ -1,0 +1,97 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity hostage1
+local entity hostage2
+local entity hostage3
+local entity passrely
+local entity cdon
+local entity mullins
+local entity t172
+local entity t173
+local entity t175
+local entity hos2scr
+local entity hos3scr
+local entity lockedhostagedoor
+local entity hostagedoors
+local int sig1
+
+hostage1 = find entity with targetname "hostage1"
+hostage2 = find entity with targetname "hostage2"
+hostage3 = find entity with targetname "hostage3"
+passrely = find entity with targetname "passrely"
+cdon = find entity with targetname "cdon"
+mullins = find entity player
+t172 = find entity with targetname "t172"
+t173 = find entity with targetname "t173"
+t175 = find entity with targetname "t175"
+hos2scr = find entity with targetname "hos2scr"
+hos3scr = find entity with targetname "hos3scr"
+lockedhostagedoor = find entity with targetname "lockedhostagedoor"
+hostagedoors = find entity with targetname "hostagedoors"
+wait 1 seconds
+use entity hos2scr
+use entity hos3scr
+remove entity t172
+rotate entity hostage1 by [0.000 ,0.000 ,0.000] at 300 speed
+animate entity hostage1 performing action CCH_XCCHCOWER_UP_A_A signaling sig1
+wait for all clearing sig1
+animate entity hostage1 performing action STD_WNORMAL_N_PK_A by moving [0.000 ,-40.000 ,0.000]
+animate entity hostage1 performing action STD_ITALK_N_A_N holding for 11.000
+play sound "cin/jpn2/s42d4.adp" for entity mullins on channel CHAN_AUTO at volume 0.900
+print 28684
+wait 3 seconds
+play sound "cin/jpn2/s42d5.adp" for entity hostage1 on channel CHAN_AUTO at volume 0.900
+print 28685
+wait 0.600 seconds
+play sound "cin/jpn2/s42d6.adp" for entity hostage1 on channel CHAN_AUTO at volume 0.900
+print 28686
+wait 4.100 seconds
+play sound "cin/jpn2/s42d7.adp" for entity mullins on channel CHAN_AUTO at volume 0.900
+print 28687
+wait 1.900 seconds
+play sound "cin/jpn2/s42d8.adp" for entity hostage1 on channel CHAN_AUTO at volume 0.900
+print 28688
+wait 3.500 seconds
+play sound "cin/jpn2/s42d9.adp" for entity mullins on channel CHAN_AUTO at volume 0.900
+print 28689
+wait 0.600 seconds
+remove entity lockedhostagedoor
+use entity hostagedoors
+animate entity hostage1 performing action SCRIPT_RELEASE
+remove entity passrely
+use entity cdon
+setcvar cvar "ai_spawnfrequency" to 2.000000
+wait 2 seconds
+unload sound "cin/jpn2/s42d4.adp"
+unload sound "cin/jpn2/s42d5.adp"
+unload sound "cin/jpn2/s42d6.adp"
+unload sound "cin/jpn2/s42d7.adp"
+unload sound "cin/jpn2/s42d8.adp"
+unload sound "cin/jpn2/s42d9.adp"
+exit

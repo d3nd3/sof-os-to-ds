@@ -1,0 +1,94 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity outrocam1
+local entity outronotnull1
+local entity outmullins
+local entity elevator
+local entity nextlevel
+local entity soundmaker
+local entity outrofade
+local int sig1
+local int sig2
+local int sig3
+local int sig4
+local int sig5
+
+outrocam1 = find entity with targetname "outrocam1"
+outronotnull1 = find entity with targetname "outronotnull1"
+outmullins = find entity with targetname "outmullins"
+elevator = find entity with targetname "elevator"
+nextlevel = find entity with targetname "nextlevel"
+soundmaker = find entity with targetname "soundmaker"
+outrofade = find entity with targetname "outrofade"
+use entity outmullins
+wait 0.100 seconds
+enable cinematics
+use entity outrocam1
+wait 0.100 seconds
+outrocam1.movetype = MOVETYPE_NOCLIP
+outronotnull1.movetype = MOVETYPE_NOCLIP
+elevator.movetype = MOVETYPE_NOCLIP
+soundmaker.movetype = MOVETYPE_NOCLIP
+outmullins.movetype = MOVETYPE_NOCLIP
+use entity soundmaker
+move entity outrocam1 by [0.000 ,0.000 ,0.000] at 8 speed
+move entity outronotnull1 by [0.000 ,0.000 ,0.000] at 8 speed
+move entity elevator by [0.000 ,0.000 ,0.000] at 8 speed
+move entity soundmaker by [0.000 ,0.000 ,0.000] at 8 speed
+move entity outmullins by [0.000 ,0.000 ,0.000] at 8 speed
+move entity outrocam1 by [0.000 ,0.000 ,0.000] at 16 speed
+move entity outronotnull1 by [0.000 ,0.000 ,0.000] at 16 speed
+move entity elevator by [0.000 ,0.000 ,0.000] at 16 speed
+move entity soundmaker by [0.000 ,0.000 ,0.000] at 16 speed
+move entity outmullins by [0.000 ,0.000 ,0.000] at 16 speed
+move entity outrocam1 by [0.000 ,0.000 ,0.000] at 32 speed
+move entity outronotnull1 by [0.000 ,0.000 ,0.000] at 32 speed
+move entity elevator by [0.000 ,0.000 ,0.000] at 32 speed
+move entity soundmaker by [0.000 ,0.000 ,0.000] at 32 speed
+move entity outmullins by [0.000 ,0.000 ,0.000] at 32 speed
+move entity outrocam1 by [0.000 ,0.000 ,0.000] at 64 speed
+move entity outronotnull1 by [0.000 ,0.000 ,0.000] at 64 speed
+move entity elevator by [0.000 ,0.000 ,0.000] at 64 speed
+move entity soundmaker by [0.000 ,0.000 ,0.000] at 64 speed
+move entity outmullins by [0.000 ,0.000 ,0.000] at 64 speed
+move entity outrocam1 by [0.000 ,0.000 ,0.000] at 128 speed
+move entity outronotnull1 by [0.000 ,0.000 ,0.000] at 128 speed
+move entity elevator by [0.000 ,0.000 ,0.000] at 128 speed
+move entity soundmaker by [0.000 ,0.000 ,0.000] at 128 speed
+move entity outmullins by [0.000 ,0.000 ,0.000] at 128 speed signaling sig2
+use entity outrofade
+animate entity outmullins performing action STD_IGUNUP_N_A_N signaling sig1 holding for 6.000
+wait for all clearing sig1,sig2
+use entity soundmaker
+use entity outrocam1
+use entity outronotnull1
+disable cinematics
+setcvar cvar "menu_nextmap" to "jpn2"
+run console command "intermission blankscreen"
+exit

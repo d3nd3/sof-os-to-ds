@@ -1,0 +1,47 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity splayer
+local entity spawner3
+local entity hawk
+local int sig1
+local int sig2
+
+splayer = get entity activator
+spawner3 = find entity with targetname "spawner3"
+hawk = find entity with targetname "hawk"
+on hawk.health <= 0 goto lab_00001
+wait 0.100 seconds
+play sound "cin/irq3a/just.adp" for entity splayer on channel CHAN_NO_PHS_ADD at volume 0.900
+print 28419
+wait 0.250 seconds
+use entity spawner3
+exit
+label lab_00001
+splayer.health = -100
+exit

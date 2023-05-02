@@ -1,0 +1,129 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local vector pos
+local entity ag
+local entity bg
+local entity cg
+local entity dg
+local entity eg
+local entity hehe
+
+ag = find entity with targetname "ag"
+bg = find entity with targetname "bg"
+cg = find entity with targetname "cg"
+dg = find entity with targetname "dg"
+eg = find entity with targetname "eg"
+hehe = find entity with targetname "hehe"
+use entity ag
+use entity bg
+use entity cg
+use entity dg
+wait 0.100 seconds
+ag.health += 100
+bg.health += 100
+cg.health += 100
+dg.health += 100
+eg.health += 100
+wait 0.100 seconds
+jo = get entity activator
+animate entity ag performing action STD_XROLLTOCCH_FWD_A_A
+animate entity eg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo
+animate entity bg performing action STD_XROLL_LT_A_A
+wait 0.400 seconds
+suspend
+jo = get entity activator
+animate entity ag performing action STD_XROLLTOCCH_FWD_A_A
+animate entity cg performing action RUN by moving [650.000 ,0.000 ,0.000]
+wait 0.100 seconds
+animate entity dg performing action RUN by moving [550.000 ,0.000 ,0.000]
+animate entity eg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo
+suspend
+animate entity eg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo
+wait 0.200 seconds
+suspend
+jo = get entity activator
+animate entity bg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity ag performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+suspend
+animate entity ag performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity bg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo
+animate entity eg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo
+wait 0.600 seconds
+suspend
+animate entity ag performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity bg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity eg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo
+wait 0.800 seconds
+suspend
+label lab_00003
+reset ai for entity ag
+reset ai for entity bg
+reset ai for entity cg
+reset ai for entity dg
+reset ai for entity eg
+jo = get entity activator
+pos = jo.origin
+tank entity hehe 3
+animate entity ag performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity bg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo
+animate entity cg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget GUT
+animate entity dg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget GROIN
+suspend
+pos = jo.origin
+tank entity hehe 3
+animate entity ag performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+animate entity bg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo
+animate entity cg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget GUT
+animate entity dg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget GROIN
+animate entity eg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo
+suspend
+pos = jo.origin
+if eg.health <= 0
+if ag.health <= 0
+if bg.health <= 0
+if cg.health <= 0
+if dg.health <= 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+reset ai for entity ag
+reset ai for entity bg
+reset ai for entity cg
+reset ai for entity dg
+reset ai for entity eg
+animate entity ag performing action SCRIPT_RELEASE
+animate entity bg performing action SCRIPT_RELEASE
+animate entity cg performing action SCRIPT_RELEASE
+animate entity dg performing action SCRIPT_RELEASE
+animate entity eg performing action SCRIPT_RELEASE
+exit

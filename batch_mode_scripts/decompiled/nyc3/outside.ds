@@ -1,0 +1,72 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity skin1
+local entity skin2
+local entity skin3
+local entity skin4
+local entity swat1
+local entity swat2
+local entity car
+local int sig1
+
+skin1 = find entity with targetname "outsideskin1"
+skin2 = find entity with targetname "outsideskin2"
+skin3 = find entity with targetname "outsideskin3"
+skin4 = find entity with targetname "outsideskin4"
+swat1 = find entity with targetname "outsideswat1"
+swat2 = find entity with targetname "outsideswat2"
+car = find entity with targetname "copcar"
+use entity skin1
+use entity skin2
+use entity skin3
+use entity skin4
+use entity swat1
+use entity swat2
+animate entity skin2 performing action STD_R_N_MRS_2 by moving [0.000 ,-132.000 ,0.000]
+animate entity skin2 performing action STD_FAUTOSWEEP_N_PM_A
+animate entity skin3 performing action CCH_TLOBGRENADE_N_A_N
+animate entity skin4 performing action STD_FVIOLENT_DWN_M_2
+animate entity swat2 performing action CCH_A_FWD_P_2
+animate entity skin1 performing action CCH_A_FWD_MS_2
+wait 1.500 seconds
+animate entity swat2 performing action STD_F_FWD_P_2 targeting entity skin2 kill nulltarget HEAD
+animate entity swat2 performing action STD_F_FWD_P_2 targeting entity skin2
+animate entity skin3 performing action CCH_TLOBGRENADE_N_A_N
+animate entity skin4 performing action STD_FVIOLENT_DWN_M_2
+animate entity swat2 performing action STD_F_FWD_P_2 targeting entity skin4 kill nulltarget LSHOULDER
+animate entity swat2 performing action STD_F_FWD_P_2 targeting entity skin4 kill nulltarget LSHOULDER
+animate entity skin1 performing action STD_FSWATSTYLE_FWD_M_2 targeting entity swat1
+animate entity swat2 performing action STD_F_FWD_P_2 targeting entity skin3 kill nulltarget GUT
+animate entity swat2 performing action SCRIPT_RELEASE
+animate entity skin1 performing action SCRIPT_RELEASE
+use entity car
+moverotate entity car from file "ny_streets_car.rof"
+wait 3 seconds
+remove entity car
+exit

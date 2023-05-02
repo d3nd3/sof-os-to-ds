@@ -1,0 +1,81 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity beam1
+local entity beam1b
+local entity beam2
+local entity beam2b
+local entity beam3
+local entity beam3b
+local entity rubblechunk1
+local entity rubblechunk2
+local entity breakceiling
+local entity endexplosion1
+local entity endexplosion2
+local entity endexplosion3
+local entity trainplayer
+local entity trainshake
+local entity dirtpile
+local entity tunnelsabre
+local int sig1
+
+beam1 = find entity with targetname "beam1"
+beam1b = find entity with targetname "beam1b"
+beam2 = find entity with targetname "beam2"
+beam2b = find entity with targetname "beam2b"
+beam3 = find entity with targetname "beam3"
+beam3b = find entity with targetname "beam3b"
+rubblechunk1 = find entity with targetname "rubblechunk1"
+rubblechunk2 = find entity with targetname "rubblechunk2"
+breakceiling = find entity with targetname "breakceiling"
+endexplosion1 = find entity with targetname "endexplosion1"
+endexplosion2 = find entity with targetname "endexplosion2"
+endexplosion3 = find entity with targetname "endexplosion3"
+trainplayer = get entity activator
+trainshake = find entity with targetname "trainshake"
+tunnelsabre = find entity with targetname "tunnelsabre"
+dirtpile = find entity with targetname "dirtpile"
+animate entity tunnelsabre performing action STD_R_N_PK_N by moving [-448.000 ,0.000 ,0.000] signaling sig1
+wait for all clearing sig1
+use entity endexplosion1
+moverotate entity beam1 from file "tsr1_beam1.rof"
+moverotate entity beam1b from file "tsr1_beam1b.rof"
+moverotate entity beam2 from file "tsr1_beam2.rof"
+moverotate entity beam2b from file "tsr1_beam2b.rof"
+moverotate entity beam3 from file "tsr1_beam3.rof"
+moverotate entity beam3b from file "tsr1_beam3b.rof"
+moverotate entity rubblechunk1 from file "tsr1_rchunk1.rof"
+moverotate entity rubblechunk2 from file "tsr1_rchunk2.rof"
+play sound "Impact\Stone\BigRubble.adp" for entity trainplayer on channel CHAN_AUTO at volume 0.900
+use entity trainshake
+use entity breakceiling
+use entity dirtpile
+animate entity tunnelsabre performing action STD_R_N_PK_N by moving [0.000 ,176.000 ,0.000] signaling sig1
+wait for all clearing sig1
+remove entity tunnelsabre
+exit

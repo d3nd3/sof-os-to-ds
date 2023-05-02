@@ -1,0 +1,78 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity rswat1
+local entity rswat2
+local entity rhawk
+local entity rbadguy1
+local entity rbadguy2
+local entity leader
+local entity rcam1
+local entity rcam1n
+local entity leadertrain
+local entity sabrefade1
+local entity sabrefade2
+local entity traintriggerb
+local entity raidb
+local int hawkhealth
+local int sig1
+
+rswat1 = find entity with targetname "rswat1"
+rswat2 = find entity with targetname "rswat2"
+rhawk = find entity with targetname "rhawk"
+rbadguy1 = find entity with targetname "rbadguy1"
+rbadguy2 = find entity with targetname "rbadguy2"
+leader = find entity with targetname "leader"
+rcam1 = find entity with targetname "rcam1"
+rcam1n = find entity with targetname "rcam1n"
+leadertrain = find entity with targetname "leadertrain"
+sabrefade1 = find entity with targetname "sabrefade1"
+sabrefade2 = find entity with targetname "sabrefade2"
+traintriggerb = find entity with targetname "traintriggerb"
+raidb = find entity with targetname "raidb"
+rcam1.movetype = MOVETYPE_NOCLIP
+rcam1n.movetype = MOVETYPE_NOCLIP
+wait 0.100 seconds
+animate entity rbadguy1 performing action CCH_XONKNEES_N_N_N holding for 999.000
+animate entity rbadguy2 performing action STD_XAFRAIDSHAKE_N_N_N holding for 999.000
+animate entity rhawk performing action STD_XYELLWAVE_BK_A_N holding for 2.600
+use entity leader
+wait 0.300 seconds
+animate entity rhawk showing emotion EMOTION_TALK holding for 1.300
+play sound "cin/tsr1/c7d1.adp" for entity rhawk on channel CHAN_AUTO at volume 0.900
+print 25614
+wait 0.500 seconds
+wait 0.400 seconds
+play sound "cin/tsr1/c7d2.adp" for entity rhawk on channel CHAN_AUTO at volume 0.900
+print 25615
+wait 0.500 seconds
+hawkhealth = rhawk.health
+if hawkhealth > 0
+use entity raidb
+endif
+exit

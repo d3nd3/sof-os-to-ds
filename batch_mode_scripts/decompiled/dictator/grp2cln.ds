@@ -1,0 +1,55 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity twa
+local entity twb
+local entity twc
+local entity twd
+local entity twe
+local entity twf
+local entity tank3
+local entity jo
+local vector pos
+
+twa = find entity with targetname "twa"
+twb = find entity with targetname "twb"
+twc = find entity with targetname "twc"
+twd = find entity with targetname "twd"
+twe = find entity with targetname "twe"
+twf = find entity with targetname "twf"
+tank3 = find entity with targetname "tank3"
+wait 0.100 seconds
+remove entity twa
+remove entity twb
+wait 0.300 seconds
+remove entity twc
+remove entity twd
+wait 0.300 seconds
+remove entity twe
+remove entity twf
+exit

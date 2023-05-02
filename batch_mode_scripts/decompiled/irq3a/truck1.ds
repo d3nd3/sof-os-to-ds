@@ -1,0 +1,54 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity gatepusher
+local entity truck1
+local entity guide1
+local entity gate
+local int sig1
+local int sig2
+
+gatepusher = find entity with targetname "gatepusher"
+truck1 = find entity with targetname "truck1"
+guide1 = find entity with targetname "guide1"
+gate = find entity with targetname "gate"
+truck1.movetype = MOVETYPE_NOCLIP
+animate entity gatepusher performing action STD_WPUSH_N_N_N by moving [-64.000 ,0.000 ,0.000]
+use entity gate
+wait 0.300 seconds
+animate entity guide1 performing action STD_WBCKSIGNAL_N_N_N by moving [0.000 ,164.000 ,0.000]
+wait 0.100 seconds
+animate entity gatepusher performing action STD_WPATROL_N_MRS_2 by moving [-64.000 ,32.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity guide1 performing action SCRIPT_RELEASE
+wait 0.250 seconds
+animate entity gatepusher performing action SCRIPT_RELEASE
+moverotate entity truck1 from file "irq3a_truck1.rof"
+wait 2 seconds
+truck1.movetype = MOVETYPE_NONE
+exit

@@ -1,0 +1,50 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity fallingscientist
+local entity fallingclip
+local entity fallingrelay
+local entity mullins
+local int sig1
+
+fallingscientist = find entity with targetname "fallingscientist"
+fallingclip = find entity with targetname "fallingclip"
+fallingrelay = find entity with targetname "fallingrelay"
+mullins = find entity player
+fallingscientist.movetype = MOVETYPE_NOCLIP
+animate entity fallingscientist performing action STD_ECLIMBLEDGE_UP_A_N signaling sig1
+wait for all clearing sig1
+fallingscientist.movetype = MOVETYPE_STEP
+animate entity fallingscientist performing action STD_RGUNUP_N_P_2 by moving [0.000 ,90.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity fallingscientist performing action STD_F_FWD_P_2 targeting entity mullins
+animate entity fallingscientist performing action SCRIPT_RELEASE
+remove entity fallingrelay
+use entity fallingclip
+wait 2 seconds
+exit

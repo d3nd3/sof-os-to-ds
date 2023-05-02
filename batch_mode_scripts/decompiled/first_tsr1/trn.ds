@@ -1,0 +1,69 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity atrn
+local entity btrn
+local entity ctrn
+local entity unbot
+local entity untop
+local entity mitr
+local entity jo
+
+atrn = find entity with targetname "atrn"
+btrn = find entity with targetname "btrn"
+ctrn = find entity with targetname "ctrn"
+untop = find entity with targetname "untop"
+unbot = find entity with targetname "unbot"
+mitr = find entity with targetname "t13"
+use entity btrn
+wait 0.800 seconds
+use entity ctrn
+wait 1.200 seconds
+use entity atrn
+animate entity atrn performing action RUN by moving [0.000 ,-190.000 ,0.000]
+animate entity btrn performing action SCRIPT_RELEASE
+animate entity ctrn performing action SCRIPT_RELEASE
+wait 1.600 seconds
+atrn.health += 50
+label lab_00003
+jo = get entity activator
+animate entity atrn performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
+wait 0.600 seconds
+jo = get entity activator
+animate entity atrn performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
+wait 0.600 seconds
+if atrn.health < 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+remove entity untop
+remove entity unbot
+remove entity mitr
+exit

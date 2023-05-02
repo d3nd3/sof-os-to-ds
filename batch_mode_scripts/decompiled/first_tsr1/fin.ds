@@ -1,0 +1,59 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity act
+local entity xcamx
+local int sig
+
+jo = find entity with targetname "jo"
+xcamx = find entity with targetname "xcamx"
+act = find entity with targetname "act"
+xcamx.movetype = MOVETYPE_NOCLIP
+use entity jo
+use entity xcamx
+use entity act
+enable cinematics
+move entity xcamx by [0.000 ,0.000 ,0.000] at 30 speed
+wait 7.500 seconds
+animate entity jo performing action WALK by moving [0.000 ,-64.000 ,0.000] signaling sig
+wait for all clearing sig
+wait 1.200 seconds
+animate entity jo performing action STD_ETYPING_N_N_N holding for 1.200
+wait 1.400 seconds
+use entity act
+wait 1.500 seconds
+animate entity jo performing action WALK by moving [128.000 ,128.000 ,128.000]
+wait 3.500 seconds
+disable cinematics
+use entity xcamx
+remove entity jo
+wait 1.200 seconds
+remove entity xcamx
+remove entity act
+exit

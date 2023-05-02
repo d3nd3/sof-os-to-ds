@@ -1,0 +1,44 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity cameraq
+local entity null5
+local entity kos2_truck
+
+kos2_truck = find entity with targetname "kos2_truck"
+cameraq = find entity with targetname "cameraq"
+null5 = find entity with targetname "null5"
+cameraq.movetype = MOVETYPE_NOCLIP
+null5.movetype = MOVETYPE_NOCLIP
+use entity cameraq
+move entity cameraq by [0.000 ,0.000 ,0.000] at 35 speed
+move entity null5 by [0.000 ,0.000 ,0.000] at 35 speed
+wait 5 seconds
+use entity cameraq
+remove entity kos2_truck
+exit

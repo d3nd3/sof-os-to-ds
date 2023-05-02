@@ -1,0 +1,50 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity grenade
+local entity ex
+local int sig
+
+grenade = find entity with targetname "ventgrenade"
+ex = find entity with targetname "ventgex"
+use entity grenade
+wait 0.300 seconds
+moverotate entity grenade from file "nyc2_ventgrenade.rof" signaling sig
+wait 0.400 seconds
+play sound "cin/nyc1/script/grenbounce.wav" for entity grenade on channel CHAN_AUTO at volume 0.900
+wait 0.300 seconds
+play sound "cin/nyc1/script/grenbounce.wav" for entity grenade on channel CHAN_AUTO at volume 0.900
+wait 0.200 seconds
+play sound "cin/nyc1/script/grenbounce.wav" for entity grenade on channel CHAN_AUTO at volume 0.900
+wait 0.100 seconds
+play sound "cin/nyc1/script/grenbounce.wav" for entity grenade on channel CHAN_AUTO at volume 0.900
+wait for all clearing sig
+remove entity grenade
+use entity ex
+unload roff "nyc2_ventgrenade.rof"
+exit

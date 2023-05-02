@@ -1,0 +1,84 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity introcam1
+local entity introcam2
+local entity introcamtarget1
+local entity introdecker
+local entity introthug1
+local entity fadeout
+local entity part2
+local int sig1
+local int sig2
+
+introcam1 = find entity with targetname "introcam1"
+introcam2 = find entity with targetname "introcam2"
+introcamtarget1 = find entity with targetname "introcamtarget1"
+introdecker = find entity with targetname "introdecker"
+introthug1 = find entity with targetname "introthug1"
+fadeout = find entity with targetname "fadeout"
+part2 = find entity with targetname "part2"
+introcamtarget1.movetype = MOVETYPE_NOCLIP
+introcam1.movetype = MOVETYPE_NOCLIP
+enable cinematics
+use entity introcam1
+wait 0.600 seconds
+move entity introcam1 by [0.000 ,0.000 ,0.000] over 4 seconds
+move entity introcamtarget1 by [0.000 ,0.000 ,0.000] over 4 seconds
+wait 0.100 seconds
+animate entity introdecker performing action STD_WNORMAL_N_PK_A by moving [134.000 ,0.000 ,0.000] signaling sig1
+animate entity introthug1 performing action STD_WPATROL_N_MRS_2 by moving [134.000 ,0.000 ,0.000] signaling sig2
+wait for all clearing sig1,sig2
+play sound "cin/ger3/c74d1.adp" for entity introthug1 on channel CHAN_VOICE at volume 0.900
+print 26112
+animate entity introdecker performing action STD_WNORMAL_N_PK_A by moving [176.000 ,-176.000 ,0.000]
+animate entity introthug1 performing action STD_WPATROL_N_MRS_2 by moving [176.000 ,-176.000 ,0.000]
+wait 3.900 seconds
+use entity introcam1
+introcam2.movetype = MOVETYPE_NOCLIP
+use entity introcam2
+wait 0.100 seconds
+move entity introcam2 by [5.100 ,0.000 ,0.000] over 5.100 seconds
+play sound "cin/ger3/c74d2.adp" for entity introdecker on channel CHAN_VOICE at volume 0.900
+print 26113
+animate entity introdecker performing action STD_WNORMAL_N_PK_A by moving [0.000 ,-288.000 ,0.000]
+animate entity introthug1 performing action STD_WPATROL_N_MRS_2 by moving [4.000 ,-376.000 ,0.000]
+wait 3.800 seconds
+wait 0.500 seconds
+use entity fadeout
+wait 2.200 seconds
+use entity introcam2
+disable cinematics
+use entity part2
+wait 0.500 seconds
+remove entity introdecker
+remove entity introthug1
+unload sound "cin/ger3/c74d1.adp"
+unload sound "cin/ger3/c74d2.adp"
+wait 0.200 seconds
+exit

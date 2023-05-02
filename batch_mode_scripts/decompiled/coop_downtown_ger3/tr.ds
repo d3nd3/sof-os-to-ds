@@ -1,0 +1,58 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity roquette
+local entity jo
+local entity bb
+local entity bgren
+local int sig1
+local int sig2
+local int sig3
+
+roquette = find entity with targetname "roquette"
+bb = find entity with targetname "bb"
+bgren = find entity with targetname "bgren"
+jo = get entity activator
+animate entity roquette performing action CCH_F_FWD_L_2 targeting entity jo
+wait 0.100 seconds
+jo = get entity activator
+animate entity roquette performing action CCH_F_FWD_L_2 targeting entity jo
+animate entity bb performing action STD_F_FWD_M_2 targeting entity jo
+jo = get entity activator
+animate entity bgren performing action CCH_TLOBGRENADE_N_A_N targeting entity jo
+wait 0.400 seconds
+animate entity roquette performing action CCH_F_FWD_L_2 targeting entity jo
+wait 0.200 seconds
+animate entity bb performing action SCRIPT_RELEASE
+animate entity bgren performing action SCRIPT_RELEASE
+animate entity roquette performing action RUN by moving [-128.000 ,0.000 ,0.000] signaling sig2
+wait for all clearing sig2
+animate entity roquette performing action RUN by moving [0.000 ,128.000 ,0.000] signaling sig3
+wait for all clearing sig3
+remove entity roquette
+exit

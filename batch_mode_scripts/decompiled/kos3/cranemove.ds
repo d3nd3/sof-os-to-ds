@@ -1,0 +1,61 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity cranelever
+local entity top_half
+local entity bottom_half
+local entity move_stack
+local entity crane_sound
+local int sig1
+local int sig2
+local int sig3
+
+cranelever = find entity with targetname "cranelever"
+top_half = find entity with targetname "top_half"
+bottom_half = find entity with targetname "bottom_half"
+move_stack = find entity with targetname "move_stack"
+crane_sound = find entity with targetname "crane_sound"
+use entity cranelever
+use entity crane_sound
+move entity top_half by [0.000 ,0.000 ,0.000] at 130 speed signaling sig1
+move entity bottom_half by [0.000 ,0.000 ,0.000] at 130 speed signaling sig2
+wait for all clearing sig1,sig2
+play sound "Cin\KOS3\Script\Gear.adp" for entity top_half on channel CHAN_AUTO at volume 0.900
+move entity top_half by [0.000 ,0.000 ,0.000] at 15 speed signaling sig1
+move entity move_stack by [0.000 ,0.000 ,0.000] at 15 speed signaling sig2
+wait for all clearing sig1,sig2
+move entity move_stack by [0.000 ,0.000 ,0.000] at 65 speed signaling sig1
+move entity top_half by [0.000 ,0.000 ,0.000] at 65 speed signaling sig2
+move entity bottom_half by [0.000 ,0.000 ,0.000] at 65 speed signaling sig3
+wait for all clearing sig1,sig2,sig3
+play sound "Cin\KOS3\Script\Gear.adp" for entity top_half on channel CHAN_AUTO at volume 0.900
+move entity top_half by [0.000 ,0.000 ,0.000] at 15 speed signaling sig1
+move entity move_stack by [0.000 ,0.000 ,0.000] at 15 speed signaling sig2
+wait for all clearing sig1,sig2
+remove entity crane_sound
+exit

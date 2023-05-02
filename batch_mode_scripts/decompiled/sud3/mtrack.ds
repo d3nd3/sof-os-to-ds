@@ -1,0 +1,54 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy
+local entity guy1
+local entity chains
+local entity part
+local entity partsnd
+local int sig
+local int sig1
+
+guy = find entity with targetname "mtguy"
+guy1 = find entity with targetname "mtguy1"
+chains = find entity with targetname "mtchains"
+part = find entity with targetname "mtpart"
+partsnd = find entity with targetname "mtpartsnd"
+use entity guy
+use entity guy1
+use entity partsnd
+moverotate entity partsnd from file "sud3_mtrack_chains.rof"
+moverotate entity chains from file "sud3_mtrack_chains.rof"
+moverotate entity part from file "sud3_mtrack_chains.rof" signaling sig1
+animate entity guy1 performing action STD_WNORMAL_N_PK_A by moving [0.000 ,256.000 ,0.000] signaling sig
+wait for all clearing sig
+animate entity guy1 performing action SCRIPT_RELEASE
+wait for all clearing sig1
+remove entity partsnd
+unload roff "sud3_mtrack_chains.rof"
+exit

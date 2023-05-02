@@ -1,0 +1,74 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity trou
+local entity jo
+local vector pos
+local entity aexplo
+local entity bexplo
+local entity cexplo
+local entity dexplo
+local entity vibro
+local int sig
+
+trou = find entity with targetname "trou"
+aexplo = find entity with targetname "aexplo"
+bexplo = find entity with targetname "bexplo"
+cexplo = find entity with targetname "cexplo"
+dexplo = find entity with targetname "dexplo"
+vibro = find entity with targetname "vibro"
+use entity aexplo
+use entity bexplo
+use entity vibro
+wait 0.800 seconds
+use entity cexplo
+use entity dexplo
+trou.health += 300
+label lab_00003
+jo = get entity activator
+pos = jo.origin
+pos += [0.000 ,0.000 ,-34.000]
+tank entity trou 2
+wait 0.300 seconds
+suspend
+jo = get entity activator
+pos = jo.origin
+tank entity trou 3
+wait 0.200 seconds
+jo = get entity activator
+pos = jo.origin
+pos += [0.000 ,0.000 ,-34.000]
+tank entity trou 2
+wait 0.800 seconds
+suspend
+if trou.health <= 0
+goto lab_00002
+endif
+goto lab_00003
+label lab_00002
+exit

@@ -1,0 +1,69 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity hawk
+local entity missle
+local entity brace
+local entity bracesnd
+local entity block
+local entity push
+local int sig
+local int sig1
+
+hawk = find entity with targetname "doorhawk"
+missle = find entity with targetname "missleparts"
+brace = find entity with targetname "missleparts1"
+bracesnd = find entity with targetname "misslepartsnd"
+block = find entity with targetname "missblock"
+push = find entity with targetname "misspush"
+use entity block
+use entity push
+animate entity hawk performing action STD_EWRENCHH_TO_N_N
+animate entity hawk performing action STD_EWRENCHH_N_N_N
+animate entity hawk performing action STD_EWRENCHH_FRM_N_N signaling sig
+wait for all clearing sig
+use entity bracesnd
+moverotate entity bracesnd from file "sud3_hawkmove_missle.rof"
+moverotate entity missle from file "sud3_hawkmove_missle.rof" signaling sig1
+moverotate entity brace from file "sud3_hawkmove_missle1.rof"
+wait 1 seconds
+print 27659
+play sound "cin/sud3/s31d3.adp" for entity hawk on channel CHAN_AUTO at volume 0.900
+animate entity hawk performing action STD_ETALK_N_A_N
+animate entity hawk performing action STD_ESPIN180_LT_A_N
+animate entity hawk performing action STD_R_N_PK_N by moving [232.000 ,-32.000 ,0.000] signaling sig
+wait for all clearing sig
+remove entity hawk
+wait for all clearing sig1
+remove entity bracesnd
+remove entity block
+remove entity push
+unload sound "cin/sud3/s31d3.adp"
+unload roff "sud3_hawkmove_missle.rof"
+unload roff "sud3_hawkmove_missle1.rof"
+exit

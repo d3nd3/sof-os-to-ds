@@ -1,0 +1,110 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity blast1
+local entity blast2
+local entity heli1
+local entity deathheli
+local entity windownin1
+local entity t518
+local entity nin1glass
+local entity windownin2
+local entity t519
+local entity nin2glass
+local int sig1
+local int bEND = 0
+local float helihealth
+local int currenthealth
+local float minhealth
+local int origMovetype
+
+blast1 = find entity with targetname "blast1"
+blast2 = find entity with targetname "blast2"
+heli1 = find entity with targetname "heli1"
+deathheli = find entity with targetname "deathheli"
+windownin1 = find entity with targetname "windownin1"
+t518 = find entity with targetname "t518"
+nin1glass = find entity with targetname "nin1glass"
+windownin2 = find entity with targetname "windownin2"
+t519 = find entity with targetname "t519"
+nin2glass = find entity with targetname "nin2glass"
+use entity windownin1
+use entity windownin2
+use entity blast1
+use entity blast2
+helicopter entity heli1 35
+helicopter entity heli1 36
+helihealth = 2500
+minhealth = helihealth * 0.200
+helicopter entity heli1 37
+helicopter entity heli1 38
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 42
+helicopter entity heli1 43
+helicopter entity heli1 42
+helicopter entity heli1 43
+helicopter entity heli1 42
+helicopter entity heli1 43
+helicopter entity heli1 24
+helicopter entity heli1 26
+helicopter entity heli1 41
+origMovetype = heli1.movetype
+heli1.movetype = MOVETYPE_NOCLIP
+wait 4.900 seconds
+animate entity windownin1 performing action CCH_XCROUCH_UP_PK_A
+remove entity t518
+animate entity windownin1 performing action STD_F_FWD_P_2 targeting entity nin1glass
+animate entity windownin1 performing action SCRIPT_RELEASE
+wait 0.600 seconds
+use entity nin1glass
+wait 0.800 seconds
+animate entity windownin2 performing action CCH_XCROUCH_UP_PK_A
+remove entity t519
+animate entity windownin2 performing action STD_F_FWD_P_2 targeting entity nin2glass
+animate entity windownin2 performing action SCRIPT_RELEASE
+wait 0.600 seconds
+use entity nin2glass
+wait 2 seconds
+on heli1.health < 10 goto lab_00001
+suspend
+label lab_00001
+heli1.movetype = origMovetype
+exit

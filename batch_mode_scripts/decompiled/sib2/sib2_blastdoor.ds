@@ -1,0 +1,51 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity sib2_blastdoor
+local entity sib2_blast
+local entity sib2_blasthurt
+local entity sib2_cutter
+local entity sib2_blastpush
+local int sig
+
+sib2_blastdoor = find entity with targetname "sib2_blastdoor"
+sib2_blast = find entity with targetname "sib2_blast"
+sib2_cutter = find entity with targetname "sib2_cutter"
+sib2_blastpush = find entity with targetname "sib2_blastpush"
+sib2_blasthurt = find entity with targetname "sib2_blasthurt"
+use entity sib2_cutter
+wait 4 seconds
+use entity sib2_blast
+use entity sib2_blastpush
+use entity sib2_blasthurt
+sib2_blastdoor.movetype = MOVETYPE_PUSH
+remove entity sib2_blasthurt
+moverotate entity sib2_blastdoor from file "sib2_blastdoor.rof" signaling sig
+wait for all clearing sig
+sib2_blastdoor.movetype = MOVETYPE_NONE
+exit

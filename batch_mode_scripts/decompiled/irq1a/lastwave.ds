@@ -1,0 +1,58 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity lastwave_leftdoor
+local entity lastwave_rightdoor
+local entity lastwave_guy1
+local entity lastwave_guy2
+local entity end_door_collidea
+local entity end_door_collideb
+local entity end_push
+local entity end_locked_message
+local int sig1
+local int sig2
+
+lastwave_leftdoor = find entity with targetname "lastwave_leftdoor"
+lastwave_rightdoor = find entity with targetname "lastwave_rightdoor"
+lastwave_guy1 = find entity with targetname "lastwave_guy1"
+lastwave_guy2 = find entity with targetname "lastwave_guy2"
+end_door_collidea = find entity with targetname "end_door_collidea"
+end_door_collideb = find entity with targetname "end_door_collideb"
+end_push = find entity with targetname "end_push"
+end_locked_message = find entity with targetname "end_locked_message"
+use entity lastwave_guy1
+use entity lastwave_guy2
+use entity end_push
+moverotate entity lastwave_leftdoor from file "generic_door_ccw.rof" signaling sig1
+moverotate entity lastwave_rightdoor from file "generic_door_cw.rof" signaling sig2
+use entity end_door_collidea
+use entity end_door_collideb
+wait for all clearing sig1,sig2
+use entity lastwave_guy1
+use entity lastwave_guy2
+exit

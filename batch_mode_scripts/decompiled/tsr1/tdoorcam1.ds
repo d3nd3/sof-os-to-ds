@@ -1,0 +1,67 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity tokencam
+local entity tokencamn
+local entity tdoorjohn
+local entity tokenlocked2
+local entity tdoor
+local entity new_tok_lever
+local entity use_the_switch
+local entity host_count
+local int host_counthealth
+local entity roundguy
+local entity tokvictim
+local entity tokchaser
+local entity tollguy
+
+enable cinematics
+tokencam = find entity with targetname "tokencam"
+tokencamn = find entity with targetname "tokencamn"
+tdoorjohn = find entity with targetname "tdoorjohn"
+tokenlocked2 = find entity with targetname "tokenlocked2"
+tdoor = find entity with targetname "tdoor"
+host_count = find entity with targetname "host_count"
+new_tok_lever = find entity with targetname "new_tok_lever"
+use_the_switch = find entity with scripttarget "use_the_switch"
+roundguy = find entity with targetname "roundguy"
+tokvictim = find entity with targetname "tokvictim"
+tokchaser = find entity with targetname "tokchaser"
+tollguy = find entity with targetname "tollguy"
+host_counthealth = host_count.health
+use entity tdoorjohn
+use entity tokencam
+move entity new_tok_lever by [0.000 ,0.000 ,0.000]
+use entity tdoor
+remove entity use_the_switch
+wait 2 seconds
+use entity tokencam
+remove entity tokenlocked2
+remove entity tdoorjohn
+disable cinematics
+exit

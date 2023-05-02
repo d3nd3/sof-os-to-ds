@@ -1,0 +1,43 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity badman1
+local entity badman2
+local entity doorbarrel1
+
+badman1 = find entity with targetname "badman1"
+badman2 = find entity with targetname "badman2"
+doorbarrel1 = find entity with targetname "doorbarrel1"
+animate entity badman1 performing action STD_FAUTOSWEEP_N_PM_A holding for 2.000
+use entity badman2
+wait 1 seconds
+use entity doorbarrel1
+wait 1 seconds
+animate entity badman1 performing action SCRIPT_RELEASE
+animate entity badman2 performing action SCRIPT_RELEASE
+exit

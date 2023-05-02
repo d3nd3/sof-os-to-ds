@@ -1,0 +1,103 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity chunk1
+local entity chunk2
+local entity chunk3
+local entity chunk4
+local entity chunk5
+local entity chunk6
+local entity chunk7
+local entity ex1
+local entity ex2
+local entity bb1
+local entity bb2
+local entity bb3
+local entity bb4
+local entity todust1
+local entity todust2
+local entity todustnew
+local entity explosion1
+local entity pipes
+local entity towayback
+local entity towayback2
+local entity toshake
+local entity tolastone
+local entity ste_wall
+local entity splayer2
+
+chunk1 = find entity with targetname "tochunkrt1"
+chunk2 = find entity with targetname "tochunkrt2"
+chunk3 = find entity with targetname "tochunkrt3"
+chunk4 = find entity with targetname "tochunklf1"
+chunk5 = find entity with targetname "tochunklf2"
+chunk6 = find entity with targetname "tochunklf3"
+chunk7 = find entity with targetname "tochunklf4"
+ex1 = find entity with targetname "toex1"
+ex2 = find entity with targetname "toex2"
+bb1 = find entity with targetname "tobb1"
+bb2 = find entity with targetname "tobb2"
+todust1 = find entity with targetname "todust1"
+todust2 = find entity with targetname "todust2"
+todustnew = find entity with targetname "todustnew"
+explosion1 = find entity with targetname "explosion1"
+splayer2 = find entity with targetname "splayer2"
+pipes = find entity with targetname "pipes"
+towayback = find entity with targetname "towayback"
+towayback2 = find entity with targetname "towayback2"
+tolastone = find entity with targetname "tolastone"
+ste_wall = find entity with targetname "ste_wall"
+use entity towayback
+use entity towayback2
+use entity toshake
+wait 0.500 seconds
+use entity todust1
+wait 0.300 seconds
+use entity todust2
+wait 0.200 seconds
+use entity bb1
+wait 0.500 seconds
+use entity ex1
+use entity ste_wall
+wait 0.300 seconds
+use entity ex2
+use entity bb2
+moverotate entity chunk1 from file "kos_takeoff_chunkrt1.rof"
+play sound "Impact\Stone\BigRock.adp" for entity chunk1 at volume 0.900
+wait 0.300 seconds
+play sound "Impact\Metal\BigMetal.adp" for entity chunk1 at volume 0.900
+moverotate entity chunk2 from file "kos_takeoff_chunkrt2.rof"
+moverotate entity chunk3 from file "kos_takeoff_chunkrt3.rof"
+moverotate entity chunk4 from file "kos_takeoff_chunklf1.rof"
+moverotate entity chunk5 from file "kos_takeoff_chunklf2.rof"
+moverotate entity chunk6 from file "kos_takeoff_chunklf3.rof"
+moverotate entity chunk7 from file "kos_takeoff_chunklf4.rof"
+use entity todustnew
+use entity tolastone
+wait 2.500 seconds
+exit

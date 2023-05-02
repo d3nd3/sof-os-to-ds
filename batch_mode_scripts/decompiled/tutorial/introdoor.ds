@@ -1,0 +1,67 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity introsam
+local entity cage
+local entity hostagelight1
+local entity hostagelight2
+
+introsam = find entity with targetname "introsam"
+cage = find entity with targetname "cage"
+hostagelight1 = find entity with targetname "hostagelight1"
+hostagelight2 = find entity with targetname "hostagelight2"
+use entity hostagelight1
+use entity hostagelight2
+play sound "ambient/gen/airgas/airbrst2.adp" for entity hostagelight1 on channel CHAN_AUTO at volume 0.900
+wait 0.300 seconds
+print 33285
+play sound "cin/tut/introd6.adp" for entity introsam on channel CHAN_VOICE at volume 0.900
+introsam.wait = 1
+animate entity introsam showing emotion EMOTION_TALK holding for 3.500
+animate entity introsam performing action STD_ETALK_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity introsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+animate entity introsam performing action STD_ETALK_N_A_N holding for 2.200
+wait 2.800 seconds
+print 33286
+play sound "cin/tut/introd7.adp" for entity introsam on channel CHAN_VOICE at volume 0.900
+animate entity introsam showing emotion EMOTION_TALK holding for 5.700
+animate entity introsam performing action STD_ETALK_N_A_N holding for 2.000
+wait 2.000 seconds
+animate entity introsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity introsam performing action STD_ETALK_N_A_N holding for 1.100
+wait 1.100 seconds
+animate entity introsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity introsam performing action STD_ETALK_N_A_N holding for 1.000
+wait 1.300 seconds
+use entity cage
+unload sound "ambient/gen/airgas/airbrst2.adp"
+exit

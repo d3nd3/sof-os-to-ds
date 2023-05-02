@@ -1,0 +1,74 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity fuel
+local entity clip
+local entity sideh
+local entity sideclip
+local entity toph
+local entity valve
+local entity cam
+local entity cd
+local entity you
+local entity mess
+local int sig
+
+cache sound "cin/sib1/pump.adp"
+cache sound "cin/sib1/fortyfive.adp"
+cache sound "cin/sib1/seconds.adp"
+cache roff "sib1_floodpipe_tophatch.rof"
+cache roff "sib1_floodpipe_valve.rof"
+cam = find entity with targetname "floodcam"
+enable cinematics
+label lab_00001
+fuel = find entity with targetname "fuel"
+clip = find entity with targetname "floodclip"
+sideh = find entity with targetname "sidehatch"
+sideclip = find entity with targetname "openhatch"
+toph = find entity with targetname "tophatch"
+valve = find entity with targetname "floodvalve"
+cd = find entity with targetname "countdown"
+you = find entity player
+mess = find entity with targetname "pipemess"
+wait 0.500 seconds
+moverotate entity toph from file "sib1_floodpipe_tophatch.rof"
+moverotate entity valve from file "sib1_floodpipe_valve.rof"
+print 27393
+play sound "cin/sib1/pump.adp" for entity you on channel CHAN_NO_PHS_ADD at volume 0.900
+wait 2.500 seconds
+play sound "cin/sib1/fortyfive.adp" for entity you on channel CHAN_NO_PHS_ADD at volume 0.900
+wait 1.300 seconds
+play sound "cin/sib1/seconds.adp" for entity you on channel CHAN_NO_PHS_ADD at volume 0.900
+wait 0.800 seconds
+use entity mess
+use entity cd
+wait 45 seconds
+suspend
+goto lab_00001
+disable cinematics
+exit

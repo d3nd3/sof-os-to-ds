@@ -1,0 +1,77 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity sib2_lightcam1
+local entity sib2_lightcam2
+local entity sib2_lightramp1
+local entity sib2_lightramp2
+local entity sib2_lightramp3
+local entity sib2fadein
+local entity sib2fadeout
+local entity sib2_catspawn
+local entity sib2_enddoor
+local entity runner01
+local entity runner02
+local int sig
+
+sib2_lightcam1 = find entity with targetname "sib2_lightcam1"
+sib2_lightcam2 = find entity with targetname "sib2_lightcam2"
+sib2_lightramp1 = find entity with targetname "sib2_lightramp1"
+sib2_lightramp2 = find entity with targetname "sib2_lightramp2"
+sib2_lightramp3 = find entity with targetname "sib2_lightramp3"
+sib2fadein = find entity with targetname "sib2fadein"
+sib2fadeout = find entity with targetname "sib2fadeout"
+sib2_catspawn = find entity with targetname "sib2_catspawn"
+sib2_enddoor = find entity with targetname "sib2_enddoor"
+runner01 = find entity with targetname "runner01"
+runner02 = find entity with targetname "runner02"
+use entity sib2_lightramp1
+wait 0.500 seconds
+use entity sib2fadeout
+wait 1 seconds
+use entity sib2fadein
+enable cinematics
+use entity sib2_lightcam1
+use entity runner01
+use entity runner02
+use entity sib2_lightramp2
+wait 1.900 seconds
+use entity sib2_lightcam1
+remove entity runner01
+remove entity runner02
+use entity sib2_enddoor
+use entity sib2_catspawn
+use entity sib2_lightcam2
+use entity sib2_lightramp3
+wait 4 seconds
+use entity sib2fadeout
+wait 1 seconds
+use entity sib2fadein
+use entity sib2_lightcam2
+disable cinematics
+exit

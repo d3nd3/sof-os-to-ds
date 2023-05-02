@@ -1,0 +1,44 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity snipgrd1
+local entity snipdoor
+
+snipgrd1 = find entity with targetname "snipgrd1"
+snipdoor = find entity with targetname "snipdoor"
+use entity snipgrd1
+wait 0.500 seconds
+use entity snipdoor
+wait 2.500 seconds
+animate entity snipgrd1 performing action STD_R_N_MRS_2 by moving [-176.000 ,0.000 ,0.000]
+animate entity snipgrd1 performing action SCRIPT_RELEASE
+wait 5 seconds
+use entity snipdoor
+wait 1 seconds
+wait 1 seconds
+exit

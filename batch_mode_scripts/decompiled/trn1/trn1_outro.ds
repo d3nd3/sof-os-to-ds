@@ -1,0 +1,99 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+global entity trn1_doorflag
+local entity door
+local entity outcam1
+local entity outcam2
+local entity outcam3
+local entity outcam4
+local entity playeroutro
+local entity detonator
+local entity heli
+local entity trn1_fadeout
+local entity trn1_woodguy
+local entity trn1_nukecam
+local entity trn1_nukejohn
+local entity trn1_player
+local int sig
+
+door = find entity with targetname "door"
+outcam1 = find entity with targetname "outcam1"
+outcam2 = find entity with targetname "outcam2"
+outcam3 = find entity with targetname "outcam3"
+outcam4 = find entity with targetname "outcam4"
+playeroutro = find entity with targetname "playeroutro"
+detonator = find entity with targetname "detonator"
+heli = find entity with targetname "heli"
+trn1_fadeout = find entity with targetname "trn1_fadeout"
+trn1_woodguy = find entity with targetname "trn1_woodguy"
+trn1_nukecam = find entity with targetname "trn1_nukecam"
+trn1_nukejohn = find entity with targetname "trn1_nukejohn"
+trn1_player = find entity player
+if trn1_player.health > 0
+enable cinematics
+use entity trn1_nukecam
+use entity trn1_nukejohn
+wait 0.100 seconds
+play sound "cin/trn1/s3d1.adp" for entity trn1_player on channel CHAN_AUTO at volume 0.900
+print 29953
+trn1_nukejohn.movetype = MOVETYPE_NOCLIP
+animate entity trn1_nukejohn performing action STD_EWRENCHH_TO_N_N
+animate entity trn1_nukejohn performing action STD_EWRENCHH_FRM_N_N signaling sig
+wait for all clearing sig
+use entity trn1_nukecam
+playsong 4
+if trn1_doorflag == 1
+endif
+use entity playeroutro
+animate entity playeroutro performing action STD_RGUNUP_N_P_2 by moving [-430.000 ,0.000 ,0.000]
+animate entity playeroutro performing action STD_JRUN_FWD_A_A by moving [-128.000 ,0.000 ,0.000]
+animate entity playeroutro performing action STD_RGUNUP_N_P_2 by moving [-230.000 ,0.000 ,0.000]
+animate entity playeroutro performing action STD_JRUN_FWD_A_A by moving [-200.000 ,0.000 ,0.000]
+animate entity playeroutro performing action STD_RGUNUP_N_P_2 by moving [-440.000 ,0.000 ,0.000]
+remove entity heli
+remove entity trn1_woodguy
+use entity outcam1
+wait 2.800 seconds
+use entity outcam1
+use entity outcam2
+wait 1.000 seconds
+use entity outcam2
+use entity outcam3
+wait 0.100 seconds
+use entity detonator
+wait 4.000 seconds
+use entity trn1_fadeout
+wait 4.000 seconds
+playsong 0
+wait 2 seconds
+setcvar cvar "menu_nextmap" to "arm1"
+run console command "intermission acc2"
+disable cinematics
+endif
+exit

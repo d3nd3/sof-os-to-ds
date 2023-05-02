@@ -1,0 +1,56 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity edd
+local entity eda
+
+edd = find entity with targetname "edd"
+eda = find entity with targetname "eda"
+use entity edd
+use entity eda
+wait 0.200 seconds
+animate entity edd performing action STD_XROLL_RT_A_A
+animate entity eda performing action STD_XROLL_RT_A_A
+wait 0.800 seconds
+animate entity edd performing action SCRIPT_RELEASE
+edd.health += 80
+eda.health += 80
+label lab_00003
+jo = get entity activator
+animate entity eda performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
+wait 0.300 seconds
+if eda.health < 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+wait 0.200 seconds
+animate entity eda performing action SCRIPT_RELEASE
+exit

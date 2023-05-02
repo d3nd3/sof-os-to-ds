@@ -1,0 +1,128 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity introcam1
+local entity introcam1n
+local entity introwalker
+local entity introwoman
+local entity introman6
+local entity introfadein
+local entity introfadeback
+local entity introwalkby
+local entity introspeech
+local entity introknocker
+local entity intro2wb1
+local entity intro2wb2
+local entity intro2wom1
+local entity intro2man1
+local entity putback1
+local entity putback2
+local entity afterintro1
+local entity afterintro2
+local entity introcam2
+local entity introcam2n
+local entity start_objectives
+local int sig1
+
+introcam1 = find entity with targetname "introcam1"
+introcam1n = find entity with targetname "introcam1n"
+introcam2 = find entity with targetname "introcam2"
+introcam2n = find entity with targetname "introcam2n"
+introwoman = find entity with targetname "introwoman"
+introman6 = find entity with targetname "introman6"
+introspeech = find entity with targetname "introspeech"
+introfadein = find entity with targetname "introfadein"
+introfadeback = find entity with targetname "introfadeback"
+introwalker = find entity with targetname "introwalker"
+introwalkby = find entity with targetname "introwalkby"
+introknocker = find entity with targetname "introknocker"
+putback1 = find entity with scripttarget "putback1"
+putback2 = find entity with scripttarget "putback2"
+afterintro1 = find entity with targetname "afterintro1"
+afterintro2 = find entity with targetname "afterintro2"
+intro2wb1 = find entity with targetname "intro2wb1"
+intro2wb2 = find entity with targetname "intro2wb2"
+intro2wom1 = find entity with targetname "intro2wom1"
+intro2man1 = find entity with targetname "intro2man1"
+introcam1.movetype = MOVETYPE_NOCLIP
+introcam1n.movetype = MOVETYPE_NOCLIP
+introcam2.movetype = MOVETYPE_NOCLIP
+introcam2n.movetype = MOVETYPE_NOCLIP
+start_objectives = find entity with targetname "start_objectives"
+use entity introwoman
+use entity introman6
+use entity introwalker
+use entity introcam1
+enable cinematics
+print 32778
+use entity introknocker
+move entity introcam1 by [0.000 ,0.000 ,0.000] at 85 speed
+move entity introcam1n by [0.000 ,0.000 ,0.000] at 85 speed
+wait 4.200 seconds
+use entity introwalkby
+wait 0.800 seconds
+move entity introcam1 by [0.000 ,0.000 ,0.000] at 85 speed signaling sig1
+move entity introcam1n by [0.000 ,0.000 ,0.000] at 85 speed
+wait for all clearing sig1
+move entity introcam1 by [0.000 ,0.000 ,0.000] at 85 speed
+move entity introcam1n by [0.000 ,0.000 ,0.000] at 85 speed
+wait 4 seconds
+wait 0.700 seconds
+use entity introcam1
+use entity intro2man1
+use entity intro2wom1
+use entity intro2wb2
+use entity introcam2
+move entity introcam2 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity introcam2n by [0.000 ,0.000 ,0.000] at 34 speed
+wait 3 seconds
+animate entity intro2wb1 performing action STD_WNORMAL_N_PK_A by moving [0.000 ,256.000 ,0.000]
+wait 2 seconds
+wait 1.500 seconds
+use entity introfadein
+wait 1 seconds
+use entity introcam2
+disable cinematics
+wait 0.200 seconds
+use entity introfadeback
+use entity putback1
+use entity putback2
+use entity afterintro1
+use entity afterintro2
+use entity start_objectives
+remove entity introknocker
+remove entity introwalker
+remove entity introwoman
+remove entity introman6
+remove entity introwalkby
+remove entity introspeech
+remove entity intro2wom1
+remove entity intro2wb1
+remove entity intro2wb2
+remove entity intro2man1
+exit

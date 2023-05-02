@@ -1,0 +1,40 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity runa
+local int sig
+
+runa = find entity with targetname "runa"
+use entity runa
+on runa.health < 10 goto lab_00001
+runa.health += 100
+animate entity runa performing action RUN by moving [-10.000 ,30.000 ,0.000] signaling sig
+wait for all clearing sig
+label lab_00001
+animate entity runa performing action SCRIPT_RELEASE
+exit

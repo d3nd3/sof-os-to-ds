@@ -1,0 +1,62 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity clebs1
+local entity clebs2
+local entity clebs3
+local entity clebs4
+local entity clebsguy
+local entity clebsguy2
+local entity jo
+
+clebs1 = find entity with targetname "clebs1"
+clebs2 = find entity with targetname "clebs2"
+clebs3 = find entity with targetname "clebs3"
+clebs4 = find entity with targetname "clebs4"
+clebsguy = find entity with targetname "clebsguy"
+clebsguy2 = find entity with targetname "clebsguy2"
+use entity clebsguy
+use entity clebs1
+use entity clebs2
+use entity clebs3
+use entity clebs4
+use entity clebsguy2
+jo = find entity player
+animate entity clebs1 performing action SCRIPT_RELEASE
+animate entity clebs2 performing action SCRIPT_RELEASE
+animate entity clebs3 performing action SCRIPT_RELEASE
+animate entity clebs4 performing action SCRIPT_RELEASE
+wait 0.200 seconds
+animate entity clebsguy2 performing action RUN by moving [0.000 ,-256.000 ,0.000]
+animate entity clebsguy performing action RUN by moving [-128.000 ,-64.000 ,0.000]
+wait 0.800 seconds
+animate entity clebsguy2 performing action SCRIPT_RELEASE
+animate entity clebsguy performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
+wait 0.100 seconds
+animate entity clebsguy performing action SCRIPT_RELEASE
+exit

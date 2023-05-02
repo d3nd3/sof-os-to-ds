@@ -1,0 +1,74 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity kos2_truck
+local entity kos2_truckdet1
+local entity kos2_truckdet2
+local entity guy1
+local entity guy2
+local entity road
+local entity chunk
+local entity fire
+local entity hurt
+local int sig
+
+kos2_truck = find entity with targetname "kos2_truck"
+kos2_truckdet1 = find entity with targetname "kos2_truckdet1"
+kos2_truckdet2 = find entity with targetname "kos2_truckdet2"
+guy1 = find entity with targetname "truckguy1"
+guy2 = find entity with targetname "truckguy2"
+road = find entity with targetname "truckroad"
+chunk = find entity with targetname "truckchunk"
+fire = find entity with targetname "truckfire"
+hurt = find entity with targetname "truckhurt"
+animate entity guy1 performing action STD_R_N_MRS_2 by moving [0.000 ,48.000 ,0.000]
+animate entity guy1 performing action STD_R_N_MRS_2 by moving [-248.000 ,0.000 ,0.000]
+animate entity guy1 performing action STD_R_N_MRS_2 by moving [-100.000 ,-64.000 ,0.000]
+animate entity guy1 performing action SCRIPT_RELEASE
+animate entity guy2 performing action STD_R_N_MRS_2 by moving [0.000 ,-128.000 ,0.000]
+animate entity guy2 performing action STD_R_N_MRS_2 by moving [-248.000 ,0.000 ,0.000]
+animate entity guy2 performing action STD_R_N_MRS_2 by moving [-100.000 ,64.000 ,0.000]
+animate entity guy2 performing action SCRIPT_RELEASE
+wait 1.700 seconds
+use entity kos2_truckdet1
+wait 0.100 seconds
+use entity road
+use entity chunk
+play sound "Impact/Explosion/TruckExp.adp" for entity kos2_truck on channel CHAN_AUTO at volume 0.900
+moverotate entity kos2_truck from file "kos2_truck.rof" signaling sig
+wait 0.200 seconds
+use entity kos2_truckdet2
+wait 1.200 seconds
+use entity hurt
+wait for all clearing sig
+use entity fire
+wait 0.200 seconds
+unload roff "kos2_truck.rof"
+wait 2 seconds
+remove entity hurt
+exit

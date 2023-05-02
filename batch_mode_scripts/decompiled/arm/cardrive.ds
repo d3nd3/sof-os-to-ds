@@ -1,0 +1,42 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity movingcar
+local entity runinrain
+local int sig1
+
+movingcar = find entity with targetname "movingcar"
+runinrain = find entity with targetname "runinrain"
+movingcar.movetype = MOVETYPE_NOCLIP
+move entity movingcar by [0.000 ,0.000 ,0.000] at 250 speed
+wait 5 seconds
+animate entity runinrain performing action STD_RAFRAID_N_N_N by moving [0.000 ,-700.000 ,0.000] signaling sig1 holding for 90.000
+wait for all clearing sig1
+remove entity runinrain
+remove entity movingcar
+exit

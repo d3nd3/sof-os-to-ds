@@ -1,0 +1,51 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity littlecrate1
+local entity littlecrate2
+local entity bigcrate1
+local entity bigcrate2
+local entity break_roof
+local entity fs_explo
+
+littlecrate1 = find entity with targetname "littlecrate1"
+littlecrate2 = find entity with targetname "littlecrate2"
+bigcrate1 = find entity with targetname "bigcrate1"
+bigcrate2 = find entity with targetname "bigcrate2"
+break_roof = find entity with targetname "break_roof"
+fs_explo = find entity with targetname "fs_explo"
+use entity fs_explo
+use entity littlecrate1
+wait 0.100 seconds
+use entity littlecrate2
+wait 0.100 seconds
+use entity bigcrate1
+use entity bigcrate2
+wait 0.100 seconds
+use entity break_roof
+exit

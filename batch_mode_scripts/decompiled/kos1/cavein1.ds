@@ -1,0 +1,73 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity crushguy2
+local entity cavein1
+local entity pipelead
+local entity cidirt
+local entity cileftpiller
+local entity cileftpiller1
+local entity cirightchunk
+local entity cileftchunk
+local entity cibeam
+local entity cibeam1
+local entity caveindust1
+local int sig1
+local int sig2
+
+crushguy2 = find entity with targetname "crushguy2"
+cavein1 = find entity with targetname "cavein1"
+pipelead = find entity with targetname "pipelead"
+cileftpiller = find entity with targetname "cileftpiller"
+cileftpiller1 = find entity with targetname "cileftpiller1"
+cirightchunk = find entity with targetname "cirightchunk"
+cileftchunk = find entity with targetname "cileftchunk"
+cibeam = find entity with targetname "cibeam"
+cibeam1 = find entity with targetname "cibeam1"
+caveindust1 = find entity with targetname "caveindust1"
+cache roff "bos_cirearbeam_lf.rof"
+cache roff "bos_cirearbeam_rt.rof"
+cache roff "bos_cifrontbeam_rt.rof"
+cache roff "bos_cifrontbeam_lf.rof"
+use entity cavein1
+animate entity crushguy2 performing action STD_RAFRAID_N_N_N by moving [0.000 ,-32.000 ,0.000]
+animate entity crushguy2 performing action SCRIPT_RELEASE
+wait 0.700 seconds
+moverotate entity cileftpiller1 from file "bos_cileftpiller_top.rof"
+moverotate entity cileftpiller from file "bos_cileftpiller_bttm.rof"
+wait 0.200 seconds
+play sound "Impact\Stone\BigRock.adp" for entity cileftpiller1 at volume 0.900
+moverotate entity cileftchunk from file "bos_cirearbeam_lf.rof"
+moverotate entity cirightchunk from file "bos_cirearbeam_rt.rof"
+moverotate entity cibeam from file "bos_cifrontbeam_rt.rof"
+moverotate entity cibeam1 from file "bos_cifrontbeam_lf.rof"
+wait 0.300 seconds
+use entity caveindust1
+play sound "Impact\Metal\BigMetal.adp" for entity cibeam at volume 0.900
+use entity pipelead
+exit

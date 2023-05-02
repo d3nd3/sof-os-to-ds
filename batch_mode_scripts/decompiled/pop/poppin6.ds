@@ -1,0 +1,59 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity man34
+local entity man35
+local entity man36
+local entity man37
+local int pop
+local entity sneak
+
+pop = random from 1 to 4
+man34 = find entity with targetname "shoot34"
+man35 = find entity with targetname "shoot35"
+man36 = find entity with targetname "shoot36"
+man37 = find entity with targetname "shoot37"
+sneak = get entity activator
+use entity man34
+use entity man35
+use entity man36
+use entity man37
+label lab_00001
+sneak = get entity activator
+reset ai for entity man34
+reset ai for entity man35
+reset ai for entity man36
+reset ai for entity man37
+animate entity man34 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man35 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man36 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man37 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+wait 0.100 seconds
+suspend
+goto lab_00001
+exit

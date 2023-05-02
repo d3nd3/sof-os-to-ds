@@ -1,0 +1,57 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity xedd
+local entity xfdd
+
+xedd = find entity with targetname "xedd"
+xfdd = find entity with targetname "xfdd"
+use entity xedd
+use entity xfdd
+wait 0.200 seconds
+animate entity xedd performing action STD_XROLL_RT_A_A
+wait 0.100 seconds
+animate entity xfdd performing action STD_XROLL_RT_A_A
+wait 0.800 seconds
+animate entity xedd performing action SCRIPT_RELEASE
+xedd.health += 80
+xfdd.health += 80
+label lab_00003
+reset ai for entity xfdd
+jo = get entity activator
+animate entity xfdd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+if xfdd.health < 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+wait 0.200 seconds
+animate entity xfdd performing action SCRIPT_RELEASE
+exit

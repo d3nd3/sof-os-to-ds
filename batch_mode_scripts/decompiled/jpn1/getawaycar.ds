@@ -1,0 +1,82 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity shooter
+local entity shooter3
+local entity shooter4
+local entity car
+local entity fence
+local entity l_fence
+local entity r_fence
+local entity fire
+local entity smoker
+local entity garagegate
+local entity shootertarget
+local entity player1
+local int sig1
+local int sig2
+
+shooter = find entity with targetname "shooter"
+shooter3 = find entity with targetname "shooter3"
+shooter4 = find entity with targetname "shooter4"
+car = find entity with targetname "car"
+fence = find entity with targetname "fence"
+l_fence = find entity with targetname "l_fence"
+r_fence = find entity with targetname "r_fence"
+fire = find entity with targetname "fire"
+smoker = find entity with targetname "smoker"
+garagegate = find entity with targetname "garagegate"
+shootertarget = find entity with targetname "shootertarget"
+player1 = get entity activator
+use entity shooter3
+use entity shooter4
+animate entity shooter3 performing action STD_FAUTOSWEEP_N_PM_A targeting entity shootertarget holding for 2.000
+animate entity shooter4 performing action STD_F_FWD_P_2 targeting entity shootertarget holding for 2.000
+wait 1 seconds
+play sound "Cin/JPN1/Script/Crash1.adp" for entity car on channel CHAN_AUTO at volume 0.900
+moverotate entity car from file "jap1_car.rof"
+play sound "cin/jpn1/c52d1.adp" for entity shooter4 on channel CHAN_VOICE at volume 0.900
+print 28165
+use entity shooter
+use entity garagegate
+animate entity shooter performing action STD_R_N_PK_N by moving to [48.000 ,-2200.000 ,116.000] signaling sig1
+wait for all clearing sig1
+animate entity shooter performing action STD_FAUTOSWEEP_N_PM_A targeting entity car
+animate entity shooter3 performing action SCRIPT_RELEASE
+animate entity shooter4 performing action SCRIPT_RELEASE
+animate entity shooter performing action STD_SBLOWN_2BK_N_N
+wait 3.500 seconds
+use entity fence
+use entity l_fence
+use entity r_fence
+use entity fire
+use entity smoker
+play sound "cin/jpn1/c52d2.adp" for entity player1
+print 28166
+wait 2 seconds
+exit

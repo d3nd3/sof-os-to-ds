@@ -1,0 +1,99 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity pele
+local entity peleexp2
+local entity peleexp3
+local entity peleexp4
+local entity peleexp5
+local entity pelespk1
+local entity doors
+local entity pelepa
+local entity pelepb
+local entity pelepc
+local entity pelepd
+local entity pelepe
+local entity pelepf
+local entity pelepg
+local entity peleph
+local entity pelepi
+local entity pelepj
+local entity pelepk
+local entity pelepl
+local int sig1
+local int sig2
+local int sig3
+
+pele = find entity with targetname "pele"
+peleexp2 = find entity with targetname "peleexp2"
+peleexp3 = find entity with targetname "peleexp3"
+peleexp4 = find entity with targetname "peleexp4"
+peleexp5 = find entity with targetname "peleexp5"
+pelespk1 = find entity with targetname "pelespk1"
+doors = find entity with targetname "doors"
+pelepa = find entity with targetname "pelepa"
+pelepb = find entity with targetname "pelepb"
+pelepc = find entity with targetname "pelepc"
+pelepd = find entity with targetname "pelepd"
+pelepe = find entity with targetname "pelepe"
+pelepf = find entity with targetname "pelepf"
+pelepg = find entity with targetname "pelepg"
+peleph = find entity with targetname "peleph"
+pelepi = find entity with targetname "pelepi"
+pelepj = find entity with targetname "pelepj"
+pelepk = find entity with targetname "pelepk"
+pelepl = find entity with targetname "pelepl"
+use entity peleexp2
+wait 0.500 seconds
+use entity pelepa
+use entity pelepb
+use entity pelepc
+use entity pelepd
+use entity pelepe
+use entity pelepf
+use entity pelepg
+use entity peleph
+use entity pelepi
+use entity pelepj
+use entity pelepk
+use entity pelepl
+use entity peleexp3
+wait 1 seconds
+use entity pelespk1
+wait 0.500 seconds
+use entity doors
+play sound "Impact/Metal/ElevFallBig.wav" for entity pele at volume 0.900
+move entity pele by [0.000 ,0.000 ,0.000] at 700 speed signaling sig1
+wait for all clearing sig1
+use entity peleexp4
+wait 0.500 seconds
+use entity peleexp5
+wait 1.500 seconds
+wait 2 seconds
+unload sound "Impact/Metal/ElevFallBig.wav"
+exit

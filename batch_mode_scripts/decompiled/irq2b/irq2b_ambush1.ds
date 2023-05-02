@@ -1,0 +1,42 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local int sig1
+local entity guardrelay
+local entity alarmbloke
+
+guardrelay = find entity with targetname "guardrelay"
+alarmbloke = find entity with targetname "alarmbloke"
+wait 1 seconds
+use entity guardrelay
+wait 3 seconds
+animate entity alarmbloke performing action RUN by moving [0.000 ,256.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity alarmbloke performing action RUN by moving [256.000 ,64.000 ,0.000] signaling sig1
+wait for all clearing sig1
+exit

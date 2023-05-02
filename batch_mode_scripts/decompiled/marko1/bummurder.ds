@@ -1,0 +1,47 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity deadbum
+local entity bumkiller
+local int sig1
+local entity jo
+
+deadbum = find entity with targetname "deadbum"
+bumkiller = find entity with targetname "bumkiller"
+jo = get entity activator
+use entity bumkiller
+animate entity bumkiller performing action STD_R_N_PK_N by moving [0.000 ,-256.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity bumkiller performing action STD_F_FWD_P_2 targeting entity deadbum kill signaling sig1
+wait for all clearing sig1
+animate entity bumkiller performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget GROIN
+wait 0.100 seconds
+animate entity bumkiller performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget GUT
+wait 0.100 seconds
+animate entity bumkiller performing action SCRIPT_RELEASE
+exit

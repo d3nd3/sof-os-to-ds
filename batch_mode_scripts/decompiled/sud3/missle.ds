@@ -1,0 +1,109 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity cam1
+local entity cam1t
+local entity cam2n4
+local entity cam2n4t
+local entity cam3
+local entity cam3t
+local entity cam5
+local entity cam5t
+local entity missile
+local entity doorrt
+local entity doorlf
+local entity hyds
+local entity rfclamp
+local entity lfclamp
+local entity rrclamp
+local entity lrclamp
+local entity missplat
+local entity missdoort
+local entity missdoorb
+local entity guy1
+local entity guy2
+local entity order
+local int sig
+
+cache roff "sud3_missile_cam1.rof"
+cache roff "sud3_missile_cam1.rof"
+cache roff "sud3_missile_misdoort.rof"
+cache roff "sud3_missile_misdoorb.rof"
+cache roff "sud3_missile_missplat.rof"
+cache roff "sud3_missile_doorrt.rof"
+cache roff "sud3_missile_doorlf.rof"
+cache roff "sud3_missile_hyds.rof"
+cam1 = find entity with targetname "misscam1"
+cam1t = find entity with targetname "t245"
+cam2n4 = find entity with targetname "misscam2n4"
+cam2n4t = find entity with targetname "t192"
+cam3 = find entity with targetname "misscam3"
+cam3t = find entity with targetname "t246"
+cam5 = find entity with targetname "misscam5"
+missile = find entity with targetname "missile"
+doorrt = find entity with targetname "missdoorrt"
+doorlf = find entity with targetname "missdoorlf"
+hyds = find entity with targetname "hydrolics"
+rfclamp = find entity with targetname "rtfrntclamp"
+lfclamp = find entity with targetname "lffrntclamp"
+rrclamp = find entity with targetname "rtrearclamp"
+lrclamp = find entity with targetname "lfrearclamp"
+missplat = find entity with targetname "missplat"
+missdoort = find entity with targetname "misdoort"
+missdoorb = find entity with targetname "misdoorb"
+guy1 = find entity with targetname "missguy1"
+guy2 = find entity with targetname "missguy2"
+order = find entity with targetname "missorder"
+use entity guy1
+use entity guy2
+use entity order
+animate entity order performing action STD_WPATROL_N_MRS_2 by moving [0.000 ,-288.000 ,0.000]
+animate entity order performing action STD_WPATROL_N_MRS_2 by moving [32.000 ,-48.000 ,0.000]
+animate entity order performing action STD_WPATROL_N_MRS_2 by moving [128.000 ,-16.000 ,0.000]
+animate entity order performing action STD_WPATROL_N_MRS_2 by moving [140.000 ,-8.000 ,0.000]
+animate entity guy2 performing action STD_ICLEANGUN2_N_MRS_2 holding for 8.900
+animate entity guy2 performing action STD_ETURN90_LT_A_N
+animate entity order performing action STD_ITALK_N_MRS_2 holding for 10.000
+animate entity guy2 performing action STD_EHEADNOD_N_A_N holding for 10.000
+moverotate entity cam1 from file "sud3_missile_cam1.rof"
+moverotate entity cam1t from file "sud3_missile_cam1.rof"
+moverotate entity missdoort from file "sud3_missile_misdoort.rof"
+moverotate entity missdoorb from file "sud3_missile_misdoorb.rof"
+moverotate entity missplat from file "sud3_missile_missplat.rof"
+moverotate entity missile from file "sud3_missile_missplat.rof"
+moverotate entity doorrt from file "sud3_missile_doorrt.rof"
+moverotate entity doorlf from file "sud3_missile_doorlf.rof"
+moverotate entity hyds from file "sud3_missile_hyds.rof"
+moverotate entity rfclamp from file "sud3_missile_missplat.rof"
+moverotate entity lfclamp from file "sud3_missile_missplat.rof"
+moverotate entity rrclamp from file "sud3_missile_missplat.rof"
+moverotate entity lrclamp from file "sud3_missile_missplat.rof"
+moverotate entity cam2n4 from file "sud3_missile_missplat.rof"
+moverotate entity cam2n4t from file "sud3_missile_missplat.rof"
+wait 2.800 seconds
+exit

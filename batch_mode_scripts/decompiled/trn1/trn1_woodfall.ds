@@ -1,0 +1,39 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local int sig
+local entity trn1_woodguy
+local entity trn1_woodroof
+
+trn1_woodguy = find entity with targetname "trn1_woodguy"
+trn1_woodroof = find entity with targetname "trn1_woodroof"
+animate entity trn1_woodguy performing action STD_RGUNUP_N_P_2 by moving to [2224.000 ,0.000 ,160.000] signaling sig
+wait for all clearing sig
+animate entity trn1_woodguy performing action SCRIPT_RELEASE
+use entity trn1_woodroof
+exit

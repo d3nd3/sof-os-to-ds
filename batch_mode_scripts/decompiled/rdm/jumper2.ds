@@ -1,0 +1,52 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jumper2
+local int health
+local int sig1
+local entity sneak
+
+jumper2 = find entity with targetname "jumper2"
+sneak = find entity player
+use entity jumper2
+jumper2.health = 2500
+health = jumper2.health
+label lab_00003
+health = jumper2.health
+if health == 0
+goto lab_00002
+endif
+reset ai for entity jumper2
+wait 2 seconds
+animate entity jumper2 performing action STD_EJUMPRAIL_N_A_N
+animate entity jumper2 performing action SCRIPT_RELEASE
+wait for all clearing sig1
+wait 0.100 seconds
+goto lab_00003
+label lab_00002
+exit

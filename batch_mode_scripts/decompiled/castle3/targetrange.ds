@@ -1,0 +1,109 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity tgt1
+local entity tgt2
+local entity tgt3
+local entity tgt4
+local entity tgt5
+local entity tgt6
+local entity tgt7
+local entity tgt8
+local entity tgt9
+local entity targetsound
+local entity rangelight1
+local entity rangelight2
+local entity rangelight3
+local entity rangelight4
+local entity rangelight5
+local int sig1
+local int sig2
+local int sig3
+local int sig4
+
+tgt1 = find entity with targetname "tgt1"
+tgt2 = find entity with targetname "tgt2"
+tgt3 = find entity with targetname "tgt3"
+tgt4 = find entity with targetname "tgt4"
+tgt5 = find entity with targetname "tgt5"
+tgt6 = find entity with targetname "tgt6"
+tgt7 = find entity with targetname "tgt7"
+tgt8 = find entity with targetname "tgt8"
+tgt9 = find entity with targetname "tgt9"
+targetsound = find entity with targetname "targetsound"
+rangelight1 = find entity with targetname "rangelight1"
+rangelight2 = find entity with targetname "rangelight2"
+rangelight3 = find entity with targetname "rangelight3"
+rangelight4 = find entity with targetname "rangelight4"
+rangelight5 = find entity with targetname "rangelight5"
+tgt1.movetype = MOVETYPE_PUSH
+tgt2.movetype = MOVETYPE_PUSH
+tgt3.movetype = MOVETYPE_PUSH
+tgt4.movetype = MOVETYPE_PUSH
+tgt5.movetype = MOVETYPE_PUSH
+tgt6.movetype = MOVETYPE_PUSH
+tgt7.movetype = MOVETYPE_PUSH
+tgt8.movetype = MOVETYPE_PUSH
+tgt9.movetype = MOVETYPE_PUSH
+wait 1 seconds
+use entity rangelight1
+wait 0.400 seconds
+use entity rangelight2
+wait 0.400 seconds
+use entity rangelight3
+wait 0.400 seconds
+use entity rangelight4
+wait 0.400 seconds
+use entity rangelight5
+use entity targetsound
+label lab_00001
+move entity tgt1 by [0.000 ,0.000 ,0.000] at 25 speed
+move entity tgt4 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity tgt9 by [0.000 ,0.000 ,0.000] at 20 speed
+wait 1 seconds
+move entity tgt3 by [0.000 ,0.000 ,0.000] at 25 speed
+move entity tgt5 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity tgt7 by [0.000 ,0.000 ,0.000] at 20 speed
+wait 1 seconds
+move entity tgt2 by [0.000 ,0.000 ,0.000] at 25 speed
+move entity tgt6 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity tgt8 by [0.000 ,0.000 ,0.000] at 20 speed signaling sig1
+wait for all clearing sig1
+wait 1 seconds
+move entity tgt1 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity tgt2 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity tgt3 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity tgt4 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity tgt5 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity tgt6 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity tgt7 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity tgt8 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity tgt9 by [0.000 ,0.000 ,0.000] at 100 speed signaling sig1
+wait for all clearing sig1
+goto lab_00001
+exit

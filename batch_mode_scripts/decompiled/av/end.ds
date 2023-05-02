@@ -1,0 +1,279 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+global int dd
+local entity heliesc
+local entity gren1
+local entity endtrig
+local entity wom1
+local entity wom3
+local entity wom4
+local entity wom5
+local entity tk
+local entity score
+local entity explosion1
+local entity explosion2
+local entity explosion3
+local entity explosion4
+local entity explosion5
+local entity killer
+local entity killer2
+local entity john2
+local entity endcam1
+local entity endcam2
+local entity endcam3
+local entity endcam4
+local entity endnull1
+local entity endnull2
+local entity endnull3
+local entity endnull4
+local entity helisp
+local entity door2
+local entity door1
+local int sig1
+
+helisp = spawn entity with fields "classname" = "m_x_chopper_white" , "origin" = [-1784.000 ,-2040.000 ,898.000] , "targetname" = "heliesc" , "volume" = 1 , "spawnflags" = 48
+heliesc = find entity with targetname "heliesc"
+tk = find entity with targetname "tk"
+gren1 = find entity with targetname "gren1"
+endtrig = find entity with targetname "endtrig"
+john2 = find entity with targetname "john3"
+killer = find entity with targetname "killer"
+killer2 = find entity with targetname "killer2"
+endcam1 = find entity with targetname "endcam1"
+endcam2 = find entity with targetname "endcam2"
+endcam3 = find entity with targetname "endcam3"
+endcam4 = find entity with targetname "endcam4"
+endnull1 = find entity with targetname "endnull1"
+endnull2 = find entity with targetname "endnull2"
+endnull3 = find entity with targetname "endnull3"
+endnull4 = find entity with targetname "endnull4"
+wom1 = find entity with targetname "wom1"
+wom3 = find entity with targetname "wom3"
+wom4 = find entity with targetname "wom4"
+wom5 = find entity with targetname "wom5"
+door1 = find entity with targetname "door1"
+door2 = find entity with targetname "door2"
+score = find entity with targetname "score"
+explosion1 = find entity with targetname "explosion1"
+explosion2 = find entity with targetname "explosion2"
+explosion3 = find entity with targetname "explosion3"
+explosion4 = find entity with targetname "explosion4"
+explosion5 = find entity with targetname "explosion5"
+endcam1.movetype = MOVETYPE_NOCLIP
+endcam2.movetype = MOVETYPE_NOCLIP
+endcam3.movetype = MOVETYPE_NOCLIP
+endcam4.movetype = MOVETYPE_NOCLIP
+endnull1.movetype = MOVETYPE_NOCLIP
+endnull2.movetype = MOVETYPE_NOCLIP
+endnull3.movetype = MOVETYPE_NOCLIP
+endnull4.movetype = MOVETYPE_NOCLIP
+heliesc.movetype = MOVETYPE_NOCLIP
+cache strings "RDAM"
+unload sound "weapons/assault/rattle.wav"
+unload sound "weapons/dpistol/throw.wav"
+unload sound "weapons/sniper/cock2.wav"
+unload sound "weapons/dpistol/putin.wav"
+unload sound "weapons/dpistol/pullout.wav"
+unload sound "weapons/ipistol/catch.wav"
+unload sound "weapons/gpistol/knuckle.wav"
+unload sound "weapons/gpistol/done.wav"
+unload sound "weapons/gpistol/reloadfin.wav"
+unload sound "weapons/dpistol/cock.wav"
+unload sound "weapons/dpistol/spinready.wav"
+unload sound "weapons/dpistol/spin.wav"
+remove entity tk
+dd = 1
+use entity killer
+use entity endcam1
+wait 1 seconds
+use entity door2
+wait 1 seconds
+animate entity killer performing action RUN by moving [0.000 ,178.000 ,0.000] signaling sig1
+wait for all clearing sig1
+wait 1 seconds
+animate entity killer performing action RUN by moving [0.000 ,-20.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity killer performing action STD_TGRENADE_N_A_N targeting entity wom4
+play sound "cin/irq2b/c64d2.adp" for entity killer at volume 0.900
+use entity helisp
+use entity heliesc
+wait 1 seconds
+move entity endnull1 by [0.000 ,0.000 ,0.000] over 2 seconds
+move entity endcam1 by [0.000 ,0.000 ,0.000] over 3 seconds
+helicopter entity heliesc 1
+wait 1 seconds
+animate entity killer performing action RUN by moving [-20.000 ,0.000 ,0.000]
+reset ai for entity wom1
+reset ai for entity wom3
+reset ai for entity wom4
+reset ai for entity wom5
+use entity gren1
+animate entity wom1 performing action STD_SONFIRE_2BK_N_N
+animate entity wom3 performing action STD_SONFIRE_2BK_N_N
+play sound "enemy/dth/fem/writhe1.wav" for entity wom1 at volume 0.900
+wait 0.500 seconds
+play sound "enemy/dth/fem/writhe7.wav" for entity wom3 at volume 0.900
+play sound "enemy/dth/fem/burn1.wav" for entity wom4 at volume 0.900
+animate entity wom4 performing action STD_SONFIRE_2BK_N_N
+animate entity wom5 performing action STD_SONFIRE_2BK_N_N
+wait 4 seconds
+play sound "cin/SUD3/C48D2.adp" for entity killer at volume 0.900
+wait 1 seconds
+play sound "cin/irq2a/S19D2.adp" for entity killer at volume 0.900
+wait 0.200 seconds
+helicopter entity heliesc 5
+move entity endcam1 by [0.000 ,0.000 ,0.000] over 3 seconds signaling sig1
+wait for all clearing sig1
+move entity endnull1 by [0.000 ,0.000 ,0.000] over 2 seconds
+move entity endcam1 by [0.000 ,0.000 ,0.000] over 3 seconds
+reset ai for entity heliesc
+helicopter entity heliesc 2
+wait 7 seconds
+move entity endcam1 by [0.000 ,0.000 ,0.000] over 3 seconds
+wait 1 seconds
+animate entity killer performing action WALK by moving [-80.000 ,0.000 ,0.000]
+wait 1 seconds
+wait 1 seconds
+use entity killer2
+use entity endcam1
+use entity endcam2
+remove entity killer
+use entity door1
+wait 1 seconds
+animate entity killer2 performing action WALK by moving [0.000 ,256.000 ,0.000] signaling sig1
+wait for all clearing sig1
+wait 1 seconds
+play sound "cin/sud3/C49D11.adp" for entity killer2 at volume 0.900
+wait 1 seconds
+move entity endnull2 by [0.000 ,0.000 ,0.000] over 1 seconds signaling sig1
+wait for all clearing sig1
+animate entity killer2 performing action WALK by moving [256.000 ,0.000 ,0.000]
+wait 2 seconds
+use entity endcam2
+use entity endcam3
+remove entity killer2
+wait 1 seconds
+helicopter entity heliesc 1
+use entity john2
+animate entity john2 performing action RUN by moving [0.000 ,-800.000 ,0.000]
+play sound "cin/kos3/C20D1.adp" for entity john2 at volume 0.900
+wait 4 seconds
+use entity endcam3
+use entity endcam4
+remove entity heliesc
+wait 0.500 seconds
+play sound "cin/tsr1/C8D1.adp" for entity john2 at volume 0.900
+wait 4 seconds
+play sound "cin/tsr1/C6D2.adp" for entity john2 at volume 0.900
+move entity endcam4 by [0.000 ,0.000 ,0.000] over 2 seconds
+wait 4 seconds
+animate entity john2 showing emotion EMOTION_TALK holding for 2.000
+play sound "cin/sud3/S34D1.adp" for entity john2 at volume 0.900
+wait 2 seconds
+move entity endcam4 by [0.000 ,0.000 ,0.000] over 2 seconds
+wait 1.500 seconds
+animate entity john2 performing action RUN by moving [0.000 ,800.000 ,0.000]
+use entity explosion1
+wait 1 seconds
+use entity explosion2
+wait 0.500 seconds
+use entity explosion3
+wait 1 seconds
+use entity explosion4
+wait 1.500 seconds
+use entity explosion5
+print 25601
+wait 3 seconds
+move entity endcam4 by [0.000 ,0.000 ,0.000] over 4 seconds
+play sound "cin/tut/WEAPD8.adp" for entity john2 at volume 0.900
+wait 3 seconds
+print 25600
+wait 3 seconds
+remove entity john2
+use entity endcam4
+use entity score
+enable trigger entity endtrig
+use entity explosion1
+wait 1 seconds
+use entity explosion2
+wait 0.500 seconds
+use entity explosion3
+wait 2 seconds
+use entity explosion4
+wait 1.500 seconds
+use entity explosion5
+use entity explosion1
+wait 0.500 seconds
+use entity explosion2
+wait 1.500 seconds
+use entity explosion3
+wait 2 seconds
+use entity explosion1
+use entity explosion4
+wait 1.500 seconds
+use entity explosion5
+use entity explosion1
+wait 1 seconds
+use entity explosion2
+wait 0.500 seconds
+use entity explosion3
+wait 2 seconds
+use entity explosion4
+wait 1.500 seconds
+use entity explosion5
+use entity explosion1
+wait 1.500 seconds
+use entity explosion2
+wait 1.500 seconds
+use entity explosion3
+wait 1 seconds
+use entity explosion2
+use entity explosion4
+wait 1.500 seconds
+use entity explosion5
+use entity explosion1
+wait 1 seconds
+use entity explosion2
+wait 0.500 seconds
+use entity explosion3
+wait 2 seconds
+use entity explosion4
+wait 1.500 seconds
+use entity explosion5
+use entity explosion1
+wait 1.500 seconds
+use entity explosion2
+wait 1.500 seconds
+use entity explosion3
+wait 1 seconds
+use entity explosion2
+use entity explosion4
+wait 1.500 seconds
+use entity explosion5
+exit

@@ -1,0 +1,64 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity alleyshooter1
+local entity alleyshooter2
+local entity alleymcdead
+local int sig1
+local int sig2
+local int sig3
+
+alleyshooter1 = find entity with targetname "alleyshooter1"
+alleyshooter2 = find entity with targetname "alleyshooter2"
+alleymcdead = find entity with targetname "alleymcdead"
+use entity alleyshooter1
+use entity alleyshooter2
+use entity alleymcdead
+wait 0.100 seconds
+animate entity alleymcdead performing action STD_XDONTSHOOT_N_A_N holding for 5.000
+animate entity alleyshooter1 performing action STD_F_FWD_P_2 signaling sig1
+animate entity alleyshooter2 performing action STD_F_FWD_P_2 signaling sig2
+on alleyshooter1.health < 100 goto lab_00001
+on alleyshooter2.health < 100 goto lab_00001
+wait for all clearing sig1,sig2
+animate entity alleyshooter1 performing action STD_F_FWD_P_2 signaling sig1
+animate entity alleyshooter2 performing action STD_F_FWD_P_2 signaling sig2
+on alleyshooter1.health < 100 goto lab_00001
+on alleyshooter2.health < 100 goto lab_00001
+wait for all clearing sig1,sig2
+animate entity alleyshooter1 performing action STD_F_FWD_P_2 targeting entity alleymcdead kill signaling sig1
+animate entity alleyshooter2 performing action STD_F_FWD_P_2 targeting entity alleymcdead signaling sig2
+on alleyshooter1.health < 100 goto lab_00001
+on alleyshooter2.health < 100 goto lab_00001
+wait for all clearing sig1,sig2
+goto lab_00001
+label lab_00001
+animate entity alleyshooter1 performing action SCRIPT_RELEASE
+animate entity alleyshooter2 performing action SCRIPT_RELEASE
+animate entity alleymcdead performing action SCRIPT_RELEASE
+exit

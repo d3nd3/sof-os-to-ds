@@ -1,0 +1,63 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity pipex1
+local entity pipex2
+local entity pumpblast
+local entity bpumpex
+local entity bigtankexp1
+local entity bigtankexp2
+local float hey
+local int count
+
+pipex1 = find entity with targetname "pipex1"
+pipex2 = find entity with targetname "pipex2"
+pumpblast = find entity with targetname "pumpblast"
+bpumpex = find entity with targetname "bpumpex"
+bigtankexp1 = find entity with targetname "bigtankexp1"
+bigtankexp2 = find entity with targetname "bigtankexp2"
+hey = random from 2 to 15
+count = 7
+label lab_00002
+if count > 0
+wait hey seconds
+use entity pipex1
+wait hey seconds
+use entity pumpblast
+wait hey seconds
+use entity bigtankexp2
+wait hey seconds
+use entity pipex2
+wait hey seconds
+use entity bpumpex
+wait hey seconds
+use entity bigtankexp1
+count = count - 1
+goto lab_00002
+endif
+exit

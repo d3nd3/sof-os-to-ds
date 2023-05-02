@@ -1,0 +1,111 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity voldoa
+local entity voldob
+local entity voldoc
+local entity voldod
+local entity eg
+local int a
+
+voldoa = find entity with targetname "voldoa"
+voldob = find entity with targetname "voldob"
+voldoc = find entity with targetname "voldoc"
+voldod = find entity with targetname "voldod"
+use entity voldoa
+use entity voldob
+use entity voldoc
+use entity voldod
+wait 0.100 seconds
+a = 0
+voldoa.health += 50
+voldob.health += 50
+voldoc.health += 50
+voldod.health += 50
+wait 0.100 seconds
+label lab_00007
+jo = get entity activator
+reset ai for entity voldoa
+reset ai for entity voldob
+reset ai for entity voldoc
+reset ai for entity voldod
+animate entity voldob performing action STD_F_FWD_R_2 targeting entity jo
+animate entity voldoc performing action STD_F_FWD_R_2 targeting entity jo
+suspend
+jo = get entity activator
+animate entity voldoa performing action STD_F_FWD_R_2 targeting entity jo
+animate entity voldod performing action STD_F_FWD_R_2 targeting entity jo
+animate entity voldob performing action STD_F_FWD_R_2 targeting entity jo
+animate entity voldoc performing action STD_F_FWD_R_2 targeting entity jo
+if a == 6
+goto lab_00002
+endif
+if a == 9
+goto lab_00004
+endif
+if voldoa.health <= 0
+if voldob.health <= 0
+if voldoc.health <= 0
+goto lab_00006
+endif
+suspend
+wait 0.200 seconds
+a += 1
+goto lab_00007
+label lab_00002
+animate entity voldoa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity voldod performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity voldob performing action STD_F_FWD_R_2 targeting entity jo
+animate entity voldoc performing action STD_XROLL_LT_A_A
+wait 0.400 seconds
+animate entity voldoa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity voldod performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity voldob performing action STD_F_FWD_R_2 targeting entity jo
+suspend
+goto lab_00007
+label lab_00004
+animate entity voldoa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity voldod performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity voldoc performing action STD_F_FWD_R_2 targeting entity jo
+animate entity voldod performing action STD_XROLL_LT_A_A
+wait 0.400 seconds
+animate entity voldoa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity voldod performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity voldoc performing action STD_F_FWD_R_2 targeting entity jo
+suspend
+goto lab_00007
+label lab_00006
+reset ai for entity voldoa
+reset ai for entity voldob
+reset ai for entity voldoc
+animate entity voldoa performing action SCRIPT_RELEASE
+animate entity voldob performing action SCRIPT_RELEASE
+animate entity voldoc performing action SCRIPT_RELEASE
+animate entity voldod performing action SCRIPT_RELEASE
+exit

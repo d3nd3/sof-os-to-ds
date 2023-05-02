@@ -1,0 +1,55 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity man1
+local entity man2
+local entity man3
+local entity man4
+local entity sneak
+local int pop
+
+man1 = find entity with targetname "snowman1"
+man2 = find entity with targetname "snowman2"
+man3 = find entity with targetname "snowman3"
+man4 = find entity with targetname "snowman4"
+pop = random from 1 to 4
+sneak = get entity activator
+use entity man1
+use entity man2
+use entity man3
+use entity man4
+label lab_00001
+sneak = get entity activator
+animate entity man1 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak
+animate entity man2 performing action STD_F_FWD_P_2 repeating for 2 times targeting entity sneak
+animate entity man3 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak
+animate entity man4 performing action STD_F_FWD_P_2 repeating for 2 times targeting entity sneak
+wait 0.100 seconds
+suspend
+goto lab_00001
+exit

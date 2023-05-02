@@ -1,0 +1,65 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity arm1
+local entity arm2
+local entity clamp1
+local entity clamp2
+local entity clamp3
+local entity clamp4
+local entity clampsound
+local int sig
+local int sig1
+local int sig2
+local int sig3
+
+arm1 = find entity with targetname "arm1"
+arm2 = find entity with targetname "arm2"
+clamp1 = find entity with targetname "clamp1"
+clamp2 = find entity with targetname "clamp2"
+clamp3 = find entity with targetname "clamp3"
+clamp4 = find entity with targetname "clamp4"
+clampsound = find entity with targetname "clampsound"
+play sound "Cin/Ger3/Script/ClampOpn.adp" for entity clampsound on channel CHAN_AUTO at volume 0.900
+move entity clamp1 by [0.000 ,0.000 ,0.000] at 25 speed signaling sig
+move entity clamp3 by [0.000 ,0.000 ,0.000] at 25 speed signaling sig1
+move entity clamp2 by [0.000 ,0.000 ,0.000] at 25 speed signaling sig2
+move entity clamp4 by [0.000 ,0.000 ,0.000] at 25 speed signaling sig3
+wait for all clearing sig,sig1,sig2,sig3
+wait 1.500 seconds
+play sound "Cin/Ger3/Script/ClampBck.adp" for entity clampsound on channel CHAN_AUTO at volume 0.900
+move entity arm1 by [0.000 ,0.000 ,0.000] at 15 speed
+move entity clamp1 by [0.000 ,0.000 ,0.000] at 15 speed
+move entity clamp2 by [0.000 ,0.000 ,0.000] at 15 speed
+move entity arm2 by [0.000 ,0.000 ,0.000] at 15 speed
+move entity clamp3 by [0.000 ,0.000 ,0.000] at 15 speed
+move entity clamp4 by [0.000 ,0.000 ,0.000] at 15 speed
+wait 5 seconds
+unload sound "Cin/Ger3/Script/ClampOpn.adp"
+unload sound "Cin/Ger3/Script/ClampBck.adp"
+exit

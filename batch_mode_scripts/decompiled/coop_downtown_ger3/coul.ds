@@ -1,0 +1,75 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity abal
+local entity bbal
+local entity cbal
+local entity jo
+local int sig1
+local int sig2
+local int sig3
+local float pos
+
+abal = find entity with targetname "abal"
+bbal = find entity with targetname "bbal"
+cbal = find entity with targetname "cbal"
+use entity abal
+use entity bbal
+abal.health += 80
+bbal.health += 80
+animate entity abal performing action RUN by moving [-320.000 ,0.000 ,0.000] signaling sig1
+wait for all clearing sig1
+jo = get entity activator
+animate entity abal performing action STD_F_FWD_M_2 targeting entity jo
+wait 0.200 seconds
+jo = get entity activator
+animate entity abal performing action CCH_F_FWD_M_2 targeting entity jo
+wait 0.300 seconds
+use entity cbal
+animate entity bbal performing action RUN by moving [-360.000 ,0.000 ,0.000] signaling sig1
+animate entity abal performing action STD_FAUTOSWEEP_N_M_2 targeting entity jo
+wait 0.600 seconds
+cbal.health += 80
+label lab_00004
+jo = get entity activator
+pos = jo.origin_x
+if pos < 2048.000
+animate entity cbal performing action STD_FAUTOSWEEP_N_M_2 targeting entity jo
+endif
+animate entity abal performing action STD_F_FWD_M_2 targeting entity jo
+animate entity bbal performing action STD_F_FWD_M_2 targeting entity jo
+wait 0.400 seconds
+suspend
+if abal.health <= 0
+if bbal.health <= 0
+if cbal.health <= 0
+goto lab_00003
+endif
+goto lab_00004
+label lab_00003
+exit

@@ -1,0 +1,59 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity brgd1
+local entity brdr1
+local entity brdr2
+local entity hkbr
+local int sig1
+
+brgd1 = find entity with targetname "brgd1"
+brdr1 = find entity with targetname "brdr1"
+brdr2 = find entity with targetname "brdr2"
+hkbr = find entity with targetname "hkbr"
+use entity hkbr
+use entity brdr1
+animate entity hkbr performing action STD_R_N_PK_N by moving [0.000 ,168.000 ,0.000]
+animate entity hkbr performing action STD_F_FWD_P_2 targeting entity brgd1 kill
+wait 1 seconds
+use entity brdr1
+wait 1.300 seconds
+rotate entity hkbr by [0.000 ,0.000 ,0.000]
+play sound "cin/sud1/s27d2.adp" for entity hkbr on channel CHAN_AUTO at volume 0.900
+print 29187
+animate entity hkbr showing emotion EMOTION_TALK holding for 2.800
+animate entity hkbr performing action STD_XYELLATYOU_N_A_A holding for 2.800
+wait 3 seconds
+animate entity hkbr performing action STD_R_N_PK_N by moving [0.000 ,250.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity hkbr performing action STD_R_N_PK_N by moving [120.000 ,0.000 ,0.000] signaling sig1
+wait for all clearing sig1
+use entity brdr2
+remove entity hkbr
+unload sound "cin/sud1/s27d2.adp"
+exit

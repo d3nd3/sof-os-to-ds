@@ -1,0 +1,48 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity tabass
+local entity youssouf
+local entity poufiasse
+local entity enho
+local entity omilieu
+local entity enba
+
+tabass = find entity with targetname "tabass"
+youssouf = find entity with targetname "youssouf"
+poufiasse = find entity with targetname "poufiasse"
+enho = find entity with targetname "enho"
+omilieu = find entity with targetname "omilieu"
+enba = find entity with targetname "enba"
+remove entity tabass
+remove entity youssouf
+remove entity poufiasse
+remove entity enho
+remove entity omilieu
+remove entity enba
+exit

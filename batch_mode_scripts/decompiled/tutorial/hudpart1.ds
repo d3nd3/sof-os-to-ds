@@ -1,0 +1,286 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity hudsam
+local entity samdoor2
+local entity huddoor1
+local entity huddoor2
+local entity shelf1
+local entity shelf2
+local entity screen1
+local entity screen1cover
+local entity screen2
+local entity screen2cover
+local entity screen3
+local entity screen3cover
+local entity screen4
+local entity screen4cover
+local entity hudhealth
+local entity hudarmor
+local entity huditems
+local entity player1
+local int sig
+
+hudsam = find entity with targetname "hudsam"
+samdoor2 = find entity with targetname "samdoor2"
+huddoor1 = find entity with targetname "huddoor1"
+huddoor2 = find entity with targetname "huddoor2"
+shelf1 = find entity with targetname "shelf1"
+shelf2 = find entity with targetname "shelf2"
+screen1 = find entity with targetname "screen1"
+screen1cover = find entity with targetname "screen1cover"
+screen2 = find entity with targetname "screen2"
+screen2cover = find entity with targetname "screen2cover"
+screen3 = find entity with targetname "screen3"
+screen3cover = find entity with targetname "screen3cover"
+screen4 = find entity with targetname "screen4"
+screen4cover = find entity with targetname "screen4cover"
+hudhealth = find entity with targetname "hudhealth"
+hudarmor = find entity with targetname "hudarmor"
+huditems = find entity with targetname "huditems"
+player1 = get entity activator
+hudsam.wait = 0
+use entity huddoor2
+print 33289
+play sound "cin/tut/hudd1.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 3.600
+animate entity hudsam performing action STD_WNORMAL_N_PK_A by moving to [384.000 ,576.000 ,128.000]
+move entity shelf1 by [0.000 ,0.000 ,0.000] over 2 seconds
+move entity shelf2 by [0.000 ,0.000 ,0.000] over 2 seconds
+play sound "Cin/Tut/Script/bookshelf.wav" for entity hudarmor on channel CHAN_AUTO at volume 0.900
+play sound "Cin/Tut/Script/bookshelf.wav" for entity hudhealth on channel CHAN_AUTO at volume 0.900
+wait 3 seconds
+move entity screen1 by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen1cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+play sound "Cin/Tut/Script/hudscreen.wav" for entity hudarmor on channel CHAN_AUTO at volume 0.900
+wait 0.200 seconds
+move entity screen2 by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen2cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+play sound "Cin/Tut/Script/hudscreen.wav" for entity hudhealth on channel CHAN_AUTO at volume 0.900
+wait 0.200 seconds
+move entity screen3 by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen3cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+play sound "Cin/Tut/Script/hudscreen.wav" for entity huditems on channel CHAN_AUTO at volume 0.900
+wait 0.200 seconds
+move entity screen4 by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen4cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+play sound "Cin/Tut/Script/hudscreen.wav" for entity player1 on channel CHAN_AUTO at volume 0.900
+wait 0.600 seconds
+hudsam.wait = 1
+print 33290
+play sound "cin/tut/hudd2.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 3.500
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.000
+wait 1 seconds
+move entity screen1cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+play sound "Cin/Tut/Script/hudscreen.wav" for entity hudarmor on channel CHAN_AUTO at volume 0.900
+wait 1 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 1.000
+wait 1.600 seconds
+print 33291
+play sound "cin/tut/hudd3.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 9.800
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 4.000
+wait 4.100 seconds
+print 33292
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 1.300
+wait 1.300 seconds
+animate entity hudsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.600
+wait 3.500 seconds
+hudarmor.count = -10
+use entity hudarmor
+wait 0.500 seconds
+use entity hudarmor
+wait 0.500 seconds
+use entity hudarmor
+wait 0.500 seconds
+use entity hudarmor
+wait 0.500 seconds
+use entity hudarmor
+print 33293
+play sound "cin/tut/hudd4.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+use entity screen1
+animate entity hudsam showing emotion EMOTION_TALK holding for 7.100
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.100
+wait 3.100 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.000
+wait 2.000 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 1.000
+wait 1.600 seconds
+use entity hudhealth
+wait 0.500 seconds
+use entity hudhealth
+wait 0.500 seconds
+use entity hudhealth
+wait 0.500 seconds
+use entity hudhealth
+wait 0.500 seconds
+use entity hudhealth
+print 33294
+play sound "cin/tut/hudd5.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 9.100
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.100
+wait 3.100 seconds
+animate entity hudsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.000
+wait 3.000 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+animate entity hudsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 0.900
+wait 1.000 seconds
+move entity screen2cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+play sound "Cin/Tut/Script/hudscreen.wav" for entity hudhealth on channel CHAN_AUTO at volume 0.900
+wait 0.500 seconds
+print 33295
+play sound "cin/tut/hudd6.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 13.000
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.100
+wait 3.100 seconds
+animate entity hudsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.200
+wait 2.300 seconds
+print 33296
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.400
+wait 2.400 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 1.000
+wait 1.000 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.400
+wait 4.000 seconds
+print 33297
+play sound "cin/tut/hudd7.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 17.000
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 4.800
+wait 4.800 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+use entity screen2
+animate entity hudsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.300
+wait 3.400 seconds
+print 33298
+animate entity hudsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 6.700
+wait 6.700 seconds
+move entity screen3cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+play sound "Cin/Tut/Script/hudscreen.wav" for entity huditems on channel CHAN_AUTO at volume 0.900
+wait 0.500 seconds
+print 33299
+play sound "cin/tut/hudd8.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 5.600
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.600
+wait 2.600 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.000
+wait 2.000 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 1.100 seconds
+use entity huditems
+huditems.health = 5
+use entity huditems
+print 33300
+play sound "cin/tut/hudd9.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 5.300
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.500
+wait 2.500 seconds
+animate entity hudsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.000
+wait 2.600 seconds
+print 33301
+play sound "cin/tut/hudd10.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+use entity screen3
+animate entity hudsam showing emotion EMOTION_TALK holding for 4.200
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 4.200
+wait 4.800 seconds
+print 33302
+play sound "cin/tut/hudd11.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 9.500
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.500
+wait 2.500 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.800
+wait 3.800 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.200
+wait 2.300 seconds
+move entity screen4cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+play sound "Cin/Tut/Script/hudscreen.wav" for entity huditems on channel CHAN_AUTO at volume 0.900
+wait 0.500 seconds
+print 33303
+play sound "cin/tut/hudd12.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 3.200
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.200
+wait 3.800 seconds
+print 33304
+play sound "cin/tut/hudd13.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+use entity screen4
+animate entity hudsam showing emotion EMOTION_TALK holding for 9.100
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 4.100
+wait 4.100 seconds
+animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+animate entity hudsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.700
+wait 4.300 seconds
+print 33305
+play sound "cin/tut/hudd14.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
+animate entity hudsam showing emotion EMOTION_TALK holding for 3.600
+animate entity hudsam performing action STD_ETALK_N_A_N holding for 3.600
+wait 4 seconds
+hudarmor.count = 50
+use entity hudarmor
+hudhealth.count = 50
+use entity hudhealth
+hudsam.wait = 0
+animate entity hudsam performing action STD_WNORMAL_N_PK_A by moving to [448.000 ,470.000 ,128.000] signaling sig
+wait for all clearing sig
+move entity samdoor2 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+animate entity hudsam performing action STD_WNORMAL_N_PK_A by moving to [600.000 ,480.000 ,128.000] signaling sig
+wait for all clearing sig
+move entity samdoor2 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+use entity huddoor1
+wait 0.500 seconds
+exit

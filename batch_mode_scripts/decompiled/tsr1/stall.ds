@@ -1,0 +1,48 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity stallshooter
+local entity breakstall
+local entity originalwall
+local entity stall_playerfind
+local int sig1
+
+stallshooter = find entity with targetname "stallshooter"
+breakstall = find entity with targetname "breakstall"
+originalwall = find entity with targetname "originalwall"
+stall_playerfind = find entity with targetname "stall_playerfind"
+if stallshooter.health > 0
+use entity originalwall
+animate entity stallshooter performing action STD_F_FWD_S_2 targeting entity stall_playerfind signaling sig1
+wait 0.100 seconds
+use entity breakstall
+wait for all clearing sig1
+endif
+reset ai for entity stallshooter
+animate entity stallshooter performing action SCRIPT_RELEASE
+exit

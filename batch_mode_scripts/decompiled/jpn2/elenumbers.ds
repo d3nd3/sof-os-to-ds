@@ -1,0 +1,66 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity num87a
+local entity num88a
+local entity num89a
+local entity num90a
+local entity num87b
+local entity num88b
+local entity num89b
+local entity opendoor
+
+num87a = find entity with targetname "num87a"
+num88a = find entity with targetname "num88a"
+num89a = find entity with targetname "num89a"
+num90a = find entity with targetname "num90a"
+num87b = find entity with targetname "num87b"
+num88b = find entity with targetname "num88b"
+num89b = find entity with targetname "num89b"
+opendoor = find entity with targetname "opendoor"
+use entity num87a
+use entity num88a
+wait 1.500 seconds
+use entity num88a
+use entity num89a
+wait 1.500 seconds
+use entity num89a
+use entity num90a
+wait 2.500 seconds
+use entity num90a
+use entity num89b
+wait 1.500 seconds
+use entity num89b
+use entity num88b
+wait 1.500 seconds
+use entity num88b
+use entity num87b
+wait 1.500 seconds
+use entity opendoor
+wait 1 seconds
+exit

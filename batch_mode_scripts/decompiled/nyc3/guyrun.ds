@@ -1,0 +1,39 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy1
+local entity guy2
+
+guy1 = find entity with targetname "guyrun1"
+guy2 = find entity with targetname "guyrun2"
+animate entity guy1 performing action STD_R_N_MRS_2 by moving [32.000 ,-100.000 ,0.000]
+animate entity guy2 performing action STD_R_N_MRS_2 by moving [0.000 ,-232.000 ,0.000]
+animate entity guy2 performing action STD_R_N_MRS_2 by moving [-280.000 ,0.000 ,0.000]
+animate entity guy1 performing action SCRIPT_RELEASE
+animate entity guy2 performing action SCRIPT_RELEASE
+exit

@@ -1,0 +1,103 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity hoistlever
+local entity enginehoist
+local entity engine
+local entity enginespark
+local entity hoistsound
+local entity smashleft
+local entity smashright
+local entity smashlock
+local entity smash1
+local entity locktrigger
+local entity exploder
+local entity push
+local int sig1
+local int sig2
+local int enginehoisthealth
+
+hoistlever = find entity with targetname "hoistlever"
+enginehoist = find entity with targetname "enginehoist"
+engine = find entity with targetname "engine"
+enginespark = find entity with targetname "enginespark"
+hoistsound = find entity with targetname "hoistsound"
+smashleft = find entity with targetname "smashleft"
+smashright = find entity with targetname "smashright"
+smashlock = find entity with targetname "smashlock"
+smash1 = find entity with targetname "smash1"
+locktrigger = find entity with targetname "locktrigger"
+exploder = find entity with targetname "exploder"
+push = find entity with targetname "push"
+engine.movetype = MOVETYPE_NOCLIP
+use entity hoistlever
+wait 0.250 seconds
+use entity hoistsound
+move entity enginehoist by [0.000 ,0.000 ,0.000] at 200 speed
+move entity engine by [0.000 ,0.000 ,0.000] at 200 speed
+move entity hoistsound by [0.000 ,0.000 ,0.000] at 200 speed
+move entity enginespark by [0.000 ,0.000 ,0.000] at 200 speed
+wait 1 seconds
+use entity hoistsound
+use entity exploder
+use entity enginespark
+remove entity smash1
+use entity smashleft
+use entity smashright
+use entity hoistsound
+move entity smashlock by [0.000 ,0.000 ,0.000] at 200 speed
+wait 2 seconds
+use entity hoistsound
+move entity enginehoist by [0.000 ,0.000 ,0.000] at 200 speed signaling sig1
+move entity engine by [0.000 ,0.000 ,0.000] at 200 speed
+move entity enginespark by [0.000 ,0.000 ,0.000] at 200 speed
+move entity hoistsound by [0.000 ,0.000 ,0.000] at 200 speed signaling sig2
+wait for all clearing sig1,sig2
+use entity hoistlever
+wait 1 seconds
+suspend
+use entity hoistlever
+wait 0.250 seconds
+use entity hoistsound
+move entity enginehoist by [0.000 ,0.000 ,0.000] at 200 speed
+move entity engine by [0.000 ,0.000 ,0.000] at 200 speed
+move entity enginespark by [0.000 ,0.000 ,0.000] at 200 speed
+move entity hoistsound by [0.000 ,0.000 ,0.000] at 200 speed
+wait 1 seconds
+play sound "Impact\Metal\Short2.adp" for entity enginehoist on channel CHAN_AUTO at volume 0.900
+moverotate entity smashleft from file "irq3a_smashleft.rof"
+moverotate entity smashright from file "irq3a_smashright.rof"
+use entity push
+use entity smashlock
+remove entity locktrigger
+use entity hoistsound
+wait 0.250 seconds
+use entity push
+wait 2.750 seconds
+engine.movetype = MOVETYPE_NONE
+exit

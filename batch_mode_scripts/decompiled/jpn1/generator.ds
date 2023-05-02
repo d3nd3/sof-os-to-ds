@@ -1,0 +1,113 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity genlights
+local entity genlights2
+local entity genlightsc1
+local entity genlightsc2
+local entity elebutton
+local entity enemytrigger
+local entity p1locked
+local entity doortrigger
+local entity venttrigger
+local entity powerdown
+local entity player1
+local entity gridbutton
+local entity gensound
+local entity emergsound
+local entity button
+local entity halllights
+local entity halllights_1
+local entity halllights_2
+local entity halllights_3
+local entity halllights_4
+local entity stairwellspawner
+
+genlights = find entity with targetname "genlights"
+genlights2 = find entity with targetname "genlights2"
+genlightsc1 = find entity with targetname "genlightsc1"
+genlightsc2 = find entity with targetname "genlightsc2"
+elebutton = find entity with targetname "elebutton"
+enemytrigger = find entity with targetname "enemytrigger"
+p1locked = find entity with targetname "p1locked"
+doortrigger = find entity with targetname "doortrigger"
+venttrigger = find entity with targetname "venttrigger"
+powerdown = find entity with targetname "powerdown"
+player1 = get entity activator
+gridbutton = find entity with targetname "gridbutton"
+gensound = find entity with targetname "gensound"
+emergsound = find entity with targetname "emergsound"
+button = find entity with targetname "button"
+halllights = find entity with targetname "halllights"
+halllights_1 = find entity with targetname "halllights_1"
+halllights_2 = find entity with targetname "halllights_2"
+halllights_3 = find entity with targetname "halllights_3"
+halllights_4 = find entity with targetname "halllights_4"
+stairwellspawner = find entity with targetname "stairwellspawner"
+use entity gridbutton
+remove entity gensound
+play sound "cin/jpn1/Script/BigSleep.adp" for entity player1
+wait 1 seconds
+play sound "cin/jpn1/Script/SmallWake.adp" for entity player1
+wait 0.200 seconds
+use entity emergsound
+use entity genlights
+use entity genlightsc1
+use entity genlightsc2
+use entity genlights2
+wait 1 seconds
+use entity genlights2
+wait 0.100 seconds
+use entity genlights2
+wait 0.200 seconds
+use entity genlights2
+wait 0.100 seconds
+use entity genlights2
+wait 0.100 seconds
+use entity genlights2
+wait 1.500 seconds
+use entity genlights
+use entity genlightsc1
+use entity genlightsc2
+wait 0.100 seconds
+play sound "cin/jpn1/s40d3.adp" for entity player1
+print 28170
+enable trigger entity elebutton
+enable trigger entity button
+use entity halllights
+use entity halllights_1
+use entity halllights_2
+use entity halllights_3
+use entity halllights_4
+use entity venttrigger
+use entity enemytrigger
+use entity doortrigger
+use entity stairwellspawner
+remove entity powerdown
+remove entity p1locked
+exit

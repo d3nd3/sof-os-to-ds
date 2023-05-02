@@ -1,0 +1,46 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity runovertrain
+local entity new_train_shake
+local entity qa_explosion
+local entity qa_camerashake
+
+runovertrain = find entity with scripttarget "runovertrain"
+new_train_shake = find entity with targetname "new_train_shake"
+qa_explosion = find entity with targetname "qa_explosion"
+qa_camerashake = find entity with targetname "qa_camerashake"
+wait 0.100 seconds
+play sound "Cin/TSR1/Script/Warning.wav" for entity runovertrain at volume 0.900
+wait 2.200 seconds
+use entity runovertrain
+use entity new_train_shake
+wait 4 seconds
+use entity qa_explosion
+use entity qa_camerashake
+exit

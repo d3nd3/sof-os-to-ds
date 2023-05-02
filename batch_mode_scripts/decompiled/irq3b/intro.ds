@@ -1,0 +1,103 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity johncam
+local entity johncamt
+local entity cam1
+local entity cam1t
+local entity cam1guy
+local entity cam2
+local entity cam2t
+local entity cam3
+local entity cam3t
+local entity cam3guy
+local entity cam4
+local entity cam4t
+local entity cam4guy
+local entity john
+local entity voiceover
+local int sig
+
+cam1 = find entity with targetname "introcam1"
+enable cinematics
+use entity cam1
+cam1t = find entity with targetname "t542"
+cam1guy = find entity with targetname "introcam1guy"
+cam2 = find entity with targetname "introcam2"
+cam2t = find entity with targetname "t544"
+cam3 = find entity with targetname "introcam3"
+cam3t = find entity with targetname "t541"
+cam3guy = find entity with targetname "introcam3guy"
+cam4 = find entity with targetname "introcam4"
+cam4t = find entity with targetname "t543"
+cam4guy = find entity with targetname "introcam4guy"
+johncam = find entity with targetname "introjc"
+johncamt = find entity with targetname "t540"
+john = find entity with targetname "introjohn"
+voiceover = find entity with targetname "voiceover"
+wait 0.100 seconds
+print 29701
+play sound "cin/irq3b/c65d1.adp" for entity voiceover on channel CHAN_NO_PHS_ADD at volume 0.900
+print 29696
+animate entity cam1guy performing action STD_WNORMAL_N_PK_A by moving [0.000 ,-56.000 ,0.000]
+animate entity cam1guy performing action STD_WNORMAL_N_PK_A by moving [-128.000 ,0.000 ,0.000]
+moverotate entity cam1 from file "irq3b_intro_cam1.rof"
+moverotate entity cam1t from file "irq3b_intro_cam1.rof" signaling sig
+wait for all clearing sig
+use entity cam1
+remove entity cam1guy
+use entity cam2
+moverotate entity cam2 from file "irq3b_intro_cam2.rof" signaling sig
+wait for all clearing sig
+use entity cam2
+print 29702
+use entity cam3
+animate entity cam3guy performing action STD_WNORMAL_N_PK_A by moving [164.000 ,0.000 ,0.000]
+moverotate entity cam3 from file "irq3b_intro_cam3.rof"
+moverotate entity cam3t from file "irq3b_intro_cam3.rof" signaling sig
+wait for all clearing sig
+use entity cam3
+remove entity cam3guy
+use entity cam4
+animate entity cam4guy performing action STD_WPATROL_N_MRS_2 by moving [-164.000 ,0.000 ,0.000]
+moverotate entity cam4 from file "irq3b_intro_cam4.rof"
+moverotate entity cam4t from file "irq3b_intro_cam4.rof" signaling sig
+wait for all clearing sig
+use entity cam4
+remove entity cam4guy
+use entity john
+use entity johncam
+animate entity john performing action STD_ILOOKING_N_A_A
+moverotate entity johncam from file "irq3b_intro_johncam.rof"
+moverotate entity johncamt from file "irq3b_intro_johncamt.rof" signaling sig
+wait for all clearing sig
+remove entity john
+use entity johncam
+disable cinematics
+unload sound "cin/irq3b/c65d1.adp"
+exit

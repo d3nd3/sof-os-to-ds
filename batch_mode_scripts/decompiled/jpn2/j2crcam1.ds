@@ -1,0 +1,79 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity crcam
+local entity crcorner
+local entity crcamdude
+local entity killthemscript
+local entity bitch
+local entity emlight1
+local entity emlight2
+local entity stuff
+local entity jpn2fadeout
+local entity jpn2fadein
+local entity cleanlocked
+
+cache sound "cin/jpn2/c56d1.adp"
+crcam = find entity with targetname "crcam"
+crcorner = find entity with targetname "crcorner"
+enable cinematics
+use entity crcam
+crcamdude = find entity with targetname "crcamdude"
+killthemscript = find entity with targetname "killthemscript"
+bitch = find entity with targetname "bitch"
+emlight1 = find entity with targetname "emlight1"
+emlight2 = find entity with targetname "emlight2"
+stuff = find entity with targetname "stuff"
+jpn2fadeout = find entity with targetname "jpn2fadeout"
+jpn2fadein = find entity with targetname "jpn2fadein"
+cleanlocked = find entity with targetname "cleanlocked"
+use entity crcamdude
+wait 0.100 seconds
+play sound "cin/jpn2/c56d1.adp" for entity crcamdude on channel CHAN_AUTO at volume 0.900
+print 28677
+animate entity crcamdude performing action STD_ETYPING_N_N_N holding for 11.000
+use entity emlight1
+use entity emlight2
+wait 1.500 seconds
+crcam.movetype = MOVETYPE_NOCLIP
+move entity crcam to [0.000 ,0.000 ,0.000] over 8 seconds
+wait 8.500 seconds
+use entity jpn2fadeout
+wait 1 seconds
+use entity crcam
+disable cinematics
+use entity jpn2fadein
+remove entity crcamdude
+use entity killthemscript
+wait 1 seconds
+use entity bitch
+use entity stuff
+remove entity cleanlocked
+unload sound "cin/jpn2/c56d1.adp"
+wait 1 seconds
+exit

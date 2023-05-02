@@ -1,0 +1,81 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity boom1
+local entity boom2
+local entity boom3
+local entity boom4
+local entity boom5
+local entity boom6
+local entity tank1
+local entity tank2
+local entity jo
+local int pos
+local int rnd
+
+tank1 = find entity with targetname "tank1"
+tank2 = find entity with targetname "tank2"
+boom1 = find entity with targetname "boom1"
+boom2 = find entity with targetname "boom2"
+boom3 = find entity with targetname "boom3"
+boom4 = find entity with targetname "boom4"
+boom5 = find entity with targetname "boom5"
+boom6 = find entity with targetname "boom6"
+label lab_00008
+rnd = random from 1 to 10
+if rnd > 7
+pos = jo.origin
+if pos < -3540
+if pos > -3300
+use entity boom1
+endif
+if pos > -3540
+if pos < -3100
+use entity boom2
+endif
+if pos > -3100
+if pos < -2850
+use entity boom2
+endif
+if pos > -2850
+if pos < -2650
+use entity boom2
+endif
+if pos > -2650
+if pos < -2350
+use entity boom2
+endif
+if tank1.health < 0
+if tank2.health < 0
+goto lab_00007
+endif
+wait 4.200 seconds
+suspend
+goto lab_00008
+label lab_00007
+exit

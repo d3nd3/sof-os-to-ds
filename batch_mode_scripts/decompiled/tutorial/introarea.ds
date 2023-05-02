@@ -1,0 +1,136 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity hudarmor
+local entity lightsound
+local entity bustedlight
+local entity sparky
+local entity introsam
+local entity blast1
+local entity blast2
+local entity blast3
+local entity blast4
+local entity controllight1
+local entity intronull
+local entity pallet
+local entity floorhatch
+local entity door1
+
+hudarmor = find entity with targetname "hudarmor"
+lightsound = find entity with targetname "lightsound"
+bustedlight = find entity with targetname "bustedlight"
+sparky = find entity with targetname "sparky"
+introsam = find entity with targetname "introsam"
+blast1 = find entity with targetname "blast1"
+blast2 = find entity with targetname "blast2"
+blast3 = find entity with targetname "blast3"
+blast4 = find entity with targetname "blast4"
+controllight1 = find entity with targetname "controllight1"
+intronull = find entity with targetname "intronull"
+pallet = find entity with targetname "pallet"
+floorhatch = find entity with targetname "floorhatch"
+door1 = find entity with targetname "door1"
+introsam.wait = 1
+use entity hudarmor
+wait 3.500 seconds
+play sound "ambient/gen/airgas/airbrst2.adp" for entity lightsound on channel CHAN_AUTO at volume 0.900
+use entity bustedlight
+wait 0.300 seconds
+use entity bustedlight
+use entity sparky
+wait 0.700 seconds
+play sound "ambient/gen/airgas/airbrst2.adp" for entity lightsound on channel CHAN_AUTO at volume 0.900
+wait 2 seconds
+animate entity introsam performing action STD_ISTAND_N_A_N holding for 3.200
+use entity blast1
+use entity blast2
+use entity blast3
+use entity blast4
+wait 3 seconds
+use entity controllight1
+wait 0.200 seconds
+print 33280
+play sound "cin/tut/introd1.adp" for entity introsam on channel CHAN_VOICE at volume 0.900
+animate entity introsam showing emotion EMOTION_TALK holding for 1.600
+animate entity introsam performing action STD_ETALK_TO_A_N holding for 0.400
+wait 0.400 seconds
+animate entity introsam performing action STD_ETALK_N_A_N holding for 0.700
+wait 0.700 seconds
+animate entity introsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 1.100 seconds
+print 33281
+play sound "cin/tut/introd2.adp" for entity introsam on channel CHAN_VOICE at volume 0.900
+animate entity introsam showing emotion EMOTION_TALK holding for 4.500
+animate entity introsam performing action STD_ETALK_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity introsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+animate entity introsam performing action STD_ETALK_N_A_N holding for 1.200
+wait 1.200 seconds
+animate entity introsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity introsam performing action STD_ETALK_N_A_N holding for 1.200
+wait 1.800 seconds
+print 33282
+play sound "cin/tut/introd3.adp" for entity introsam on channel CHAN_VOICE at volume 0.900
+animate entity introsam showing emotion EMOTION_TALK holding for 4.100
+animate entity introsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
+wait 0.800 seconds
+animate entity introsam performing action STD_ETALK_N_A_N holding for 2.200
+wait 2.400 seconds
+animate entity introsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
+wait 0.500 seconds
+animate entity introsam performing action STD_ETALK_N_A_N holding for 0.600
+wait 1.200 seconds
+print 33283
+play sound "cin/tut/introd4.adp" for entity introsam on channel CHAN_VOICE at volume 0.900
+animate entity introsam showing emotion EMOTION_TALK holding for 1.100
+animate entity introsam performing action STD_ETALK_N_A_N holding for 1.100
+wait 1.700 seconds
+print 33284
+play sound "cin/tut/introd5.adp" for entity introsam on channel CHAN_VOICE at volume 0.900
+animate entity introsam showing emotion EMOTION_TALK holding for 1.800
+animate entity introsam performing action STD_ETALK_N_A_N holding for 1.200
+move entity pallet by [0.000 ,0.000 ,0.000] over 2 seconds
+play sound "Cin/Tut/Script/firstpallet.wav" for entity intronull on channel CHAN_AUTO at volume 0.900
+wait 0.800 seconds
+introsam.wait = 0
+animate entity introsam performing action STD_WNORMAL_N_PK_A by moving to [140.000 ,540.000 ,128.000]
+wait 1 seconds
+move entity floorhatch by [0.000 ,0.000 ,0.000] over 1 seconds
+play sound "Cin/Tut/Script/firstplate.wav" for entity intronull on channel CHAN_AUTO at volume 0.900
+wait 2 seconds
+move entity door1 by [0.700 ,0.000 ,0.000] over 0.700 seconds
+play sound "Cin/Tut/Script/brickwall.wav" for entity intronull on channel CHAN_AUTO at volume 0.900
+wait 0.800 seconds
+move entity door1 by [0.000 ,0.000 ,0.000] over 1 seconds
+wait 0.400 seconds
+move entity floorhatch by [0.400 ,0.000 ,0.000] over 0.400 seconds
+wait 1.800 seconds
+rotate entity introsam by [0.100 ,0.000 ,0.000] over 0.100 seconds
+exit

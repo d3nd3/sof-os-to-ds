@@ -1,0 +1,67 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity fuseguy
+local entity stepsguy1
+local entity stepsguy2
+local entity fusedoor
+local entity killhim68
+local int sig1
+local int sig2
+
+fuseguy = find entity with targetname "fuseguy"
+stepsguy1 = find entity with targetname "stepsguy1"
+stepsguy2 = find entity with targetname "stepsguy2"
+fusedoor = find entity with targetname "fusedoor"
+killhim68 = get entity activator
+use entity stepsguy1
+use entity stepsguy2
+animate entity stepsguy2 performing action SCRIPT_RELEASE
+animate entity stepsguy1 performing action STD_FCORNERPEAK_RT_P_A targeting entity killhim68 kill nulltarget HEAD
+animate entity fuseguy performing action STD_XKICKDOOR_N_A_A signaling sig1
+wait 0.250 seconds
+suspend
+moverotate entity fusedoor from file "generic_door_ccw.rof" signaling sig2
+play sound "Impact/Vending/Kick.wav" for entity fusedoor at volume 0.900
+wait for all clearing sig2
+killhim68 = get entity activator
+animate entity stepsguy1 performing action STD_FCORNERPEAK_RT_P_A targeting entity killhim68 kill nulltarget GUT
+suspend
+label lab_00003
+killhim68 = get entity activator
+animate entity stepsguy1 performing action STD_FCORNERPEAK_RT_P_A targeting entity killhim68 kill nulltarget HEAD
+animate entity fuseguy performing action STD_F_FWD_S_2 targeting entity killhim68 kill nulltarget HEAD
+if fuseguy.health <= 0
+if stepsguy1.health <= 0
+goto lab_00002
+endif
+goto lab_00003
+label lab_00002
+animate entity stepsguy1 performing action SCRIPT_RELEASE
+animate entity fuseguy performing action SCRIPT_RELEASE
+exit

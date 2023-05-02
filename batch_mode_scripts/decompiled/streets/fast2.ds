@@ -1,0 +1,70 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity me
+local entity primero
+local int health
+local int sig1
+local entity p0
+local entity p1
+local entity p2
+local entity p3
+
+primero = find entity with targetname "segundo"
+p0 = get entity player 0
+p1 = get entity player 1
+p2 = get entity player 2
+p3 = get entity player 3
+use entity primero
+primero.health = 2500
+health = primero.health
+label lab_00003
+health = primero.health
+if health == 0
+goto lab_00002
+endif
+reset ai for entity primero
+me = get entity activator
+animate entity primero performing action CCH_F_FWD_S_2 repeating for 5 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
+animate entity primero performing action CCH_F_FWD_S_2 repeating for 5 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1
+animate entity primero performing action CCH_F_FWD_S_2 repeating for 5 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
+animate entity primero performing action CCH_F_FWD_S_2 repeating for 5 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
+wait for all clearing sig1
+animate entity primero performing action STD_XROLL_RT_A_A repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
+animate entity primero performing action STD_XROLL_LT_A_A repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1
+animate entity primero performing action STD_XROLL_LT_A_A repeating for 1 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
+animate entity primero performing action STD_XROLL_LT_A_A repeating for 1 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
+wait for all clearing sig1
+animate entity primero performing action STD_XROLL_LT_A_A repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
+animate entity primero performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1
+animate entity primero performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
+animate entity primero performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 0.100 seconds
+goto lab_00003
+label lab_00002
+exit

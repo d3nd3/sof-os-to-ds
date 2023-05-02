@@ -1,0 +1,70 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity lgroup1
+local entity lgroup2
+local entity lgroup3
+local entity lgroup4
+local entity lightsound1
+local entity lightsound2
+local entity lightsound3
+local entity lightsound4
+local entity heli
+local entity plat
+local entity surprise1
+
+lgroup1 = find entity with targetname "lgroup1"
+lgroup2 = find entity with targetname "lgroup2"
+lgroup3 = find entity with targetname "lgroup3"
+lgroup4 = find entity with targetname "lgroup4"
+lightsound1 = find entity with targetname "lightsound1"
+lightsound2 = find entity with targetname "lightsound2"
+lightsound3 = find entity with targetname "lightsound3"
+lightsound4 = find entity with targetname "lightsound4"
+heli = find entity with targetname "heli"
+plat = find entity with targetname "plat"
+surprise1 = find entity with targetname "surprise1"
+play sound "Ambient/Gen/AirGas/AirBrst2.adp" for entity lightsound1 on channel CHAN_AUTO at volume 0.900
+wait 0.100 seconds
+use entity lgroup1
+wait 2 seconds
+play sound "Ambient/Gen/AirGas/AirBrst2.adp" for entity lightsound2 on channel CHAN_AUTO at volume 0.900
+wait 0.100 seconds
+use entity lgroup2
+wait 2 seconds
+play sound "Ambient/Gen/AirGas/AirBrst2.adp" for entity lightsound3 on channel CHAN_AUTO at volume 0.900
+wait 0.100 seconds
+use entity lgroup3
+wait 2 seconds
+play sound "Ambient/Gen/AirGas/AirBrst2.adp" for entity lightsound4 on channel CHAN_AUTO at volume 0.900
+use entity lgroup4
+wait 2 seconds
+use entity surprise1
+remove entity heli
+remove entity plat
+exit

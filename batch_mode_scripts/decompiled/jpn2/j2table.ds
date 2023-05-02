@@ -1,0 +1,47 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity pusher
+local entity table
+local entity playerpush
+
+pusher = find entity with targetname "pusher"
+table = find entity with targetname "table"
+playerpush = find entity with targetname "playerpush"
+animate entity pusher performing action STD_EFLIPTABLE_N_A_N
+animate entity pusher performing action SCRIPT_RELEASE
+wait 0.600 seconds
+moverotate entity table from file "tok_table_kick.rof"
+play sound "Impact/Wood/TableCrsh.wav" for entity table at volume 0.900
+use entity playerpush
+wait 1 seconds
+remove entity playerpush
+wait 2 seconds
+unload sound "Impact/Wood/TableCrsh.wav"
+unload roff "tok_table_kick.rof"
+exit

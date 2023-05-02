@@ -1,0 +1,44 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity aheli
+
+aheli = find entity with targetname "aheli"
+helicopter entity aheli 35
+helicopter entity aheli 36
+helicopter entity aheli 37
+helicopter entity aheli 38
+helicopter entity aheli 42
+helicopter entity aheli 42
+helicopter entity aheli 42
+helicopter entity aheli 42
+helicopter entity aheli 42
+helicopter entity aheli 24
+helicopter entity aheli 26
+helicopter entity aheli 41
+exit

@@ -1,0 +1,67 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity cranebeam
+local entity cranehousing
+local entity cranewinch
+local entity cranecontrol
+local entity cranemaster
+local entity cranewindow
+local entity cranesound
+local entity poof
+local int sig1
+local int sig2
+
+cranebeam = find entity with targetname "cranebeam"
+cranehousing = find entity with targetname "cranehousing"
+cranewinch = find entity with targetname "cranewinch"
+cranecontrol = find entity with targetname "cranecontrol"
+cranemaster = find entity with targetname "cranemaster"
+cranewindow = find entity with targetname "cranewindow"
+cranesound = find entity with targetname "cranesound"
+poof = find entity with targetname "poof"
+use entity cranesound
+move entity cranehousing by [0.000 ,0.000 ,0.000] at 30 speed
+move entity cranewinch by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
+animate entity cranemaster performing action STD_ETYPING_N_N_N repeating for 4 times signaling sig1
+wait for all clearing sig1,sig2
+move entity cranebeam by [0.000 ,0.000 ,0.000] at 20 speed
+move entity cranehousing by [0.000 ,0.000 ,0.000] at 20 speed
+move entity cranewinch by [0.000 ,0.000 ,0.000] at 20 speed
+animate entity cranemaster performing action STD_EBUSTGLASS_N_MRS_2
+wait 0.700 seconds
+use entity cranewindow
+wait 0.500 seconds
+use entity cranesound
+use entity cranecontrol
+use entity poof
+animate entity cranemaster performing action STD_F_FWD_S_2 signaling sig1
+wait for all clearing sig1
+animate entity cranemaster performing action SCRIPT_RELEASE
+wait 2 seconds
+exit

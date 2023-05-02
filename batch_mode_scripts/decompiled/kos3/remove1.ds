@@ -1,0 +1,57 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity gardude1
+local entity gardude2
+local entity gartruck
+local entity garcrates
+local entity paldude1
+local entity paljack1
+local entity movbox1
+local entity crate_cover1
+local entity crate_cover2
+
+gardude1 = find entity with targetname "gardude1"
+gardude2 = find entity with targetname "gardude2"
+gartruck = find entity with targetname "gartruck"
+garcrates = find entity with targetname "garcrates"
+paldude1 = find entity with targetname "paldude1"
+paljack1 = find entity with targetname "paljack1"
+movbox1 = find entity with targetname "movbox1"
+crate_cover1 = find entity with targetname "crate_cover1"
+crate_cover2 = find entity with targetname "crate_cover2"
+use entity crate_cover1
+use entity crate_cover2
+remove entity gardude1
+remove entity gardude2
+remove entity gartruck
+remove entity garcrates
+remove entity paldude1
+remove entity paljack1
+remove entity movbox1
+exit

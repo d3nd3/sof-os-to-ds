@@ -1,0 +1,93 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+global int trn1_doorflag
+local entity cam
+local entity heli
+local entity dummyplayer
+local entity trn1_fadein
+local int sig1
+local entity trn1_cinguy1
+local entity trn1_cinguy2
+local entity trn1_cinguy3
+local entity trn1_cinguy4
+local entity trn1_cinguy5
+local entity trn1_cinguy6
+local entity trn1_cinguy7
+local entity trn1_cinguy8
+local entity trn1_cinguy9
+local entity trn1_cinguy10
+local entity trn1_cinguy11
+local entity trn1_cinguy12
+
+trn1_doorflag = 0
+cam = find entity with targetname "cam"
+heli = find entity with targetname "heli"
+dummyplayer = find entity with targetname "introplayer"
+trn1_fadein = find entity with targetname "trn1_fadein"
+trn1_cinguy1 = find entity with targetname "trn1_cinguy1"
+trn1_cinguy2 = find entity with targetname "trn1_cinguy2"
+trn1_cinguy3 = find entity with targetname "trn1_cinguy3"
+trn1_cinguy4 = find entity with targetname "trn1_cinguy4"
+trn1_cinguy5 = find entity with targetname "trn1_cinguy5"
+trn1_cinguy6 = find entity with targetname "trn1_cinguy6"
+trn1_cinguy7 = find entity with targetname "trn1_cinguy7"
+trn1_cinguy8 = find entity with targetname "trn1_cinguy8"
+trn1_cinguy9 = find entity with targetname "trn1_cinguy9"
+trn1_cinguy10 = find entity with targetname "trn1_cinguy10"
+trn1_cinguy11 = find entity with targetname "trn1_cinguy11"
+trn1_cinguy12 = find entity with targetname "trn1_cinguy12"
+cam.movetype = MOVETYPE_NOCLIP
+heli.movetype = MOVETYPE_NOCLIP
+use entity trn1_fadein
+enable cinematics
+use entity cam
+moverotate entity cam from file "traincam.rof" signaling sig1
+moverotate entity heli from file "trainheli.rof"
+wait 2 seconds
+wait for all clearing sig1
+wait 1 seconds
+use entity cam
+disable cinematics
+remove entity dummyplayer
+remove entity trn1_cinguy1
+remove entity trn1_cinguy2
+remove entity trn1_cinguy3
+remove entity trn1_cinguy4
+remove entity trn1_cinguy5
+remove entity trn1_cinguy6
+remove entity trn1_cinguy7
+remove entity trn1_cinguy8
+remove entity trn1_cinguy9
+remove entity trn1_cinguy10
+remove entity trn1_cinguy11
+remove entity trn1_cinguy12
+playsong 2
+unload roff "traincam.rof"
+unload roff "trainhemi.rof"
+exit

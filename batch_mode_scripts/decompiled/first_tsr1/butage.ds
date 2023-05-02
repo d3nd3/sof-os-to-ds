@@ -1,0 +1,81 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity tabass
+local entity sneak
+local int sig2
+local int sig3
+local int sig4
+local entity youssouf
+local entity poufiasse
+local entity enho
+local entity omilieu
+local entity enba
+local entity jo
+
+tabass = find entity with targetname "tabass"
+sneak = find entity player
+youssouf = find entity with targetname "youssouf"
+poufiasse = find entity with targetname "poufiasse"
+enho = find entity with targetname "enho"
+omilieu = find entity with targetname "omilieu"
+enba = find entity with targetname "enba"
+use entity tabass
+use entity youssouf
+use entity poufiasse
+use entity enho
+use entity omilieu
+use entity enba
+animate entity poufiasse performing action RUN by moving [-240.000 ,0.000 ,0.000] signaling sig2
+wait for all clearing sig2
+animate entity youssouf performing action RUN by moving [-236.000 ,0.000 ,0.000] signaling sig3
+wait for all clearing sig3
+animate entity youssouf performing action STD_F_FWD_S_2 targeting entity sneak kill nulltarget HEAD
+wait 0.100 seconds
+animate entity enho performing action RUN by moving [0.000 ,200.000 ,0.000]
+wait 0.200 seconds
+animate entity enba performing action RUN by moving [0.000 ,200.000 ,0.000]
+suspend
+animate entity enho performing action SCRIPT_RELEASE
+animate entity omilieu performing action SCRIPT_RELEASE
+wait 0.900 seconds
+animate entity enba performing action SCRIPT_RELEASE
+label lab_00003
+jo = get entity activator
+animate entity poufiasse performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
+wait 0.100 seconds
+animate entity youssouf performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
+if poufiasse.health < 0
+if youssouf.health < 0
+goto lab_00002
+endif
+suspend
+wait 0.300 seconds
+goto lab_00003
+label lab_00002
+exit

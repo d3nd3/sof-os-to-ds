@@ -1,0 +1,78 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity biga
+local entity bigb
+local entity bigc
+local entity bigd
+
+biga = find entity with targetname "biga"
+bigb = find entity with targetname "bigb"
+bigc = find entity with targetname "bigc"
+bigd = find entity with targetname "bigd"
+use entity biga
+use entity bigb
+use entity bigc
+use entity bigd
+wait 0.100 seconds
+biga.health += 50
+bigb.health += 50
+bigc.health += 50
+bigd.health += 50
+wait 0.100 seconds
+label lab_00003
+jo = get entity activator
+reset ai for entity biga
+reset ai for entity bigb
+reset ai for entity bigc
+reset ai for entity bigd
+animate entity bigb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity bigc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+suspend
+jo = get entity activator
+animate entity biga performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity bigd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity bigb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget CHEST
+animate entity bigc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+if biga.health <= 0
+if bigb.health <= 0
+if bigc.health <= 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+reset ai for entity biga
+reset ai for entity bigb
+reset ai for entity bigc
+animate entity biga performing action SCRIPT_RELEASE
+animate entity bigb performing action SCRIPT_RELEASE
+animate entity bigc performing action SCRIPT_RELEASE
+animate entity bigd performing action SCRIPT_RELEASE
+exit

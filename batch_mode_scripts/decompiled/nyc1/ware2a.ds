@@ -1,0 +1,37 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy
+local int sig1
+
+guy = find entity with targetname "ware2guy2"
+use entity guy
+animate entity guy performing action STD_R_N_MRS_2 by moving [0.000 ,-104.000 ,0.000]
+animate entity guy performing action STD_JRUN_FWD_A_A by moving [0.000 ,-200.000 ,16.000]
+animate entity guy performing action SCRIPT_RELEASE
+exit

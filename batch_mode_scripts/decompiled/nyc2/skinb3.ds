@@ -1,0 +1,82 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity boss
+local entity cover
+local entity box
+local entity you
+local entity ninja
+local entity door
+local entity guyft
+local entity guybk
+local int sig
+
+boss = find entity with targetname "boss3"
+cover = find entity with targetname "boss3cover"
+box = find entity with targetname "t18"
+you = find entity player
+ninja = find entity with targetname "ninja"
+door = find entity with targetname "ninjadoor"
+guyft = find entity with targetname "ndguyft"
+guybk = find entity with targetname "ndguybk"
+boss.movetype = MOVETYPE_NOCLIP
+use entity boss
+use entity cover
+wait 0.200 seconds
+animate entity boss performing action STD_F_FWD_P_2 targeting entity you
+animate entity cover performing action SCRIPT_RELEASE
+wait 0.200 seconds
+use entity box
+animate entity boss performing action STD_F_FWD_P_2 targeting entity you
+animate entity boss performing action STD_R_N_PK_N by moving [8.000 ,0.000 ,0.000]
+animate entity boss performing action STD_R_N_PK_N by moving [0.000 ,-200.000 ,0.000] signaling sig
+wait for all clearing sig
+print 26882
+play sound "cin/nyc2/s25d2.adp" for entity boss on channel CHAN_AUTO at volume 0.900
+animate entity guyft performing action STD_R_N_MRS_2 by moving [80.000 ,0.000 ,0.000]
+animate entity guyft performing action STD_R_N_MRS_2 by moving [0.000 ,144.000 ,0.000]
+animate entity guyft performing action SCRIPT_RELEASE
+animate entity boss performing action STD_R_N_PK_N by moving [0.000 ,-354.000 ,0.000] signaling sig
+wait for all clearing sig
+animate entity boss performing action STD_R_N_PK_N by moving [166.000 ,0.000 ,0.000]
+animate entity guybk performing action STD_R_N_MRS_2 by moving [32.000 ,0.000 ,0.000]
+animate entity guybk performing action STD_R_N_MRS_2 by moving [0.000 ,32.000 ,0.000]
+animate entity guybk performing action CCH_A_FWD_MS_2 holding for 3.000
+animate entity guybk performing action SCRIPT_RELEASE
+animate entity ninja performing action STD_MNINJAKICK_N_A_B
+moverotate entity door from file "ny_steam_ninjadoor.rof"
+wait 0.500 seconds
+play sound "impact/door/kickdoor.wav" for entity door at volume 0.900
+animate entity ninja performing action STD_R_N_MRS_2 by moving [120.000 ,0.000 ,0.000]
+animate entity ninja performing action SCRIPT_RELEASE
+remove entity boss
+wait 0.500 seconds
+unload sound "cin/nyc2/s25d2.adp"
+wait 4 seconds
+unload roff "ny_steam_ninjadoor.rof"
+exit

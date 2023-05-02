@@ -1,0 +1,42 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity lhostage
+local entity lbadguy1
+local int health
+
+lhostage = find entity with targetname "lhostage"
+lbadguy1 = find entity with targetname "lbadguy1"
+health = lbadguy1.health
+if health > 0
+animate entity lhostage performing action CCH_XONKNEES_N_N_N
+play sound "speech/tsr1/npc/eb9-6.adp" for entity lhostage at volume 0.900
+animate entity lhostage performing action CCH_SONKNEES_2FRNT_N_N
+endif
+animate entity lhostage performing action SCRIPT_RELEASE
+exit

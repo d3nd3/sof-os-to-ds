@@ -1,0 +1,126 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity ptank1
+local entity ptank2
+local entity fence
+local entity fencewire
+local entity fatbastard2
+local entity gdoor1
+local entity gdoor2
+local entity gdoor3
+local entity gdoor4
+local entity blasthole
+local entity player1
+local entity hole
+local entity boombaby1
+local entity boombaby2
+local entity boombaby3
+local entity tanksound2
+local entity tankfire
+local entity flame2
+local entity firehurt
+local entity emerg1
+local entity emerg2
+local vector vPos
+local int sig1
+local int sig2
+local int counter = 0
+
+ptank1 = find entity with targetname "ptank1"
+ptank2 = find entity with targetname "ptank2"
+fence = find entity with targetname "fence"
+fencewire = find entity with targetname "fencewire"
+fatbastard2 = find entity with targetname "fatbastard2"
+gdoor1 = find entity with targetname "gdoor1"
+gdoor2 = find entity with targetname "gdoor2"
+gdoor3 = find entity with targetname "gdoor3"
+gdoor4 = find entity with targetname "gdoor4"
+blasthole = find entity with targetname "blasthole"
+player1 = find entity player
+hole = find entity with targetname "hole"
+boombaby1 = find entity with targetname "boombaby1"
+boombaby2 = find entity with targetname "boombaby2"
+boombaby3 = find entity with targetname "boombaby3"
+tanksound2 = find entity with targetname "tanksound2"
+tankfire = find entity with targetname "tankfire"
+flame2 = find entity with targetname "flame2"
+firehurt = find entity with targetname "firehurt"
+emerg1 = find entity with targetname "emerg1"
+emerg2 = find entity with targetname "emerg2"
+use entity emerg1
+use entity emerg2
+move entity gdoor1 by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.250 seconds
+move entity gdoor2 by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.250 seconds
+move entity gdoor3 by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.250 seconds
+move entity gdoor4 by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.250 seconds
+use entity tanksound2
+move entity fatbastard2 by [0.000 ,0.000 ,0.000] at 200 speed signaling sig1
+move entity tanksound2 by [0.000 ,0.000 ,0.000] at 200 speed signaling sig2
+wait for all clearing sig1,sig2
+use entity tanksound2
+vPos = blasthole.origin
+vPos.z += 64.000
+tank entity fatbastard2 2
+wait 0.100 seconds
+move entity gdoor1 by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.250 seconds
+move entity gdoor2 by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.250 seconds
+move entity gdoor3 by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.250 seconds
+move entity gdoor4 by [0.000 ,0.000 ,0.000] at 100 speed
+use entity emerg1
+use entity emerg2
+use entity ptank1
+use entity ptank2
+use entity boombaby1
+wait 0.300 seconds
+use entity boombaby2
+wait 0.300 seconds
+use entity boombaby3
+use entity fence
+remove entity fencewire
+use entity hole
+use entity tankfire
+use entity flame2
+use entity firehurt
+tank entity fatbastard2 3
+label lab_00002
+if counter < 20
+vPos = player1.origin
+tank entity fatbastard2 2
+wait for all clearing sig1
+wait 5 seconds
+goto lab_00002
+endif
+exit

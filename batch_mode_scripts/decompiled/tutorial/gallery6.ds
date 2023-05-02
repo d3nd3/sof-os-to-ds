@@ -1,0 +1,86 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity goodguy3
+local entity goodguy3head
+local entity goodguy3legs
+local entity gallery6door
+local entity gallery6null
+local int goodguy3health
+local int goodguy3headhealth
+local int goodguy3legshealth
+local int b1
+local int b2
+local int b3
+local int btotal
+global int target6
+
+goodguy3 = find entity with targetname "goodguy3"
+goodguy3head = find entity with targetname "goodguy3head"
+goodguy3legs = find entity with targetname "goodguy3legs"
+gallery6door = find entity with targetname "gallery6door"
+gallery6null = find entity with targetname "gallery6null"
+target6 = 0
+use entity gallery6door
+wait 0.500 seconds
+label lab_00006
+on target6 == 1 goto lab_00001
+goodguy3.movetype = MOVETYPE_PUSH
+goodguy3head.movetype = MOVETYPE_PUSH
+goodguy3legs.movetype = MOVETYPE_PUSH
+move entity goodguy3 by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity goodguy3head by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity goodguy3legs by [0.200 ,0.000 ,0.000] over 0.200 seconds
+play sound "Cin/Tut/Script/target.wav" for entity gallery6null on channel CHAN_AUTO at volume 0.900
+wait 3.200 seconds
+move entity goodguy3 by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity goodguy3head by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity goodguy3legs by [0.200 ,0.000 ,0.000] over 0.200 seconds
+play sound "Cin/Tut/Script/target.wav" for entity gallery6null on channel CHAN_AUTO at volume 0.900
+wait 1.200 seconds
+goodguy3health = goodguy3.health
+goodguy3headhealth = goodguy3head.health
+goodguy3legshealth = goodguy3legs.health
+if goodguy3health == 0
+b1 = 1
+endif
+if goodguy3headhealth == 0
+b2 = 1
+endif
+if goodguy3legshealth == 0
+b3 = 1
+endif
+btotal = b1 + b2
+btotal += b3
+if btotal == 3
+exit
+goto lab_00001
+endif
+goto lab_00006
+label lab_00001
+exit

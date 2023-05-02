@@ -1,0 +1,133 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local vector pos
+local entity una
+local entity unb
+local entity unc
+local entity und
+local entity une
+local entity unf
+local entity aheli
+local entity bheli
+local entity cheli
+local entity tank1
+local int x
+local entity t12
+local entity tact
+
+aheli = find entity with targetname "aheli"
+tank1 = find entity with targetname "tank1"
+bheli = find entity with targetname "bheli"
+cheli = find entity with targetname "cheli"
+una = find entity with targetname "una"
+unb = find entity with targetname "unb"
+unc = find entity with targetname "unc"
+und = find entity with targetname "und"
+une = find entity with targetname "une"
+unf = find entity with targetname "unf"
+t12 = find entity with targetname t12
+tact = find entity with targetname tact
+wait 0.200 seconds
+helicopter entity aheli 35
+helicopter entity aheli 36
+helicopter entity aheli 37
+helicopter entity aheli 38
+wait 0.200 seconds
+helicopter entity bheli 35
+helicopter entity bheli 36
+helicopter entity bheli 37
+helicopter entity bheli 38
+helicopter entity cheli 35
+helicopter entity cheli 36
+helicopter entity cheli 37
+helicopter entity cheli 38
+wait 0.200 seconds
+helicopter entity aheli 42
+helicopter entity aheli 42
+helicopter entity aheli 24
+helicopter entity aheli 26
+helicopter entity aheli 41
+wait 0.200 seconds
+helicopter entity bheli 42
+helicopter entity bheli 42
+helicopter entity bheli 42
+helicopter entity bheli 24
+helicopter entity bheli 26
+helicopter entity bheli 41
+wait 0.200 seconds
+helicopter entity cheli 42
+helicopter entity cheli 42
+helicopter entity cheli 24
+helicopter entity cheli 26
+helicopter entity cheli 41
+wait 0.200 seconds
+animate entity unf performing action SCRIPT_RELEASE
+label lab_00003
+jo = get entity activator
+animate entity una performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
+animate entity unb performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget GUT
+wait 0.100 seconds
+animate entity una performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
+animate entity unb performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget GUT
+wait 0.200 seconds
+animate entity unc performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
+animate entity und performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget GROIN
+animate entity une performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget GROIN
+suspend
+jo = get entity activator
+pos = jo.origin
+tank entity tank1 2
+wait 0.200 seconds
+pos = jo.origin
+tank entity tank1 3
+wait 0.100 seconds
+if tank1.health < 0
+if aheli.health < 0
+if bheli.health < 0
+goto lab_00002
+endif
+animate entity una performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
+animate entity unb performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
+animate entity unc performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
+animate entity und performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget GROIN
+animate entity une performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget GROIN
+suspend
+goto lab_00003
+label lab_00002
+wait 0.200 seconds
+use entity tact
+animate entity una performing action SCRIPT_RELEASE
+animate entity unb performing action SCRIPT_RELEASE
+animate entity unc performing action SCRIPT_RELEASE
+animate entity und performing action SCRIPT_RELEASE
+animate entity une performing action SCRIPT_RELEASE
+remove entity t12
+remove entity una
+exit

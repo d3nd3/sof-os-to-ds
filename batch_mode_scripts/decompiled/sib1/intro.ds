@@ -1,0 +1,102 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity cat
+local entity catsnd
+local entity fade
+local entity cam1
+local entity cam1t
+local entity cam2
+local entity cam2target
+local entity guyrt
+local entity guylf
+local entity guywalk
+local entity john
+local entity t1
+local entity t2
+local entity t3
+local vector vPos
+local int sig
+
+cache roff "sib1_intro_snowcat.rof"
+cache roff "sib1_intro_cam1.rof"
+cache roff "sib1_intro_cam1t.rof"
+cam1 = find entity with targetname "introcam1"
+enable cinematics
+use entity cam1
+cat = find entity with targetname "introcat"
+catsnd = find entity with targetname "introcatsnd"
+fade = find entity with targetname "introfade"
+cam1t = find entity with targetname "t165"
+cam2 = find entity with targetname "introcam2"
+cam2target = find entity with targetname "introcam2target"
+guyrt = find entity with targetname "introguy1"
+guylf = find entity with targetname "introguy2"
+guywalk = find entity with targetname "introguy3"
+john = find entity with targetname "introjohn"
+t1 = find entity with targetname "introt1"
+t2 = find entity with targetname "introt2"
+t3 = find entity with targetname "introt3"
+use entity fade
+cat.movetype = MOVETYPE_NOCLIP
+use entity john
+use entity cat
+vPos = t1.origin
+tank entity cat 5
+moverotate entity cat from file "sib1_intro_snowcat.rof"
+moverotate entity catsnd from file "sib1_intro_snowcat.rof"
+moverotate entity cam1 from file "sib1_intro_cam1.rof"
+moverotate entity cam1t from file "sib1_intro_cam1t.rof" signaling sig
+wait 2 seconds
+print 27409
+wait 2 seconds
+animate entity guywalk performing action STD_WPATROL_N_MRS_2 by moving [0.000 ,670.000 ,0.000]
+animate entity guyrt performing action STD_ISTAND_N_MRS_2
+animate entity guylf performing action STD_ICLEANGUN2_N_MRS_2
+wait 0.500 seconds
+animate entity guyrt performing action STD_ISMOKE_N_A_N
+animate entity guylf performing action STD_ICLEANGUN2_N_MRS_2
+wait for all clearing sig
+use entity cam1
+use entity cam2
+animate entity john performing action STD_WSTEALTH_N_PK_N by moving [0.000 ,92.000 ,0.000]
+animate entity john performing action STD_EFRMSHADOW_N_P_N
+animate entity john performing action STD_IGUNUP_N_A_N signaling sig holding for 1.000
+wait for all clearing sig
+use entity cam2
+disable cinematics
+unload roff "sib1_intro_snowcat.rof"
+unload roff "sib1_intro_cam1.rof"
+unload roff "sib1_intro_cam1t.rof"
+remove entity catsnd
+remove entity guyrt
+remove entity guylf
+remove entity guywalk
+remove entity john
+remove entity cat
+exit

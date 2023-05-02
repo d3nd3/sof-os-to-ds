@@ -1,0 +1,84 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity mullins2
+local entity merc
+local entity final
+local entity cam22
+local entity null22
+local entity cam33
+local entity null33
+local entity cam44
+local entity null44
+local entity cam55
+local entity null55
+
+cache strings "rdam2"
+mullins2 = find entity with targetname "mullins2"
+final = find entity with targetname "final"
+cam22 = find entity with targetname "cam22"
+null22 = find entity with targetname "null22"
+cam33 = find entity with targetname "cam33"
+null33 = find entity with targetname "null33"
+cam44 = find entity with targetname "cam44"
+null44 = find entity with targetname "null44"
+cam55 = find entity with targetname "cam55"
+null55 = find entity with targetname "null55"
+cam22.movetype = MOVETYPE_NOCLIP
+null22.movetype = MOVETYPE_NOCLIP
+cam33.movetype = MOVETYPE_NOCLIP
+null33.movetype = MOVETYPE_NOCLIP
+cam44.movetype = MOVETYPE_NOCLIP
+null44.movetype = MOVETYPE_NOCLIP
+cam55.movetype = MOVETYPE_NOCLIP
+null55.movetype = MOVETYPE_NOCLIP
+use entity cam22
+print 25606
+move entity cam22 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity null22 by [0.000 ,0.000 ,0.000] at 35 speed
+wait 5 seconds
+use entity cam33
+print 25607
+move entity cam33 by [0.000 ,0.000 ,0.000] at 30 speed
+move entity null33 by [0.000 ,0.000 ,0.000] at 30 speed
+wait 6 seconds
+use entity cam44
+print 25608
+move entity cam44 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity null44 by [0.000 ,0.000 ,0.000] at 35 speed
+wait 5 seconds
+use entity cam55
+print 25609
+move entity cam55 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity null55 by [0.000 ,0.000 ,0.000] at 35 speed
+wait 10 seconds
+print 25610
+wait 2 seconds
+use entity cam55
+enable trigger entity final
+exit

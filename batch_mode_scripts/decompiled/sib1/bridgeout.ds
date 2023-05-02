@@ -1,0 +1,86 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity guy1
+local entity guy2
+local entity guy3
+local entity cat
+local entity chunk1
+local entity chunk2
+local entity chunk3
+local entity chunk4
+local entity chunk5
+local entity ex1
+local entity catsnd
+local int sig
+
+guy1 = find entity with targetname "avguyrt"
+guy2 = find entity with targetname "avguylf"
+guy3 = find entity with targetname "avguyback"
+cat = find entity with targetname "bridgecat"
+chunk1 = find entity with targetname "bchk1"
+chunk2 = find entity with targetname "bchk2"
+chunk3 = find entity with targetname "bchk3"
+chunk4 = find entity with targetname "bchk4"
+chunk5 = find entity with targetname "bchk5"
+ex1 = find entity with targetname "boex1"
+catsnd = find entity with targetname "bocatsnd"
+moverotate entity cat from file "sib1_bridgeout_cat.rof"
+moverotate entity catsnd from file "sib1_bridgeout_cat.rof"
+wait 1 seconds
+use entity guy3
+tank entity cat 3
+play sound "Impact/Metal/BridgeFall.adp" for entity cat on channel CHAN_AUTO at volume 0.900
+moverotate entity chunk1 from file "sib1_bridgeout_bchk1.rof"
+moverotate entity chunk2 from file "sib1_bridgeout_bchk2.rof"
+moverotate entity chunk3 from file "sib1_bridgeout_bchk3.rof"
+moverotate entity chunk4 from file "sib1_bridgeout_bchk4.rof"
+moverotate entity chunk5 from file "sib1_bridgeout_bchk5.rof" signaling sig
+wait for all clearing sig
+wait 1.500 seconds
+use entity guy3
+animate entity guy3 performing action SCRIPT_RELEASE
+tank entity cat 3
+use entity ex1
+wait 0.250 seconds
+remove entity guy1
+remove entity guy2
+remove entity chunk1
+remove entity chunk2
+remove entity chunk3
+remove entity chunk4
+remove entity chunk5
+remove entity cat
+remove entity catsnd
+unload roff "sib1_bridgeout_cat.rof"
+unload roff "sib1_bridgeout_bchk1.rof"
+unload roff "sib1_bridgeout_bchk2.rof"
+unload roff "sib1_bridgeout_bchk3.rof"
+unload roff "sib1_bridgeout_bchk4.rof"
+unload roff "sib1_bridgeout_bchk5.rof"
+exit

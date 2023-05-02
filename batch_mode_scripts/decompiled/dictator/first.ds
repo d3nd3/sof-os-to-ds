@@ -1,0 +1,85 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+global int etat
+local entity jo
+local int sig
+local entity b1
+local entity c1
+local entity d1
+local entity debut
+
+b1 = find entity with targetname "b1"
+c1 = find entity with targetname "c1"
+d1 = find entity with targetname "d1"
+debut = find entity with targetname "debut"
+use entity b1
+use entity c1
+use entity d1
+animate entity c1 performing action STD_XROLL_LT_A_A
+animate entity d1 performing action RUN by moving [-180.000 ,0.000 ,0.000]
+label lab_00004
+jo = get entity activator
+animate entity b1 performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+animate entity c1 performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
+animate entity d1 performing action STD_F_FWD_M_2 targeting entity jo
+wait 0.200 seconds
+animate entity b1 performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
+wait 0.100 seconds
+animate entity b1 performing action STD_F_FWD_M_2 targeting entity jo
+animate entity d1 performing action CCH_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
+wait 0.400 seconds
+suspend
+jo = get entity activator
+animate entity b1 performing action CCH_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+animate entity c1 performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
+animate entity d1 performing action STD_F_FWD_M_2 targeting entity jo
+wait 0.200 seconds
+animate entity b1 performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
+wait 0.100 seconds
+animate entity b1 performing action STD_F_FWD_M_2 targeting entity jo
+animate entity d1 performing action STD_FGANGBANGER_N_M_2 targeting entity jo kill nulltarget HEAD
+if b1.health < 0
+if c1.health < 0
+if d1.health < 0
+goto lab_00002
+endif
+if etat == 1
+goto lab_00002
+endif
+suspend
+goto lab_00004
+label lab_00002
+use entity debut
+animate entity c1 performing action SCRIPT_RELEASE
+animate entity d1 performing action SCRIPT_RELEASE
+animate entity b1 performing action SCRIPT_RELEASE
+remove entity debut
+exit

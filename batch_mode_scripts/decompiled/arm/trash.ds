@@ -1,0 +1,64 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity sam
+local entity door
+local entity lidrt
+local entity lidlf
+local entity bag1
+local entity bag2
+local entity bag3
+local entity hawktrig
+local int sig1
+
+sam = find entity with targetname "sam"
+door = find entity with targetname "trashdoor"
+lidrt = find entity with targetname "trashlidrt"
+lidlf = find entity with targetname "trashlidlf"
+bag1 = find entity with targetname "trashbag1"
+bag2 = find entity with targetname "trashbag2"
+bag3 = find entity with targetname "trashbag3"
+hawktrig = find entity with targetname "hawksdead"
+bag3.movetype = MOVETYPE_NOCLIP
+use entity door
+wait 1 seconds
+moverotate entity bag1 from file "arm3_trash_trashbag1.rof"
+moverotate entity lidrt from file "arm3_trash_lidrt.rof"
+wait 0.500 seconds
+moverotate entity bag2 from file "arm3_trash_trashbag2.rof"
+moverotate entity lidlf from file "arm3_trash_lidrt.rof"
+wait 0.750 seconds
+moverotate entity bag3 from file "arm3_trash_trashbag3.rof" signaling sig1
+animate entity sam performing action STD_WFAST_N_A_N by moving [0.000 ,150.000 ,0.000]
+animate entity sam performing action STD_MKICKLOW_N_A_A
+wait for all clearing sig1
+wait 1.100 seconds
+moverotate entity bag3 from file "arm3_trash_lastkick.rof" signaling sig1
+wait for all clearing sig1
+use entity hawktrig
+exit

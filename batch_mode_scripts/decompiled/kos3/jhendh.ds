@@ -1,0 +1,119 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity ehdoor
+local entity ehdoorbroke
+local entity endheli
+local entity ewall1
+local entity ewall2
+local entity ewall3
+local entity ewall4
+local entity ewall5
+local entity erail1
+local entity erail2
+local entity railwindow1
+local entity railwindow2
+local entity farwindow1
+local entity erail3
+local entity brokedoorclip
+local entity afteredoor
+local entity front_floor
+local entity back_floor
+local entity remove_floor
+local entity helisound_spot
+local int sig1
+local int sig2
+local int sig3
+
+ehdoor = find entity with targetname "ehdoor"
+ehdoorbroke = find entity with targetname "ehdoorbroke"
+endheli = find entity with targetname "endheli"
+ewall1 = find entity with targetname "ewall1"
+ewall2 = find entity with targetname "ewall2"
+ewall3 = find entity with targetname "ewall3"
+ewall4 = find entity with targetname "ewall4"
+ewall5 = find entity with targetname "ewall5"
+erail1 = find entity with targetname "erail1"
+erail2 = find entity with targetname "erail2"
+erail3 = find entity with targetname "erail3"
+railwindow1 = find entity with targetname "railwindow1"
+railwindow2 = find entity with targetname "railwindow2"
+farwindow1 = find entity with targetname "farwindow1"
+brokedoorclip = find entity with targetname "brokedoorclip"
+afteredoor = find entity with targetname "afteredoor"
+front_floor = find entity with targetname "front_floor"
+back_floor = find entity with targetname "back_floor"
+remove_floor = find entity with targetname "remove_floor"
+helisound_spot = find entity with targetname "helisound_spot"
+ehdoorbroke.movetype = MOVETYPE_NOCLIP
+endheli.movetype = MOVETYPE_NOCLIP
+use entity endheli
+use entity farwindow1
+use entity brokedoorclip
+moverotate entity ehdoor from file "kos3_shootdoor.rof"
+moverotate entity ehdoorbroke from file "kos3_shootdoor.rof"
+wait 0.800 seconds
+remove entity ehdoorbroke
+play sound "Cin/KOS3/Script/HeliShoot.adp" for entity helisound_spot on channel CHAN_AUTO at volume 0.900
+play sound "Impact/Stone/Plaster1.adp" for entity ewall1 on channel CHAN_AUTO at volume 0.900
+use entity ewall1
+wait 0.200 seconds
+play sound "Impact/Stone/Plaster1.adp" for entity ewall2 on channel CHAN_AUTO at volume 0.900
+use entity ewall2
+wait 0.100 seconds
+use entity front_floor
+play sound "Impact/Metal/Railing.adp" for entity front_floor on channel CHAN_AUTO at volume 0.900
+wait 0.100 seconds
+use entity remove_floor
+use entity back_floor
+play sound "Impact/Metal/Railing.adp" for entity erail1 on channel CHAN_AUTO at volume 0.900
+use entity erail1
+wait 0.200 seconds
+play sound "Impact/Metal/Railing.adp" for entity erail3 on channel CHAN_AUTO at volume 0.900
+use entity erail3
+wait 0.100 seconds
+play sound "Impact/Stone/Plaster1.adp" for entity ewall3 on channel CHAN_AUTO at volume 0.900
+use entity ewall3
+wait 0.300 seconds
+play sound "Impact/Stone/Plaster2.adp" for entity ewall4 on channel CHAN_AUTO at volume 0.900
+use entity ewall4
+wait 0.100 seconds
+play sound "Impact/Stone/Plaster2.adp" for entity ewall5 on channel CHAN_AUTO at volume 0.900
+use entity ewall5
+wait 0.300 seconds
+play sound "Impact/Metal/Railing.adp" for entity erail2 on channel CHAN_AUTO at volume 0.900
+use entity erail2
+on endheli.health <= 0 goto lab_00001
+helicopter entity endheli 27
+wait for all clearing sig1
+label lab_00001
+use entity afteredoor
+use entity afteredoor
+use entity endheli
+moverotate entity endheli from file "kos3_endflyaway.rof"
+exit

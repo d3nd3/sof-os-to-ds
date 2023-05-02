@@ -1,0 +1,101 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity introcam1
+local entity intronotnull1
+local entity introfade_in
+local entity introfade_out
+local entity introhawk
+local entity introcam2
+local entity introcam3
+local entity intromullins
+local entity shoveldoor
+local entity player1
+local entity introbull
+local entity bullshot1
+local int sig
+local int sig1
+local int sig2
+local int sig3
+
+introcam1 = find entity with targetname "introcam1"
+intronotnull1 = find entity with targetname "intronotnull1"
+introfade_in = find entity with targetname "introfade_in"
+introfade_out = find entity with targetname "introfade_out"
+introhawk = find entity with targetname "introhawk"
+introcam2 = find entity with targetname "introcam2"
+intromullins = find entity with targetname "intromullins"
+introcam3 = find entity with targetname "introcam3"
+shoveldoor = find entity with targetname "shoveldoor"
+player1 = get entity activator
+introbull = find entity with targetname "introbull"
+bullshot1 = find entity with targetname "bullshot1"
+enable cinematics
+use entity introbull
+use entity introcam1
+use entity introfade_in
+wait 1.250 seconds
+use entity introhawk
+moverotate entity introcam1 from file "sud2_introcam1.rof"
+moverotate entity intronotnull1 from file "sud2_intronotnull1.rof"
+wait 5 seconds
+wait 0.100 seconds
+play sound "cin/sud2/c44d1.adp" for entity player1 on channel CHAN_NO_PHS_ADD at volume 0.900
+print 27904
+wait 2.500 seconds
+use entity intromullins
+wait 0.100 seconds
+play sound "cin/sud2/c44d2.adp" for entity player1 on channel CHAN_NO_PHS_ADD at volume 0.900
+print 27905
+use entity introcam1
+use entity introcam2
+animate entity introhawk showing emotion EMOTION_TALK holding for 3.000
+animate entity introhawk performing action CCH_EHEADSET_TO_A_N signaling sig
+wait for all clearing sig
+animate entity introhawk performing action CCH_EHEADSET_MID_A_N signaling sig
+wait for all clearing sig
+animate entity introhawk performing action CCH_EHEADSET_FRM_A_N signaling sig
+wait for all clearing sig
+use entity introcam2
+use entity introcam3
+play sound "cin/sud2/c44d3.adp" for entity intromullins on channel CHAN_AUTO at volume 0.900
+print 27906
+moverotate entity introcam3 from file "sud2_introcam3.rof"
+animate entity intromullins performing action STD_IGUNUP_N_A_N holding for 4.000
+wait 2.600 seconds
+use entity introfade_out
+wait 1.500 seconds
+remove entity intromullins
+remove entity introhawk
+use entity introcam3
+use entity introfade_in
+use entity bullshot1
+remove entity introbull
+disable cinematics
+use entity shoveldoor
+exit

@@ -1,0 +1,77 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity salutecam1
+local entity salutecam2
+local entity salutecam3
+local entity salutecam4
+local entity salutecam5
+local entity salutenul5
+local entity salutedr1
+local entity salutedr2
+local entity salutedr3
+local entity salutedr4
+local entity salutedekker
+local entity saluteplayer
+local entity salutesp1
+local entity salutesp2
+local entity salutesp3
+local entity activedoor
+local entity player1
+local entity jpn2fadeout
+local entity jpn2fadein
+
+salutecam1 = find entity with targetname "salutecam1"
+salutecam2 = find entity with targetname "salutecam2"
+salutecam3 = find entity with targetname "salutecam3"
+salutecam4 = find entity with targetname "salutecam4"
+salutecam5 = find entity with targetname "salutecam5"
+salutenul5 = find entity with targetname "salutenul5"
+salutedr1 = find entity with targetname "salutedr1"
+salutedr2 = find entity with targetname "salutedr2"
+salutedr3 = find entity with targetname "salutedr3"
+salutedr4 = find entity with targetname "salutedr4"
+salutedekker = find entity with targetname "salutedekker"
+saluteplayer = find entity with targetname "saluteplayer"
+salutesp1 = find entity with targetname "salutesp1"
+salutesp2 = find entity with targetname "salutesp2"
+salutesp3 = find entity with targetname "salutesp3"
+activedoor = find entity with targetname "activedoor"
+jpn2fadeout = find entity with targetname "jpn2fadeout"
+jpn2fadein = find entity with targetname "jpn2fadein"
+use entity salutedekker
+wait 2 seconds
+use entity salutedr1
+use entity salutedr2
+use entity salutedr3
+use entity salutedr4
+wait 2 seconds
+use entity activedoor
+remove entity salutedekker
+wait 2 seconds
+exit

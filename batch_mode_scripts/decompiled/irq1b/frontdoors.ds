@@ -1,0 +1,90 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity fdltop
+local entity fdlmid1
+local entity fdlmid2
+local entity fdlbot1
+local entity fdlbot2
+local entity fdlbottom
+local entity fdrighttop
+local entity fdlittle
+local entity fdmiddle
+local entity fdmiddleb
+local entity fdlower
+local entity leftover
+local entity useme
+local entity fdbarrel
+local entity fdpal
+local entity fdboxes
+local entity fdexploa
+local entity fdexplob
+local entity fdguy1
+local entity frontrelay
+
+fdltop = find entity with targetname "fdltop"
+fdlmid1 = find entity with targetname "fdlmid1"
+fdlmid2 = find entity with targetname "fdlmid2"
+fdlbot1 = find entity with targetname "fdlbot1"
+fdlbot2 = find entity with targetname "fdlbot2"
+fdlbottom = find entity with targetname "fdlbottom"
+fdrighttop = find entity with targetname "fdrighttop"
+fdlittle = find entity with targetname "fdlittle"
+fdmiddle = find entity with targetname "fdmiddle"
+fdmiddleb = find entity with targetname "fdmiddleb"
+fdlower = find entity with targetname "fdlower"
+leftover = find entity with targetname "leftover"
+useme = find entity with targetname "useme"
+frontrelay = find entity with targetname "frontrelay"
+fdlower.movetype = MOVETYPE_NOCLIP
+fdrighttop.movetype = MOVETYPE_NOCLIP
+fdmiddle.movetype = MOVETYPE_NOCLIP
+fdmiddleb.movetype = MOVETYPE_NOCLIP
+fdbarrel = find entity with targetname "fdbarrel"
+fdpal = find entity with targetname "fdpal"
+fdboxes = find entity with targetname "fdboxes"
+fdexploa = find entity with targetname "fdexploa"
+fdexplob = find entity with targetname "fdexploa"
+fdguy1 = find entity with targetname "fdguy1"
+use entity fdexploa
+use entity fdexplob
+play sound "Impact/Wood/DoorExp.adp" for entity fdlower on channel CHAN_AUTO at volume 0.900
+use entity useme
+moverotate entity fdlower from file "irq1b_fdlower.rof"
+moverotate entity fdrighttop from file "irq1b_fdrighttop.rof"
+moverotate entity fdmiddle from file "irq1b_fdmiddle.rof"
+moverotate entity fdmiddleb from file "irq1b_fdmiddleb.rof"
+moverotate entity fdltop from file "Irq1b_fdltop.rof"
+moverotate entity fdlmid2 from file "Irq1b_fdlmid2.rof"
+moverotate entity leftover from file "Irq1b_leftover.rof"
+remove entity frontrelay
+wait 0.400 seconds
+use entity fdmiddle
+use entity fdmiddleb
+animate entity fdguy1 performing action STD_SINBACK_2FRNT_N_N by moving [0.000 ,64.000 ,0.000]
+exit

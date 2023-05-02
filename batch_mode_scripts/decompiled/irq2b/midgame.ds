@@ -1,0 +1,238 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity john
+local entity john2
+local entity john3
+local entity john4
+local entity you
+local entity cam
+local entity camt
+local entity cam1
+local entity cam2
+local entity cam3
+local entity cam4
+local entity cam5
+local entity cam6
+local entity cam7
+local entity cam8
+local entity midcam7
+local entity midcam7t
+local entity irq2b_midlight
+local entity fadein
+local entity fadeout
+local entity saddam
+local entity amu
+local entity cover1
+local entity cover2
+local int sig
+local int sig2
+
+cache sound "cin/irq2b/c63d1.adp"
+cache sound "cin/irq2b/c63d2.adp"
+cache sound "cin/irq2b/c63d3.adp"
+cache sound "cin/irq2b/c63d4.adp"
+cache sound "cin/irq2b/c63d5.adp"
+cache sound "cin/irq2b/c63d6.adp"
+cache sound "cin/irq2b/c63d7.adp"
+cache roff "irq2b_midgame_cam1.rof"
+cache roff "irq2b_midgame_camt.rof"
+cache roff "irq2b_midgame_cam7.rof"
+john = find entity with targetname "irq2b_midjohn"
+john2 = find entity with targetname "midjohn2"
+john3 = find entity with targetname "midjohn3"
+john4 = find entity with targetname "midjohn4"
+you = find entity player
+cam = find entity with targetname "irq2b_midcam1"
+camt = find entity with targetname "irq2b_midcam1_null"
+cam1 = find entity with targetname "midcam1"
+cam2 = find entity with targetname "midcam2"
+cam3 = find entity with targetname "midcam3"
+cam4 = find entity with targetname "midcam4"
+cam5 = find entity with targetname "midcam5"
+cam6 = find entity with targetname "midcam6"
+cam7 = find entity with targetname "midcam7"
+cam8 = find entity with targetname "midcam8"
+midcam7 = find entity with targetname "irq2b_midcam7"
+midcam7t = find entity with targetname "t476"
+saddam = find entity with targetname "midsaddam"
+amu = find entity with targetname "midamu"
+irq2b_midlight = find entity with targetname "irq2b_midlight"
+fadein = find entity with targetname "midfadein"
+fadeout = find entity with targetname "midfadeout"
+cover1 = find entity with targetname "midcover1"
+cover2 = find entity with targetname "midcover2"
+john.movetype = MOVETYPE_NOCLIP
+enable cinematics
+use entity cam
+use entity irq2b_midlight
+wait 2 seconds
+animate entity john performing action STD_WSTEALTH_N_PK_N by moving [100.000 ,0.000 ,0.000] signaling sig
+wait for all clearing sig
+moverotate entity camt from file "irq2b_midgame_camt.rof"
+animate entity john performing action STD_WSTEALTH_N_PK_N by moving [100.000 ,0.000 ,0.000] signaling sig
+wait for all clearing sig
+use entity cam
+use entity midcam7
+moverotate entity midcam7 from file "irq2b_midgame_cam7.rof"
+moverotate entity midcam7t from file "irq2b_midgame_cam7.rof"
+animate entity john performing action STD_WSTEALTH_N_PK_N by moving [80.000 ,0.000 ,0.000] signaling sig
+wait for all clearing sig
+animate entity john performing action STD_WSTEALTH_N_PK_N by moving [88.000 ,-64.000 ,0.000] signaling sig
+use entity amu
+use entity saddam
+wait for all clearing sig
+animate entity amu performing action STD_IETALKPOSE_N_A_N
+animate entity saddam performing action STD_ETALK_N_A_N
+use entity midcam7
+use entity cam1
+moverotate entity cam1 from file "irq2b_midgame_cam1.rof"
+animate entity john performing action STD_WSTEALTH_N_PK_N by moving [0.000 ,-48.000 ,0.000]
+animate entity amu performing action STD_IETALKPOSE_N_A_N holding for 3.000
+animate entity saddam showing emotion EMOTION_TALK holding for 6.200
+animate entity saddam performing action STD_ETALK_N_A_N holding for 6.200
+animate entity cover1 performing action STD_IALERT_N_MRS_2 holding for 3.000
+animate entity cover2 performing action STD_IALERT_N_MRS_2 holding for 3.000
+wait 3 seconds
+use entity irq2b_midlight
+use entity cam1
+use entity cam2
+animate entity cover1 performing action STD_IALERT_N_MRS_2 holding for 3.900
+animate entity cover2 performing action STD_IALERT_N_MRS_2 holding for 3.900
+animate entity amu performing action STD_IETALKPOSE_N_A_N holding for 3.200
+wait 0.100 seconds
+print 30471
+play sound "cin/irq2b/c63d1.adp" for entity saddam on channel CHAN_AUTO at volume 0.900
+wait 3.100 seconds
+animate entity saddam performing action STD_IETALKPOSE_N_A_N holding for 0.700
+animate entity amu showing emotion EMOTION_TALK holding for 0.600
+animate entity amu performing action STD_ETALKBOTH_N_A_N holding for 0.600
+wait 0.100 seconds
+print 30472
+play sound "cin/irq2b/c63d2.adp" for entity amu on channel CHAN_AUTO at volume 0.900
+wait 0.600 seconds
+use entity cam2
+use entity cam3
+animate entity cover1 performing action STD_IALERT_N_MRS_2 holding for 4.800
+animate entity cover2 performing action STD_IALERT_N_MRS_2 holding for 4.800
+animate entity saddam showing emotion EMOTION_TALK holding for 1.400
+animate entity saddam performing action STD_ETALK_N_A_N holding for 1.400
+wait 0.100 seconds
+print 30473
+play sound "cin/irq2b/c63d3.adp" for entity saddam on channel CHAN_AUTO at volume 0.900
+wait 1.300 seconds
+animate entity saddam performing action STD_IETALKPOSE_N_A_N holding for 3.400
+animate entity amu showing emotion EMOTION_TALK holding for 3.400
+animate entity amu performing action STD_ETALK_N_A_N holding for 3.400
+wait 0.100 seconds
+print 30474
+play sound "cin/irq2b/c63d4.adp" for entity amu on channel CHAN_AUTO at volume 0.900
+wait 0.700 seconds
+use entity cam3
+use entity cam4
+wait 2.600 seconds
+use entity cam4
+use entity cam5
+animate entity cover1 performing action STD_IALERT_N_MRS_2 holding for 2.400
+animate entity cover2 performing action STD_IALERT_N_MRS_2 holding for 2.400
+animate entity amu performing action STD_IETALKPOSE_N_A_N holding for 2.400
+animate entity saddam showing emotion EMOTION_TALK holding for 2.400
+animate entity saddam performing action STD_ETALK_N_A_N holding for 2.400
+wait 0.100 seconds
+print 30475
+play sound "cin/irq2b/c63d5.adp" for entity saddam on channel CHAN_AUTO at volume 0.900
+animate entity john3 showing emotion EMOTION_TALK holding for 5.500
+animate entity john3 performing action STD_A_FWD_P_CB holding for 5.500
+remove entity john
+wait 2.300 seconds
+use entity cam5
+use entity cam6
+animate entity cover1 performing action STD_IALERT_N_MRS_2 holding for 2.000
+animate entity cover2 performing action STD_IALERT_N_MRS_2 holding for 2.000
+animate entity amu performing action STD_IETALKPOSE_N_A_N holding for 2.000
+animate entity saddam performing action STD_IETALKPOSE_N_A_N holding for 2.000
+wait 0.100 seconds
+print 30476
+play sound "cin/irq2b/c63d6.adp" for entity john3 on channel CHAN_AUTO at volume 0.900
+wait 2.200 seconds
+animate entity cover1 performing action STD_XSTARTLED_N_A_A
+animate entity cover2 performing action STD_XSTARTLED_N_A_A
+animate entity amu performing action STD_XSTARTLED_N_A_A
+animate entity saddam performing action STD_XSTARTLED_N_A_A
+saddam.movetype = MOVETYPE_NOCLIP
+animate entity john3 performing action STD_A_FWD_P_CB holding for 1.000
+wait 1 seconds
+use entity cam6
+use entity cam5
+animate entity saddam showing emotion EMOTION_TALK holding for 0.700
+animate entity saddam performing action STD_ETALKBOTH_N_A_N holding for 0.700
+wait 0.100 seconds
+print 30477
+play sound "cin/irq2b/c63d7.adp" for entity saddam on channel CHAN_AUTO at volume 0.900
+wait 0.700 seconds
+animate entity saddam performing action STD_ETURN90_LT_A_N
+rotate entity saddam by [0.000 ,0.000 ,0.000] at 40 speed
+wait 0.300 seconds
+use entity cam5
+cover1.health = 1
+cover2.health = 1
+use entity cam7
+animate entity saddam performing action STD_R_N_PK_N by moving [0.000 ,128.000 ,0.000]
+animate entity saddam performing action STD_R_N_PK_N by moving [-300.000 ,0.000 ,0.000]
+animate entity amu performing action STD_R_N_PK_N by moving [0.000 ,-160.000 ,0.000]
+animate entity amu performing action STD_R_N_PK_N by moving [-300.000 ,0.000 ,0.000]
+wait 0.300 seconds
+animate entity cover2 performing action STD_R_N_MRS_2 by moving [0.000 ,-160.000 ,0.000] signaling sig2
+wait 0.300 seconds
+animate entity john3 performing action STD_F_FWD_P_CB targeting entity cover1
+animate entity cover1 performing action STD_SSHOULDER_LT_N_N
+wait for all clearing sig2
+animate entity john3 performing action STD_F_FWD_P_CB targeting entity cover2
+animate entity cover2 performing action STD_SGUT_2SIDE_N_N
+animate entity john3 performing action STD_XSTARTLED_N_A_A
+wait 2.000 seconds
+remove entity amu
+remove entity saddam
+use entity fadein
+use entity cam7
+you.origin = john3.origin
+you.angles = john3.angles
+wait 0.100 seconds
+remove entity john3
+disable cinematics
+unload sound "cin/irq2b/c63d1.adp"
+unload sound "cin/irq2b/c63d2.adp"
+unload sound "cin/irq2b/c63d3.adp"
+unload sound "cin/irq2b/c63d4.adp"
+unload sound "cin/irq2b/c63d5.adp"
+unload sound "cin/irq2b/c63d6.adp"
+unload sound "cin/irq2b/c63d7.adp"
+unload roff "irq2b_midgame_cam1.rof"
+unload roff "irq2b_midgame_camt.rof"
+unload roff "irq2b_midgame_cam7.rof"
+exit

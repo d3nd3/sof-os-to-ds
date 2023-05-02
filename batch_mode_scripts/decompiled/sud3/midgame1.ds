@@ -1,0 +1,197 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity john
+local entity hawk
+local entity you
+local entity cam1
+local entity cam2
+local entity cam8
+local entity cam3
+local entity cam3t
+local entity cam4n6
+local entity cam4n6t
+local entity cam5
+local entity cam5t
+local entity cam7
+local entity missile
+local entity misssnd
+local entity doorrt
+local entity doorlf
+local entity hyds
+local entity rfclamp
+local entity lfclamp
+local entity rrclamp
+local entity lrclamp
+local entity missplat
+local entity missdoort
+local entity missdoorb
+local entity guy1
+local entity guy2
+local entity order
+local entity fin
+local entity fout
+local int sig
+
+cam1 = find entity with targetname "cam1mid"
+enable cinematics
+use entity cam1
+cam3 = find entity with targetname "misscam1"
+cam3t = find entity with targetname "t245"
+cam4n6 = find entity with targetname "misscam2n4"
+cam4n6t = find entity with targetname "t192"
+cam5 = find entity with targetname "misscam3"
+cam5t = find entity with targetname "t246"
+cam7 = find entity with targetname "misscam5"
+missile = find entity with targetname "missile"
+doorrt = find entity with targetname "missdoorrt"
+doorlf = find entity with targetname "missdoorlf"
+hyds = find entity with targetname "hydrolics"
+rfclamp = find entity with targetname "rtfrntclamp"
+lfclamp = find entity with targetname "lffrntclamp"
+rrclamp = find entity with targetname "rtrearclamp"
+lrclamp = find entity with targetname "lfrearclamp"
+missplat = find entity with targetname "missplat"
+missdoort = find entity with targetname "misdoort"
+missdoorb = find entity with targetname "misdoorb"
+guy1 = find entity with targetname "missguy1"
+guy2 = find entity with targetname "missguy2"
+order = find entity with targetname "missorder"
+cam2 = find entity with targetname "cam2mid"
+john = find entity with targetname "johnmid"
+hawk = find entity with targetname "hawkmid"
+you = find entity player
+fin = find entity with targetname "midfadein"
+fout = find entity with targetname "midfadeout"
+use entity hawk
+use entity john
+animate entity hawk performing action CCH_W_N_A_N by moving [0.000 ,-16.000 ,0.000]
+animate entity hawk performing action CCH_EWALK2CCH_N_A_N
+animate entity hawk performing action CCH_ETALK_DWN_P_N holding for 1.800
+animate entity john performing action STD_ITALKPOSE_UP_A_N holding for 1.800
+wait 0.100 seconds
+print 27648
+play sound "cin/sud3/c47d1.adp" for entity hawk on channel CHAN_NO_PHS_ADD at volume 0.900
+wait 1.700 seconds
+use entity cam1
+use entity cam2
+animate entity john performing action STD_ETALK_UP_A_N holding for 0.900
+animate entity hawk performing action CCH_ITALKPOSE_DWN_A_N holding for 0.900
+wait 0.100 seconds
+print 27649
+play sound "cin/sud3/c47d2.adp" for entity john on channel CHAN_NO_PHS_ADD at volume 0.900
+wait 0.800 seconds
+use entity cam2
+use entity cam3
+use entity guy1
+use entity guy2
+use entity order
+use entity misssnd
+animate entity order performing action STD_WPATROL_N_MRS_2 by moving [0.000 ,-288.000 ,0.000]
+animate entity order performing action STD_WPATROL_N_MRS_2 by moving [32.000 ,-48.000 ,0.000]
+animate entity order performing action STD_WPATROL_N_MRS_2 by moving [128.000 ,-16.000 ,0.000]
+animate entity order performing action STD_WPATROL_N_MRS_2 by moving [140.000 ,-8.000 ,0.000]
+animate entity guy2 performing action STD_ICLEANGUN2_N_MRS_2 holding for 8.900
+animate entity guy2 performing action STD_ETURN90_LT_A_N
+animate entity order performing action STD_ITALK_N_MRS_2 holding for 10.000
+animate entity guy2 performing action STD_EHEADNOD_N_A_N holding for 10.000
+moverotate entity misssnd from file "sud3_missile_missplat.rof"
+moverotate entity cam3 from file "sud3_missile_cam1.rof"
+moverotate entity cam3t from file "sud3_missile_cam1.rof"
+moverotate entity missdoort from file "sud3_missile_misdoort.rof"
+moverotate entity missdoorb from file "sud3_missile_misdoorb.rof"
+moverotate entity missplat from file "sud3_missile_missplat.rof"
+moverotate entity missile from file "sud3_missile_missplat.rof"
+moverotate entity doorrt from file "sud3_missile_doorrt.rof"
+moverotate entity doorlf from file "sud3_missile_doorlf.rof"
+moverotate entity hyds from file "sud3_missile_hyds.rof"
+moverotate entity rfclamp from file "sud3_missile_missplat.rof"
+moverotate entity lfclamp from file "sud3_missile_missplat.rof"
+moverotate entity rrclamp from file "sud3_missile_missplat.rof"
+moverotate entity lrclamp from file "sud3_missile_missplat.rof"
+moverotate entity cam4n6 from file "sud3_missile_missplat.rof"
+moverotate entity cam4n6t from file "sud3_missile_missplat.rof"
+play sound "cin/sud3/C47D3.adp" for entity you on channel CHAN_NO_PHS_ADD at volume 0.900
+print 27650
+wait 1.800 seconds
+play sound "cin/sud3/C47D4.adp" for entity you on channel CHAN_NO_PHS_ADD at volume 0.900
+print 27651
+wait 0.500 seconds
+print 27652
+play sound "cin/sud3/c47d5.adp" for entity you on channel CHAN_NO_PHS_ADD at volume 0.900
+wait 0.800 seconds
+use entity cam3
+use entity cam4n6
+print 27653
+play sound "cin/sud3/c47d6.adp" for entity you on channel CHAN_NO_PHS_ADD at volume 0.900
+wait 1.900 seconds
+print 27654
+play sound "cin/sud3/c47d7.adp" for entity you on channel CHAN_NO_PHS_ADD at volume 0.900
+wait 0.200 seconds
+use entity cam4n6
+use entity cam5
+wait 2 seconds
+use entity cam5
+use entity cam7
+wait 1.500 seconds
+print 27655
+play sound "cin/sud3/c47d8.adp" for entity you on channel CHAN_NO_PHS_ADD at volume 0.900
+wait 2 seconds
+use entity cam7
+use entity cam1
+animate entity hawk performing action STD_R_N_PK_N by moving [0.000 ,-256.000 ,0.000]
+animate entity hawk performing action STD_R_N_PK_N by moving [-125.000 ,0.000 ,0.000]
+wait 0.500 seconds
+use entity fout
+wait 1.500 seconds
+use entity fin
+use entity cam1
+disable cinematics
+remove entity john
+remove entity hawk
+remove entity guy1
+remove entity guy2
+remove entity order
+remove entity misssnd
+unload sound "cin/sud3/c47d1.adp"
+unload sound "cin/sud3/c47d2.adp"
+unload sound "cin/sud3/c47d3.adp"
+unload sound "cin/sud3/c47d4.adp"
+unload sound "cin/sud3/c47d5.adp"
+unload sound "cin/sud3/c47d6.adp"
+unload sound "cin/sud3/c47d7.adp"
+unload sound "cin/sud3/c47d8.adp"
+unload roff "sud3_missile_cam1.rof"
+unload roff "sud3_missile_cam1.rof"
+unload roff "sud3_missile_misdoort.rof"
+unload roff "sud3_missile_misdoorb.rof"
+unload roff "sud3_missile_missplat.rof"
+unload roff "sud3_missile_doorrt.rof"
+unload roff "sud3_missile_doorlf.rof"
+unload roff "sud3_missile_hyds.rof"
+exit

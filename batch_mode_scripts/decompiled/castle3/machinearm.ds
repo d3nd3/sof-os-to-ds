@@ -1,0 +1,52 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity macharmp
+local entity macharmc
+local int sig
+local vector keep_origin
+local vector keep_angles
+local vector keep_origin1
+local vector keep_angles1
+
+macharmp = find entity with targetname "macharmp"
+macharmc = find entity with targetname "macharmc"
+keep_origin = macharmp.origin
+keep_angles = macharmp.angles
+keep_origin1 = macharmc.origin
+keep_angles1 = macharmc.angles
+label lab_00001
+moverotate entity macharmp from file "ger3_macharmp.rof"
+moverotate entity macharmc from file "ger3_macharmc.rof" signaling sig
+wait for all clearing sig
+macharmp.origin = keep_origin
+macharmp.angles = keep_angles
+macharmc.origin = keep_origin1
+macharmc.angles = keep_angles1
+goto lab_00001
+exit

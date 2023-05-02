@@ -1,0 +1,49 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity shooter
+local entity victim
+local entity crates
+local entity crates1
+local entity you
+local int sig1
+
+shooter = find entity with targetname "kos2_shooter"
+victim = find entity with targetname "kos2_victim"
+crates = find entity with targetname "kos2_crates"
+crates1 = find entity with targetname "kos2_crates1"
+you = find entity player
+animate entity shooter performing action STD_FAUTOSWEEP_N_M_2 targeting entity victim
+animate entity shooter performing action SCRIPT_RELEASE
+animate entity victim performing action PRN_XFALLING_N_N_N by moving [0.000 ,-128.000 ,0.000]
+animate entity victim performing action PRN_XFALLLAND_N_N_N
+wait 0.450 seconds
+play sound "Impact/Wood/CrateExp.adp" for entity you on channel CHAN_AUTO at volume 0.900
+use entity crates
+use entity crates1
+exit

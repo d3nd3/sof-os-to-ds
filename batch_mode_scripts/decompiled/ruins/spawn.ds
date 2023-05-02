@@ -1,0 +1,53 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity yoyo
+local entity yaya
+
+yoyo = find entity with targetname "yoyo"
+yaya = find entity with targetname "yaya"
+use entity yoyo
+use entity yaya
+yoyo.health += 40
+yaya.health += 40
+label lab_00003
+jo = get entity activator
+animate entity yoyo performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity yaya performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+if yoyo.health < 0
+if yaya.health < 0
+goto lab_00002
+endif
+suspend
+goto lab_00003
+label lab_00002
+animate entity yoyo performing action SCRIPT_RELEASE
+animate entity yaya performing action SCRIPT_RELEASE
+exit

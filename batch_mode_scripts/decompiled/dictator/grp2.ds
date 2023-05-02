@@ -1,0 +1,108 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity twa
+local entity twb
+local entity twc
+local entity twd
+local entity twe
+local entity twf
+local entity tank3
+local entity jo
+local vector pos
+local entity g2
+local int tadada
+
+twa = find entity with targetname "twa"
+twb = find entity with targetname "twb"
+twc = find entity with targetname "twc"
+twd = find entity with targetname "twd"
+twe = find entity with targetname "twe"
+twf = find entity with targetname "twf"
+tank3 = find entity with targetname "tank3"
+g2 = find entity with targetname "g2"
+tadada = find entity with targetname tadada
+wait 0.100 seconds
+use entity twa
+use entity twb
+wait 0.300 seconds
+use entity twc
+use entity twd
+wait 0.300 seconds
+use entity twe
+use entity twf
+wait 0.200 seconds
+twa.health += 90
+twb.health += 90
+twc.health += 90
+twd.health += 90
+twe.health += 90
+tank3.health += 250
+wait 0.200 seconds
+animate entity twc performing action SCRIPT_RELEASE
+animate entity twd performing action SCRIPT_RELEASE
+animate entity twe performing action SCRIPT_RELEASE
+animate entity twf performing action SCRIPT_RELEASE
+wait 0.200 seconds
+twa.health += 15
+twb.health += 15
+label lab_00003
+tank3.health += 15
+jo = get entity activator
+animate entity twa performing action CCH_F_FWD_L_2 targeting entity jo
+animate entity twb performing action CCH_F_FWD_L_2 targeting entity jo
+pos = jo.origin
+pos += [0.000 ,0.000 ,-34.000]
+tank entity tank3 2
+animate entity twa performing action CCH_F_FWD_L_2 targeting entity jo
+wait 0.200 seconds
+pos = jo.origin
+tank entity tank3 3
+animate entity twb performing action CCH_F_FWD_L_2 targeting entity jo
+animate entity twa performing action CCH_F_FWD_L_2 targeting entity jo
+pos = jo.origin
+tank entity tank3 3
+animate entity twa performing action CCH_F_FWD_L_2 targeting entity jo
+animate entity twb performing action CCH_F_FWD_L_2 targeting entity jo
+if twa.health < 0
+if twb.health < 0
+if tank3.health < 0
+goto lab_00002
+endif
+wait 0.100 seconds
+animate entity twa performing action CCH_F_FWD_L_2 targeting entity jo
+animate entity twb performing action CCH_F_FWD_L_2 targeting entity jo
+suspend
+jo = get entity activator
+animate entity twa performing action CCH_F_FWD_L_2 targeting entity jo
+animate entity twb performing action CCH_F_FWD_L_2 targeting entity jo
+goto lab_00003
+label lab_00002
+use entity g2
+remove entity g2
+exit

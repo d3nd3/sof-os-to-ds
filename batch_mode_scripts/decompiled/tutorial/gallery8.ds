@@ -1,0 +1,82 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity badguy6
+local entity badguy6head
+local entity badguy6legs
+local entity gallery8null
+local int badguy6health
+local int badguy6headhealth
+local int badguy6legshealth
+local int b1
+local int b2
+local int b3
+local int btotal
+global int target8
+
+badguy6 = find entity with targetname "badguy6"
+badguy6head = find entity with targetname "badguy6head"
+badguy6legs = find entity with targetname "badguy6legs"
+gallery8null = find entity with targetname "gallery8null"
+target8 = 0
+label lab_00006
+on target8 == 1 goto lab_00001
+badguy6.movetype = MOVETYPE_PUSH
+badguy6head.movetype = MOVETYPE_PUSH
+badguy6legs.movetype = MOVETYPE_PUSH
+move entity badguy6 by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity badguy6head by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity badguy6legs by [0.200 ,0.000 ,0.000] over 0.200 seconds
+play sound "Cin/Tut/Script/target.wav" for entity gallery8null on channel CHAN_AUTO at volume 0.900
+wait 3.200 seconds
+move entity badguy6 by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity badguy6head by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity badguy6legs by [0.200 ,0.000 ,0.000] over 0.200 seconds
+play sound "Cin/Tut/Script/target.wav" for entity gallery8null on channel CHAN_AUTO at volume 0.900
+wait 1.200 seconds
+badguy6health = badguy6.health
+badguy6headhealth = badguy6head.health
+badguy6legshealth = badguy6legs.health
+if badguy6health == 0
+b1 = 1
+endif
+if badguy6headhealth == 0
+b2 = 1
+endif
+if badguy6legshealth == 0
+b3 = 1
+endif
+btotal = b1 + b2
+btotal += b3
+if btotal == 3
+exit
+goto lab_00001
+endif
+goto lab_00006
+label lab_00001
+exit

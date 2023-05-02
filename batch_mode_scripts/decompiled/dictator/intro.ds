@@ -1,0 +1,83 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity diccam
+local entity diccamn
+local entity parkcam
+local entity hotelcam
+local int sig
+local entity fader
+local entity defader
+local entity saddam
+local entity john
+local entity atrig
+local entity btrig
+local entity ctrig
+local entity blok
+
+diccam = find entity with targetname "diccam"
+diccamn = find entity with targetname "diccamn"
+hotelcam = find entity with targetname "hotelcam"
+parkcam = find entity with targetname "parkcam"
+fader = find entity with targetname "fader"
+defader = find entity with targetname "defader"
+atrig = find entity with targetname "atrig"
+btrig = find entity with targetname "btrig"
+ctrig = find entity with targetname "ctrig"
+john = find entity with targetname "john"
+saddam = find entity with targetname "saddam"
+blok = find entity with targetname "blok"
+diccam.movetype = MOVETYPE_NOCLIP
+diccamn.movetype = MOVETYPE_NOCLIP
+parkcam.movetype = MOVETYPE_NOCLIP
+hotelcam.movetype = MOVETYPE_NOCLIP
+use entity atrig
+wait 2.200 seconds
+enable cinematics
+use entity diccam
+wait 0.600 seconds
+move entity diccamn by [0.000 ,0.000 ,0.000] at 50 speed signaling sig
+wait for all clearing sig
+use entity saddam
+animate entity saddam performing action WALK by moving [-64.000 ,250.000 ,0.000]
+move entity diccamn to [0.000 ,0.000 ,0.000] at 65 speed signaling sig
+wait for all clearing sig
+wait 1.900 seconds
+use entity fader
+wait 1.200 seconds
+use entity diccam
+disable cinematics
+use entity defader
+wait 0.300 seconds
+use entity btrig
+wait 5.200 seconds
+use entity ctrig
+remove entity saddam
+wait 0.100 seconds
+use entity blok
+exit

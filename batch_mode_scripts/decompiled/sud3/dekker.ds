@@ -1,0 +1,617 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity dekker
+local entity dekker2
+local entity hawk
+local entity blood
+local entity guyrt
+local entity guylf
+local entity dekraid1
+local entity dekraid2
+local entity john1
+local entity john2
+local entity john3
+local entity john4
+local entity john5
+local entity dekdoor
+local entity areasnd
+local entity player1
+local entity gun
+local entity cam1
+local entity cam2
+local entity cam2t
+local entity cam3
+local entity cam4n9
+local entity cam4n9t
+local entity cam5n7
+local entity cam6
+local entity cam6t
+local entity cam6n8
+local entity cam6n8t
+local entity cam10
+local entity cam10t
+local entity cam11
+local entity cam12
+local entity cam13
+local entity cam14
+local entity cam15
+local entity hawkcam
+local entity outro
+local entity ex1
+local entity ex2
+local entity ex3
+local entity ex4
+local entity ex5
+local entity ex6
+local entity ex7
+local entity ex8
+local entity ex9
+local entity ex10
+local entity ex11
+local entity ex12
+local entity ex13
+local entity cam4ex1
+local entity cam4ex2
+local entity cam4ex3
+local entity cam5ex1
+local entity cam5ex2
+local entity cam5ex3
+local entity cam6ex1
+local entity cam6ex2
+local entity cam6ex3
+local entity cam6ex4
+local entity mach1
+local entity mach1ex
+local entity mach2
+local entity mach2ex
+local entity cam7ex1
+local entity you
+local entity plas1
+local entity plas2
+local entity plas3
+local entity plasex
+local entity ocam1
+local entity ocam2
+local entity ocam3a
+local entity ocam4
+local entity ocam5a
+local entity ocam6
+local entity ocam7a
+local entity ocam8
+local entity ocamlast
+local entity change
+local entity door
+local entity doorup
+local entity ojohn
+local entity ojohn1
+local entity ojohn2
+local entity ojohn3
+local entity ojohn4
+local entity ojohn5
+local entity ojohn6
+local entity raider
+local entity raid1
+local entity raid2
+local entity fade
+local int sig
+
+cam1 = find entity with targetname "dekcam1"
+enable cinematics
+use entity cam1
+ex1 = find entity with targetname "outroex1"
+ex2 = find entity with targetname "outroex2"
+ex3 = find entity with targetname "outroex3"
+ex4 = find entity with targetname "outroex4"
+ex5 = find entity with targetname "outroex5"
+ex6 = find entity with targetname "outroex6"
+ex7 = find entity with targetname "outroex7"
+ex8 = find entity with targetname "outroex8"
+ex9 = find entity with targetname "outroex9"
+ex10 = find entity with targetname "outroex10"
+ex11 = find entity with targetname "outroex11"
+ex12 = find entity with targetname "outroex12"
+ex13 = find entity with targetname "outroex13"
+change = find entity with targetname "outrochange"
+cam4ex1 = find entity with targetname "exmcam4ex1"
+cam4ex2 = find entity with targetname "exmcam4ex2"
+cam4ex3 = find entity with targetname "exmcam4ex3"
+cam5ex1 = find entity with targetname "excam5ex1"
+cam5ex2 = find entity with targetname "excam5ex2"
+cam5ex3 = find entity with targetname "excam5ex3"
+cam6ex1 = find entity with targetname "excam6ex1"
+cam6ex2 = find entity with targetname "excam6ex2"
+cam6ex3 = find entity with targetname "excam6ex3"
+cam6ex4 = find entity with targetname "excam6ex4"
+mach1 = find entity with targetname "excam6mach1"
+mach1ex = find entity with targetname "exmach1ex"
+mach2 = find entity with targetname "excam6mach2"
+mach2ex = find entity with targetname "exmach2ex"
+cam7ex1 = find entity with targetname "excam7ex1"
+plas1 = find entity with targetname "exmissplas1"
+plas2 = find entity with targetname "exmissplas2"
+plas3 = find entity with targetname "exmissplas3"
+plasex = find entity with targetname "exmissplasex"
+you = find entity player
+ocam1 = find entity with targetname "exmisscam1"
+ocam2 = find entity with targetname "exmisscam2"
+ocam3a = find entity with targetname "exmisscam3"
+ocam4 = find entity with targetname "exmisscam4"
+ocam5a = find entity with targetname "exmisscam5"
+ocam6 = find entity with targetname "exmisscam6"
+ocam7a = find entity with targetname "exmisscam7"
+ocam8 = find entity with targetname "outrocam1"
+ocamlast = find entity with targetname "outrocam2"
+ojohn = find entity with targetname "exmissilejohn"
+ojohn1 = find entity with targetname "exmissilejohn1"
+ojohn2 = find entity with targetname "exmissilejohn2"
+ojohn3 = find entity with targetname "exmissilejohn3"
+ojohn4 = find entity with targetname "exmissilejohn4"
+ojohn5 = find entity with targetname "outrojohn1"
+ojohn6 = find entity with targetname "outrojohn2"
+raider = find entity with targetname "dekraid3"
+raid1 = find entity with targetname "dekraid1"
+raid2 = find entity with targetname "dekraid2"
+fade = find entity with targetname "outrofade"
+door = find entity with targetname "exmissdoor"
+doorup = find entity with targetname "outrodoor"
+cam2 = find entity with targetname "dekcam2"
+cam2t = find entity with targetname "t170"
+cam3 = find entity with targetname "dekcam3"
+cam4n9 = find entity with targetname "dekcam4"
+cam4n9t = find entity with targetname "t174"
+cam5n7 = find entity with targetname "dekcam5"
+cam6 = find entity with targetname "dekcam6a"
+cam6t = find entity with targetname "t280"
+cam6n8 = find entity with targetname "dekcam6"
+cam6n8t = find entity with targetname "t176"
+cam10 = find entity with targetname "dekcam10"
+cam10t = find entity with targetname "t177"
+cam11 = find entity with targetname "dekcam11"
+cam12 = find entity with targetname "dekcam12"
+cam13 = find entity with targetname "dekcam13"
+cam14 = find entity with targetname "dekcam14"
+cam15 = find entity with targetname "dekcam15"
+hawkcam = find entity with targetname "dekcamhawk"
+dekker = find entity with targetname "dekker"
+dekker2 = find entity with targetname "dekker2"
+hawk = find entity with targetname "dekhawk"
+blood = find entity with targetname "hawkspoo"
+guyrt = find entity with targetname "dekguyrt"
+guylf = find entity with targetname "dekguylf"
+dekraid1 = find entity with targetname "dekraid1"
+dekraid2 = find entity with targetname "dekraid2"
+john1 = find entity with targetname "dekjohn1"
+john2 = find entity with targetname "dekjohn2"
+john3 = find entity with targetname "dekjohn3"
+john4 = find entity with targetname "dekjohn4"
+john5 = find entity with targetname "dekjohn5"
+dekdoor = find entity with targetname "dekdoor"
+areasnd = find entity with targetname "t235"
+player1 = get entity activator
+gun = find entity with targetname "shooteffect"
+outro = find entity with targetname "outro"
+use entity guyrt
+use entity guylf
+use entity dekker
+use entity hawk
+wait 0.500 seconds
+animate entity john1 performing action STD_R_N_PK_N by moving [0.000 ,344.000 ,0.000]
+animate entity hawk showing emotion EMOTION_FEAR holding for 21.000
+wait 0.100 seconds
+animate entity hawk performing action CCH_EHAWKKNEES_N_N_N holding for 15.750
+animate entity dekker performing action STD_EDKRAIMTALK_N_A_N holding for 15.750
+animate entity guyrt performing action STD_IALERT_N_P_N holding for 10.000
+animate entity guyrt performing action STD_ITOUCHNUTS_N_A_N holding for 5.750
+animate entity guylf performing action STD_ISTAND_N_MRS_2 holding for 15.750
+wait 1.500 seconds
+remove entity john1
+wait 0.250 seconds
+use entity cam1
+use entity cam2
+moverotate entity cam2 from file "sud3_dekker_cam2.rof"
+moverotate entity cam2t from file "sud3_dekker_cam2t.rof" signaling sig
+wait 0.100 seconds
+print 27667
+play sound "cin/sud3/c49d1.adp" for entity dekker on channel CHAN_AUTO at volume 0.900
+wait 3 seconds
+animate entity john2 performing action STD_IALERT_N_P_N holding for 10.100
+wait for all clearing sig
+use entity cam2
+use entity cam3
+animate entity dekker performing action STD_EDKRAIM_N_A_N holding for 1.700
+animate entity hawk performing action CCH_EHAWKKNEES_N_N_N holding for 1.700
+wait 0.100 seconds
+animate entity john2 showing emotion EMOTION_TALKANGRY holding for 1.600
+wait 0.100 seconds
+animate entity john2 performing action STD_ETALKBOTH_N_A_N
+animate entity john2 performing action STD_ETALK_N_A_N holding for 1.600
+print 27668
+play sound "cin/sud3/c49d2.adp" for entity john2 on channel CHAN_AUTO at volume 0.900
+wait 1.500 seconds
+use entity cam3
+use entity cam4n9
+moverotate entity cam4n9 from file "sud3_dekker_cam4n9.rof"
+animate entity dekker performing action STD_EDKRAIMTALK_N_A_N holding for 4.800
+animate entity hawk performing action CCH_EHAWKKNEES_N_N_N holding for 3.200
+wait 0.100 seconds
+print 27669
+play sound "cin/sud3/c49d3.adp" for entity dekker on channel CHAN_AUTO at volume 0.900
+wait 3 seconds
+animate entity hawk showing emotion EMOTION_TALKAFRAID holding for 1.700
+wait 0.100 seconds
+animate entity hawk performing action CCH_EHAWKKNEETLK_N_N_N holding for 1.600
+animate entity john2 performing action STD_ETALK_N_A_N holding for 1.600
+print 27670
+play sound "cin/sud3/c49d4.adp" for entity hawk on channel CHAN_AUTO at volume 0.900
+wait 1.500 seconds
+use entity cam4n9
+use entity cam5n7
+animate entity john2 showing emotion EMOTION_TALKANGRY holding for 1.500
+animate entity hawk showing emotion EMOTION_FEAR holding for 1000.000
+wait 0.100 seconds
+animate entity john2 performing action STD_ETALK_N_A_N holding for 1.400
+animate entity dekker performing action STD_EDKRAIM_N_A_N holding for 1.400
+animate entity hawk performing action CCH_EHAWKKNEES_N_N_N holding for 1.400
+animate entity guyrt performing action STD_ILOOKING_N_A_A
+print 27671
+play sound "cin/sud3/c49d5.adp" for entity john2 on channel CHAN_AUTO at volume 0.900
+wait 1.200 seconds
+print 27672
+play sound "cin/sud3/c49d6.adp" for entity dekker on channel CHAN_AUTO at volume 0.900
+wait 0.200 seconds
+use entity cam5n7
+use entity cam6
+animate entity guylf performing action STD_ILOOKING_N_MRS_2 holding for 6.700
+animate entity guyrt performing action STD_ILOOKING_N_A_A holding for 6.700
+moverotate entity cam6n8 from file "sud3_dekker_cam6n8.rof"
+moverotate entity cam6n8t from file "sud3_dekker_cam6n8.rof"
+animate entity dekker performing action STD_EDKRAIMTALK_N_A_N holding for 6.700
+animate entity hawk performing action CCH_EHAWKKNEES_N_N_N holding for 6.700
+animate entity john2 performing action STD_IETALKPOSE_N_A_N holding for 6.800
+wait 6.700 seconds
+use entity cam6
+use entity cam5n7
+animate entity john2 showing emotion EMOTION_ANGRY holding for 1.300
+wait 0.100 seconds
+animate entity john2 performing action STD_IETALKPOSE_N_A_N holding for 1.300
+animate entity dekker performing action STD_EDKRAIMTALK_N_A_N holding for 1.200
+animate entity hawk performing action CCH_EHAWKKNEES_N_N_N holding for 1.200
+wait 1.200 seconds
+use entity cam5n7
+use entity cam6n8
+animate entity dekker performing action STD_EDKRAIMTALK_N_A_N holding for 2.200
+animate entity hawk performing action CCH_EHAWKKNEES_N_N_N holding for 2.200
+wait 0.100 seconds
+print 27673
+play sound "cin/sud3/c49d7.adp" for entity dekker on channel CHAN_AUTO at volume 0.900
+animate entity john2 performing action STD_IETALKPOSE_N_A_N holding for 3.200
+wait 2.100 seconds
+use entity cam6n8
+use entity cam5n7
+animate entity hawk performing action CCH_EHAWKKNEES_N_N_N holding for 2.100
+animate entity john2 showing emotion EMOTION_ANGRY holding for 2.100
+wait 0.100 seconds
+animate entity john2 performing action STD_IETALKPOSE_N_A_N holding for 2.000
+animate entity dekker performing action STD_EDKRAIM_N_A_N holding for 2.000
+wait 2 seconds
+use entity cam5n7
+use entity cam6n8
+animate entity hawk performing action CCH_EHAWKKNEES_N_N_N holding for 1.900
+animate entity dekker performing action STD_EDKRAIMTALK_N_A_N holding for 1.000
+animate entity dekker performing action STD_EDKRAIM_N_A_N holding for 0.900
+wait 0.100 seconds
+print 27675
+play sound "cin/sud3/c49d9.adp" for entity dekker on channel CHAN_AUTO at volume 0.900
+wait 1.800 seconds
+use entity cam6n8
+use entity cam10
+animate entity hawk performing action CCH_EHAWKKNEES_N_N_N holding for 1.200
+animate entity dekker performing action STD_EDKRFIRELK_RT_A_N
+wait 1.200 seconds
+play sound "weapons/dpistol/fire.wav" for entity dekker on channel CHAN_AUTO at volume 0.900
+animate entity hawk performing action CCH_EHAWKDEATH_N_N_N
+use entity blood
+animate entity john3 showing emotion EMOTION_ANGRY holding for 10.000
+wait 0.400 seconds
+animate entity guylf performing action STD_MKICKLOW_N_A_A holding for 1.500
+play sound "impact/gore/hitflesh.wav" for entity john2 on channel CHAN_AUTO at volume 0.900
+remove entity john2
+use entity john3
+use entity cam10
+use entity hawkcam
+setcvar cvar "timescale" to 0.300000
+animate entity john3 performing action STD_IALERT_N_P_N holding for 1.600
+wait 1.500 seconds
+use entity hawkcam
+use entity cam11
+wait 0.100 seconds
+print 27676
+play sound "cin/sud3/c49d10.adp" for entity john3 on channel CHAN_AUTO at volume 0.900
+animate entity john3 performing action STD_ETOAIM_N_P_2 signaling sig
+wait for all clearing sig
+setcvar cvar "timescale" to 1.000000
+animate entity john3 performing action STD_FRAPID_N_P_2 targeting entity dekker holding for 6.500
+wait 2 seconds
+use entity cam11
+use entity cam12
+wait 2 seconds
+use entity cam12
+use entity cam13
+use entity gun
+animate entity john4 performing action STD_FRAPID_N_P_2 targeting entity guylf kill nulltarget CHEST
+animate entity john5 performing action STD_FRAPID_N_P_2 targeting entity guyrt kill nulltarget HEAD
+animate entity guylf performing action STD_SGUT_2SIDE_N_N
+animate entity guyrt performing action STD_SHEAD_2FRNT_N_N
+animate entity dekker performing action STD_WBACKWARDS_N_A_N by moving [0.000 ,-20.000 ,0.000]
+wait 0.100 seconds
+print 27677
+play sound "cin/sud3/c49d11.adp" for entity dekker on channel CHAN_AUTO at volume 0.900
+wait 1.400 seconds
+animate entity dekker performing action STD_ESABREMOCK_N_A_N
+use entity cam13
+remove entity dekker
+remove entity john4
+remove entity john5
+use entity dekker2
+use entity cam14
+animate entity dekker2 performing action STD_ESABREMOCK_N_A_N holding for 4.000
+wait 0.100 seconds
+play sound "cin/sud3/script/laugh.adp" for entity dekker2 on channel CHAN_AUTO at volume 0.900
+wait 2 seconds
+moverotate entity dekdoor from file "sud3_dekker_door.rof"
+wait 1.500 seconds
+remove entity gun
+wait 0.500 seconds
+use entity cam14
+remove entity dekker2
+use entity cam3
+animate entity john3 performing action STD_XSTARTLED_N_A_A
+use entity dekraid1
+use entity dekraid2
+animate entity dekraid2 performing action STD_R_N_MRS_2 by moving [-136.000 ,0.000 ,0.000]
+animate entity dekraid2 performing action STD_R_N_MRS_2 by moving [0.000 ,180.000 ,0.000]
+animate entity dekraid2 performing action STD_R_N_MRS_2 by moving [-24.000 ,24.000 ,0.000]
+wait 0.200 seconds
+animate entity dekraid1 performing action STD_R_N_MRS_2 by moving [-136.000 ,0.000 ,0.000]
+animate entity dekraid1 performing action STD_R_N_MRS_2 by moving [0.000 ,180.000 ,0.000]
+animate entity dekraid1 performing action STD_R_N_MRS_2 by moving [24.000 ,24.000 ,0.000]
+animate entity john3 performing action STD_ESPIN180_LT_A_N
+wait 1.500 seconds
+use entity cam3
+use entity cam15
+animate entity dekraid2 performing action STD_XCOCK_N_S_2
+animate entity dekraid1 performing action STD_XCOCK_N_S_2
+animate entity john3 performing action STD_F_FWD_P_2 targeting entity dekraid2 kill nulltarget HEAD
+animate entity john3 performing action STD_F_FWD_P_2 targeting entity dekraid1 kill nulltarget HEAD
+animate entity john3 performing action STD_F_FWD_P_2 targeting entity dekraid1 kill nulltarget HEAD
+animate entity john3 performing action STD_R_N_PK_N by moving [0.000 ,-440.000 ,0.000]
+animate entity john3 performing action STD_R_N_PK_N by moving [32.000 ,0.000 ,0.000] signaling sig
+wait for all clearing sig
+remove entity john3
+use entity cam15
+use entity ocam4
+use entity doorup
+animate entity ojohn1 performing action STD_A_FWD_P_2 holding for 1.000
+animate entity raider performing action STD_R_N_MRS_2 by moving [-32.000 ,32.000 ,0.000]
+animate entity raider performing action STD_R_N_MRS_2 by moving [-16.000 ,0.000 ,0.000]
+animate entity raider performing action STD_XCOCK_N_S_2
+animate entity ojohn1 performing action STD_F_FWD_P_2 targeting entity raider kill nulltarget CHEST
+animate entity ojohn1 performing action STD_F_FWD_P_2 targeting entity raider kill nulltarget NUG_O_POPPIN
+animate entity ojohn1 performing action STD_R_N_PK_N by moving [192.000 ,0.000 ,0.000]
+animate entity ojohn1 performing action STD_R_N_PK_N by moving [56.000 ,-48.000 ,0.000]
+animate entity ojohn1 performing action STD_R_N_PK_N by moving [8.000 ,-8.000 ,0.000] signaling sig
+wait for all clearing sig
+wait 0.200 seconds
+use entity ocam4
+remove entity ojohn1
+use entity ocam1
+animate entity ojohn performing action STD_JDROP_N_A_A
+animate entity ojohn performing action STD_R_N_PK_N by moving [0.000 ,208.000 ,0.000] signaling sig
+wait for all clearing sig
+animate entity ojohn performing action STD_JRUN_FWD_A_A by moving [0.000 ,64.000 ,0.000]
+wait 0.700 seconds
+remove entity ojohn
+wait 0.300 seconds
+use entity ocam1
+use entity ocam2
+ojohn2.movetype = MOVETYPE_NOCLIP
+animate entity ojohn2 performing action STD_JDROP_N_A_A
+animate entity ojohn2 performing action STD_EWRENCHH_TO_N_N signaling sig
+wait for all clearing sig
+animate entity ojohn2 performing action STD_EWRENCHH_N_N_N holding for 1.200
+use entity plas1
+use entity plas2
+use entity plas3
+wait 0.400 seconds
+play sound "weapons/c4/c4attch.wav" for entity ojohn2 on channel CHAN_AUTO at volume 0.900
+wait 0.400 seconds
+play sound "weapons/c4/c4attch.wav" for entity ojohn2 on channel CHAN_AUTO at volume 0.900
+wait 0.400 seconds
+play sound "weapons/c4/c4attch.wav" for entity ojohn2 on channel CHAN_AUTO at volume 0.900
+animate entity ojohn2 performing action STD_EWRENCHH_FRM_N_N signaling sig
+wait for all clearing sig
+animate entity ojohn2 performing action STD_R_N_PK_N by moving [-8.000 ,-8.000 ,0.000] signaling sig
+wait for all clearing sig
+animate entity ojohn2 performing action STD_JRUN_FWD_A_A by moving [-32.000 ,-64.000 ,0.000]
+wait 0.700 seconds
+remove entity ojohn2
+wait 0.800 seconds
+remove entity raid1
+remove entity raid2
+use entity ocam2
+use entity ocam3a
+animate entity ojohn3 performing action CCH_XCROUCH_UP_PK_A
+animate entity ojohn3 performing action STD_R_N_PK_N by moving [0.000 ,-64.000 ,0.000]
+animate entity ojohn3 performing action STD_R_N_PK_N by moving [150.000 ,0.000 ,0.000]
+animate entity ojohn3 performing action STD_R_N_PK_N by moving [0.000 ,-128.000 ,0.000] signaling sig
+wait 1 seconds
+use entity plasex
+wait 0.500 seconds
+use entity plasex
+wait 0.250 seconds
+use entity plasex
+wait 0.500 seconds
+use entity plasex
+wait for all clearing sig
+remove entity ojohn3
+use entity ocam3a
+use entity ocam4
+animate entity ojohn4 performing action STD_R_N_PK_N by moving [-32.000 ,96.000 ,0.000]
+animate entity ojohn4 performing action STD_R_N_PK_N by moving [-376.000 ,0.000 ,0.000] signaling sig
+wait 0.500 seconds
+use entity cam4ex1
+wait 0.400 seconds
+use entity cam4ex2
+wait 0.250 seconds
+use entity cam4ex2
+wait 0.400 seconds
+use entity cam4ex3
+wait 0.400 seconds
+use entity cam4ex1
+wait for all clearing sig
+use entity ocam4
+use entity ocam5a
+animate entity ojohn4 performing action STD_R_N_PK_N by moving [0.000 ,304.000 ,0.000] signaling sig
+wait 0.400 seconds
+use entity cam5ex1
+wait 0.250 seconds
+use entity cam5ex2
+wait 0.300 seconds
+use entity cam5ex3
+wait 0.400 seconds
+use entity cam5ex1
+wait for all clearing sig
+use entity ocam5a
+use entity ocam6
+use entity cam6ex1
+wait 0.200 seconds
+use entity door
+animate entity ojohn4 performing action STD_XBOOMCROUCH_N_A_N
+use entity cam6ex2
+wait 0.200 seconds
+use entity cam6ex3
+use entity cam6ex4
+wait 0.200 seconds
+use entity cam6ex2
+wait 0.200 seconds
+use entity cam5ex3
+use entity cam6ex4
+animate entity ojohn4 performing action STD_R_N_PK_N by moving [-120.000 ,0.000 ,0.000] signaling sig
+use entity mach2ex
+wait 0.200 seconds
+use entity mach2
+wait 0.300 seconds
+use entity mach1ex
+use entity cam6ex2
+wait 0.200 seconds
+use entity mach1
+wait 0.200 seconds
+use entity cam6ex3
+use entity cam6ex4
+wait 0.200 seconds
+use entity cam6ex2
+print 27678
+play sound "cin/sud3/c50d1.adp" for entity you on channel CHAN_NO_PHS_ADD at volume 0.900
+wait for all clearing sig
+use entity ocam6
+use entity ocam7a
+use entity cam6ex3
+animate entity ojohn4 performing action STD_JRUN_FWD_A_A by moving [-128.000 ,0.000 ,0.000]
+wait 0.300 seconds
+use entity cam7ex1
+wait 0.300 seconds
+use entity ex2
+use entity cam7ex1
+wait 0.500 seconds
+use entity ex1
+use entity ocam7a
+use entity ocam8
+wait 0.250 seconds
+moverotate entity ocam8 from file "sud3_outro_cam1.rof"
+animate entity ojohn5 performing action STD_R_N_PK_N by moving [0.000 ,-128.000 ,0.000]
+animate entity ojohn5 performing action STD_R_N_PK_N by moving [-304.000 ,0.000 ,0.000]
+animate entity ojohn5 performing action STD_JDIVE2PRONE_N_A_N
+wait 0.400 seconds
+use entity ex1
+wait 0.500 seconds
+use entity ex2
+wait 0.300 seconds
+use entity ex3
+wait 0.300 seconds
+use entity ex4
+wait 0.300 seconds
+use entity ex5
+wait 0.200 seconds
+use entity ex6
+wait 0.300 seconds
+use entity ex7
+wait 0.200 seconds
+use entity ex8
+wait 0.300 seconds
+use entity ex9
+use entity ocam8
+ojohn6.movetype = MOVETYPE_NOCLIP
+use entity ocamlast
+animate entity ojohn6 performing action STD_JDIVE2PRONE_N_A_N
+moverotate entity ojohn6 from file "sud3_outro_john2.rof"
+wait 0.200 seconds
+use entity ex10
+use entity ex11
+wait 0.200 seconds
+use entity ex12
+use entity ex13
+use entity fade
+setcvar cvar "timescale" to 0.400000
+wait 1 seconds
+remove entity ojohn6
+setcvar cvar "timescale" to 1.000000
+wait 2 seconds
+use entity change
+setcvar cvar "menu_nextmap" to "arm3"
+run console command "menu acc2"
+disable cinematics
+unload sound "cin/sud3/c49d1.adp"
+unload sound "cin/sud3/c49d2.adp"
+unload sound "cin/sud3/c49d3.adp"
+unload sound "cin/sud3/c49d4.adp"
+unload sound "cin/sud3/c49d5.adp"
+unload sound "cin/sud3/c49d6.adp"
+unload sound "cin/sud3/c49d7.adp"
+unload sound "cin/sud3/c49d8.adp"
+unload sound "cin/sud3/c49d9.adp"
+unload sound "cin/sud3/c49d10.adp"
+unload sound "cin/sud3/c49d11.adp"
+unload sound "cin/sud3/script/laugh.adp"
+unload roff "sud3_dekker_cam4n9.rof"
+unload roff "sud3_dekker_cam6n8.rof"
+unload roff "sud3_dekker_cam2.rof"
+unload roff "sud3_dekker_cam2t.rof"
+unload sound "cin/sud3/c50d1.adp"
+unload roff "sud3_outro_cam1.rof"
+exit

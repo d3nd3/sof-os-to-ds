@@ -1,0 +1,151 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity jo
+local entity wa
+local entity wb
+local entity wc
+local entity wd
+local entity we
+local int a
+
+wa = find entity with targetname "wa"
+wb = find entity with targetname "wb"
+wc = find entity with targetname "wc"
+wd = find entity with targetname "wd"
+we = find entity with targetname "we"
+use entity wa
+use entity wb
+use entity wc
+use entity wd
+use entity we
+a = 0
+wa.health += 40
+wb.health += 40
+wc.health += 40
+jo = get entity activator
+animate entity wa performing action STD_TGRENADE_N_A_N targeting entity jo
+animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+animate entity wb performing action STD_TGRENADE_N_A_N targeting entity jo
+animate entity wc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+wait 0.300 seconds
+suspend
+jo = get entity activator
+animate entity wc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+suspend
+label lab_00002
+a += 1
+jo = get entity activator
+reset ai for entity wa
+reset ai for entity wb
+reset ai for entity wc
+reset ai for entity wd
+reset ai for entity we
+animate entity wa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity we performing action STD_F_FWD_R_2 targeting entity jo
+wait 0.400 seconds
+animate entity wb performing action STD_TGRENADE_N_A_N targeting entity jo
+animate entity wa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+suspend
+jo = get entity activator
+animate entity wc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+suspend
+wait 0.500 seconds
+suspend
+jo = get entity activator
+animate entity wc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+suspend
+wait 0.300 seconds
+jo = get entity activator
+animate entity wc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget CHEST
+animate entity wc performing action STD_TGRENADE_N_A_N targeting entity jo
+wait 0.300 seconds
+suspend
+jo = get entity activator
+animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+suspend
+jo = get entity activator
+animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+if a == 6
+suspend
+jo = get entity activator
+animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wb performing action STD_XROLL_LT_A_A
+animate entity wc performing action STD_XROLL_LT_A_A
+wait 0.200 seconds
+wa.health += 40
+wb.health += 40
+wc.health += 40
+suspend
+jo = get entity activator
+animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+animate entity wa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+wait 0.500 seconds
+suspend
+goto lab_00002
+endif
+if wa.health < 0
+if wb.health < 0
+if wc.health < 0
+if we.health < 0
+goto lab_00004
+endif
+suspend
+goto lab_00002
+label lab_00004
+animate entity wa performing action SCRIPT_RELEASE
+animate entity wb performing action SCRIPT_RELEASE
+animate entity wc performing action SCRIPT_RELEASE
+animate entity wd performing action SCRIPT_RELEASE
+animate entity we performing action SCRIPT_RELEASE
+exit

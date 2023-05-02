@@ -1,0 +1,205 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity ninja1
+local entity ninja2
+local entity ninja3
+local entity ninja4
+local entity ninja5
+local entity ninja6
+local entity entninj1
+local entity entninj2
+local entity entninj3
+local entity door1
+local entity door2
+local entity battle
+local entity n1
+local entity n3
+local entity n4
+local entity n5
+local entity n7
+local entity n8
+local entity n10
+local entity nn1
+local entity nn3
+local entity nn4
+local entity nn5
+local entity nn7
+local entity nn8
+local entity nn10
+local entity null
+local entity cam
+local int sig1
+
+cam = find entity with targetname "1ninjacam"
+null = find entity with targetname "t129"
+battle = find entity with targetname "battle"
+door1 = find entity with targetname "door1"
+door2 = find entity with targetname "door2"
+n1 = find entity with targetname "n1"
+n3 = find entity with targetname "n3"
+n4 = find entity with targetname "n4"
+n5 = find entity with targetname "n5"
+n7 = find entity with targetname "n7"
+n8 = find entity with targetname "n8"
+n10 = find entity with targetname "n10"
+nn1 = find entity with targetname "nn1"
+nn3 = find entity with targetname "nn3"
+nn4 = find entity with targetname "nn4"
+nn5 = find entity with targetname "nn5"
+nn7 = find entity with targetname "nn7"
+nn8 = find entity with targetname "nn8"
+nn10 = find entity with targetname "nn10"
+ninja1 = find entity with targetname "ninja1"
+ninja2 = find entity with targetname "ninja2"
+ninja3 = find entity with targetname "ninja3"
+ninja4 = find entity with targetname "ninja4"
+ninja5 = find entity with targetname "ninja5"
+ninja6 = find entity with targetname "ninja6"
+entninj1 = find entity with targetname "entninj1"
+entninj2 = find entity with targetname "entninj2"
+entninj3 = find entity with targetname "entninj3"
+null.movetype = MOVETYPE_NOCLIP
+cam.movetype = MOVETYPE_NOCLIP
+cache strings "KB"
+use entity ninja1
+use entity ninja2
+use entity ninja3
+use entity ninja4
+use entity ninja5
+use entity ninja6
+use entity entninj1
+use entity entninj2
+use entity entninj3
+use entity n1
+use entity n3
+use entity n4
+use entity n5
+use entity n7
+use entity n8
+use entity n10
+use entity nn1
+use entity nn3
+use entity nn4
+use entity nn5
+use entity nn7
+use entity nn8
+use entity nn10
+use entity cam
+print 25613
+use entity door1
+use entity door2
+wait 1 seconds
+animate entity ninja1 performing action RUN by moving [0.000 ,180.000 ,0.000]
+animate entity ninja2 performing action RUN by moving [0.000 ,180.000 ,0.000]
+animate entity ninja3 performing action RUN by moving [0.000 ,180.000 ,0.000]
+animate entity ninja4 performing action RUN by moving [0.000 ,180.000 ,0.000]
+animate entity ninja5 performing action RUN by moving [0.000 ,180.000 ,0.000]
+animate entity ninja6 performing action RUN by moving [0.000 ,180.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity ninja1 performing action RUN by moving [192.000 ,0.000 ,0.000]
+animate entity ninja2 performing action RUN by moving [0.000 ,64.000 ,0.000]
+animate entity ninja3 performing action RUN by moving [0.000 ,64.000 ,0.000]
+animate entity ninja4 performing action RUN by moving [-192.000 ,0.000 ,0.000]
+animate entity ninja5 performing action RUN by moving [0.000 ,64.000 ,0.000]
+animate entity ninja6 performing action RUN by moving [0.000 ,64.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity ninja2 performing action RUN by moving [64.000 ,0.000 ,0.000]
+animate entity ninja3 performing action RUN by moving [0.000 ,64.000 ,0.000]
+animate entity ninja5 performing action RUN by moving [-64.000 ,0.000 ,0.000]
+animate entity ninja6 performing action RUN by moving [0.000 ,64.000 ,0.000] signaling sig1
+wait for all clearing sig1
+remove entity ninja1
+remove entity ninja4
+rotate entity ninja2 by [0.000 ,0.000 ,0.000]
+rotate entity ninja5 by [0.000 ,0.000 ,0.000]
+rotate entity ninja2 by [0.000 ,0.000 ,0.000]
+rotate entity ninja5 by [0.000 ,0.000 ,0.000]
+wait 1 seconds
+use entity battle
+move entity null by [0.000 ,0.000 ,0.000] at 200 speed signaling sig1
+wait for all clearing sig1
+move entity null by [0.000 ,0.000 ,0.000] at 400 speed signaling sig1
+wait for all clearing sig1
+move entity null by [0.000 ,0.000 ,0.000] at 300 speed signaling sig1
+wait for all clearing sig1
+use entity battle
+move entity null by [0.000 ,0.000 ,0.000] at 400 speed signaling sig1
+wait for all clearing sig1
+move entity null by [0.000 ,0.000 ,0.000] at 400 speed signaling sig1
+wait for all clearing sig1
+move entity cam by [0.000 ,0.000 ,0.000] at 400 speed signaling sig1
+wait for all clearing sig1
+remove entity ninja2
+remove entity ninja3
+remove entity ninja5
+remove entity ninja6
+remove entity nn1
+remove entity nn3
+remove entity nn4
+remove entity nn5
+remove entity nn7
+remove entity nn8
+remove entity nn10
+animate entity entninj1 performing action RUN by moving [0.000 ,-256.000 ,0.000]
+animate entity entninj2 performing action RUN by moving [0.000 ,-192.000 ,0.000]
+animate entity entninj3 performing action RUN by moving [0.000 ,-192.000 ,0.000] signaling sig1
+wait for all clearing sig1
+animate entity entninj2 performing action RUN by moving [-64.000 ,0.000 ,0.000]
+animate entity entninj3 performing action RUN by moving [0.000 ,-96.000 ,0.000] signaling sig1
+wait for all clearing sig1
+rotate entity entninj2 by [0.000 ,0.000 ,0.000]
+animate entity entninj3 performing action RUN by moving [64.000 ,0.000 ,0.000] signaling sig1
+wait for all clearing sig1
+rotate entity entninj3 by [0.000 ,0.000 ,0.000]
+wait 1 seconds
+use entity cam
+remove entity battle
+remove entity entninj2
+remove entity entninj3
+animate entity entninj1 performing action SCRIPT_RELEASE
+animate entity n1 performing action STD_JUPTO_N_A_A by moving [192.000 ,0.000 ,0.000]
+wait 1 seconds
+animate entity n1 performing action SCRIPT_RELEASE
+animate entity n3 performing action STD_JUPTO_N_A_A by moving [192.000 ,0.000 ,0.000]
+animate entity n5 performing action STD_JUPTO_N_A_A by moving [192.000 ,0.000 ,0.000]
+wait 1 seconds
+animate entity n3 performing action SCRIPT_RELEASE
+animate entity n5 performing action SCRIPT_RELEASE
+wait 2 seconds
+animate entity n4 performing action STD_JUPTO_N_A_A by moving [192.000 ,0.000 ,0.000]
+animate entity n4 performing action SCRIPT_RELEASE
+wait 2 seconds
+animate entity n8 performing action STD_JUPTO_N_A_A by moving [192.000 ,0.000 ,0.000]
+animate entity n8 performing action SCRIPT_RELEASE
+wait 1 seconds
+animate entity n7 performing action STD_JUPTO_N_A_A by moving [192.000 ,0.000 ,0.000]
+animate entity n10 performing action STD_JUPTO_N_A_A by moving [192.000 ,0.000 ,0.000]
+animate entity n7 performing action SCRIPT_RELEASE
+animate entity n10 performing action SCRIPT_RELEASE
+exit

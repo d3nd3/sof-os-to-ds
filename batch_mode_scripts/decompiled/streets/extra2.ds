@@ -1,0 +1,123 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity man25
+local entity man26
+local entity man27
+local entity man28
+local int health
+local entity p0
+local entity p1
+local entity p2
+local entity p3
+local int sig1
+
+man25 = find entity with targetname "shoot25"
+man26 = find entity with targetname "shoot26"
+man27 = find entity with targetname "shoot27"
+man28 = find entity with targetname "shoot28"
+p0 = get entity player 0
+p1 = get entity player 1
+p2 = get entity player 2
+p3 = get entity player 3
+man25.health = 5500
+health = man25.health
+man26.health = 5500
+health = man26.health
+man27.health = 5500
+health = man27.health
+man28.health = 5500
+health = man28.health
+label lab_00001
+animate entity man25 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man26 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man27 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man28 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man25 performing action STD_XROLL_RT_A_A repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man26 performing action STD_XROLL_LT_A_A repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man27 performing action STD_XROLL_LT_A_A repeating for 1 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man28 performing action STD_XROLL_RT_A_A repeating for 1 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man25 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man26 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man27 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man28 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man25 performing action STD_XROLL_LT_A_A repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man26 performing action STD_XROLL_RT_A_A repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man27 performing action STD_XROLL_RT_A_A repeating for 1 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man28 performing action STD_XROLL_LT_A_A repeating for 1 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man25 performing action STD_XSTARTLED_N_A_A repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man26 performing action STD_XSTARTLED_N_A_A repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man27 performing action STD_XSTARTLED_N_A_A repeating for 1 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man28 performing action STD_XSTARTLED_N_A_A repeating for 1 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man25 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man26 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man27 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man28 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man25 performing action CCH_IREADY_N_A_A repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man26 performing action CCH_IREADY_N_A_A repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man27 performing action CCH_IREADY_N_A_A repeating for 1 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man28 performing action CCH_IREADY_N_A_A repeating for 1 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man25 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man26 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man27 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+animate entity man28 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
+wait 1 seconds
+suspend
+goto lab_00001
+exit

@@ -1,0 +1,108 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity intcam1
+local entity intcam2
+local entity intcam3
+local entity intcam4
+local entity intgrd1
+local entity intgrd2
+local entity g1null
+local entity g2null
+local entity intplayr
+local entity inteledr
+local entity attack1
+local entity attack2
+local entity blocker
+local entity sib3fadeout
+local entity sib3fadein
+
+intcam1 = find entity with targetname "intcam1"
+enable cinematics
+use entity intcam1
+intcam2 = find entity with targetname "intcam2"
+intcam3 = find entity with targetname "intcam3"
+intcam4 = find entity with targetname "intcam4"
+intgrd1 = find entity with targetname "intgrd1"
+intgrd2 = find entity with targetname "intgrd2"
+g1null = find entity with targetname "g1null"
+g2null = find entity with targetname "g2null"
+intplayr = find entity with targetname "intplayr"
+inteledr = find entity with targetname "inteledr"
+attack1 = find entity with targetname "attack1"
+attack2 = find entity with targetname "attack2"
+blocker = find entity with targetname "blocker"
+sib3fadeout = find entity with targetname "sib3fadeout"
+sib3fadein = find entity with targetname "sib3fadein"
+animate entity intgrd1 performing action STD_ITALK_N_A_N holding for 1.100
+play sound "Enemy/So1/Sib3/Wake2.wav" for entity intgrd1 at volume 0.900
+animate entity intgrd2 performing action STD_ILOOKING_N_A_A holding for 1.100
+wait 1.100 seconds
+use entity inteledr
+wait 0.700 seconds
+animate entity intgrd1 performing action STD_FAUTOSWEEP_N_PM_A targeting entity g1null
+wait 0.250 seconds
+animate entity intgrd2 performing action STD_FAUTOSWEEP_N_PM_A targeting entity g2null
+wait 2.300 seconds
+use entity intcam1
+use entity intcam2
+animate entity intgrd1 performing action STD_L_N_MS_2
+wait 0.250 seconds
+animate entity intgrd2 performing action STD_L_N_MS_2
+wait 1 seconds
+use entity intplayr
+animate entity intplayr performing action STD_JDROP_N_A_A
+wait 1.800 seconds
+use entity intcam2
+use entity intcam3
+use entity blocker
+animate entity intplayr performing action STD_FRAPIDSWEEP_LT_P_2
+wait 1.600 seconds
+use entity blocker
+use entity intcam3
+use entity intcam4
+use entity attack1
+animate entity intgrd1 performing action STD_L_N_MS_2 holding for 0.200
+animate entity intgrd2 performing action STD_L_N_MS_2 holding for 0.650
+animate entity intgrd1 performing action STD_SSHOULDER_LT_N_N
+wait 0.400 seconds
+use entity attack2
+wait 0.250 seconds
+animate entity intgrd2 performing action STD_SGUT_2SIDE_N_N
+wait 2.400 seconds
+use entity attack1
+use entity attack2
+use entity sib3fadeout
+wait 1 seconds
+remove entity intplayr
+use entity intcam4
+disable cinematics
+use entity sib3fadein
+animate entity intgrd1 performing action SCRIPT_RELEASE
+animate entity intgrd2 performing action SCRIPT_RELEASE
+exit

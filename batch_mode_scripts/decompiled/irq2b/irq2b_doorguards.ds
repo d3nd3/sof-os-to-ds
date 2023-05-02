@@ -1,0 +1,63 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity irq2b_doorguard1
+local entity irq2b_doorguard2
+local entity irq2b_player
+local int sig1
+
+irq2b_doorguard1 = find entity with targetname "irq2b_doorguard1"
+irq2b_doorguard2 = find entity with targetname "irq2b_doorguard2"
+irq2b_player = find entity player
+use entity irq2b_doorguard1
+use entity irq2b_doorguard1
+wait 0.100 seconds
+print 30467
+play sound "cin/irq2b/s45d1.adp" for entity irq2b_player on channel CHAN_AUTO at volume 0.900
+animate entity irq2b_doorguard1 performing action STD_R_N_MRS_2 by moving [0.000 ,350.000 ,0.000]
+wait 0.500 seconds
+animate entity irq2b_doorguard2 performing action STD_R_N_MRS_2 by moving [0.000 ,300.000 ,0.000]
+wait 1.000 seconds
+print 30468
+play sound "cin/irq2b/s45d2.adp" for entity irq2b_player on channel CHAN_AUTO at volume 0.900
+wait 3.000 seconds
+print 30469
+play sound "cin/irq2b/s45d3.adp" for entity irq2b_doorguard1 on channel CHAN_AUTO at volume 0.900
+animate entity irq2b_doorguard1 performing action STD_ETALKBOTH_N_A_N holding for 2.000
+wait 3.000 seconds
+print 30470
+play sound "cin/irq2b/s45d4.adp" for entity irq2b_doorguard2 on channel CHAN_AUTO at volume 0.900
+animate entity irq2b_doorguard2 performing action STD_ETALKLEFT_N_A_N holding for 1.000
+animate entity irq2b_doorguard1 performing action SCRIPT_RELEASE
+animate entity irq2b_doorguard2 performing action SCRIPT_RELEASE
+wait 6 seconds
+unload sound "cin/irq2b/s45d1.adp"
+unload sound "cin/irq2b/s45d2.adp"
+unload sound "cin/irq2b/s45d3.adp"
+unload sound "cin/irq2b/s45d4.adp"
+exit

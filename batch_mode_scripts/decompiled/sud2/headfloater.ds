@@ -1,0 +1,42 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity headfloater
+local int counter = 0
+local int sig
+
+headfloater = find entity with targetname "headfloater"
+label lab_00002
+if counter < 50
+moverotate entity headfloater from file "sud2_misterhanky.rof" signaling sig
+wait for all clearing sig
+counter = counter + 1
+goto lab_00002
+endif
+remove entity headfloater
+exit

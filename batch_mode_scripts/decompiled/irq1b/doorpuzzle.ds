@@ -1,0 +1,83 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity doorpart
+local entity doorpart2
+local entity rotdoor
+local entity rotdoor2
+local entity explofront
+local entity exploback
+local entity killboxes
+local entity hearguy1
+local entity hearguy2
+local entity cratefire
+local entity dp_undamaged
+local entity dp_damaged
+local entity dp_ex
+local entity puzlocked
+local entity dp_guythrown
+local int sig1
+local int sig2
+
+doorpart = find entity with targetname "doorpart"
+doorpart2 = find entity with targetname "doorpart2"
+rotdoor = find entity with targetname "rotdoor"
+rotdoor2 = find entity with targetname "rotdoor2"
+explofront = find entity with targetname "explofront"
+exploback = find entity with targetname "exploback"
+killboxes = find entity with targetname "killboxes"
+hearguy1 = find entity with targetname "hearguy1"
+hearguy2 = find entity with targetname "hearguy2"
+cratefire = find entity with targetname "cratefire"
+dp_undamaged = find entity with targetname "dp_undamaged"
+dp_damaged = find entity with targetname "dp_damaged"
+dp_ex = find entity with targetname "dp_ex"
+puzlocked = find entity with scripttarget "puzlocked"
+dp_guythrown = find entity with targetname "dp_guythrown"
+rotdoor.movetype = MOVETYPE_NOCLIP
+rotdoor2.movetype = MOVETYPE_NOCLIP
+use entity killboxes
+play sound "Impact/Wood/CrateExp.adp" for entity rotdoor2 on channel CHAN_AUTO at volume 0.900
+use entity doorpart
+use entity doorpart2
+use entity explofront
+use entity exploback
+wait 0.200 seconds
+use entity dp_ex
+animate entity dp_guythrown performing action STD_SINBACK_2FRNT_N_N by moving [0.000 ,128.000 ,96.000]
+use entity dp_undamaged
+use entity dp_damaged
+use entity cratefire
+use entity hearguy1
+use entity hearguy2
+play sound "impact/door/kickdoor.wav" for entity rotdoor on channel CHAN_AUTO at volume 0.900
+moverotate entity rotdoor from file "generic_door_cw.rof" signaling sig1
+moverotate entity rotdoor2 from file "generic_door_ccw.rof" signaling sig2
+wait for all clearing sig1,sig2
+remove entity puzlocked
+exit

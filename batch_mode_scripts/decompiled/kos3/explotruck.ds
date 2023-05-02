@@ -1,0 +1,67 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity explodetruck
+local entity truckfrontguy
+local entity truckfrontguy2
+local entity truckstairsguy
+local entity truckdoorguy
+local entity truck_shake
+local entity bang1
+local entity bang2
+local entity of2doors_open
+
+explodetruck = find entity with targetname "explodetruck"
+truckfrontguy = find entity with scripttarget "truckfrontguy"
+truckfrontguy2 = find entity with scripttarget "truckfrontguy2"
+truckstairsguy = find entity with scripttarget "truckstairsguy"
+truckdoorguy = find entity with targetname "truckdoorguy"
+truck_shake = find entity with targetname "truck_shake"
+bang1 = find entity with targetname "bang1"
+bang2 = find entity with targetname "bang2"
+of2doors_open = find entity with targetname "of2doors_open"
+explodetruck.movetype = MOVETYPE_NOCLIP
+use entity of2doors_open
+wait 0.700 seconds
+use entity truck_shake
+use entity bang1
+moverotate entity explodetruck from file "kos3_truckex.rof"
+play sound "Impact/Explosion/TruckExp.adp" for entity explodetruck on channel CHAN_AUTO at volume 0.900
+wait 0.500 seconds
+play sound "Impact/Metal/CarHit.adp" for entity explodetruck on channel CHAN_AUTO at volume 0.900
+animate entity truckstairsguy performing action STD_XBOOMCROUCH_N_A_N
+animate entity truckfrontguy2 performing action STD_XBOOMCROUCH_N_A_N
+animate entity truckfrontguy performing action STD_SSTUMBLE_2FRNT_N_N
+wait 0.300 seconds
+use entity bang2
+use entity truckdoorguy
+use entity truckdoorguy
+animate entity truckstairsguy performing action SCRIPT_RELEASE
+animate entity truckfrontguy2 performing action SCRIPT_RELEASE
+animate entity truckfrontguy performing action SCRIPT_RELEASE
+exit

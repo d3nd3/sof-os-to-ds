@@ -1,0 +1,43 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity monkey3
+local entity monkey4
+local entity silodoor
+
+monkey3 = find entity with targetname "monkey3"
+monkey4 = find entity with targetname "monkey4"
+silodoor = find entity with targetname "silodoor"
+use entity silodoor
+use entity monkey3
+animate entity monkey3 performing action SCRIPT_RELEASE
+use entity monkey4
+animate entity monkey4 performing action SCRIPT_RELEASE
+wait 3 seconds
+use entity silodoor
+exit

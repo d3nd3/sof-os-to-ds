@@ -1,0 +1,71 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity mullins
+local entity mendigo
+local entity civil1
+local int sig1
+local entity camx
+local entity nullx
+local entity camx2
+local entity nullx2
+local entity camx3
+local entity nullx3
+
+mullins = find entity with targetname "mullins"
+mendigo = find entity with targetname "mendigo"
+civil1 = find entity with targetname "civil1"
+camx = find entity with targetname "camx"
+nullx = find entity with targetname "nullx"
+camx2 = find entity with targetname "camx2"
+nullx2 = find entity with targetname "nullx2"
+camx3 = find entity with targetname "camx3"
+nullx3 = find entity with targetname "nullx3"
+camx.movetype = MOVETYPE_NOCLIP
+nullx.movetype = MOVETYPE_NOCLIP
+camx2.movetype = MOVETYPE_NOCLIP
+nullx2.movetype = MOVETYPE_NOCLIP
+camx3.movetype = MOVETYPE_NOCLIP
+nullx3.movetype = MOVETYPE_NOCLIP
+use entity camx
+move entity camx by [0.000 ,0.000 ,0.000] at 35 speed
+move entity nullx by [0.000 ,0.000 ,0.000] at 35 speed
+wait 16 seconds
+use entity camx2
+move entity camx2 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity nullx2 by [0.000 ,0.000 ,0.000] at 35 speed
+wait 10 seconds
+use entity camx3
+move entity camx3 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity nullx3 by [0.000 ,0.000 ,0.000] at 35 speed
+wait 5 seconds
+use entity camx3
+remove entity mullins
+remove entity mendigo
+remove entity civil1
+exit

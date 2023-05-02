@@ -1,0 +1,75 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity pole
+local entity fencegood
+local entity fencebroke
+local entity clip
+local entity hurt
+local entity light
+local entity spotlight
+local entity sparkfence
+local entity sparkpole
+local entity guy
+local entity guy2
+
+pole = find entity with targetname "pole"
+fencegood = find entity with targetname "fencegood"
+fencebroke = find entity with targetname "fencebroke"
+clip = find entity with targetname "poleclip"
+hurt = find entity with targetname "polehurt"
+light = find entity with targetname "polelight"
+spotlight = find entity with targetname "polelight1"
+sparkfence = find entity with targetname "fencespark"
+sparkpole = find entity with targetname "polespark"
+guy = find entity with targetname "poleguy"
+guy2 = find entity with targetname "fenceguy1"
+wait 0.200 seconds
+moverotate entity pole from file "ny_ware_fence1.rof"
+use entity light
+use entity spotlight
+use entity sparkpole
+wait 0.500 seconds
+play sound "impact/metal/pole.adp" for entity pole on channel CHAN_AUTO at volume 0.900
+use entity fencegood
+use entity fencebroke
+use entity hurt
+wait 0.100 seconds
+use entity clip
+use entity hurt
+wait 0.500 seconds
+use entity sparkfence
+use entity guy
+use entity guy2
+animate entity guy performing action STD_R_N_PK_N by moving [-80.000 ,0.000 ,0.000]
+animate entity guy performing action STD_R_N_PK_N by moving [0.000 ,-176.000 ,0.000]
+animate entity guy2 performing action STD_R_N_MRS_2 by moving [0.000 ,96.000 ,0.000]
+animate entity guy2 performing action STD_R_N_MRS_2 by moving [64.000 ,32.000 ,0.000]
+animate entity guy performing action SCRIPT_RELEASE
+animate entity guy2 performing action SCRIPT_RELEASE
+exit

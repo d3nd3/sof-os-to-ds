@@ -1,0 +1,129 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity boss
+local entity jo
+local int sig
+local int rnd
+local int pos
+
+boss = find entity with targetname "boss"
+use entity boss
+boss.health += 8000
+animate entity boss performing action RUN by moving [-400.000 ,0.000 ,0.000]
+wait 0.700 seconds
+label lab_00020
+suspend
+rnd = random from 1 to 10
+jo = get entity activator
+reset ai for entity boss
+if rnd == 2
+animate entity boss performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+endif
+if rnd == 3
+animate entity boss performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+endif
+if rnd == 4
+animate entity boss performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget CHEST
+endif
+if rnd > 4
+animate entity boss performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+endif
+suspend
+wait 0.200 seconds
+if boss.health <= 0
+goto lab_00006
+endif
+boss.health += 100
+rnd = random from 1 to 5
+if rnd == 1
+goto lab_00008
+endif
+if rnd == 2
+goto lab_00010
+endif
+if rnd == 3
+goto lab_00012
+endif
+if rnd == 4
+goto lab_00010
+endif
+if rnd == 5
+goto lab_00015
+endif
+suspend
+pos = boss.origin_x
+if pos > -3328
+goto lab_00012
+endif
+if pos < -3776
+goto lab_00012
+endif
+pos = boss.origin_y
+if pos > 2176
+goto lab_00012
+endif
+if pos < 1728
+goto lab_00012
+endif
+goto lab_00020
+label lab_00008
+reset ai for entity boss
+rnd = random from 1 to 10
+if rnd > 5
+animate entity boss performing action STD_XROLL_RT_A_A
+goto lab_00022
+endif
+animate entity boss performing action STD_XROLL_LT_A_A
+label lab_00022
+wait 0.800 seconds
+suspend
+goto lab_00020
+label lab_00012
+suspend
+jo = get entity activator
+animate entity boss performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+wait 0.300 seconds
+animate entity boss performing action RUN by moving to [-3520.000 ,1984.000 ,32.000]
+wait 0.700 seconds
+suspend
+goto lab_00020
+label lab_00010
+suspend
+jo = get entity activator
+animate entity boss performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+wait 0.200 seconds
+animate entity boss performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
+suspend
+goto lab_00020
+label lab_00015
+boss.health += 500
+goto lab_00020
+label lab_00006
+animate entity boss performing action SCRIPT_RELEASE
+exit

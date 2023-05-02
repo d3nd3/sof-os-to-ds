@@ -1,0 +1,63 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity man30
+local entity man31
+local entity man32
+local entity man33
+local int pop
+local entity sneak
+
+pop = random from 1 to 4
+man30 = find entity with targetname "shoot30"
+man31 = find entity with targetname "shoot31"
+man32 = find entity with targetname "shoot32"
+man33 = find entity with targetname "shoot33"
+sneak = get entity activator
+use entity man30
+use entity man31
+use entity man32
+use entity man33
+label lab_00001
+sneak = get entity activator
+reset ai for entity man30
+reset ai for entity man31
+reset ai for entity man32
+reset ai for entity man33
+animate entity man30 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man31 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man32 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man33 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man30 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man31 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man32 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+animate entity man33 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop times targeting entity sneak kill nulltarget HEAD
+wait 0.100 seconds
+suspend
+goto lab_00001
+exit

@@ -1,0 +1,43 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity swatkiller
+local entity soda_fall
+local entity deadswatguy1
+local int sig1
+
+soda_fall = find entity with targetname "soda_fall"
+swatkiller = find entity with targetname "swatkiller"
+deadswatguy1 = find entity with targetname "deadswatguy1"
+animate entity swatkiller performing action STD_EPUSHOVER_N_PK_A
+animate entity swatkiller performing action SCRIPT_RELEASE
+moverotate entity soda_fall from file "tsr1_soda_fall.rof" signaling sig1
+wait 0.750 seconds
+play sound "Impact/Metal/SodaMach.adp" for entity deadswatguy1 on channel CHAN_AUTO at volume 0.900
+wait for all clearing sig1
+exit

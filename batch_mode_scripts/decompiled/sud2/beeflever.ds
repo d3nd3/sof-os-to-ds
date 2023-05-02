@@ -1,0 +1,94 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity lever
+local entity beltsound
+local entity cow2
+local entity cow3
+local entity cow4
+local entity cam1
+local entity elight1
+local entity elight2
+local entity elight3
+local entity hook01
+local entity hook02
+local entity cmdoor01
+local entity cmdoor02
+local entity doortrigger
+local entity doormessage
+local entity brutetrigger
+local entity accidental
+local int sig1
+local int sig2
+local int sig3
+
+lever = find entity with targetname "lever"
+beltsound = find entity with targetname "beltsound"
+cow2 = find entity with targetname "cow02"
+cow3 = find entity with targetname "cow03"
+cow4 = find entity with targetname "cow04"
+cam1 = find entity with targetname "camera1"
+elight1 = find entity with targetname "elight1"
+elight2 = find entity with targetname "elight2"
+elight3 = find entity with targetname "elight3"
+hook01 = find entity with targetname "hook01"
+hook02 = find entity with targetname "hook02"
+cmdoor01 = find entity with targetname "cmdoor01"
+cmdoor02 = find entity with targetname "cmdoor02"
+doortrigger = find entity with targetname "doortrigger"
+doormessage = find entity with targetname "doormessage"
+brutetrigger = find entity with targetname "brutetrigger"
+accidental = find entity with targetname "accidental"
+moverotate entity lever from file "sud2_lever.rof"
+wait 2 seconds
+unload roff "sud2_lever.rof"
+use entity elight1
+use entity elight2
+use entity elight3
+wait 0.100 seconds
+use entity cmdoor01
+use entity cmdoor02
+use entity beltsound
+moverotate entity cow2 from file "ugn2_slaughter_cow02.rof"
+moverotate entity cow3 from file "ugn2_slaughter_cow03.rof"
+moverotate entity cow4 from file "ugn2_slaughter_cow04.rof"
+moverotate entity hook01 from file "ugn2_slaughter_hook01.rof"
+moverotate entity hook02 from file "ugn2_slaughter_hook02.rof"
+use entity accidental
+use entity brutetrigger
+use entity doortrigger
+wait 7 seconds
+use entity beltsound
+wait 2 seconds
+use entity cmdoor01
+use entity cmdoor02
+use entity elight1
+use entity elight2
+use entity elight3
+disable trigger entity doormessage
+exit

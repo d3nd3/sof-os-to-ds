@@ -1,0 +1,57 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity hostage1
+local entity hostage2
+local entity hostage3
+local entity hguard
+local entity executer
+local entity t301
+local int executerhealth
+
+hostage1 = find entity with targetname "hostage1"
+hostage2 = find entity with targetname "hostage2"
+hostage3 = find entity with targetname "hostage3"
+hguard = find entity with targetname "hguard"
+executer = find entity with targetname "executer"
+t301 = find entity with targetname "t301"
+wait 15 seconds
+executerhealth = executer.health
+if executerhealth <= 0
+exit
+endif
+remove entity t301
+animate entity executer performing action STD_F_FWD_P_2 targeting entity hostage1 kill
+wait 1 seconds
+animate entity executer performing action STD_F_FWD_P_2 targeting entity hostage2 kill
+wait 2 seconds
+animate entity executer performing action STD_F_FWD_P_2 targeting entity hostage3 kill
+animate entity executer performing action SCRIPT_RELEASE
+wait 3 seconds
+unload sound "cin/jpn2/s42d3.adp"
+exit

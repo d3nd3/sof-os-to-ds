@@ -1,0 +1,56 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity kickladguy1
+local entity kickladguy2
+local entity fallladder1
+local entity fallladder2
+local entity ladlowguy
+local entity goto_knockguy
+local int sig1
+local int sig2
+
+kickladguy1 = find entity with targetname "kickladguy1"
+kickladguy2 = find entity with targetname "kickladguy2"
+fallladder1 = find entity with targetname "fallladder1"
+fallladder2 = find entity with targetname "fallladder2"
+ladlowguy = find entity with targetname "ladlowguy"
+goto_knockguy = find entity with scripttarget "goto_knockguy"
+play sound "Cin/IRQ1a/Script/Intruder.adp" for entity goto_knockguy on channel CHAN_AUTO at volume 0.900
+animate entity kickladguy1 performing action STD_R_N_MRS_2 by moving [0.000 ,-32.000 ,0.000]
+animate entity kickladguy1 performing action STD_XKICKDOOR_N_A_A
+moverotate entity fallladder1 from file "Irq1a_kladder.rof"
+play sound "Impact/Metal/LadFall.adp" for entity fallladder1 on channel CHAN_AUTO at volume 0.900
+animate entity kickladguy1 performing action SCRIPT_RELEASE
+wait 0.300 seconds
+animate entity kickladguy2 performing action STD_R_N_MRS_2 by moving [0.000 ,-32.000 ,0.000]
+animate entity kickladguy2 performing action STD_XKICKDOOR_N_A_A
+moverotate entity fallladder2 from file "Irq1a_kladder.rof"
+play sound "Impact/Metal/LadFall.adp" for entity fallladder2 on channel CHAN_AUTO at volume 0.900
+animate entity kickladguy2 performing action SCRIPT_RELEASE
+exit

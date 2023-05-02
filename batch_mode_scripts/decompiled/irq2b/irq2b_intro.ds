@@ -1,0 +1,98 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity irq2b_saddam
+local entity irq2b_amu
+local entity irq2b_fadein
+local entity irq2b_introcam
+local entity irq2b_introcamnull
+local entity irq2b_sniperzoom
+local int counter = 0
+
+cache strings "irq2b"
+cache sound "cin/irq2b/c62d1.adp"
+cache sound "cin/irq2b/c62d2.adp"
+cache sound "cin/irq2b/c62d3.adp"
+cache sound "cin/irq2b/s45d1.adp"
+cache sound "cin/irq2b/s45d2.adp"
+cache sound "cin/irq2b/s45d3.adp"
+cache sound "cin/irq2b/s45d4.adp"
+cache sound "player/land/water.wav"
+cache sound "Impact/Wood/CrateExp.adp"
+cache sound "impact/explosion/big.wav"
+cache roff "irq2b_driveby.rof"
+cache roff "nyc1_outro_exbarrel.rof"
+cache sound "Ambient/Locs/Truck/MoveLP.wav"
+run console command "cl_touch"
+setcvar cvar "ai_spawnfrequency" to 1.200000
+irq2b_saddam = find entity with targetname "irq2b_saddam"
+irq2b_amu = find entity with targetname "irq2b_amu"
+irq2b_fadein = find entity with targetname "irq2b_fadein"
+irq2b_introcam = find entity with targetname "irq2b_introcam"
+irq2b_introcamnull = find entity with targetname "irq2b_introcamnull"
+irq2b_sniperzoom = find entity with targetname "irq2b_sniperzoom"
+irq2b_introcam.movetype = MOVETYPE_NOCLIP
+irq2b_introcamnull.movetype = MOVETYPE_NOCLIP
+enable cinematics
+use entity irq2b_fadein
+use entity irq2b_introcam
+animate entity irq2b_saddam performing action STD_IETALKPOSE_N_A_N holding for 7.500
+irq2b_sniperzoom.wait = 60
+label lab_00002
+if counter < 60
+irq2b_sniperzoom.wait -= 1.600
+use entity irq2b_sniperzoom
+wait 0.100 seconds
+counter += 1
+goto lab_00002
+endif
+play sound "cin/irq2b/c62d1.adp" for entity irq2b_introcam on channel CHAN_AUTO at volume 0.900
+print 30464
+wait 1.700 seconds
+animate entity irq2b_amu performing action STD_WNORMAL_N_PK_A by moving [-104.000 ,0.000 ,0.000]
+wait 0.300 seconds
+animate entity irq2b_amu performing action STD_IETALKPOSE_N_A_N holding for 5.500
+move entity irq2b_introcamnull by [1.000 ,0.000 ,0.000] over 1.000 seconds
+wait 1.500 seconds
+play sound "cin/irq2b/c62d2.adp" for entity irq2b_introcam on channel CHAN_AUTO at volume 0.900
+print 30465
+wait 3 seconds
+play sound "cin/irq2b/c62d3.adp" for entity irq2b_introcam on channel CHAN_AUTO at volume 0.900
+print 30466
+wait 1 seconds
+use entity irq2b_introcam
+irq2b_sniperzoom.wait = -1
+use entity irq2b_sniperzoom
+disable cinematics
+wait 8 seconds
+unload sound "cin/irq2b/c62d1.adp"
+unload sound "cin/irq2b/c62d2.adp"
+unload sound "cin/irq2b/c62d3.adp"
+remove entity irq2b_saddam
+remove entity irq2b_amu
+exit

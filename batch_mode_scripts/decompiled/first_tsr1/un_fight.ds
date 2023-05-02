@@ -1,0 +1,50 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity afight
+local entity bfight
+local entity cfight
+local entity dfight
+local entity topfight
+
+afight = find entity with targetname "afight"
+bfight = find entity with targetname "bfight"
+cfight = find entity with targetname "cfight"
+dfight = find entity with targetname "dfight"
+topfight = find entity with targetname "topfight"
+use entity afight
+use entity bfight
+use entity cfight
+use entity dfight
+use entity topfight
+animate entity afight performing action SCRIPT_RELEASE
+animate entity bfight performing action SCRIPT_RELEASE
+animate entity dfight performing action SCRIPT_RELEASE
+animate entity cfight performing action SCRIPT_RELEASE
+animate entity topfight performing action SCRIPT_RELEASE
+exit

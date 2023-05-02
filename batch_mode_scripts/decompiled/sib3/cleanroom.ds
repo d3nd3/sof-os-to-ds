@@ -1,0 +1,82 @@
+#include "helper.ds"
+field vector "origin"
+field float "origin_x"
+field float "origin_y"
+field float "origin_z"
+field int "movetype"
+field vector "start_origin"
+field vector "start_angles"
+field int "state"
+field float "distance"
+field entity "owner"
+field float "wait"
+field vector "velocity"
+field vector "angle_velocity"
+field entity "team_chain"
+field float "yaw_speed"
+field int "modelindex"
+field int "count"
+field int "solid"
+field vector "angles"
+field vector "delta_angles"
+field int "skinnum"
+field int "c_mode"
+field float "ideal_yaw"
+field vector "p_origin"
+field int "takedamage"
+field int "health"
+
+local entity cleansteam1
+local entity cleansteam2
+local entity cleansteam3
+local entity cleansteam4
+local entity cleansteam5
+local entity cleansteam6
+local entity cleanroomdoor
+local entity runner
+local entity cleanstm01
+local entity cleanstm02
+local entity cleanstm03
+
+cleansteam1 = find entity with targetname "cleansteam1"
+cleansteam2 = find entity with targetname "cleansteam2"
+cleansteam3 = find entity with targetname "cleansteam3"
+cleansteam4 = find entity with targetname "cleansteam4"
+cleansteam5 = find entity with targetname "cleansteam5"
+cleansteam6 = find entity with targetname "cleansteam6"
+cleanroomdoor = find entity with targetname "cleanroomdoor"
+runner = find entity with targetname "runner"
+cleanstm01 = find entity with targetname "cleanstm01"
+cleanstm02 = find entity with targetname "cleanstm02"
+cleanstm03 = find entity with targetname "cleanstm03"
+use entity cleanstm01
+use entity cleansteam1
+use entity cleansteam2
+wait 1 seconds
+use entity cleanstm02
+use entity cleansteam3
+use entity cleansteam4
+wait 1 seconds
+use entity cleanstm03
+use entity cleansteam5
+use entity cleansteam6
+wait 2 seconds
+use entity cleanstm01
+use entity cleansteam1
+use entity cleansteam2
+wait 1 seconds
+use entity cleanstm02
+use entity cleansteam3
+use entity cleansteam4
+wait 1 seconds
+use entity cleanstm03
+use entity cleansteam5
+use entity cleansteam6
+wait 1 seconds
+use entity runner
+wait 1 seconds
+animate entity runner performing action STD_R_N_PK_N by moving [0.000 ,-70.000 ,0.000]
+animate entity runner performing action SCRIPT_RELEASE
+use entity cleanroomdoor
+wait 2 seconds
+exit
