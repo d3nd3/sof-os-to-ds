@@ -1,0 +1,59 @@
+if
+
+
+endif----->label for if not true (without an else)
+
+////////////////////////////////////////////////////////
+
+if
+
+goto------->goto endif
+else------->label for if not true
+
+
+endif------>
+
+
+
+//////////////////////////////////////////////////
+
+or
+
+
+
+
+
+////////////////////////////////////////////////////////
+
+PatchFixUps
+
+LabelReals LABELNAME::::::::OFFSET_OF_LABEL    [PERMANENT]
+
+FixUps-Inserting Labels into End Piece
+
+
+
+
+///////////////////////////////////////////////////
+
+LineNumbers ---------------------------- Offsets
+
+
+
+////////////////////////////////////////////
+
+Labels can have many goto's
+
+
+
+
+
+
+
+
+
+
+
+
+
+
