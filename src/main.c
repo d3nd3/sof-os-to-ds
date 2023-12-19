@@ -2935,7 +2935,7 @@ int handleGoto(char * buffer) {
 	}
 
 	char temp[64];
-	sprintf(temp,"%05i", fixUp->lab_num);
+	sprintf(temp,"%i", fixUp->lab_num);
 
 	fprintf(outfile,"goto %s%s%s","lab_",temp,newline);
 
