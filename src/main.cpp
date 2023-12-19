@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+#include <shlwapi.h>
+#include <io.h>
+#include <direct.h>
+#include <sys/stat.h>
 
 #include "opcodes.h"
 #include "animation_ids.h"
@@ -23,12 +27,12 @@ extern void initEmotions(void);
 extern const char * findChannel(int input);
 extern const char * findAtten(float input);
 
-void errorExit(const char * txt);
+void errorExit(const char * txt,...);
 void PrintStack(void);
 
 
 void setupCommonDependency(void);
-void parseOpcodes(char * buffer,char * end);
+bool parseOpcodes(char * buffer,char * end);
 int PushStack(PushTypes type, char * data, int secret_size = 0);
 struct stackItem * PopStack(bool reverse = false);
 
@@ -66,6 +70,12 @@ int handleTank(char* buffer);
 int handleHelicopter(char* buffer);
 
 
+void clearConsole(void);
+
+void restoreConsole(void);
+
+void clearConsoleLine(HANDLE console, int line);
+
 
 void DebugPrintf(const char * txt,...);
 
@@ -79,6 +89,8 @@ void PatchUpJumps(void);
 void dumpLabelReals(void);
 void dumpFixUps(void);
 void dumpLineOffsetTable(void);
+
+void clearFixUps(void);
 
 
 typedef union value_u {
@@ -113,7 +125,7 @@ typedef struct labelFixUp_s {
 labelFixUp_t* appendFixUp(int label_offset, int lab_num);
 void removeFixUp(labelFixUp_t *which);
 labelFixUp_t * getFixUp(int labelOffset);
-
+void clearFixUps(void);
 
 
 typedef struct vars_s {
@@ -127,11 +139,12 @@ typedef struct vars_s {
 void appendVariable(char * name,int idx);
 void removeVariable(vars_t *which);
 char * getVariable(int index);
+void clearVariables(void);
 
 void appendField(char * name,int idx);
 void removeField(vars_t *which);
 char * getField(int index);
-
+void clearFields(void);
 
 struct stackItem * top = NULL;
 struct stackItem * bottom = NULL;
@@ -154,120 +167,174 @@ unsigned char *fileContents;
 bool declareMode = true;
 bool fieldMode = true;
 
-char outFileName[128];
-char inFileName[128];
+char outFileName[MAX_PATH];
+char inFileName[MAX_PATH];
 char newline[8];
 
-char depPath[128];
+char depPath[MAX_PATH];
+
+bool fatal_parsing = false;
+
+bool DEBUG_MODE = false;
+
+void ProcessFilesAndSubdirectories(const char* parentPath, const char* subdirName, int& totalFiles, int& errorFiles, int& successFiles);
+
+bool ProcessFile(char * infilepath, char * outfilepath,int &total, int &good, int &bad);
+
+
+bool createDirectories(const char *filepath) {
+	// Find the last occurrence of the directory separator
+	const char *lastSlash = strrchr(filepath, '/');
+	const char *lastBackslash = strrchr(filepath, '\\');
+
+	// Choose the last occurrence
+	const char *lastSeparator = (lastSlash > lastBackslash) ? lastSlash : lastBackslash;
+
+	if (lastSeparator != NULL) {
+		// Create a copy of the path up to the last separator
+		char *path = strdup(filepath);
+		path[lastSeparator - filepath] = '\0';
+
+		// Recursively create parent directories if they don't exist
+		createDirectories(path);
+
+		// Check if the directory exists, if not, create it
+		struct stat fileStat;
+		if (stat(path, &fileStat) != 0) {
+			int mkdirResult = _mkdir(path);
+			if (mkdirResult != 0) {
+				perror("ERROR: Creating output tree\n");
+				exit(1);
+				free(path);
+				return false;
+			}
+			printf("Directory created: %s\n", path);
+		}
+		free(path);
+	}
+
+	return true;
+}
+
+void beginProcessFile(const char * leadingpath, const char * tailpath,char * name, int& totalFiles, int& errorFiles, int& successFiles)
+{
+	// It's a file, process it
+	char inPath[MAX_PATH];
+	sprintf(inPath, "%s\\%s\\%s", leadingpath,tailpath,name);
+
+	// DebugPrintf("leadingpath: %s\n",leadingpath);
+	// DebugPrintf("tailpath: %s\n",tailpath);
+	// DebugPrintf("name: %s\n",name);
+
+	// Construct output file path
+	char outFilePath[MAX_PATH];
+	sprintf(outFilePath, "decompiled\\%s\\%s",tailpath,name);
+	
+	DebugPrintf("infile: %s\n",inPath);
+
+	char *ptr = outFilePath;
+	while ((ptr = strchr(ptr, '/')) != NULL) {
+		*ptr++ = '\\';
+	}
+
+	char* lastDot = strrchr(inPath, '.');
+	// Check if a period character was found and ensure it is not the last character
+	if (lastDot == NULL || lastDot == inPath || strlen(lastDot) <= 1) {
+		return;
+	}
+	if (stricmp(lastDot + 1, "os") != 0) {
+		return;
+	}
+
+	lastDot = strrchr(outFilePath, '.');
+	// Check if a period character was found and ensure it is not the last character
+	if (lastDot == NULL || lastDot == inPath || strlen(lastDot) <= 1) {
+		return;
+	}
+	if (stricmp(lastDot + 1, "os") != 0) {
+		return;
+	}
+	*(lastDot+1) = 'd';
+	*(lastDot+2) = 's';
+
+	DebugPrintf("outfile: %s\n",outFilePath);
+
+	// Create directories if needed
+	if (!createDirectories(outFilePath)) {
+		return; // Return an error code if directory creation fails
+	}
+
+	totalFiles += 1;
+
+	bool good = ProcessFile(inPath, outFilePath,totalFiles,successFiles,errorFiles);
+	if (!good) {
+		// Fatal error parsing this file.
+		errorFiles += 1;
+	}
+	else {
+		successFiles += 1;
+	}
+
+	// printf("----------\n");
+}
+
+#define PROG_INFO "DesignerScript Decompiler V3.0  (Dec 18 2023 16:18)\n" \
+				"sofos.exe now supports directories as input!, outdir is fixed in this mode.\n\n"
+			
+
+#define DIR_INFO \
+				"------directory mode----- (also supports drag/drop)\n" \
+			"sofos.exe example/directory\n" \
+			"default output directory will be named \"decompiled\", existing relative to your working directory\n" \
+			"you can even drag a directory or a file onto the sofos.exe!\n" \
+			"the output folder/file will live in the source directory that you dragged from!\n\n"
+
+#define SINGLE_INFO \
+			"------single file mode----- (also supports drag/drop)\n" \
+			"sofos.exe infile.os [outfile.ds]\noutfile is optional\n" \
+			"eg. ./sofos.exe myfile.os\n" \
+			"If you want to control the output filename, then supply an extra argument\n" \
+			"decompiled.ds is default outfile if unspecified\n\n"
+
+
+void print_usage(void) {
+	printf(PROG_INFO);
+	printf(DIR_INFO);
+	printf(SINGLE_INFO);
+}
 int main ( int argc, char ** argv) {
+	//unbuffered for debugging.
 	setvbuf(stdout, NULL, _IONBF, 0);
 
-	// printf("Received %i arguments\n",argc);
-	// for ( int g = 0 ; g < argc; g++ ) {
-	// 	printf("%s\n",argv[g]);
-	// }
-
-
-	printf("DesignerScript Decompiler V3.0  (Dec 18 2023 16:18)\n\
-		sofos.exe infile.os [outfile.ds]\nargs in [] are optional\n");
-
-
-	//2 means that a valid infile was listed
 	if( argc >= 2 ) {
+		if ( !strcmp(argv[1],"-v") || !strcmp(argv[1],"--v") ||
+		 !strcmp(argv[1],"--help") || !strcmp(argv[1],"-h") || !strcmp(argv[1],"help") ) {
+			print_usage();
+			return 0;
+		}
 		strcpy(inFileName,argv[1]);
 		strcpy(outFileName,"decompiled.ds");
-		strcpy(depPath,".\\");
-	}else {
+	}
+	else {
 		//1 or less arguments
-		printf("Please pass the file to be decompiled as an argument\n");
-		printf("eg. ./prog.exe myfile.os\n");
-		printf("If you want to control the output filename, then supply an extra argument\n");
-		printf("eg. ./prog.exe myfile.os outfile.ds\n");
-		return 1;
-	}
-	bool option = false;
-
-	//processing them using 'order'
-	int args_found = 0;
-	int opts_found = 0;
-	int args_array[32];
-	int opts_array[32];
-	// printf("size of array = %i\n",sizeof(args_array));
-	memset(&args_array[0],0x00,sizeof(args_array));
-	memset(&opts_array[0],0x00,sizeof(opts_array));
-	//start processing at 2
-	for ( int q = 2 ; q < argc; q++ ) {
-		if ( option == true ) {
-			option = false;
-			//save option here
-			opts_array[opts_found] = q;
-
-			opts_found++;
-			continue;
-		} else {
-			if ( argv[q] == strstr(argv[q],"-dep_path") ) {
-				option = true;
-			} else {
-				//save argument here
-				args_array[args_found] = q;
-				//its not an option so what is it...
-
-
-				args_found++;
-			}
-		}
+		print_usage();
+		return 0;
 	}
 
+	if ( argc >=3 ) strcpy(outFileName,argv[2]);
 
-	//first arg/option
-	if ( args_array[0] > 0 ) {
-		strcpy(outFileName,argv[args_array[0]]);
-		// printf("outfile is %s\n",outFileName);
+
+
+	// Check if the provided argument is a directory
+	DWORD attributes = GetFileAttributes(inFileName);
+	if (attributes == INVALID_FILE_ATTRIBUTES ) {
+		errorExit("Error: The provided input is not a valid: %s\n", inFileName);
 	}
-
 
 	initAnims();
 	initMovetypes();
 	initSounds();
 	initEmotions();
-
-
-	strcpy(newline,"\r\n");
-	
-	
-	char * cc = &inFileName[strlen(inFileName)-2];
-	if ( strcmp(cc,"os") ) {
-		printf("ERROR: The input file does not have os extension\n");
-		return 1;
-	}
-
-	FILE * infile = fopen(inFileName,"rb");
-	if ( infile == NULL ) {
-		printf("ERROR: Failed to open the input file\n");
-		return 1;
-	}
-
-	fseek(infile, 0L, SEEK_END);
-	int size = ftell(infile);
-	rewind(infile);
-
-	fileContents = (unsigned char*)malloc(size);	
-	fread(fileContents,1,size,infile);
-	fclose(infile);
-	int i = 0;
-	for (i = 0;i<size;i++) {
-		//printf(" %02X ",fileContents[i]);
-	}
-	//printf("\n");
-
-	outfile = fopen(outFileName,"w+b");
-	if ( outfile == NULL ) {
-		printf("ERROR: Failed to open the output file\n");
-		return 1;
-	}
-	
-	printf("INFO: Input file : \"%s\"\n",inFileName);
-	printf("INFO: Trying to make file at : \"%s\"\n",outFileName);
 
 	// variableName to variableIndex mappings
 	Variables.next = Variables.prev = &Variables;
@@ -279,6 +346,208 @@ int main ( int argc, char ** argv) {
 	FixUps.next = FixUps.prev = &FixUps;
 	FixUps.active = false;
 
+
+	#if 0
+	clearConsole();  // Clear the entire console before running
+	#endif
+
+	strcpy(newline,"\r\n");
+
+	int errorFiles = 0;
+	int successFiles = 0;
+	int totalFiles = 0;
+	bool good;
+
+	bool isDirectory = PathIsDirectoryA(inFileName);
+
+	if (isDirectory) {
+		DebugPrintf("Directory Mode\n");
+
+		char* ptr = inFileName;
+		while ((ptr = strchr(ptr, '/')) != NULL) {
+			*ptr++ = '\\';
+		}
+
+		// Open the directory and iterate through files
+		char searchPath[MAX_PATH];
+		sprintf(searchPath, "%s\\*.*", inFileName);
+
+		_finddata_t data;
+		long handle = _findfirst(searchPath, &data);
+		if (handle == -1) {
+			errorExit("first handle iterating is bad\n");
+		}
+
+		do {
+			//TopLevelDirectory.
+			// printf("data.name: %s\n",data.name);
+			if ( strcmp(data.name, "..") != 0 ) {
+				if (data.attrib & _A_SUBDIR) {
+					ProcessFilesAndSubdirectories(inFileName, data.name, totalFiles, errorFiles, successFiles);
+				}
+				else {
+					const char empty[1] = {0x00};
+					beginProcessFile(inFileName,empty,data.name,totalFiles,errorFiles,successFiles);
+				}
+			}
+		} while (_findnext(handle, &data) != -1);
+
+		_findclose(handle);
+	}
+	else {
+		DebugPrintf("Single File Mode\n");
+		totalFiles += 1;
+		good = ProcessFile(inFileName, outFileName,totalFiles,successFiles,errorFiles);
+		if (!good) {
+			// Fatal error parsing this file.
+			errorFiles += 1;
+		}
+		else {
+			successFiles += 1;
+		}
+	}
+	#if 0
+	restoreConsole();  // Restore the console settings before exiting
+	#endif
+	printf("---STATS---\nTotal: %i\nGood: %i\nBad: %i\n", totalFiles, successFiles, errorFiles);
+
+	printf("Press enter key to exit...");
+	getchar();
+
+	return 0;
+}
+
+void ProcessFilesAndSubdirectories(const char* parentPath, const char* subdirName, int& totalFiles, int& errorFiles, int& successFiles) {
+	char searchPath[MAX_PATH];
+	sprintf(searchPath, "%s\\%s\\*.*", parentPath, subdirName);
+
+	_finddata_t data;
+	long handle = _findfirst(searchPath, &data);
+	if (handle == -1) {
+		printf("Error opening subdirectory: %s\\%s\n", parentPath, subdirName);
+		return;
+	}
+
+	do {
+		if (!(data.attrib & _A_SUBDIR)) {
+			beginProcessFile(parentPath,subdirName,data.name,totalFiles,errorFiles,successFiles);
+		}
+		else if (strcmp(data.name, ".") != 0 && strcmp(data.name, "..") != 0) {
+			//SubDirectories
+			// printf("data.name: %s\n",data.name);
+
+			// Call the function recursively for directories except "." and ".."
+			ProcessFilesAndSubdirectories(parentPath, data.name, totalFiles, errorFiles, successFiles);
+		}
+	} while (_findnext(handle, &data) != -1);
+
+	_findclose(handle);
+}
+
+void clearConsole() {
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD topLeft = {0, 0};
+	CONSOLE_SCREEN_BUFFER_INFO screen;
+	DWORD written;
+
+	GetConsoleScreenBufferInfo(console, &screen);
+	FillConsoleOutputCharacterA(console, ' ', screen.dwSize.X * screen.dwSize.Y, topLeft, &written);
+	FillConsoleOutputAttribute(console, FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_BLUE, screen.dwSize.X * screen.dwSize.Y, topLeft, &written);
+	SetConsoleCursorPosition(console, topLeft);
+}
+
+void restoreConsole() {
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_SCREEN_BUFFER_INFO screen;
+	
+	GetConsoleScreenBufferInfo(console, &screen);
+	SetConsoleTextAttribute(console, screen.wAttributes);
+}
+
+void clearConsoleLine(HANDLE console, int line) {
+	COORD cursorPos = {0, static_cast<SHORT>(line)};
+	DWORD charsWritten;
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	
+	GetConsoleScreenBufferInfo(console, &csbi);
+	FillConsoleOutputCharacter(console, ' ', csbi.dwSize.X, cursorPos, &charsWritten);
+}
+
+bool ProcessFile(char * infilepath, char * outfilepath,int &total, int &good, int &bad)
+{
+
+	// Find the last occurrence of the period character in the file path
+	const char* lastDot = strrchr(infilepath, '.');
+
+	// Check if a period character was found and ensure it is not the last character
+	if (lastDot == NULL || lastDot == infilepath || strlen(lastDot) <= 1) {
+		printf("ERROR: The input file does not have a valid extension\n");
+		return false;
+	}
+
+	// Compare the file extension case-insensitively
+	if (stricmp(lastDot + 1, "os") != 0) {
+		printf("ERROR: The input file does not have the 'os' extension\n");
+		return false;
+	}
+
+
+	//read input file
+	FILE * infile = fopen(infilepath,"rb");
+	if ( infile == NULL ) {
+		printf("ERROR: Failed to open the input file\n");
+		return false;
+	}
+
+	fseek(infile, 0L, SEEK_END);
+	int size = ftell(infile);
+	rewind(infile);
+
+	fileContents = (unsigned char*)malloc(size);	
+	fread(fileContents,1,size,infile);
+	fclose(infile);
+
+
+	outfile = fopen(outfilepath,"w+b");
+	if ( outfile == NULL ) {
+		printf("ERROR: Failed to open the output file\n");
+		return false;
+	}
+	
+
+	#if 0
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	// Clear the console line before printing progress
+	// clearConsoleLine(console, 0);
+	// clearConsoleLine(console, 1);
+	// clearConsoleLine(console, 2);
+	// clearConsoleLine(console, 3);
+	// clearConsoleLine(console, 4);
+	// clearConsoleLine(console, 5);
+	// clearConsoleLine(console, 6);
+	// clearConsoleLine(console, 7);
+	COORD cursorPos = {0, 0};
+	SetConsoleCursorPosition(console, cursorPos);
+
+
+	printf("---STATS---\nTotal : %i\nGood : %i \nBad : %i\n",total,good,bad);
+
+	fflush(stdout);
+	#endif
+
+
+	
+	clearFields();
+	clearVariables();
+	clearFixUps();
+
+	stackSize = 0;
+	realLabelsCount = 0;
+	preventXYZFields = 0;
+	lineNumbers = 0;
+	memset(lineNumbersToOffset,0x00,sizeof(int)*1024);
+
 	// 4
 	// printf("%i <= %i\n",fileContents+4,fileContents+(size-1));
 
@@ -289,16 +558,18 @@ int main ( int argc, char ** argv) {
 	}
 	// fileContents +=4;
 
+	bool status = parseOpcodes((char*)fileContents+4,(char*)fileContents+(size-1));
 	// printf("Parsing Opcodes");	
-	parseOpcodes((char*)fileContents+4,(char*)fileContents+(size-1));
-	setupCommonDependency();
 
+	if (status) setupCommonDependency();
 
+	//go to next file.
 	fclose(outfile);
 
-	return 0;
+	if ( status ) printf("GOOD %s\n",outfilepath);
+	else printf("BAD %s\n",outfilepath);
+	return status;
 }
-
 unsigned char checksum (unsigned char *ptr, size_t sz) {
 	unsigned char chk = 0;
 	while (sz-- != 0)
@@ -312,7 +583,7 @@ void writeHelperFile(void) {
 	if ( depend == NULL ) {
 		printf("WARNING: failed to write helper file\n");
 	} else {
-		printf("INFO: Writing helper file \"helper.ds\" becasue it does not exist%s",newline);
+		printf("INFO: Writing helper file \"helper.ds\" because it does not exist%s",newline);
 		//write the file
 		fprintf(depend,REVERSEOS);
 
@@ -352,17 +623,24 @@ void setupCommonDependency(void) {
 			fread(helperfile,1,size,helper);
 			fclose(helper);
 			unsigned char check = checksum(helperfile,size);
-			// 	printf("check is %02X\n",check);
+			free(helperfile);
+			// printf("check is %02X\n",check);
 			if ( check == HELPER_CHECK ) {
 				//the file is valid
 			} else {
 				//write a valid file
+				printf("Because checksum invalid\n");
 				writeHelperFile();
 			}
+		} else {
+			//its size is 0.
+			printf("Because size is 0\n");
+			writeHelperFile();
 		}
 
 	} else {
 		//it does not exist so create one.
+		printf("Because doesnt exist\n");
 		writeHelperFile();
 	}
 }
@@ -387,7 +665,9 @@ struct stackItem * PopStack(bool reverse) {
 		return NULL;
 	}
 	if ( stackSize == 0 ) {
-		errorExit("trying to pop from 0 stack size\n");
+		printf("trying to pop from 0 stack size\n");
+		fatal_parsing = true;
+		return NULL;
 	}
 	stackSize--;
 	struct stackItem * pop = NULL;
@@ -422,8 +702,21 @@ struct stackItem * PopStack(bool reverse) {
 	return pop;
 }
 
-void errorExit(const char * txt) {
-	printf(txt);
+void errorExit(const char * txt,...) {
+	#if 0
+	restoreConsole();
+	#endif
+	va_list args;
+	va_start(args,txt);
+	
+
+	vprintf(txt,args);
+	
+	va_end(args);
+
+	printf("Press enter key to exit...");
+	getchar();
+
 	exit(1);
 }
 
@@ -491,7 +784,9 @@ int PushStack(PushTypes type, char * data, int secret_size) {
 		ret = 12;
 		break;
 	case PUSH_CONST_ENTITY:
-		errorExit("PUSH Entity??\n");
+		printf("PUSH Entity??\n");
+		fatal_parsing = true;
+		return ret;
 		break;
 	case PUSH_CONST_STRING:
 		len = strlen(data) + 1;
@@ -524,7 +819,7 @@ int PushStack(PushTypes type, char * data, int secret_size) {
 	return ret;
 }
 
-bool DEBUG_MODE = true;
+
 void DebugPrintf(const char * txt,...) {
 	va_list args;
 	va_start(args,txt);
@@ -535,7 +830,9 @@ void DebugPrintf(const char * txt,...) {
 	va_end(args);
 }
 
-void parseOpcodes(char * buffer,char * end) {
+
+bool parseOpcodes(char * buffer,char * end) {
+
 	char previousOpcode;
 
 	bool CODE_ON_MODE = false;
@@ -544,6 +841,11 @@ void parseOpcodes(char * buffer,char * end) {
 	struct stackItem * message;
 	//if bufffer is not 0x14 CODE_EXIT at end, then dont treat it like opcode
 	while( buffer <= end ) {
+		if ( fatal_parsing ) {
+			fatal_parsing = false;
+			return false;
+		}
+
 		if (buffer == end && *buffer!=0x14) {
 			DebugPrintf("BREAKING...\n");
 			break;
@@ -847,7 +1149,8 @@ void parseOpcodes(char * buffer,char * end) {
 			default:
 				char lul[64];
 				sprintf(lul,"Unrecognised opcode %02X\n",opCode);
-				errorExit(lul);
+				printf(lul);
+				return false;
 				break;
 
 				
@@ -857,6 +1160,8 @@ void parseOpcodes(char * buffer,char * end) {
 	} //while
 	PatchUpJumps();
 	//printf("condition no longer true\n");
+
+	return true;
 }
 
 
@@ -1173,7 +1478,11 @@ int handleEnable(char * buffer, bool enable){
 		message = PopStack();
 		num_pushed +=6;
 		entName = getVariable(message->value.number);
-		if ( !entName ) errorExit("Couldnt' get variable name error!\n");
+		if ( !entName ) {
+			printf("Couldnt' get variable name error!\n");
+			fatal_parsing = true;
+			return buffer - startbuffer;
+		}
 		sprintf(outText,"%s trigger entity %s%s",enOrDis,entName,newline);
 		break;
 
@@ -1847,7 +2156,7 @@ int handleFunction(char * buffer,struct stackItem * item) {
 	}
 
 case FUNC_FIND_ENTITY_WITH_SCRIPT:
-			// string
+				// string
 	message = PopStack();
 
 	if ( message->type == PUSH_VAR ) {
@@ -1871,100 +2180,110 @@ case FUNC_FIND_PLAYER:
 	break;
 
 case FUNC_SPAWN: {
-			// PrintStack();
+		// PrintStack();
 	struct stackItem * val;
 	int count = *(unsigned char*)buffer;
 	buffer++;
-			item->secret_size +=1; //lul??:)
+		item->secret_size +=1; //lul??:)
 
-			char small[64];
-			strcpy(temp,"");
-			bool firstRun = true;
-			for ( int i=count;count;count--) {
+		char small[64];
+		strcpy(temp,"");
+		bool firstRun = true;
+		for ( int i=count;count;count--) {
 
-				//data Value
-				val = PopStack(true);
-				if ( val == NULL ) errorExit("bad reverse stack pop\n");
-
-				//String Name
-				message = PopStack(true);
-				if ( message == NULL ) errorExit("bad reverse stack pop\n");
-
-				//+= cos we inside a loop..
-				item->secret_size += strlen(message->value.nullString)+1+2;
-
-				if ( !firstRun ) strcat(temp," ,");
-
-				char * spawn_name = message->value.nullString;
-				switch ( val->type ) {
-					
-					// non 4 cases
-				case PUSH_CONST_STRING:
-
-					item->secret_size += strlen(val->value.nullString)+1+2;
-					sprintf(small," \"%s\" = \"%s\"",spawn_name,val->value.nullString);
-					strcat(temp, small);
-					break;
-				case PUSH_CONST_VECTOR:
-					item->secret_size += 14;
-					sprintf(small," \"%s\" = [%.3f ,%.3f ,%.3f]",spawn_name,val->value.three_floats[0],val->value.three_floats[1],val->value.three_floats[2]);
-					strcat(temp, small);
-					break;
-					
-				case PUSH_CONST_INT:
-					item->secret_size += 6;
-					sprintf(small," \"%s\" = %i",spawn_name,val->value.number);
-					strcat(temp, small);
-
-					break;
-
-				case PUSH_CONST_FLOAT:
-					item->secret_size += 6;
-					sprintf(small," \"%s\" = %.3f",spawn_name,val->value.floatNumber);
-					strcat(temp, small);
-					break;
-					
-				default:
-					errorExit("Invalid var type in handleFunction\n");
-					break;
-				}
-				// if the data matches a fieldname
-				// extract the data.
-				//i care more about the value's type in push than the field.type
-				if ( firstRun ) {
-					firstRun = false;
-				}
+			//data Value
+			val = PopStack(true);
+			if ( val == NULL ) {
+				printf("bad reverse stack pop\n");
+				fatal_parsing = true;
+				return buffer - startbuffer;
 			}
-			
-			sprintf(final,"spawn entity with fields%s",temp);
-			item->value.nullString = (char*)malloc(strlen(final)+1);
-			strcpy(item->value.nullString,final);
-			break;
-		}	
-	case FUNC_GET_OTHER:
-		sprintf(temp,"get entity other");
-		item->value.nullString = (char*)malloc(strlen(temp)+1);
-		strcpy(item->value.nullString,temp);
-		break;
 
-	case FUNC_GET_ACTIVATOR:
-		sprintf(temp,"get entity activator");
-		item->value.nullString = (char*)malloc(strlen(temp)+1);
-		strcpy(item->value.nullString,temp);
-		break;
+			//String Name
+			message = PopStack(true);
+			if ( message == NULL ) {
+				printf("bad reverse stack pop\n");
+				fatal_parsing = true;
+				return buffer - startbuffer;
+			}
 
-	case FUNC_GET_PLAYER:
+			//+= cos we inside a loop..
+			item->secret_size += strlen(message->value.nullString)+1+2;
+
+			if ( !firstRun ) strcat(temp," ,");
+
+			char * spawn_name = message->value.nullString;
+			switch ( val->type ) {
+				
+				// non 4 cases
+			case PUSH_CONST_STRING:
+
+				item->secret_size += strlen(val->value.nullString)+1+2;
+				sprintf(small," \"%s\" = \"%s\"",spawn_name,val->value.nullString);
+				strcat(temp, small);
+				break;
+			case PUSH_CONST_VECTOR:
+				item->secret_size += 14;
+				sprintf(small," \"%s\" = [%.3f ,%.3f ,%.3f]",spawn_name,val->value.three_floats[0],val->value.three_floats[1],val->value.three_floats[2]);
+				strcat(temp, small);
+				break;
+				
+			case PUSH_CONST_INT:
+				item->secret_size += 6;
+				sprintf(small," \"%s\" = %i",spawn_name,val->value.number);
+				strcat(temp, small);
+
+				break;
+
+			case PUSH_CONST_FLOAT:
+				item->secret_size += 6;
+				sprintf(small," \"%s\" = %.3f",spawn_name,val->value.floatNumber);
+				strcat(temp, small);
+				break;
+				
+			default:
+				printf("Invalid var type in handleFunction\n");
+				fatal_parsing = true;
+				return buffer - startbuffer;
+				break;
+			}
+			// if the data matches a fieldname
+			// extract the data.
+			//i care more about the value's type in push than the field.type
+			if ( firstRun ) {
+				firstRun = false;
+			}
+		}
+		
+		sprintf(final,"spawn entity with fields%s",temp);
+		item->value.nullString = (char*)malloc(strlen(final)+1);
+		strcpy(item->value.nullString,final);
+		break;
+	}	
+case FUNC_GET_OTHER:
+	sprintf(temp,"get entity other");
+	item->value.nullString = (char*)malloc(strlen(temp)+1);
+	strcpy(item->value.nullString,temp);
+	break;
+
+case FUNC_GET_ACTIVATOR:
+	sprintf(temp,"get entity activator");
+	item->value.nullString = (char*)malloc(strlen(temp)+1);
+	strcpy(item->value.nullString,temp);
+	break;
+
+case FUNC_GET_PLAYER:
 			// int
-		message = PopStack();
-		sprintf(temp,"get entity player %i",message->value.number);
-		item->value.nullString = (char*)malloc(strlen(temp)+1);
-		strcpy(item->value.nullString,temp);
-		item->secret_size = 6;
-		break;
-	}
+	message = PopStack();
+	sprintf(temp,"get entity player %i",message->value.number);
+	item->value.nullString = (char*)malloc(strlen(temp)+1);
+	strcpy(item->value.nullString,temp);
+	item->secret_size = 6;
+	break;
+}
 	//11 07 type
-	item->secret_size+=3;
-	return buffer - startbuffer;
+item->secret_size+=3;
+return buffer - startbuffer;
 }
 
 int handleAnimate(char * buffer) {
@@ -2132,7 +2451,9 @@ int handleAnimate(char * buffer) {
 			if (  cc != NULL ) {
 				sprintf(temp," repeating for %s times",cc);
 			} else {
-				errorExit("unknown error in animate function\n");
+				printf("unknown error in animate function\n");
+				fatal_parsing = true;
+				return buffer - startbuffer;
 			}
 		}else if( repeat->type == PUSH_CONST_INT ) {
 			int r = repeat->value.number;
@@ -2357,7 +2678,7 @@ int handleIf(char * buffer,bool specialOnCase) {
 	struct stackItem * compare1;
 	compare2 = PopStack();
 	compare1 = PopStack();
-			
+
 	int condType = *(unsigned char*)buffer;
 	buffer++;
 
@@ -2383,7 +2704,9 @@ int handleIf(char * buffer,bool specialOnCase) {
 		strcpy(condString,">=");
 		break;
 	default:
-		errorExit("New Condition Type\n");
+		printf("New Condition Type\n");
+		fatal_parsing = true;
+		return buffer - startbuffer;
 		break;
 	}
 
@@ -2416,13 +2739,17 @@ int handleIf(char * buffer,bool specialOnCase) {
 			break;
 
 		case PUSH_CONST_VECTOR:
-			errorExit("Unknown PUSH_CONST_VECTOR in if statement\n");
+			printf("Unknown PUSH_CONST_VECTOR in if statement\n");
+			fatal_parsing = true;
+			return buffer - startbuffer;
 
 			bytesForLineNumCalc+=14;
 			break;
 
 		case PUSH_CONST_ENTITY:
-			errorExit("Unknown PUSH_CONST_ENTITY in if statement\n");
+			printf("Unknown PUSH_CONST_ENTITY in if statement\n");
+			fatal_parsing = true;
+			return buffer - startbuffer;
 			bytesForLineNumCalc+=6;
 			break;
 
@@ -2444,11 +2771,15 @@ int handleIf(char * buffer,bool specialOnCase) {
 			break;
 
 		case PUSH_FUNCTION:
-			errorExit("Unknown PUSH_FUNCTION in if statement\n");
+			printf("Unknown PUSH_FUNCTION in if statement\n");
+			fatal_parsing = true;
+			return buffer - startbuffer;
 			break;
 
 		default:
-			errorExit("unknown PUSH VAR in IF\n");
+			printf("unknown PUSH VAR in IF\n");
+			fatal_parsing = true;
+			return buffer - startbuffer;
 			break;
 		}
 
@@ -2559,73 +2890,83 @@ int handleAddAssignment(char * buffer,const char * symbol) {
 			&& !stricmp(getField(index_var->value.two_numbers[1]),"movetype")
 			&& new_value->value.number >=0 && new_value->value.number < 11 ) {
 			fprintf(outfile,"%s = %s%s",leftSide,movetypes[new_value->value.number],newline);	
-		} else
-		fprintf(outfile,"%s %s= %i%s",leftSide,symbol,new_value->value.number,newline);
+	} else
+	fprintf(outfile,"%s %s= %i%s",leftSide,symbol,new_value->value.number,newline);
 
-		num_pushed+=6;
-		break;
+	num_pushed+=6;
+	break;
 
-	case PUSH_CONST_FLOAT:
-		fprintf(outfile,"%s %s= %.3f%s",leftSide,symbol,new_value->value.floatNumber,newline);
-		num_pushed+=6;
-		break;
+case PUSH_CONST_FLOAT:
+	fprintf(outfile,"%s %s= %.3f%s",leftSide,symbol,new_value->value.floatNumber,newline);
+	num_pushed+=6;
+	break;
 
-	case PUSH_CONST_VECTOR:
-		fprintf(outfile,"%s %s= [%.3f ,%.3f ,%.3f]%s",leftSide,symbol,new_value->value.three_floats[0],new_value->value.three_floats[1],new_value->value.three_floats[2],newline);
-		num_pushed+=14;
-		break;
+case PUSH_CONST_VECTOR:
+	fprintf(outfile,"%s %s= [%.3f ,%.3f ,%.3f]%s",leftSide,symbol,new_value->value.three_floats[0],new_value->value.three_floats[1],new_value->value.three_floats[2],newline);
+	num_pushed+=14;
+	break;
 
-	case PUSH_CONST_ENTITY:
-		errorExit("Unknown PUSH_CONST_ENTITY\n");
-		num_pushed+=6;
-		break;
+case PUSH_CONST_ENTITY:
+	printf("Unknown PUSH_CONST_ENTITY\n");
+	fatal_parsing = true;
+	return buffer - startbuffer;
+	num_pushed+=6;
+	break;
 
-	case PUSH_CONST_STRING:
-		sprintf(final,"%s %s= %s%s",leftSide,symbol,new_value->value.nullString,newline);
-		num_pushed+=strlen(final)+1+2;
-		fprintf(outfile,final);
-		break;
+case PUSH_CONST_STRING:
+	sprintf(final,"%s %s= %s%s",leftSide,symbol,new_value->value.nullString,newline);
+	num_pushed+=strlen(final)+1+2;
+	fprintf(outfile,final);
+	break;
 
-	case PUSH_VAR:
-		varVarName = getVariable(new_value->value.number);
-		if (varVarName == NULL ) {
-			errorExit("No label error\n");
-		}
-		fprintf(outfile,"%s %s= %s%s",leftSide,symbol,varVarName,newline);
-		num_pushed+=6;
-		break;
-
-	case PUSH_VAR_WITH_FIELD:
-		varVarName = getVariable(new_value->value.two_numbers[0]);
-		if (varVarName == NULL ) {
-			errorExit("No label error\n");
-		}
-		fieldName = getField(new_value->value.two_numbers[1]);
-		if (fieldName == NULL ) {
-			errorExit("No label error\n");
-		}
-		fprintf(outfile,"%s %s= %s.%s%s",leftSide,symbol,varVarName,fieldName,newline);
-		num_pushed+=10;
-		break;
-
-	case PUSH_CUSTOM:
-	case PUSH_FUNCTION:
-		sprintf(final,"%s %s= %s%s",leftSide,symbol,new_value->value.nullString,newline);
-		fprintf(outfile,final);
-				// num_pushed+=strlen(new_value->value.nullString)+1+2;
-		num_pushed+= new_value->secret_size;
-		break;
-
-	default:
-		errorExit("unknown PUSH VAR in IF\n");
-		break;
+case PUSH_VAR:
+	varVarName = getVariable(new_value->value.number);
+	if (varVarName == NULL ) {
+		printf("No label error\n");
+		fatal_parsing = true;
+		return buffer - startbuffer;
 	}
+	fprintf(outfile,"%s %s= %s%s",leftSide,symbol,varVarName,newline);
+	num_pushed+=6;
+	break;
+
+case PUSH_VAR_WITH_FIELD:
+	varVarName = getVariable(new_value->value.two_numbers[0]);
+	if (varVarName == NULL ) {
+		printf("No label error\n");
+		fatal_parsing = true;
+		return buffer - startbuffer;
+	}
+	fieldName = getField(new_value->value.two_numbers[1]);
+	if (fieldName == NULL ) {
+		printf("No label error\n");
+		fatal_parsing = true;
+		return buffer - startbuffer;
+	}
+	fprintf(outfile,"%s %s= %s.%s%s",leftSide,symbol,varVarName,fieldName,newline);
+	num_pushed+=10;
+	break;
+
+case PUSH_CUSTOM:
+case PUSH_FUNCTION:
+	sprintf(final,"%s %s= %s%s",leftSide,symbol,new_value->value.nullString,newline);
+	fprintf(outfile,final);
+				// num_pushed+=strlen(new_value->value.nullString)+1+2;
+	num_pushed+= new_value->secret_size;
+	break;
+
+default:
+	printf("unknown PUSH VAR in IF\n");
+	fatal_parsing = true;
+	return buffer - startbuffer;
+	break;
+}
 
 
 	//Assignment
 	// printf("NOOB_ADDASSIGNMENT : %i\n",(int)(((unsigned int)startbuffer-1 - num_pushed) - (unsigned int)fileContents));
-	saveLineNumber(startbuffer,num_pushed);
-	return buffer - startbuffer;
+saveLineNumber(startbuffer,num_pushed);
+return buffer - startbuffer;
 }
 
 int handleConsoleCommand(char * buffer)
@@ -2673,11 +3014,15 @@ int handleAssignment(char * buffer) {
 		num_pushed+=10;
 		c = getVariable(index_var->value.two_numbers[0]);
 		if ( c == NULL ) {
-			errorExit("Bad variable in assignment\n");
+			printf("Bad variable in assignment\n");
+			fatal_parsing = true;
+			return buffer - startbuffer;
 		}
 		c = getField(index_var->value.two_numbers[1]);
 		if ( c == NULL ) {
-			errorExit("Bad variable in assignment\n");
+			printf("Bad variable in assignment\n");
+			fatal_parsing = true;
+			return buffer - startbuffer;
 		}
 		sprintf(leftSide,"%s.%s",getVariable(index_var->value.two_numbers[0]),getField(index_var->value.two_numbers[1]));
 		break;
@@ -2698,70 +3043,80 @@ int handleAssignment(char * buffer) {
 			&& !stricmp(getField(index_var->value.two_numbers[1]),"movetype")
 			&& new_value->value.number >=0 && new_value->value.number < 11 ) {
 			fprintf(outfile,"%s = %s%s",leftSide,movetypes[new_value->value.number],newline);	
-		} else
-			fprintf(outfile,"%s = %i%s",leftSide,new_value->value.number,newline);
+	} else
+	fprintf(outfile,"%s = %i%s",leftSide,new_value->value.number,newline);
 
-		num_pushed+=6;
+	num_pushed+=6;
 	break;
 
-	case PUSH_CONST_FLOAT:
-		fprintf(outfile,"%s = %.3f%s",leftSide,new_value->value.floatNumber,newline);
-		num_pushed+=6;
-		break;
+case PUSH_CONST_FLOAT:
+	fprintf(outfile,"%s = %.3f%s",leftSide,new_value->value.floatNumber,newline);
+	num_pushed+=6;
+	break;
 
-	case PUSH_CONST_VECTOR:
-		fprintf(outfile,"%s = [%.3f ,%.3f ,%.3f]%s",leftSide,new_value->value.three_floats[0],new_value->value.three_floats[1],new_value->value.three_floats[2],newline);
-		num_pushed+=14;
-		break;
+case PUSH_CONST_VECTOR:
+	fprintf(outfile,"%s = [%.3f ,%.3f ,%.3f]%s",leftSide,new_value->value.three_floats[0],new_value->value.three_floats[1],new_value->value.three_floats[2],newline);
+	num_pushed+=14;
+	break;
 
-	case PUSH_CONST_ENTITY:
-		errorExit("Unknown PUSH_CONST_ENTITY\n");
-		num_pushed+=6;
-		break;
+case PUSH_CONST_ENTITY:
+	printf("Unknown PUSH_CONST_ENTITY\n");
+	fatal_parsing = true;
+	return buffer - startbuffer;
+	num_pushed+=6;
+	break;
 
-	case PUSH_CONST_STRING:
-		sprintf(final,"%s = %s%s",leftSide,new_value->value.nullString,newline);
+case PUSH_CONST_STRING:
+	sprintf(final,"%s = %s%s",leftSide,new_value->value.nullString,newline);
 				//secret_size from math function
-		num_pushed+=strlen(final)+1+2;
-		fprintf(outfile,final);
-		break;
+	num_pushed+=strlen(final)+1+2;
+	fprintf(outfile,final);
+	break;
 
-	case PUSH_VAR:
-		varVarName = getVariable(new_value->value.number);
-		if (varVarName == NULL ) {
-			errorExit("No label error PUSH_VAR AddASsignment\n");
-		}
-		fprintf(outfile,"%s = %s%s",leftSide,varVarName,newline);
-		num_pushed+=6;
-		break;
+case PUSH_VAR:
+	varVarName = getVariable(new_value->value.number);
+	if (varVarName == NULL ) {
+		printf("No label error PUSH_VAR AddASsignment\n");
+		fatal_parsing = true;
+		return buffer - startbuffer;
+	}
+	fprintf(outfile,"%s = %s%s",leftSide,varVarName,newline);
+	num_pushed+=6;
+	break;
 
-	case PUSH_VAR_WITH_FIELD:
-		varVarName = getVariable(new_value->value.two_numbers[0]);
-		if (varVarName == NULL ) {
-			errorExit("No label error PUSH_VAR_WITH_FIELD AddASsignment\n");
-		}
-		fieldName = getField(new_value->value.two_numbers[1]);
-		if (fieldName == NULL ) {
-			errorExit("No label error PUSH_VAR_WITH_FIELD AddASsignment\n");
-		}
-		fprintf(outfile,"%s = %s.%s%s",leftSide,varVarName,fieldName,newline);
-		num_pushed+=10;
-		break;
+case PUSH_VAR_WITH_FIELD:
+	varVarName = getVariable(new_value->value.two_numbers[0]);
+	if (varVarName == NULL ) {
+		printf("No label error PUSH_VAR_WITH_FIELD AddASsignment\n");
+		fatal_parsing = true;
+		return buffer - startbuffer;
+	}
+	fieldName = getField(new_value->value.two_numbers[1]);
+	if (fieldName == NULL ) {
+		printf("No label error PUSH_VAR_WITH_FIELD AddASsignment\n");
+		fatal_parsing = true;
+		return buffer - startbuffer;
+	}
+	fprintf(outfile,"%s = %s.%s%s",leftSide,varVarName,fieldName,newline);
+	num_pushed+=10;
+	break;
 
-	case PUSH_CUSTOM:
-	case PUSH_FUNCTION:
-		sprintf(final,"%s = %s%s",leftSide,new_value->value.nullString,newline);
-		fprintf(outfile,final);
+case PUSH_CUSTOM:
+case PUSH_FUNCTION:
+	sprintf(final,"%s = %s%s",leftSide,new_value->value.nullString,newline);
+	fprintf(outfile,final);
 				// num_pushed+=strlen(new_value->value.nullString)+1+2;
-		num_pushed+= new_value->secret_size;
+	num_pushed+= new_value->secret_size;
 
 				// printf("WHAT THE ACTUAL FUCKAFTERRRRRRRRR : %i\n",num_pushed);
-		break;
+	break;
 
-	default:
-		errorExit("unknown PUSH VAR in IF\n");
-		break;
-	}
+default:
+	printf("unknown PUSH VAR in IF\n");
+	fatal_parsing = true;
+	return buffer - startbuffer;
+	break;
+}
 
 
 
@@ -2771,8 +3126,8 @@ int handleAssignment(char * buffer) {
 
 	//Assignment
 
-	saveLineNumber(startbuffer,num_pushed);
-	return buffer - startbuffer;
+saveLineNumber(startbuffer,num_pushed);
+return buffer - startbuffer;
 
 }
 
@@ -2859,7 +3214,9 @@ int handleStandardOpcode(const char *startwords,char * buffer, bool assign) {
 		strcpy(dataType,"string");
 		break;
 	case TypeUNKNOWN:
-		errorExit("Unknown Variable\n");
+		printf("Unknown Variable\n");
+		fatal_parsing = true;
+		return buffer - startbuffer;
 		break;
 	}
 
@@ -2999,7 +3356,9 @@ void seekToEnthLine(int n,char * lineContent, int length) {
 
 
 	} else {
-		errorExit("fseek failed\n");
+		printf("fseek failed\n");
+		fatal_parsing = true;
+		return;
 	}
 }
 
@@ -3009,8 +3368,11 @@ void PatchUpJumps(void) {
 	char lol[32];
 
 	
-	dumpLineOffsetTable();
-	dumpFixUps();
+	if ( DEBUG_MODE ) {
+		dumpLineOffsetTable();
+		dumpFixUps();
+	}
+	
 
 	#if 0
 		
@@ -3041,7 +3403,11 @@ void PatchUpJumps(void) {
 		1) endifs must be output before labels and do not dissolve.
 		2) multiple labels dissolve into one.
 		*/
-		if ( !found_line_num ) errorExit("Unexpected error parsing, contact developer.");
+		if ( !found_line_num ) {
+			printf("Unexpected error parsing, contact developer.");
+			fatal_parsing = true;
+			return;
+		}
 		
 
 		if ( fix->lab_num ) {
@@ -3118,6 +3484,16 @@ char * getField(int index) {
 	return NULL;
 }
 
+void clearFields(void) {
+	vars_t	*l, *next;
+	for (l=Fields.next ; l != &Fields ; l=next)
+	{
+		next = l->next;
+
+		removeField(l);
+	}
+}
+
 
 // Index to VarName mapping
 void appendVariable(char * name,int idx) {
@@ -3155,6 +3531,16 @@ char * getVariable(int index) {
 	return NULL;
 }
 
+void clearVariables(void) {
+	vars_t	*l, *next;
+	for (l=Variables.next ; l != &Variables ; l=next)
+	{
+		next = l->next;
+
+		removeVariable(l);
+	}
+}
+
 labelFixUp_t * getFixUp(int labelOffset)
 {
 	labelFixUp_t	*l, *next;
@@ -3187,13 +3573,28 @@ void dumpFixUps(void) {
 	}
 }
 
+void clearFixUps(void) {
+	labelFixUp_t	*l, *next;
+	for (l=FixUps.next ; l != &FixUps ; l=next)
+	{
+		next = l->next;
+
+		l->prev->next = l->next;
+		l->next->prev = l->prev;
+
+		free(l);
+	}
+}
+
 labelFixUp_t* appendFixUp(int label_offset, int lab_num) {
 	// Attempt to allocate memory for labelFixUp_t
 	labelFixUp_t *l = (labelFixUp_t*)malloc(sizeof(labelFixUp_t));
 	
 	// Check if memory allocation was successful
 	if (l == NULL) {
-		errorExit("Memory allocation failed in appendFixUp\n");
+		printf("Memory allocation failed in appendFixUp\n");
+		fatal_parsing = true;
+		return NULL;
 	}
 
 	// Initialize the allocated structure
@@ -3206,7 +3607,9 @@ labelFixUp_t* appendFixUp(int label_offset, int lab_num) {
 
 	// Check if FixUps is properly initialized
 	if (FixUps.next == NULL || FixUps.prev == NULL) {
-		errorExit("FixUps is not properly initialized in appendFixUp\n");
+		printf("FixUps is not properly initialized in appendFixUp\n");
+		fatal_parsing = true;
+		return NULL;
 	}
 
 	// Insert the new node into the linked list

@@ -1,4 +1,4 @@
-SoF1 Designer Script decompiler by dende. 2019 January.
+SoF1 Designer Script decompiler by dende.( v3 ) 2024.
 Usage instructions.
 
 This program can convert .os files back into their original scripted format, .ds files.
@@ -17,10 +17,7 @@ Type in your console "sofos.exe" ... read what it says...
 Now type "sofos.exe nameoffile.os", replacing nameoffile with the name of your .os file.
 By default this will try to create a file named decompiled.ds in the same directory as sofos.exe
 
-A helper file "helper.ds" will also be generated in the same directory as your sofos.exe when you run it for
-the first time.  This file is pointed to in the first line of the .ds scripts and allows the
-decompiled script to compile with sofds.exe Just make sure that sofos.exe and sofds.exe are in
-the same folders/directories, and you'll be fine.
+A helper file "helper.ds" will also be generated in the Current Working Directory, or same root directory as where you dragged the input file/directory from.
 
 I will supply the sofds.exe which comes from the SoFSDK with this, so you can see if the decompiled.ds
  will compile back into the .os. SoF servers use the .os file to make dynamic things happen within a map.
@@ -35,10 +32,26 @@ sofds.exe generates compiled file with the same name as the input.ds file with .
 If you want to control output file of sofds, use -output option.
 
 To control the output file generated from sofos.exe .. pass it as a second argument.
-Eg. ./sofos.exe inputos.os outputds.ds
-You can even supply different path
-Eg. ./sofos.exe in/inputos.os out/outputds.ds
+Type sofos.exe in command line without any options to read how to use it! Or read below:
 
+
+sofos.exe now supports directories as input!, outdir is fixed in this mode.
+
+------directory mode----- (also supports drag/drop)
+sofos.exe example/directory
+default output directory will be named \"decompiled\", existing relative to your working directory
+you can even drag a directory or a file onto the sofos.exe!
+the output folder/file will live in the source directory that you dragged from!
+
+
+------single file mode----- (also supports drag/drop)
+sofos.exe infile.os [outfile.ds]\noutfile is optional
+eg. ./sofos.exe myfile.os
+If you want to control the output filename, then supply an extra argument
+decompiled.ds is default outfile if unspecified
+
+
+====sofds.exe==== ( by Raven )
 and sofds example
 Eg. ./sofds.exe inputos.os -output outputds.ds
 Eg. ./sofds.exe in/inputos.os -output out/outputds.ds

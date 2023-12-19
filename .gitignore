@@ -1,3 +1,5 @@
 sofos.exe
 *.ds
-/batch_mode_scripts/decompiled/
+decompiled/
+/*.os
+*.o
