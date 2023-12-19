@@ -86,7 +86,7 @@ wait 2.700 seconds
 animate entity endhawk performing action STD_R_N_PK_N by moving [-112.000 ,0.000 ,0.000] signaling sig1
 wait for all clearing sig1
 endhawk.movetype = MOVETYPE_NOCLIP
-rotate entity endhawk to [0.000 ,0.000 ,0.000]
+rotate entity endhawk to [0.000 ,45.000 ,0.000]
 animate entity endhawk performing action STD_F_FWD_P_2 holding for 1.000
 wait 1 seconds
 use entity end_newcam2
@@ -99,12 +99,12 @@ animate entity endhawk performing action STD_F_FWD_P_2 targeting entity end_fire
 wait for all clearing sig1
 animate entity endhawk performing action STD_F_FWD_P_2 targeting entity end_fireguy2 signaling sig1 holding for 2.000
 wait for all clearing sig1
-rotate entity endhawk to [0.000 ,0.000 ,0.000]
+rotate entity endhawk to [0.000 ,90.000 ,0.000]
 use entity end_newcam2
 remove entity end_johndes
 use entity end_newcam3
 endhawk.movetype = MOVETYPE_NOCLIP
-move entity endtruck by [0.000 ,0.000 ,0.000] at 80 speed signaling sig1
+move entity endtruck by [1704.000 ,0.000 ,0.000] at 80 speed signaling sig1
 play sound "Impact/Metal/TruckFall.adp" for entity endhawk on channel CHAN_AUTO at volume 0.900
 moverotate entity endhawk from file "Irq1a_endjohn.rof"
 animate entity endhawk performing action STD_XGOPRONE_N_A_A signaling sig1

@@ -35,10 +35,10 @@ lstallguy1 = find entity with targetname "lstallguy1"
 lstallguy2 = find entity with targetname "lstallguy2"
 lstallguy3 = find entity with targetname "lstallguy3"
 fire_script = find entity with targetname "t57"
-on lstallguy1.health < 100 goto lab_00001
-on lstallguy2.health < 100 goto lab_00001
-on lstallguy3.health < 100 goto lab_00001
+on lstallguy1.health < 100 goto lab_1
+on lstallguy2.health < 100 goto lab_1
+on lstallguy3.health < 100 goto lab_1
 suspend
-label lab_00001
+label lab_1
 use entity fire_script
 exit

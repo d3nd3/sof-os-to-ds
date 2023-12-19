@@ -177,8 +177,8 @@ use entity goodpipe
 use entity blowntop
 wait 0.200 seconds
 use entity exp5
-rotate entity tipper to [0.200 ,0.000 ,0.000] over 0.200 seconds
-move entity tipper by [0.200 ,0.000 ,0.000] over 0.200 seconds
+rotate entity tipper to [20.000 ,0.000 ,0.000] over 0.200 seconds
+move entity tipper by [0.000 ,0.000 ,5.000] over 0.200 seconds
 wait 0.200 seconds
 use entity exp6
 use entity exp2

@@ -35,16 +35,16 @@ wall1 = find entity with targetname "wall1"
 plat3 = find entity with targetname "plat3"
 auto3 = find entity with targetname "auto3"
 auto3.movetype = MOVETYPE_NOCLIP
-move entity wall1 by [0.500 ,0.000 ,0.000] over 0.500 seconds signaling sig
+move entity wall1 by [0.000 ,-8.000 ,0.000] over 0.500 seconds signaling sig
 wait for all clearing sig
-move entity wall1 by [0.000 ,0.000 ,0.000] over 1 seconds signaling sig
+move entity wall1 by [0.000 ,0.000 ,-72.000] over 1 seconds signaling sig
 wait for all clearing sig
 wait 0.500 seconds
-move entity plat3 by [0.000 ,0.000 ,0.000] over 2 seconds
-move entity auto3 to [0.000 ,0.000 ,0.000] over 2 seconds
+move entity plat3 by [0.000 ,0.000 ,-72.000] over 2 seconds
+move entity auto3 to [-416.000 ,-1199.000 ,-130.000] over 2 seconds
 wait 2.500 seconds
-move entity plat3 by [0.000 ,0.000 ,0.000] over 2 seconds
-move entity auto3 to [0.000 ,0.000 ,0.000] over 2 seconds
+move entity plat3 by [0.000 ,40.000 ,0.000] over 2 seconds
+move entity auto3 to [-416.000 ,-1159.000 ,-130.000] over 2 seconds
 wait 2.500 seconds
 auto3.movetype = MOVETYPE_DAN
 exit

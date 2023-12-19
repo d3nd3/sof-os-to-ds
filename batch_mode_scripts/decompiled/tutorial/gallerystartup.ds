@@ -54,14 +54,14 @@ badguy2legs.movetype = MOVETYPE_PUSH
 badguy4.movetype = MOVETYPE_PUSH
 badguy4head.movetype = MOVETYPE_PUSH
 badguy4legs.movetype = MOVETYPE_PUSH
-rotate entity badguy1 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity badguy1head by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity badguy1legs by [0.000 ,0.000 ,0.000] over 1 seconds
-move entity badguy2 by [0.500 ,0.000 ,0.000] over 0.500 seconds
-move entity badguy2head by [0.500 ,0.000 ,0.000] over 0.500 seconds
-move entity badguy2legs by [0.500 ,0.000 ,0.000] over 0.500 seconds
-rotate entity badguy4 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity badguy4head by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity badguy4legs by [0.000 ,0.000 ,0.000] over 1 seconds
+rotate entity badguy1 by [90.000 ,0.000 ,0.000] over 1 seconds
+rotate entity badguy1head by [90.000 ,0.000 ,0.000] over 1 seconds
+rotate entity badguy1legs by [90.000 ,0.000 ,0.000] over 1 seconds
+move entity badguy2 by [0.000 ,0.000 ,-96.000] over 0.500 seconds
+move entity badguy2head by [0.000 ,0.000 ,-96.000] over 0.500 seconds
+move entity badguy2legs by [0.000 ,0.000 ,-96.000] over 0.500 seconds
+rotate entity badguy4 by [90.000 ,0.000 ,0.000] over 1 seconds
+rotate entity badguy4head by [90.000 ,0.000 ,0.000] over 1 seconds
+rotate entity badguy4legs by [90.000 ,0.000 ,0.000] over 1 seconds
 wait 1.500 seconds
 exit

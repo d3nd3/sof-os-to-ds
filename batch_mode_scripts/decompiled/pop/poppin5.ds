@@ -43,7 +43,7 @@ use entity man30
 use entity man31
 use entity man32
 use entity man33
-label lab_00001
+label lab_1
 sneak = get entity activator
 reset ai for entity man30
 reset ai for entity man31

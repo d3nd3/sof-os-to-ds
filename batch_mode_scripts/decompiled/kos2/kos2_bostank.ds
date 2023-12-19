@@ -46,8 +46,8 @@ guy2 = find entity with targetname "tankguy2"
 guy3 = find entity with targetname "tankguy3"
 bostank.movetype = MOVETYPE_NOCLIP
 animate entity guy3 performing action STD_R_N_MRS_2 by moving [-1160.000 ,0.000 ,0.000]
-move entity bostank by [0.000 ,0.000 ,0.000] at 150 speed signaling sig1
-move entity tanksnd by [0.000 ,0.000 ,0.000] at 150 speed
+move entity bostank by [-500.000 ,0.000 ,0.000] at 150 speed signaling sig1
+move entity tanksnd by [-500.000 ,0.000 ,0.000] at 150 speed
 wait 0.500 seconds
 vPos = blowbridge.origin
 vPos.z += 64.000
@@ -60,15 +60,15 @@ animate entity guy1 performing action STD_R_N_MRS_2 by moving [-504.000 ,0.000 ,
 animate entity guy2 performing action STD_R_N_MRS_2 by moving [-504.000 ,0.000 ,0.000]
 animate entity guy1 performing action STD_FGANGBANGER_N_M_2 holding for 20.000
 animate entity guy2 performing action STD_FAUTOSWEEP_N_PM_A holding for 20.000
-move entity bostank by [0.000 ,0.000 ,0.000] at 130 speed signaling sig1
-move entity tanksnd by [0.000 ,0.000 ,0.000] at 130 speed
+move entity bostank by [-500.000 ,0.000 ,0.000] at 130 speed signaling sig1
+move entity tanksnd by [-500.000 ,0.000 ,0.000] at 130 speed
 vPos = blowbridge2.origin
 vPos.z += 64.000
 tank entity bostank 2
 wait for all clearing sig1,sig2
 use entity blowbridge2
-move entity bostank by [0.000 ,0.000 ,0.000] at 90 speed signaling sig1
-move entity tanksnd by [0.000 ,0.000 ,0.000] at 90 speed
+move entity bostank by [-700.000 ,0.000 ,0.000] at 90 speed signaling sig1
+move entity tanksnd by [-700.000 ,0.000 ,0.000] at 90 speed
 wait for all clearing sig1
 remove entity guy3
 remove entity bostank

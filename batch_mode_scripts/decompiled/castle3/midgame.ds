@@ -46,7 +46,7 @@ player1 = get entity activator
 use entity middekker1
 suspend
 animate entity middekker1 performing action STD_ISTAND_N_A_N holding for 2.600
-move entity midblastdoor by [0.000 ,0.000 ,0.000] over 1 seconds
+move entity midblastdoor by [0.000 ,0.000 ,60.000] over 1 seconds
 play sound "Cin/Ger3/Script/ClampOpn.adp" for entity midblastdoor on channel CHAN_AUTO at volume 0.900
 wait 1 seconds
 play sound "cin/ger3/c75d1.adp" for entity player1 on channel CHAN_AUTO at volume 0.900

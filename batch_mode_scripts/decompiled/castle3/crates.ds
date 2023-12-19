@@ -35,11 +35,11 @@ pusher = find entity with targetname "pusher"
 pushcrate = find entity with targetname "pushcrate"
 cratehurts = find entity with targetname "cratehurts"
 pushcrate.movetype = MOVETYPE_NOCLIP
-move entity pushcrate by [0.000 ,0.000 ,0.000] at 60 speed
+move entity pushcrate by [48.000 ,0.000 ,0.000] at 60 speed
 animate entity pusher performing action STD_EPUSHCRATE_N_N_N holding for 0.800
 wait 0.800 seconds
-rotate entity pushcrate by [0.000 ,0.000 ,0.000] at 75 speed
-move entity pushcrate by [0.000 ,0.000 ,0.000] at 75 speed
+rotate entity pushcrate by [110.000 ,0.000 ,0.000] at 75 speed
+move entity pushcrate by [32.000 ,0.000 ,-96.000] at 75 speed
 enable trigger entity cratehurts
 wait 0.300 seconds
 disable trigger entity cratehurts

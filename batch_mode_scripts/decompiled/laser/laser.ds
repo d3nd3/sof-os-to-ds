@@ -30,6 +30,86 @@ local entity las
 local int sig1
 
 las = find entity with targetname "l1"
-move entity las by [0.100 ,4414274106461322700000.000 ,3786844405760.000] over 0.100 seconds signaling sig1
+label lab_1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
 wait for all clearing sig1
-move entity las by [0.100 ,2603474558419904700000000000000000.000 ,1725978025583617Hè
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [-10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+move entity las by [10.000 ,0.000 ,0.000] over 0.100 seconds signaling sig1
+wait for all clearing sig1
+goto lab_00001
+exit

@@ -36,8 +36,8 @@ camroom_door = find entity with targetname "camroom_door"
 camroom_hole = find entity with targetname "camroom_hole"
 openin = find entity with targetname "openin"
 camroom_hole.movetype = MOVETYPE_NOCLIP
-rotate entity camroom_door by [0.000 ,0.000 ,0.000] at 90 speed signaling sig1
-rotate entity camroom_hole by [0.000 ,0.000 ,0.000] at 90 speed signaling sig2
+rotate entity camroom_door by [0.000 ,-90.000 ,0.000] at 90 speed signaling sig1
+rotate entity camroom_hole by [0.000 ,-90.000 ,0.000] at 90 speed signaling sig2
 wait for all clearing sig1,sig2
 use entity openin
 camroom_hole.movetype = MOVETYPE_NONE

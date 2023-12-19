@@ -31,12 +31,12 @@ local int counter = 0
 local int sig
 
 headfloater = find entity with targetname "headfloater"
-label lab_00002
+label lab_1
 if counter < 50
 moverotate entity headfloater from file "sud2_misterhanky.rof" signaling sig
 wait for all clearing sig
 counter = counter + 1
-goto lab_00002
+goto lab_00001
 endif
 remove entity headfloater
 exit

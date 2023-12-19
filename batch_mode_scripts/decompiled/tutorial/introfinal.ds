@@ -61,25 +61,25 @@ animate entity introsam performing action STD_ETALK_N_A_N holding for 1.000
 wait 1.000 seconds
 animate entity introsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
 wait 0.800 seconds
-move entity buttondoor1 by [0.100 ,0.000 ,0.000] over 0.100 seconds
-move entity buttondoor2 by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity buttondoor1 by [0.000 ,-2.000 ,0.000] over 0.100 seconds
+move entity buttondoor2 by [0.000 ,-2.000 ,0.000] over 0.100 seconds
 play sound "Cin/Tut/Script/plate.wav" for entity buttonlight on channel CHAN_AUTO at volume 0.900
 animate entity introsam performing action STD_ETALK_N_A_N holding for 3.200
 wait 0.100 seconds
-move entity buttondoor1 by [0.700 ,0.000 ,0.000] over 0.700 seconds
-move entity buttondoor2 by [0.700 ,0.000 ,0.000] over 0.700 seconds
+move entity buttondoor1 by [0.000 ,0.000 ,16.000] over 0.700 seconds
+move entity buttondoor2 by [0.000 ,0.000 ,-16.000] over 0.700 seconds
 wait 0.100 seconds
 use entity buttonlight
 wait 0.900 seconds
-move entity hostbutton by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity hostbutton by [0.000 ,-6.000 ,0.000] over 0.100 seconds
 wait 2.100 seconds
 introsam.wait = 0
 animate entity introsam performing action STD_WNORMAL_N_PK_A by moving to [160.000 ,472.000 ,128.000] signaling sig
 wait for all clearing sig
-move entity samdoor1 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity samdoor1 by [0.000 ,60.000 ,0.000] over 0.500 seconds
 animate entity introsam performing action STD_WNORMAL_N_PK_A by moving to [268.000 ,472.000 ,128.000] signaling sig
 wait for all clearing sig
-move entity samdoor1 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity samdoor1 by [0.000 ,-60.000 ,0.000] over 0.500 seconds
 wait 0.500 seconds
 remove entity introsam
 exit

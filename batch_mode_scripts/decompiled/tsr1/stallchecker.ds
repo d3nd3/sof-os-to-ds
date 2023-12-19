@@ -29,9 +29,9 @@ field int "health"
 local entity stallshooter
 
 stallshooter = find entity with targetname "stallshooter"
-on stallshooter.health < 100 goto lab_00001
+on stallshooter.health < 100 goto lab_1
 suspend
-label lab_00001
+label lab_1
 reset ai for entity stallshooter
 animate entity stallshooter performing action SCRIPT_RELEASE
 exit

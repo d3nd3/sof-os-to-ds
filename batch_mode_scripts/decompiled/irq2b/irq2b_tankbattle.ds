@@ -63,12 +63,12 @@ use entity fire
 play sound "Impact/Wood/CrateExp.adp" for entity agentsmith on channel CHAN_AUTO at volume 0.900
 vPos = player1.origin
 tank entity agentsmith 3
-label lab_00002
+label lab_1
 if counter < 20
 vPos = player1.origin
 tank entity agentsmith 2
 wait for all clearing sig1
 wait 5 seconds
-goto lab_00002
+goto lab_00001
 endif
 exit

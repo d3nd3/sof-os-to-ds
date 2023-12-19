@@ -59,7 +59,7 @@ wait 0.100 seconds
 bas1.health += 40
 bas2.health += 40
 bas5.health += 80
-label lab_00003
+label lab_2
 suspend
 jo = get entity activator
 animate entity bas1 performing action CCH_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
@@ -69,11 +69,13 @@ animate entity bas2 performing action CCH_F_FWD_M_2 targeting entity jo kill nul
 if bas1.health < 0
 if bas2.health < 0
 if bas5.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 wait 0.300 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 wait 8.200 seconds
 remove entity bas1
 remove entity bas2

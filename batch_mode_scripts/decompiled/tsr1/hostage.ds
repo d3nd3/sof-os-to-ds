@@ -33,16 +33,16 @@ local entity host_count
 hostage1 = find entity with targetname "hostage1"
 badguy1 = find entity with targetname "badguy1"
 host_count = find entity with targetname "host_count"
-on badguy1.health < 100 goto lab_00001
+on badguy1.health < 100 goto lab_1
 animate entity badguy1 performing action STD_MKICKLOW_N_A_A
 play sound "speech/tsr1/npc/eb9-3.adp" for entity badguy1 at volume 0.900
 wait 1 seconds
-label lab_00002
+label lab_2
 animate entity badguy1 performing action SCRIPT_RELEASE
 animate entity hostage1 performing action SCRIPT_RELEASE
 host_count.health += 1
 exit
-label lab_00001
+label lab_1
 reset ai for entity badguy1
 goto lab_00002
 exit

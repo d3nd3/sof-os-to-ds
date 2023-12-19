@@ -70,25 +70,25 @@ print 33289
 play sound "cin/tut/hudd1.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900
 animate entity hudsam showing emotion EMOTION_TALK holding for 3.600
 animate entity hudsam performing action STD_WNORMAL_N_PK_A by moving to [384.000 ,576.000 ,128.000]
-move entity shelf1 by [0.000 ,0.000 ,0.000] over 2 seconds
-move entity shelf2 by [0.000 ,0.000 ,0.000] over 2 seconds
+move entity shelf1 by [0.000 ,0.000 ,-96.000] over 2 seconds
+move entity shelf2 by [64.000 ,0.000 ,0.000] over 2 seconds
 play sound "Cin/Tut/Script/bookshelf.wav" for entity hudarmor on channel CHAN_AUTO at volume 0.900
 play sound "Cin/Tut/Script/bookshelf.wav" for entity hudhealth on channel CHAN_AUTO at volume 0.900
 wait 3 seconds
-move entity screen1 by [1.500 ,0.000 ,0.000] over 1.500 seconds
-move entity screen1cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen1 by [0.000 ,0.000 ,64.000] over 1.500 seconds
+move entity screen1cover by [0.000 ,0.000 ,64.000] over 1.500 seconds
 play sound "Cin/Tut/Script/hudscreen.wav" for entity hudarmor on channel CHAN_AUTO at volume 0.900
 wait 0.200 seconds
-move entity screen2 by [1.500 ,0.000 ,0.000] over 1.500 seconds
-move entity screen2cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen2 by [0.000 ,0.000 ,64.000] over 1.500 seconds
+move entity screen2cover by [0.000 ,0.000 ,64.000] over 1.500 seconds
 play sound "Cin/Tut/Script/hudscreen.wav" for entity hudhealth on channel CHAN_AUTO at volume 0.900
 wait 0.200 seconds
-move entity screen3 by [1.500 ,0.000 ,0.000] over 1.500 seconds
-move entity screen3cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen3 by [0.000 ,0.000 ,64.000] over 1.500 seconds
+move entity screen3cover by [0.000 ,0.000 ,64.000] over 1.500 seconds
 play sound "Cin/Tut/Script/hudscreen.wav" for entity huditems on channel CHAN_AUTO at volume 0.900
 wait 0.200 seconds
-move entity screen4 by [1.500 ,0.000 ,0.000] over 1.500 seconds
-move entity screen4cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen4 by [0.000 ,0.000 ,64.000] over 1.500 seconds
+move entity screen4cover by [0.000 ,0.000 ,64.000] over 1.500 seconds
 play sound "Cin/Tut/Script/hudscreen.wav" for entity player1 on channel CHAN_AUTO at volume 0.900
 wait 0.600 seconds
 hudsam.wait = 1
@@ -97,7 +97,7 @@ play sound "cin/tut/hudd2.adp" for entity hudsam on channel CHAN_VOICE at volume
 animate entity hudsam showing emotion EMOTION_TALK holding for 3.500
 animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.000
 wait 1 seconds
-move entity screen1cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen1cover by [0.000 ,0.000 ,-64.000] over 1.500 seconds
 play sound "Cin/Tut/Script/hudscreen.wav" for entity hudarmor on channel CHAN_AUTO at volume 0.900
 wait 1 seconds
 animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
@@ -164,7 +164,7 @@ animate entity hudsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
 wait 0.800 seconds
 animate entity hudsam performing action STD_ETALK_N_A_N holding for 0.900
 wait 1.000 seconds
-move entity screen2cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen2cover by [0.000 ,0.000 ,-64.000] over 1.500 seconds
 play sound "Cin/Tut/Script/hudscreen.wav" for entity hudhealth on channel CHAN_AUTO at volume 0.900
 wait 0.500 seconds
 print 33295
@@ -200,7 +200,7 @@ animate entity hudsam performing action STD_ETALKLEFT_N_A_N holding for 0.800
 wait 0.800 seconds
 animate entity hudsam performing action STD_ETALK_N_A_N holding for 6.700
 wait 6.700 seconds
-move entity screen3cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen3cover by [0.000 ,0.000 ,-64.000] over 1.500 seconds
 play sound "Cin/Tut/Script/hudscreen.wav" for entity huditems on channel CHAN_AUTO at volume 0.900
 wait 0.500 seconds
 print 33299
@@ -245,7 +245,7 @@ animate entity hudsam performing action STD_ETALKRIGHT_N_A_N holding for 0.500
 wait 0.500 seconds
 animate entity hudsam performing action STD_ETALK_N_A_N holding for 2.200
 wait 2.300 seconds
-move entity screen4cover by [1.500 ,0.000 ,0.000] over 1.500 seconds
+move entity screen4cover by [0.000 ,0.000 ,-64.000] over 1.500 seconds
 play sound "Cin/Tut/Script/hudscreen.wav" for entity huditems on channel CHAN_AUTO at volume 0.900
 wait 0.500 seconds
 print 33303
@@ -277,10 +277,10 @@ use entity hudhealth
 hudsam.wait = 0
 animate entity hudsam performing action STD_WNORMAL_N_PK_A by moving to [448.000 ,470.000 ,128.000] signaling sig
 wait for all clearing sig
-move entity samdoor2 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity samdoor2 by [0.000 ,-60.000 ,0.000] over 0.500 seconds
 animate entity hudsam performing action STD_WNORMAL_N_PK_A by moving to [600.000 ,480.000 ,128.000] signaling sig
 wait for all clearing sig
-move entity samdoor2 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity samdoor2 by [0.000 ,60.000 ,0.000] over 0.500 seconds
 use entity huddoor1
 wait 0.500 seconds
 exit

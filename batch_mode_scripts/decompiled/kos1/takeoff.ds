@@ -47,7 +47,7 @@ play sound "Impact\Car\Crash1.adp" for entity splayer2 at volume 0.900
 play sound "cin/kos1/s7d1.adp" for entity pointguy at volume 0.900
 print 32274
 use entity takeofftruck
-move entity takeofftruck by [0.000 ,0.000 ,0.000] at 250 speed
+move entity takeofftruck by [460.000 ,0.000 ,0.000] at 250 speed
 use entity takeofftruck
 play sound "Impact\Car\Crash1.adp" for entity splayer2 at volume 0.900
 wait 1.700 seconds

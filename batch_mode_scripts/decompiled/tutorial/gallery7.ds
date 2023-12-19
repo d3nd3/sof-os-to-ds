@@ -56,22 +56,22 @@ wait 1.700 seconds
 use entity gallery7semidoor1
 use entity gallery7semidoor2
 wait 0.800 seconds
-label lab_00007
-on target7 == 1 goto lab_00001
+label lab_2
+on target7 == 1 goto lab_1
 badguy5.movetype = MOVETYPE_PUSH
 badguy5head.movetype = MOVETYPE_PUSH
 badguy5legs.movetype = MOVETYPE_PUSH
 badguy5arms.movetype = MOVETYPE_PUSH
-rotate entity badguy5 by [0.300 ,0.000 ,0.000] over 0.300 seconds
-rotate entity badguy5head by [0.300 ,0.000 ,0.000] over 0.300 seconds
-rotate entity badguy5legs by [0.300 ,0.000 ,0.000] over 0.300 seconds
-rotate entity badguy5arms by [0.300 ,0.000 ,0.000] over 0.300 seconds
+rotate entity badguy5 by [0.000 ,60.000 ,0.000] over 0.300 seconds
+rotate entity badguy5head by [0.000 ,60.000 ,0.000] over 0.300 seconds
+rotate entity badguy5legs by [0.000 ,60.000 ,0.000] over 0.300 seconds
+rotate entity badguy5arms by [0.000 ,60.000 ,0.000] over 0.300 seconds
 play sound "Cin/Tut/Script/target.wav" for entity gallery7null on channel CHAN_AUTO at volume 0.900
 wait 3.800 seconds
-rotate entity badguy5 by [0.300 ,0.000 ,0.000] over 0.300 seconds
-rotate entity badguy5head by [0.300 ,0.000 ,0.000] over 0.300 seconds
-rotate entity badguy5legs by [0.300 ,0.000 ,0.000] over 0.300 seconds
-rotate entity badguy5arms by [0.300 ,0.000 ,0.000] over 0.300 seconds
+rotate entity badguy5 by [0.000 ,-60.000 ,0.000] over 0.300 seconds
+rotate entity badguy5head by [0.000 ,-60.000 ,0.000] over 0.300 seconds
+rotate entity badguy5legs by [0.000 ,-60.000 ,0.000] over 0.300 seconds
+rotate entity badguy5arms by [0.000 ,-60.000 ,0.000] over 0.300 seconds
 play sound "Cin/Tut/Script/target.wav" for entity gallery7null on channel CHAN_AUTO at volume 0.900
 wait 1.800 seconds
 badguy5health = badguy5.health
@@ -97,6 +97,6 @@ if btotal == 4
 exit
 goto lab_00001
 endif
-goto lab_00007
-label lab_00001
+goto lab_00002
+label lab_1
 exit

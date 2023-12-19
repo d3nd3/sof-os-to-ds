@@ -33,17 +33,17 @@ local entity host_count
 topstairguy1 = find entity with targetname "topstairguy1"
 topstairbad1 = find entity with targetname "topstairbad1"
 host_count = find entity with targetname "host_count"
-on topstairbad1.health < 100 goto lab_00001
+on topstairbad1.health < 100 goto lab_1
 animate entity topstairguy1 performing action STD_XFEARWAVE_N_N_N
 play sound "speech/tsr1/npc/eb9-3.adp" for entity topstairguy1 at volume 0.900
 animate entity topstairbad1 performing action STD_XYELLATYOU_N_A_A
 wait 1.000 seconds
 play sound "speech/tsr1/skn/bt9-4.adp" for entity topstairbad1 at volume 0.900
-label lab_00002
+label lab_2
 animate entity topstairbad1 performing action SCRIPT_RELEASE
 animate entity topstairguy1 performing action SCRIPT_RELEASE
 exit
-label lab_00001
+label lab_1
 reset ai for entity topstairbad1
 goto lab_00002
 exit

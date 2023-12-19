@@ -31,9 +31,9 @@ local int sig1
 
 one_grate = find entity with targetname "one_grate"
 play sound "Cin\KOS3\Script\Slide.adp" for entity one_grate on channel CHAN_AUTO at volume 0.900
-move entity one_grate by [0.000 ,0.000 ,0.000] at 45 speed signaling sig1
+move entity one_grate by [0.000 ,0.000 ,4.000] at 45 speed signaling sig1
 wait for all clearing sig1
-move entity one_grate by [0.000 ,0.000 ,0.000] at 45 speed
-rotate entity one_grate by [0.000 ,0.000 ,0.000] at 15 speed signaling sig1
+move entity one_grate by [64.000 ,0.000 ,0.000] at 45 speed
+rotate entity one_grate by [0.000 ,45.000 ,0.000] at 15 speed signaling sig1
 wait for all clearing sig1
 exit

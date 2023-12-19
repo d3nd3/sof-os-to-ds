@@ -37,17 +37,18 @@ use entity bambi
 bambz.health += 80
 bambi.health += 80
 suspend
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity bambz performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity bambi performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 if bambz.health < 0
 if bambi.health < 0
-goto lab_00002
+goto lab_00001
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity bambz performing action SCRIPT_RELEASE
 animate entity bambi performing action SCRIPT_RELEASE
 exit

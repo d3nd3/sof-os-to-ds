@@ -69,7 +69,7 @@ use entity dezg
 animate entity dezf performing action SCRIPT_RELEASE
 animate entity dezg performing action SCRIPT_RELEASE
 animate entity deze performing action SCRIPT_RELEASE
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity deza performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
 animate entity dezb performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
@@ -86,7 +86,11 @@ if deza.health <= 0
 if dezb.health <= 0
 if dezc.health <= 0
 if dezd.health <= 0
-goto lab_00002
+goto lab_00001
+endif
+endif
+endif
+endif
 endif
 suspend
 reset ai for entity deza
@@ -94,8 +98,8 @@ reset ai for entity dezb
 reset ai for entity dezc
 reset ai for entity dezd
 wait 0.200 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 wait 0.200 seconds
 animate entity deza performing action SCRIPT_RELEASE
 animate entity dezb performing action SCRIPT_RELEASE

@@ -30,13 +30,13 @@ local entity sneak1worker
 local int sig1
 
 sneak1worker = find entity with targetname "sneak1worker"
-on sneak1worker.health < 100 goto lab_00001
+on sneak1worker.health < 100 goto lab_1
 animate entity sneak1worker performing action STD_WNORMAL_N_PK_A by moving [0.000 ,296.000 ,0.000] signaling sig1
 wait for all clearing sig1
 animate entity sneak1worker performing action STD_WNORMAL_N_PK_A by moving [172.000 ,0.000 ,0.000] signaling sig1
 wait for all clearing sig1
 remove entity sneak1worker
-label lab_00001
+label lab_1
 animate entity sneak1worker performing action SCRIPT_RELEASE
 reset ai for entity sneak1worker
 exit

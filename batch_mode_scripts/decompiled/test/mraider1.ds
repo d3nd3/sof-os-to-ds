@@ -35,15 +35,15 @@ tun2 = find entity with targetname "tun2"
 use entity tun2
 tun2.health = 1000
 health = tun2.health
-label lab_00003
+label lab_2
 health = tun2.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity tun2
 me = get entity activator
 animate entity tun2 performing action CCH_F_FWD_S_2 targeting entity me
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

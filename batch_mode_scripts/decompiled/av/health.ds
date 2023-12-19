@@ -29,12 +29,12 @@ field int "health"
 local entity me
 local int health
 
-label lab_00002
+label lab_1
 me = get entity activator
 health = me.health
 if health > 15
 me.health = 10
 endif
 suspend
-goto lab_00002
+goto lab_00001
 exit

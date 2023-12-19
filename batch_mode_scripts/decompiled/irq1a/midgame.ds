@@ -169,7 +169,7 @@ use entity midhawk2
 use entity midcam6
 midcam8.movetype = MOVETYPE_NOCLIP
 use entity midcam8
-move entity midcam8 by [0.000 ,0.000 ,0.000] at 2 speed
+move entity midcam8 by [0.000 ,32.000 ,0.000] at 2 speed
 animate entity midsold3 performing action STD_EPOUNDDOOR_N_A_N holding for 4.800
 wait 0.100 seconds
 play sound "cin/irq1a/c28d6.adp" for entity midsold3 on channel CHAN_AUTO at volume 0.900
@@ -181,7 +181,7 @@ wait 0.800 seconds
 use entity midcam8
 midcam9.movetype = MOVETYPE_NOCLIP
 use entity midcam9
-move entity midcam9 by [0.000 ,0.000 ,0.000] at 2 speed
+move entity midcam9 by [0.000 ,0.000 ,16.000] at 2 speed
 wait 0.100 seconds
 remove entity midsold1
 remove entity midsold2

@@ -60,6 +60,6 @@ remove entity trainvictim1
 wait 3 seconds
 use entity shake1
 use entity trainexplosion
-rotate entity train2 by [0.000 ,0.000 ,0.000] at 150 speed signaling sig1
+rotate entity train2 by [-10.000 ,-5.000 ,0.000] at 150 speed signaling sig1
 wait for all clearing sig1
 exit

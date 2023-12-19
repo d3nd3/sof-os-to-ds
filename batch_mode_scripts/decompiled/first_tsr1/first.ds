@@ -42,7 +42,7 @@ enable cinematics
 use entity killer
 use entity dead
 use entity cam
-move entity cam by [0.000 ,0.000 ,0.000] at 15 speed signaling sig
+move entity cam by [128.000 ,-160.000 ,0.000] at 15 speed signaling sig
 wait for all clearing sig
 animate entity killer performing action WALK by moving [100.000 ,0.000 ,0.000]
 wait 2 seconds

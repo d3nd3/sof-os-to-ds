@@ -39,15 +39,16 @@ use entity ventb
 suspend
 suspend
 wait 0.200 seconds
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity venta performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
 wait 0.100 seconds
 animate entity ventb performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget CHEST
 if venta.health < 0
 if ventb.health < 0
-goto lab_00002
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+endif
+goto lab_00002
+label lab_1
 exit

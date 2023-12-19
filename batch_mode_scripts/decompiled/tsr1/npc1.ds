@@ -36,14 +36,14 @@ local int sig2
 victim1 = find entity with targetname "victim1"
 chaser1 = find entity with targetname "chaser1"
 host_count = find entity with targetname "host_count"
-on chaser1.health < 100 goto lab_00001
+on chaser1.health < 100 goto lab_1
 animate entity chaser1 performing action STD_XYELLATYOU_N_A_A
 play sound "Speech/TSR1/SKN/BT9-3.adp" for entity chaser1 on channel CHAN_VOICE at volume 0.900
 animate entity chaser1 performing action STD_F_FWD_P_2 targeting entity victim1
 animate entity chaser1 performing action SCRIPT_RELEASE
 play sound "speech/tsr1/npc/eb9-2.adp" for entity victim1 at volume 0.900
 suspend
-label lab_00001
+label lab_1
 animate entity chaser1 performing action SCRIPT_RELEASE
 animate entity victim1 performing action SCRIPT_RELEASE
 reset ai for entity chaser1

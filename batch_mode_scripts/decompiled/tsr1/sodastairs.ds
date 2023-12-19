@@ -33,7 +33,7 @@ local int sig1
 stairguy1 = find entity with targetname "stairguy1"
 stepsrunguy = find entity with targetname "stepsrunguy"
 use entity stepsrunguy
-on stairguy1.health < 100 goto lab_00001
+on stairguy1.health < 100 goto lab_1
 play sound "impact/vending/kick.wav" for entity stairguy1 at volume 0.900
 animate entity stairguy1 performing action STD_XKICKDOOR_N_A_A
 wait 0.100 seconds
@@ -43,7 +43,7 @@ play sound "impact/vending/sodadrop.wav" for entity stairguy1 at volume 0.900
 wait 1.500 seconds
 play sound "speech/tsr1/skn/bt9-5.adp" for entity stairguy1 at volume 0.800
 wait 0.500 seconds
-label lab_00001
+label lab_1
 reset ai for entity stairguy1
 animate entity stairguy1 performing action SCRIPT_RELEASE
 use entity stepsrunguy

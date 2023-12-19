@@ -87,7 +87,7 @@ use entity cam1
 helicopter entity heli1 5
 wait 0.200 seconds
 use entity trigguys
-move entity cam1 by [0.000 ,0.000 ,0.000] over 3 seconds
+move entity cam1 by [100.000 ,-128.000 ,-30.000] over 3 seconds
 play sound "cin/tsr1/s1d1.adp" for entity heli1 at volume 0.900
 helicopter entity heli1 17
 wait 2 seconds
@@ -103,84 +103,84 @@ helicopter entity heli1 20
 helicopter entity heli1 17
 wait 2 seconds
 play sound "cin/tsr1/s1d4.adp" for entity heli1 at volume 0.900
-move entity null1 by [0.000 ,0.000 ,0.000] over 2 seconds signaling sig1
+move entity null1 by [-256.000 ,0.000 ,0.000] over 2 seconds signaling sig1
 wait for all clearing sig1
-move entity null1 by [0.500 ,0.000 ,0.000] over 0.500 seconds signaling sig1
+move entity null1 by [0.000 ,80.000 ,0.000] over 0.500 seconds signaling sig1
 wait for all clearing sig1
 wait 0.200 seconds
-move entity null1 by [0.000 ,0.000 ,0.000] over 1 seconds signaling sig1
+move entity null1 by [0.000 ,-170.000 ,0.000] over 1 seconds signaling sig1
 wait for all clearing sig1
-move entity cam1 by [0.000 ,0.000 ,0.000] over 1 seconds signaling sig1
+move entity cam1 by [-256.000 ,0.000 ,0.000] over 1 seconds signaling sig1
 wait for all clearing sig1
-move entity null1 by [0.000 ,0.000 ,0.000] over 1 seconds
-move entity cam1 by [0.000 ,0.000 ,0.000] over 1 seconds signaling sig1
+move entity null1 by [0.000 ,0.000 ,-256.000] over 1 seconds
+move entity cam1 by [0.000 ,0.000 ,-256.000] over 1 seconds signaling sig1
 wait for all clearing sig1
-move entity null1 by [0.000 ,0.000 ,0.000] over 2 seconds
-move entity cam1 by [0.000 ,0.000 ,0.000] over 4 seconds signaling sig1
+move entity null1 by [-80.000 ,-600.000 ,0.000] over 2 seconds
+move entity cam1 by [0.000 ,-600.000 ,0.000] over 4 seconds signaling sig1
 wait for all clearing sig1
 use entity cam2
 use entity cam1
-move entity cam2 by [0.000 ,0.000 ,0.000] over 3 seconds signaling sig1
+move entity cam2 by [200.000 ,0.000 ,0.000] over 3 seconds signaling sig1
 wait for all clearing sig1
 animate entity sniper3 performing action CCH_A_FWD_R_2 holding for 6.000
-move entity cam2 by [0.000 ,0.000 ,0.000] over 1 seconds signaling sig1
+move entity cam2 by [56.000 ,0.000 ,0.000] over 1 seconds signaling sig1
 wait for all clearing sig1
 wait 0.500 seconds
 use entity cam3
 use entity cam2
 wait 0.500 seconds
 use entity john
-move entity null3 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig1
+move entity null3 by [-150.000 ,0.000 ,0.000] at 80 speed signaling sig1
 wait for all clearing sig1
-move entity null3 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig1
+move entity null3 by [180.000 ,0.000 ,50.000] at 80 speed signaling sig1
 wait for all clearing sig1
 use entity doorz
-move entity null3 by [0.000 ,0.000 ,0.000] at 50 speed signaling sig1
+move entity null3 by [-30.000 ,0.000 ,-50.000] at 50 speed signaling sig1
 wait for all clearing sig1
 zoom.wait = 60
-label lab_00002
+label lab_1
 if counter < 15
+zoom.wait -= 2.500
+use entity zoom
+wait 0.100 seconds
+counter += 1
+goto lab_00001
+endif
+move entity null3 by [-50.000 ,0.000 ,0.000] at 10 speed
+animate entity john performing action WALK by moving [35.000 ,0.000 ,0.000]
+move entity null3 by [-50.000 ,0.000 ,0.000] at 5 speed
+wait 0.500 seconds
+zoom.wait = 60
+label lab_2
+if counter < 5
 zoom.wait -= 2.500
 use entity zoom
 wait 0.100 seconds
 counter += 1
 goto lab_00002
 endif
-move entity null3 by [0.000 ,0.000 ,0.000] at 10 speed
-animate entity john performing action WALK by moving [35.000 ,0.000 ,0.000]
-move entity null3 by [0.000 ,0.000 ,0.000] at 5 speed
-wait 0.500 seconds
-zoom.wait = 60
-label lab_00004
-if counter < 5
-zoom.wait -= 2.500
-use entity zoom
-wait 0.100 seconds
-counter += 1
-goto lab_00004
-endif
-rotate entity john by [0.000 ,0.000 ,0.000]
+rotate entity john by [0.000 ,-90.000 ,0.000]
 wait 1 seconds
-move entity null3 by [0.000 ,0.000 ,0.000] at 20 speed
+move entity null3 by [0.000 ,0.000 ,-20.000] at 20 speed
 animate entity john performing action RUN by moving [-35.000 ,0.000 ,0.000]
 zoom.wait = 60
-label lab_00006
+label lab_3
 if counter < 3
 zoom.wait -= 2.500
 use entity zoom
 wait 0.100 seconds
 counter += 1
-goto lab_00006
+goto lab_00003
 endif
 wait 2 seconds
 play sound "speech/tsr1/skn/bt9-7.adp" for entity sniper3 at volume 0.900
 zoom.wait = 60
-label lab_00008
+label lab_4
 if counter < 20
 zoom.wait += 2.500
 wait 0.100 seconds
 counter += 1
-goto lab_00008
+goto lab_00004
 endif
 remove entity john
 use entity saddam1

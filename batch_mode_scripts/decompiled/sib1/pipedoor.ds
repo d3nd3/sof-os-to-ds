@@ -40,7 +40,7 @@ sideclip = find entity with targetname "openhatch"
 deactive = find entity with targetname "camdeactive"
 camera = find entity with targetname "t191"
 cd = find entity with targetname "countdown"
-rotate entity sideh by [0.000 ,0.000 ,0.000]
+rotate entity sideh by [0.000 ,90.000 ,0.000]
 use entity sideclip
 use entity cd
 wait 0.200 seconds

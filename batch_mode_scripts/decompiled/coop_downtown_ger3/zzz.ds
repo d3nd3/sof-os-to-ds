@@ -36,7 +36,7 @@ local int sig4
 
 sop = find entity with targetname "sop"
 helicopter entity sop 27
-label lab_00003
+label lab_2
 jo = get entity activator
 pos = jo.origin
 helicopter entity sop 13
@@ -49,9 +49,9 @@ wait for all clearing sig3
 helicopter entity sop 5
 wait for all clearing sig4
 if sop.health <= 0
-goto lab_00002
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 helicopter entity sop 41
 exit

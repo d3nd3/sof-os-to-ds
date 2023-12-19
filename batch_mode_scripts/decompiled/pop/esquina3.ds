@@ -36,18 +36,18 @@ sneak = find entity player
 use entity jumper1
 jumper1.health = 2500
 health = jumper1.health
-label lab_00003
+label lab_2
 health = jumper1.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity jumper1
 animate entity jumper1 performing action STD_EJUMPRAIL_N_A_N
 animate entity jumper1 performing action SCRIPT_RELEASE
 wait for all clearing sig1
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit
-goto lab_00003
+goto lab_00002
 exit

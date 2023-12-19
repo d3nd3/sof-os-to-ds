@@ -40,10 +40,10 @@ sneak = find entity player
 use entity guyrdm32
 guyrdm32.health = 4000
 health = guyrdm32.health
-label lab_00003
+label lab_2
 health = guyrdm32.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity guyrdm32
 wait 0.200 seconds
@@ -56,6 +56,6 @@ wait 0.400 seconds
 animate entity guyrdm32 performing action STD_XROLL_RT_A_A repeating for pop1 times targeting entity sneak signaling sig1
 wait for all clearing sig1
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

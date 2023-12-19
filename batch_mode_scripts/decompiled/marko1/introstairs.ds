@@ -33,7 +33,7 @@ local int ypos
 youssouf = find entity with targetname "youssouf"
 sneak = get entity activator
 ypos = 0
-label lab_00003
+label lab_2
 reset ai for entity youssouf
 sneak = get entity activator
 animate entity youssouf performing action STD_FCORNERPEAK_RT_P_A targeting entity sneak kill nulltarget HEAD
@@ -41,10 +41,10 @@ wait 0.200 seconds
 animate entity youssouf performing action STD_FCORNERPEAK_RT_P_A targeting entity sneak kill nulltarget HEAD
 ypos += 1
 if ypos > 5
-goto lab_00002
+goto lab_00001
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity youssouf performing action SCRIPT_RELEASE
 exit

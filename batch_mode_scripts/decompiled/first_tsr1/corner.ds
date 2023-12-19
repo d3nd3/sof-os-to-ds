@@ -42,7 +42,7 @@ kb.health += 80
 kc.health += 80
 animate entity ka performing action STD_XROLL_RT_A_A
 wait 0.600 seconds
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity ka performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
 animate entity kb performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
@@ -50,12 +50,14 @@ animate entity kc performing action STD_F_FWD_S_2 targeting entity jo kill nullt
 if ka.health <= 0
 if kb.health <= 0
 if kc.health <= 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 wait 0.300 seconds
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity ka performing action SCRIPT_RELEASE
 animate entity kb performing action SCRIPT_RELEASE
 animate entity kc performing action SCRIPT_RELEASE

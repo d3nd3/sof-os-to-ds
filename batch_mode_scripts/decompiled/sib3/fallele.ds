@@ -62,7 +62,7 @@ wait 0.200 seconds
 use entity falllght
 wait 0.100 seconds
 play sound "Impact/Metal/ElevFall.wav" for entity fallele at volume 0.900
-move entity fallele by [0.000 ,0.000 ,0.000] at 300 speed
+move entity fallele by [0.000 ,0.000 ,-184.000] at 300 speed
 use entity falleleclip
 use entity fallexp1
 use entity fallpain

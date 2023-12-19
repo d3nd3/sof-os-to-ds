@@ -43,14 +43,14 @@ moverotate entity soda_fall from file "tsr1_soda_fall.rof" signaling sig1
 wait 0.750 seconds
 play sound "Impact/Metal/SodaMach.adp" for entity deadswatguy1 on channel CHAN_AUTO at volume 0.900
 wait for all clearing sig1
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity swatkiller performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
 if swatkiller.health <= 0
-goto lab_00002
+goto lab_00001
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity swatkiller performing action SCRIPT_RELEASE
 exit

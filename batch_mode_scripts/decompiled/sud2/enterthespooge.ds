@@ -38,7 +38,7 @@ spoogedoor = find entity with targetname "spoogedoor"
 spoogemeter = find entity with targetname "spoogemeter"
 remove entity spooge
 remove entity spoogedoor
-move entity spoogemeter by [0.000 ,0.000 ,0.000] at 25 speed
+move entity spoogemeter by [0.000 ,0.000 ,-56.000] at 25 speed
 wait 0.100 seconds
 play sound "cin/sud2/s29d3.adp" for entity player1
 print 27912

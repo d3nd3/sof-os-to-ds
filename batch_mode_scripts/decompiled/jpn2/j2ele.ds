@@ -47,19 +47,19 @@ elesound = find entity with targetname "elesound"
 eleding2 = find entity with targetname "eleding2"
 elesound.movetype = MOVETYPE_NOCLIP
 use entity elesound
-move entity startele by [0.000 ,0.000 ,0.000] at 120 speed signaling sig1
-move entity eledoorl by [0.000 ,0.000 ,0.000] at 120 speed signaling sig2
-move entity eledoorr by [0.000 ,0.000 ,0.000] at 120 speed signaling sig3
-move entity elesound by [0.000 ,0.000 ,0.000] at 120 speed signaling sig4
+move entity startele by [0.000 ,0.000 ,640.000] at 120 speed signaling sig1
+move entity eledoorl by [0.000 ,0.000 ,640.000] at 120 speed signaling sig2
+move entity eledoorr by [0.000 ,0.000 ,640.000] at 120 speed signaling sig3
+move entity elesound by [0.000 ,0.000 ,640.000] at 120 speed signaling sig4
 wait for all clearing sig1,sig2,sig3,sig4
 use entity elesound
 wait 1 seconds
 play sound "Ambient/buttons/HiTech/Elevator2.adp" for entity eleding2 on channel CHAN_NO_PHS_ADD at volume 0.900
 play sound "Ambient/Doors/HiTech/Blast/MtlLgt1/Opn.wav" for entity eledoorl at volume 0.900
 play sound "Ambient/Doors/HiTech/Blast/MtlLgt1/Opn.wav" for entity eledoorr at volume 0.900
-move entity eledoorl by [0.000 ,0.000 ,0.000] at 100 speed signaling sig1
-move entity eledoorla by [0.000 ,0.000 ,0.000] at 100 speed signaling sig2
-move entity eledoorr by [0.000 ,0.000 ,0.000] at 100 speed signaling sig3
-move entity eledoorra by [0.000 ,0.000 ,0.000] at 100 speed signaling sig4
+move entity eledoorl by [0.000 ,30.000 ,0.000] at 100 speed signaling sig1
+move entity eledoorla by [0.000 ,30.000 ,0.000] at 100 speed signaling sig2
+move entity eledoorr by [0.000 ,-30.000 ,0.000] at 100 speed signaling sig3
+move entity eledoorra by [0.000 ,-30.000 ,0.000] at 100 speed signaling sig4
 wait for all clearing sig1,sig2,sig3,sig4
 exit

@@ -36,6 +36,6 @@ lrotate = find entity with targetname "lrotate"
 lrotatec = find entity with targetname "lrotatec"
 use entity lrotate
 wait 0.500 seconds
-rotate entity lrotatec by [0.000 ,0.000 ,0.000] at 350 speed
+rotate entity lrotatec by [0.000 ,0.000 ,90.000] at 350 speed
 use entity bwsect
 exit

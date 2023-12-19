@@ -31,6 +31,6 @@ local entity gatewall
 
 gateright = find entity with targetname "gateright"
 gatewall = find entity with targetname "gatewall"
-rotate entity gateright by [0.000 ,3260416000.000 ,882067898368.000] at 50 speed
+rotate entity gateright by [0.000 ,32.000 ,0.000] at 50 speed
 remove entity gatewall
 exit

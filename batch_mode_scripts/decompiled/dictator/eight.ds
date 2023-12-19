@@ -37,7 +37,7 @@ use entity ea
 animate entity eb performing action STD_XROLL_LT_A_A
 wait 0.100 seconds
 animate entity ea performing action STD_XROLL_LT_A_A
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity eb performing action CCH_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
 wait 0.150 seconds
@@ -45,9 +45,10 @@ animate entity ea performing action STD_FGANGBANGER_N_M_2 targeting entity jo ki
 wait 0.200 seconds
 if eb.health < 0
 if ea.health < 0
-goto lab_00002
+goto lab_00001
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

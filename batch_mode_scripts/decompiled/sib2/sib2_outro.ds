@@ -60,7 +60,7 @@ use entity sib2_player
 animate entity sib2_player performing action STD_WJOGGUNUP_N_P_A by moving to [2160.000 ,1160.000 ,-344.000] signaling sig
 wait for all clearing sig
 use entity sib2_outro1
-rotate entity sib2_player by [0.000 ,0.000 ,0.000]
+rotate entity sib2_player by [0.000 ,180.000 ,0.000]
 use entity sib2_outro2
 animate entity sib2_player performing action STD_IGUNUP_N_A_N
 use entity sib2_enddoor

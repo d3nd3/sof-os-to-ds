@@ -58,7 +58,7 @@ wait 1 seconds
 use entity hos2scr
 use entity hos3scr
 remove entity t172
-rotate entity hostage1 by [0.000 ,0.000 ,0.000] at 300 speed
+rotate entity hostage1 by [0.000 ,180.000 ,0.000] at 300 speed
 animate entity hostage1 performing action CCH_XCCHCOWER_UP_A_A signaling sig1
 wait for all clearing sig1
 animate entity hostage1 performing action STD_WNORMAL_N_PK_A by moving [0.000 ,-40.000 ,0.000]

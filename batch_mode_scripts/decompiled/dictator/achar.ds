@@ -37,11 +37,11 @@ tank1 = find entity with targetname "tank1"
 tank2 = find entity with targetname "tank2"
 tank1.movetype = MOVETYPE_NOCLIP
 tank2.movetype = MOVETYPE_NOCLIP
-move entity tank1 by [0.000 ,0.000 ,0.000] at 20 speed
-move entity tank2 by [0.000 ,0.000 ,0.000] at 20 speed
+move entity tank1 by [-300.000 ,0.000 ,0.000] at 20 speed
+move entity tank2 by [0.000 ,300.000 ,0.000] at 20 speed
 wait 1.600 seconds
 vect = [-1000.000 ,-3387.000 ,436.000]
-label lab_00003
+label lab_2
 jo = get entity activator
 pos = jo.origin
 pos += [0.000 ,0.000 ,-24.000]
@@ -63,9 +63,10 @@ wait 0.700 seconds
 suspend
 if tank2.health <= 0
 if tank1.health <= 0
-goto lab_00002
-goto lab_00002
+goto lab_00001
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+endif
+goto lab_00002
+label lab_1
 exit

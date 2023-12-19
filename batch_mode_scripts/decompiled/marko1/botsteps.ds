@@ -52,16 +52,17 @@ wait for all clearing sig2
 killhim68 = get entity activator
 animate entity stepsguy1 performing action STD_FCORNERPEAK_RT_P_A targeting entity killhim68 kill nulltarget GUT
 suspend
-label lab_00003
+label lab_2
 killhim68 = get entity activator
 animate entity stepsguy1 performing action STD_FCORNERPEAK_RT_P_A targeting entity killhim68 kill nulltarget HEAD
 animate entity fuseguy performing action STD_F_FWD_S_2 targeting entity killhim68 kill nulltarget HEAD
 if fuseguy.health <= 0
 if stepsguy1.health <= 0
-goto lab_00002
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+endif
+goto lab_00002
+label lab_1
 animate entity stepsguy1 performing action SCRIPT_RELEASE
 animate entity fuseguy performing action SCRIPT_RELEASE
 exit

@@ -36,18 +36,19 @@ use entity yoyo
 use entity yaya
 yoyo.health += 40
 yaya.health += 40
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity yoyo performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity yaya performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 wait 0.200 seconds
 if yoyo.health < 0
 if yaya.health < 0
-goto lab_00002
+goto lab_00001
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity yoyo performing action SCRIPT_RELEASE
 animate entity yaya performing action SCRIPT_RELEASE
 exit

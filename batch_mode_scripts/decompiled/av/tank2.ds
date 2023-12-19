@@ -31,7 +31,7 @@ local entity guntarget
 local vector pos
 
 tanka = find entity with targetname "tk"
-label lab_00001
+label lab_1
 guntarget = get entity activator
 wait 1 seconds
 pos = guntarget.origin

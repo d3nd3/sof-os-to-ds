@@ -46,7 +46,7 @@ stob.health += 50
 stoc.health += 50
 stod.health += 50
 wait 0.100 seconds
-label lab_00003
+label lab_2
 jo = get entity activator
 reset ai for entity stoa
 reset ai for entity stob
@@ -63,11 +63,13 @@ animate entity stoc performing action STD_F_FWD_R_2 targeting entity jo kill nul
 if stoa.health <= 0
 if stob.health <= 0
 if stoc.health <= 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 reset ai for entity stoa
 reset ai for entity stob
 reset ai for entity stoc

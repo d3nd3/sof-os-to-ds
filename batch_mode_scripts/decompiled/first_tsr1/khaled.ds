@@ -30,7 +30,7 @@ local entity khaled
 local entity jo
 
 khaled = find entity with targetname "khaled"
-label lab_00001
+label lab_1
 jo = get entity activator
 animate entity khaled performing action STD_F_FWD_P_2 targeting entity jo
 wait 0.200 seconds

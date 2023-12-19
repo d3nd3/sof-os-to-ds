@@ -30,9 +30,10 @@ global int trn1_doorflag
 
 if trn1_doorflag == 0
 trn1_doorflag = 1
-goto lab_00002
+goto lab_00001
 endif
 if trn1_doorflag == 1
 trn1_doorflag = 0
-endifendiflabel lab_00002
+endif
+label lab_1
 exit

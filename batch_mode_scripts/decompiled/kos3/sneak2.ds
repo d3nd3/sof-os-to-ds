@@ -34,13 +34,13 @@ local int sig2
 sneak2pal = find entity with targetname "sneak2pal"
 sneak2worker = find entity with targetname "sneak2worker"
 sneak2pal.movetype = MOVETYPE_NOCLIP
-on sneak2worker.health < 100 goto lab_00001
+on sneak2worker.health < 100 goto lab_1
 animate entity sneak2worker performing action STD_WPUSHCART_N_N_N by moving [0.000 ,-192.000 ,0.000] signaling sig1
-move entity sneak2pal by [0.000 ,0.000 ,0.000] at 45 speed signaling sig2
+move entity sneak2pal by [0.000 ,-192.000 ,0.000] at 45 speed signaling sig2
 wait for all clearing sig1,sig2
 remove entity sneak2worker
 remove entity sneak2pal
-label lab_00001
+label lab_1
 animate entity sneak2worker performing action SCRIPT_RELEASE
 reset ai for entity sneak2worker
 exit

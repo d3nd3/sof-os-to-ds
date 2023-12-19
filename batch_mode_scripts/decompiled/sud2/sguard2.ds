@@ -36,8 +36,8 @@ gateright = find entity with targetname "gateright"
 friartrigger = find entity with targetname "friartrigger"
 gatewall = find entity with targetname "gatewall"
 use entity gatewall
-rotate entity gateleft by [0.000 ,0.000 ,0.000] at 50 speed
-rotate entity gateright by [0.000 ,0.000 ,0.000] at 50 speed
+rotate entity gateleft by [0.000 ,-85.000 ,0.000] at 50 speed
+rotate entity gateright by [0.000 ,-122.000 ,0.000] at 50 speed
 wait 0.100 seconds
 use entity friartrigger
 exit

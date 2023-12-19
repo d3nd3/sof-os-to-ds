@@ -34,7 +34,7 @@ local vector pos
 heli1 = find entity with targetname "heli1"
 guntarget = get entity activator
 pos = guntarget.origin
-label lab_00002
+label lab_1
 if dd == 0
 pos = guntarget.origin
 helicopter entity heli1 31
@@ -58,11 +58,11 @@ helicopter entity heli1 32
 helicopter entity heli1 25
 helicopter entity heli1 27
 wait 3 seconds
-goto lab_00002
+goto lab_00001
 endif
 helicopter entity heli1 32
 helicopter entity heli1 25
 helicopter entity heli1 27
 wait 1 seconds
-goto lab_00002
+goto lab_00001
 exit

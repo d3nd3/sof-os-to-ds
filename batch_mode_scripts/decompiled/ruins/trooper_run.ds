@@ -31,10 +31,10 @@ local int sig
 
 runa = find entity with targetname "runa"
 use entity runa
-on runa.health < 10 goto lab_00001
+on runa.health < 10 goto lab_1
 runa.health += 100
 animate entity runa performing action RUN by moving [-10.000 ,30.000 ,0.000] signaling sig
 wait for all clearing sig
-label lab_00001
+label lab_1
 animate entity runa performing action SCRIPT_RELEASE
 exit

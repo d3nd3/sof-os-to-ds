@@ -41,9 +41,9 @@ peledrra = find entity with targetname "peledrra"
 peledrla = find entity with targetname "peledrla"
 play sound "Ambient/Doors/HiTech/Blast/MtlLgt1/Opn.wav" for entity peledrr at volume 0.900
 play sound "Ambient/Doors/HiTech/Blast/MtlLgt1/Opn.wav" for entity peledrl at volume 0.900
-move entity peledrr by [0.000 ,0.000 ,0.000] at 100 speed signaling sig1
-move entity peledrra by [0.000 ,0.000 ,0.000] at 100 speed signaling sig2
-move entity peledrl by [0.000 ,0.000 ,0.000] at 100 speed signaling sig3
-move entity peledrla by [0.000 ,0.000 ,0.000] at 100 speed signaling sig4
+move entity peledrr by [60.000 ,0.000 ,0.000] at 100 speed signaling sig1
+move entity peledrra by [60.000 ,0.000 ,0.000] at 100 speed signaling sig2
+move entity peledrl by [-60.000 ,0.000 ,0.000] at 100 speed signaling sig3
+move entity peledrla by [-60.000 ,0.000 ,0.000] at 100 speed signaling sig4
 wait for all clearing sig1,sig2,sig3,sig4
 exit

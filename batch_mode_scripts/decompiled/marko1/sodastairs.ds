@@ -40,7 +40,7 @@ jo = get entity activator
 animate entity stairguy1 performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
 wait 0.300 seconds
 animate entity stairguy1 performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity stairguy1 performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
 wait 0.300 seconds
@@ -48,11 +48,12 @@ animate entity stairguy1 performing action STD_F_FWD_S_2 targeting entity jo kil
 animate entity stepsrunguy performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
 if stairguy1.health <= 0
 if stepsrunguy.health <= 0
-goto lab_00002
+goto lab_00001
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity stairguy1 performing action SCRIPT_RELEASE
 animate entity stepsrunguy performing action SCRIPT_RELEASE
 exit

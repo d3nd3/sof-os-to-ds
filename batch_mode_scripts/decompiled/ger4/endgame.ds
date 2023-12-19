@@ -205,16 +205,16 @@ play sound "cin/ger4/c79d7.adp" for entity endsam on channel CHAN_AUTO at volume
 print 26382
 animate entity endsam performing action STD_ETYPING_N_N_N holding for 7.900
 wait 0.500 seconds
-move entity endcam8 by [2.300 ,0.000 ,0.000] over 2.300 seconds
-move entity endcam8target by [2.300 ,0.000 ,0.000] over 2.300 seconds
+move entity endcam8 by [0.000 ,56.000 ,0.000] over 2.300 seconds
+move entity endcam8target by [0.000 ,56.000 ,0.000] over 2.300 seconds
 wait 2.500 seconds
 animate entity endtaylor1 performing action STD_ISTAND_N_A_N holding for 5.000
-move entity enddoor1 by [0.500 ,0.000 ,0.000] over 0.500 seconds
-move entity enddoor2 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity enddoor1 by [-8.000 ,0.000 ,0.000] over 0.500 seconds
+move entity enddoor2 by [-8.000 ,0.000 ,0.000] over 0.500 seconds
 wait 0.700 seconds
-move entity enddoor1 by [4.000 ,0.000 ,0.000] over 4.000 seconds
-move entity enddoor2 by [4.000 ,0.000 ,0.000] over 4.000 seconds
-move entity enddoor3 by [4.000 ,0.000 ,0.000] over 4.000 seconds
+move entity enddoor1 by [0.000 ,0.000 ,78.000] over 4.000 seconds
+move entity enddoor2 by [0.000 ,0.000 ,78.000] over 4.000 seconds
+move entity enddoor3 by [0.000 ,0.000 ,78.000] over 4.000 seconds
 wait 4.200 seconds
 animate entity endtaylor1 performing action STD_W_N_PN_N by moving [152.000 ,0.000 ,0.000]
 animate entity endsam performing action STD_ISTAND_N_A_N holding for 10.000

@@ -196,7 +196,7 @@ print 30477
 play sound "cin/irq2b/c63d7.adp" for entity saddam on channel CHAN_AUTO at volume 0.900
 wait 0.700 seconds
 animate entity saddam performing action STD_ETURN90_LT_A_N
-rotate entity saddam by [0.000 ,0.000 ,0.000] at 40 speed
+rotate entity saddam by [0.000 ,90.000 ,0.000] at 40 speed
 wait 0.300 seconds
 use entity cam5
 cover1.health = 1

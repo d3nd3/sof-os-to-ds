@@ -47,16 +47,17 @@ remove entity fe
 remove entity ff
 wait 0.200 seconds
 wait for all clearing sig
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity sb performing action CCH_F_FWD_L_2 targeting entity jo
 animate entity yaha performing action STD_F_FWD_M_2 targeting entity jo
 if sb.health < 0
 if yaha.health < 0
-goto lab_00002
+goto lab_00001
+endif
 endif
 wait 0.100 seconds
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

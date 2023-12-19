@@ -37,11 +37,11 @@ auto9 = find entity with targetname "auto9"
 head9 = find entity with targetname "head9"
 auto9.movetype = MOVETYPE_NOCLIP
 head9.movetype = MOVETYPE_NOCLIP
-move entity wall9 by [0.000 ,0.000 ,0.000] over 3 seconds
-move entity head9 by [0.000 ,0.000 ,0.000] over 3 seconds
+move entity wall9 by [0.000 ,0.000 ,-96.000] over 3 seconds
+move entity head9 by [0.000 ,0.000 ,-96.000] over 3 seconds
 wait 3.500 seconds
-move entity plat9 by [0.000 ,0.000 ,0.000] over 2 seconds
-move entity auto9 by [0.000 ,0.000 ,0.000] over 2 seconds
+move entity plat9 by [-88.000 ,0.000 ,0.000] over 2 seconds
+move entity auto9 by [-88.000 ,0.000 ,0.000] over 2 seconds
 wait 2.500 seconds
 auto9.movetype = MOVETYPE_DAN
 head9.movetype = MOVETYPE_NONE

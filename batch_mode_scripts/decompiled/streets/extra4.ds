@@ -53,7 +53,7 @@ man377.health = 5500
 health = man377.health
 man388.health = 5500
 health = man388.health
-label lab_00001
+label lab_1
 animate entity man355 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p0 kill nulltarget HEAD signaling sig1
 wait 0.100 seconds
 animate entity man355 performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p1 kill nulltarget HEAD signaling sig1

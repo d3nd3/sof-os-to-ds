@@ -51,11 +51,11 @@ use entity carwall
 play sound "Cin/JPN1/Script/Crash2.adp" for entity badman on channel CHAN_AUTO at volume 0.900
 wait 2.500 seconds
 animate entity deadmeat performing action STD_XBOOMCROUCH_N_A_N
-on badman.health < 100 goto lab_00001
+on badman.health < 100 goto lab_1
 animate entity badman performing action STD_FVIOLENT_DWN_P_N targeting entity deadmeat kill
 wait 3 seconds
 goto lab_00001
-label lab_00001
+label lab_1
 animate entity badman performing action SCRIPT_RELEASE
 animate entity deadmeat performing action SCRIPT_RELEASE
 exit

@@ -53,7 +53,7 @@ animate entity elevb performing action STD_TGRENADE_N_A_N targeting entity jo
 animate entity elevc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 wait 0.900 seconds
 suspend
-label lab_00003
+label lab_2
 jo = get entity activator
 reset ai for entity eleva
 reset ai for entity elevb
@@ -76,11 +76,14 @@ if eleva.health < 0
 if elevb.health < 0
 if elevc.health < 0
 if elevd.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity eleva performing action SCRIPT_RELEASE
 animate entity elevb performing action SCRIPT_RELEASE
 animate entity elevc performing action SCRIPT_RELEASE

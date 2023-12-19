@@ -43,10 +43,10 @@ p3 = get entity player 3
 use entity primero
 primero.health = 2500
 health = primero.health
-label lab_00003
+label lab_2
 health = primero.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity primero
 me = get entity activator
@@ -65,6 +65,6 @@ animate entity primero performing action CCH_F_FWD_S_2 repeating for 1 times tar
 animate entity primero performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p2 kill nulltarget NUG_O_POPPIN signaling sig1
 animate entity primero performing action CCH_F_FWD_S_2 repeating for 1 times targeting entity p3 kill nulltarget NUG_O_POPPIN signaling sig1
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

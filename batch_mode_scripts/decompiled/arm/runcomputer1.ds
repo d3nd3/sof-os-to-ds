@@ -28,7 +28,7 @@ field int "health"
 
 global int runcomputer1
 
-label lab_00002
+label lab_1
 if runcomputer1 == 1
 setcvar cvar "menu_mail_available" to 1.000000
 setcvar cvar "menu_mail_file" to "maps/mail_nyc1"
@@ -36,9 +36,9 @@ setcvar cvar "menu_nextmap" to "nyc1"
 setcvar cvar "menu_nostats" to 1.000000
 run console command "intermission login"
 suspend
-goto lab_00002
+goto lab_00001
 endif
 print 31500
 suspend
-goto lab_00002
+goto lab_00001
 exit

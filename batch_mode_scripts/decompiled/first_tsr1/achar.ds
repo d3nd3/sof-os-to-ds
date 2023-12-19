@@ -32,9 +32,19 @@ local vector pos
 local int test
 
 tanouk = find entity with targetname "tanouk"
-label lab_00008
+label lab_5
 jo = get entity activator
 jo = get entity activator
+test = jo.origin_x
+pos = jo.origin
+pos += [0.000 ,0.000 ,-34.000]
+if test < -3004
+tank entity tanouk 2
+goto lab_00001
+endif
+pos += [-64.000 ,0.000 ,0.000]
+tank entity tanouk 2
+label lab_1
 test = jo.origin_x
 pos = jo.origin
 pos += [0.000 ,0.000 ,-34.000]
@@ -44,17 +54,7 @@ goto lab_00002
 endif
 pos += [-64.000 ,0.000 ,0.000]
 tank entity tanouk 2
-label lab_00002
-test = jo.origin_x
-pos = jo.origin
-pos += [0.000 ,0.000 ,-34.000]
-if test < -3004
-tank entity tanouk 2
-goto lab_00004
-endif
-pos += [-64.000 ,0.000 ,0.000]
-tank entity tanouk 2
-label lab_00004
+label lab_2
 suspend
 jo = get entity activator
 pos = jo.origin
@@ -67,13 +67,13 @@ test = jo.origin_x
 pos = jo.origin
 if test < -3004
 tank entity tanouk 2
-goto lab_00006
+goto lab_00003
 endif
 pos += [-64.000 ,0.000 ,0.000]
 tank entity tanouk 2
-label lab_00006
-on tanouk.health < 0 goto lab_00007
+label lab_3
+on tanouk.health < 0 goto lab_4
 suspend
-goto lab_00008
-label lab_00007
+goto lab_00005
+label lab_4
 exit

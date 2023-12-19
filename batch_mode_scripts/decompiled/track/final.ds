@@ -45,8 +45,8 @@ use entity jon
 use entity cam
 enable cinematics
 animate entity jon performing action RUN by moving [-360.000 ,0.000 ,0.000]
-move entity camn by [0.000 ,0.000 ,0.000] at 50 speed
-move entity cam by [0.000 ,0.000 ,0.000] at 50 speed
+move entity camn by [-360.000 ,0.000 ,0.000] at 50 speed
+move entity cam by [-360.000 ,0.000 ,0.000] at 50 speed
 wait 0.400 seconds
 use entity aexplo
 wait 0.600 seconds

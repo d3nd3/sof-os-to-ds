@@ -154,8 +154,8 @@ use entity hlights
 use entity idoors1
 use entity idoors2
 wait 3 seconds
-move entity pelev by [0.000 ,0.000 ,0.000] at 45 speed
-move entity ec4 by [0.000 ,0.000 ,0.000] at 45 speed
+move entity pelev by [0.000 ,0.000 ,184.000] at 45 speed
+move entity ec4 by [0.000 ,0.000 ,184.000] at 45 speed
 wait 2 seconds
 use entity ecam2
 use entity ecam3
@@ -192,7 +192,7 @@ use entity ecam7
 use entity ecam8
 use entity eexp1
 remove entity ec4
-rotate entity eplane by [0.100 ,0.000 ,0.000] over 0.100 seconds
+rotate entity eplane by [0.000 ,-45.000 ,0.000] over 0.100 seconds
 wait 1 seconds
 use entity eexp2
 use entity eexp3
@@ -201,10 +201,10 @@ wait 1 seconds
 use entity ecam8
 setcvar cvar "timescale" to 0.650000
 use entity gil_cam2
-move entity gil_cam2 by [0.000 ,0.000 ,0.000] at 90 speed
+move entity gil_cam2 by [0.000 ,-48.000 ,0.000] at 90 speed
 wait 0.500 seconds
-move entity gil_cam2 by [0.000 ,0.000 ,0.000] at 70 speed
-move entity gil_cam2 by [0.000 ,0.000 ,0.000] at 45 speed
+move entity gil_cam2 by [0.000 ,-8.000 ,0.000] at 70 speed
+move entity gil_cam2 by [0.000 ,-8.000 ,0.000] at 45 speed
 use entity left_twisted
 use entity right_twisted
 use entity left_back_ex1
@@ -221,14 +221,14 @@ moverotate entity bu_crate_lowright from file "kos3_ecrate3.rof"
 moverotate entity e_flybarrel from file "kos3_ebarrel.rof"
 use entity break_me_left
 use entity break_me_right
-move entity left_back_ex1 by [0.300 ,0.000 ,0.000] over 0.300 seconds signaling sig1
-move entity right_back_ex1 by [0.300 ,0.000 ,0.000] over 0.300 seconds signaling sig2
+move entity left_back_ex1 by [0.000 ,-64.000 ,0.000] over 0.300 seconds signaling sig1
+move entity right_back_ex1 by [0.000 ,-64.000 ,0.000] over 0.300 seconds signaling sig2
 wait for all clearing sig1,sig2
 play sound "Impact\Metal\BigMetal.adp" for entity e_junk on channel CHAN_AUTO at volume 0.900
 use entity left_back_ex1
 use entity right_back_ex1
-move entity left_back_ex1 by [0.400 ,0.000 ,0.000] over 0.400 seconds signaling sig1
-move entity right_back_ex1 by [0.400 ,0.000 ,0.000] over 0.400 seconds signaling sig2
+move entity left_back_ex1 by [0.000 ,-64.000 ,0.000] over 0.400 seconds signaling sig1
+move entity right_back_ex1 by [0.000 ,-64.000 ,0.000] over 0.400 seconds signaling sig2
 wait for all clearing sig1,sig2
 use entity e_special_fade
 use entity left_back_ex1

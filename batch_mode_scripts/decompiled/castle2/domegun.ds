@@ -36,14 +36,14 @@ door2 = find entity with targetname "door2"
 plat1 = find entity with targetname "plat1"
 auto1 = find entity with targetname "auto1"
 auto1.movetype = MOVETYPE_NOCLIP
-move entity door1 by [0.300 ,0.000 ,0.000] over 0.300 seconds
-move entity door2 by [0.300 ,0.000 ,0.000] over 0.300 seconds
+move entity door1 by [0.000 ,0.000 ,-8.000] over 0.300 seconds
+move entity door2 by [0.000 ,0.000 ,-8.000] over 0.300 seconds
 wait 0.400 seconds
-move entity door1 by [0.600 ,0.000 ,0.000] over 0.600 seconds
-move entity door2 by [0.600 ,0.000 ,0.000] over 0.600 seconds
+move entity door1 by [0.000 ,28.000 ,0.000] over 0.600 seconds
+move entity door2 by [0.000 ,-28.000 ,0.000] over 0.600 seconds
 wait 0.600 seconds
-move entity plat1 by [0.000 ,0.000 ,0.000] over 2 seconds
-move entity auto1 by [0.000 ,0.000 ,0.000] over 2 seconds
+move entity plat1 by [0.000 ,0.000 ,60.000] over 2 seconds
+move entity auto1 by [0.000 ,0.000 ,60.000] over 2 seconds
 wait 1.800 seconds
 auto1.movetype = MOVETYPE_DAN
 exit

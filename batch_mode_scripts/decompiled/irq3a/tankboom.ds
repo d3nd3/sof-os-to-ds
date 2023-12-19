@@ -75,30 +75,30 @@ emerg1 = find entity with targetname "emerg1"
 emerg2 = find entity with targetname "emerg2"
 use entity emerg1
 use entity emerg2
-move entity gdoor1 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity gdoor1 by [0.000 ,0.000 ,128.000] at 100 speed
 wait 0.250 seconds
-move entity gdoor2 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity gdoor2 by [0.000 ,0.000 ,96.000] at 100 speed
 wait 0.250 seconds
-move entity gdoor3 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity gdoor3 by [0.000 ,0.000 ,64.000] at 100 speed
 wait 0.250 seconds
-move entity gdoor4 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity gdoor4 by [0.000 ,0.000 ,32.000] at 100 speed
 wait 0.250 seconds
 use entity tanksound2
-move entity fatbastard2 by [0.000 ,0.000 ,0.000] at 200 speed signaling sig1
-move entity tanksound2 by [0.000 ,0.000 ,0.000] at 200 speed signaling sig2
+move entity fatbastard2 by [0.000 ,512.000 ,0.000] at 200 speed signaling sig1
+move entity tanksound2 by [0.000 ,512.000 ,0.000] at 200 speed signaling sig2
 wait for all clearing sig1,sig2
 use entity tanksound2
 vPos = blasthole.origin
 vPos.z += 64.000
 tank entity fatbastard2 2
 wait 0.100 seconds
-move entity gdoor1 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity gdoor1 by [0.000 ,0.000 ,-128.000] at 100 speed
 wait 0.250 seconds
-move entity gdoor2 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity gdoor2 by [0.000 ,0.000 ,-96.000] at 100 speed
 wait 0.250 seconds
-move entity gdoor3 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity gdoor3 by [0.000 ,0.000 ,-64.000] at 100 speed
 wait 0.250 seconds
-move entity gdoor4 by [0.000 ,0.000 ,0.000] at 100 speed
+move entity gdoor4 by [0.000 ,0.000 ,-32.000] at 100 speed
 use entity emerg1
 use entity emerg2
 use entity ptank1
@@ -115,12 +115,12 @@ use entity tankfire
 use entity flame2
 use entity firehurt
 tank entity fatbastard2 3
-label lab_00002
+label lab_1
 if counter < 20
 vPos = player1.origin
 tank entity fatbastard2 2
 wait for all clearing sig1
 wait 5 seconds
-goto lab_00002
+goto lab_00001
 endif
 exit

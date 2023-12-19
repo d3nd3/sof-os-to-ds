@@ -26,55 +26,42 @@ field vector "p_origin"
 field int "takedamage"
 field int "health"
 
-local entity outrocam1
-local entity outromullins
-local entity outrocam2
-local entity outrocam3
-local entity outromullins2
-local entity outrofade_out
-local entity levelchanger
-local int sig1
-local int sig2
-local int sig3
+local entity tokencam
+local entity tokencamn
+local entity tdoorjohn
+local entity tokenlocked2
+local entity tdoor
+local entity new_tok_lever
+local entity use_the_switch
+local entity host_count
+local int host_counthealth
+local entity roundguy
+local entity tokvictim
+local entity tokchaser
+local entity tollguy
 
-cache sound "cin/sud2/c46d1.adp"
-cache roff "sud2_spoogeslide.rof"
-outrocam1 = find entity with targetname "outrocam1"
-outromullins = find entity with targetname "outromullins"
-outrocam2 = find entity with targetname "outrocam2"
-outrocam3 = find entity with targetname "outrocam3"
-outromullins2 = find entity with targetname "outromullins2"
-outrofade_out = find entity with targetname "outrofade_out"
-levelchanger = find entity with targetname "levelchanger"
-outromullins.movetype = MOVETYPE_NOCLIP
 enable cinematics
-wait 0.100 seconds
-play sound "cin/sud2/c46d1.adp" for entity outromullins on channel CHAN_NO_PHS_ADD at volume 0.900
-print 27913
-rotate entity outromullins by [0.000 ,0.000 ,0.000]
-moverotate entity outromullins from file "sud2_spoogeslide.rof"
-animate entity outromullins performing action LB_ESLIDE_N_PK_N holding for 2.000
-wait 0.100 seconds
-use entity outrocam1
-wait 0.750 seconds
-use entity outrocam1
-use entity outrocam2
-wait 0.750 seconds
-use entity outrocam2
-use entity outrocam3
-use entity outromullins2
-animate entity outromullins2 performing action STD_JDROP_N_A_A holding for 1.000
-wait 0.750 seconds
-play sound "Cin/SUD2/Script/Splash.adp" for entity outromullins on channel CHAN_NO_PHS_ADD at volume 0.900
-animate entity outromullins performing action CCH_EHEADSET_TO_A_N holding for 2.000
-wait 0.500 seconds
-use entity outrofade_out
-wait 1.500 seconds
-use entity outrocam3
-setcvar cvar "menu_nextmap" to "sud3"
-run console command "intermission blankscreen"
+tokencam = find entity with targetname "tokencam"
+tokencamn = find entity with targetname "tokencamn"
+tdoorjohn = find entity with targetname "tdoorjohn"
+tokenlocked2 = find entity with targetname "tokenlocked2"
+tdoor = find entity with targetname "tdoor"
+host_count = find entity with targetname "host_count"
+new_tok_lever = find entity with targetname "new_tok_lever"
+use_the_switch = find entity with scripttarget "use_the_switch"
+roundguy = find entity with targetname "roundguy"
+tokvictim = find entity with targetname "tokvictim"
+tokchaser = find entity with targetname "tokchaser"
+tollguy = find entity with targetname "tollguy"
+host_counthealth = host_count.health
+use entity tdoorjohn
+use entity tokencam
+move entity new_tok_lever by [0.000 ,0.000 ,0.000]
+use entity tdoor
+remove entity use_the_switch
+wait 2 seconds
+use entity tokencam
+remove entity tokenlocked2
+remove entity tdoorjohn
 disable cinematics
-wait 4 seconds
-unload sound "cin/sud2/c46d1.adp"
-unload roff "sud2_spoogeslide.rof"
 exit

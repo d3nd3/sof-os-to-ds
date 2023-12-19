@@ -94,8 +94,8 @@ use entity hawk2
 animate entity hawk2 showing emotion EMOTION_TALK holding for 4.000
 wait 0.100 seconds
 animate entity hawk2 performing action PRN_C_N_A_2 signaling sig holding for 3.600
-move entity cam3 by [0.000 ,0.000 ,0.000] at 26 speed
-move entity cam3t by [0.000 ,0.000 ,0.000] at 26 speed
+move entity cam3 by [248.000 ,0.000 ,0.000] at 26 speed
+move entity cam3t by [248.000 ,0.000 ,0.000] at 26 speed
 wait 0.100 seconds
 print 27662
 play sound "cin/sud3/c48d3.adp" for entity hawk2 on channel CHAN_AUTO at volume 0.900

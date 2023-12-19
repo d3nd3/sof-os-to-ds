@@ -40,7 +40,7 @@ use entity secc
 seca.health += 40
 secb.health += 40
 secc.health += 40
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity seca performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
 animate entity secb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
@@ -49,11 +49,13 @@ wait 0.200 seconds
 if seca.health < 0
 if secb.health < 0
 if secc.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity seca performing action SCRIPT_RELEASE
 animate entity secb performing action SCRIPT_RELEASE
 animate entity secc performing action SCRIPT_RELEASE

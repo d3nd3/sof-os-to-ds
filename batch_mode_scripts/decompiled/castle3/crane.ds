@@ -46,13 +46,13 @@ cranewindow = find entity with targetname "cranewindow"
 cranesound = find entity with targetname "cranesound"
 poof = find entity with targetname "poof"
 use entity cranesound
-move entity cranehousing by [0.000 ,0.000 ,0.000] at 30 speed
-move entity cranewinch by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
+move entity cranehousing by [0.000 ,160.000 ,0.000] at 30 speed
+move entity cranewinch by [0.000 ,160.000 ,0.000] at 30 speed signaling sig2
 animate entity cranemaster performing action STD_ETYPING_N_N_N repeating for 4 times signaling sig1
 wait for all clearing sig1,sig2
-move entity cranebeam by [0.000 ,0.000 ,0.000] at 20 speed
-move entity cranehousing by [0.000 ,0.000 ,0.000] at 20 speed
-move entity cranewinch by [0.000 ,0.000 ,0.000] at 20 speed
+move entity cranebeam by [-128.000 ,0.000 ,0.000] at 20 speed
+move entity cranehousing by [-128.000 ,0.000 ,0.000] at 20 speed
+move entity cranewinch by [-128.000 ,0.000 ,0.000] at 20 speed
 animate entity cranemaster performing action STD_EBUSTGLASS_N_MRS_2
 wait 0.700 seconds
 use entity cranewindow

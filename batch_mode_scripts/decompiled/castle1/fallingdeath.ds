@@ -38,9 +38,9 @@ endif
 animate entity deadguy performing action PRN_XFALLING_N_N_N by moving falldist
 if soundlength == 1
 play sound "Cin/Ger1/Script/FallShort.wav" for entity deadguy on channel CHAN_AUTO at volume 0.900
-goto lab_00003
+goto lab_00001
 endif
 play sound "Cin/Ger1/Script/FallLong.wav" for entity deadguy on channel CHAN_AUTO at volume 0.900
-label lab_00003
+label lab_1
 animate entity deadguy performing action PRN_XFALLLAND_N_N_N
 exit

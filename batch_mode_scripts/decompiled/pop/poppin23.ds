@@ -43,7 +43,7 @@ use entity man100
 use entity man140
 use entity man120
 use entity man130
-label lab_00001
+label lab_1
 reset ai for entity man100
 reset ai for entity man140
 reset ai for entity man120

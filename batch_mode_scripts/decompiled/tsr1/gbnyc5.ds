@@ -46,8 +46,8 @@ backwall = find entity with targetname "backwall"
 camdoorkicker = find entity with targetname "camdoorkicker"
 openin = find entity with targetname "openin"
 camroom_hole.movetype = MOVETYPE_NOCLIP
-rotate entity camroom_door by [0.000 ,0.000 ,0.000] at 155 speed signaling sig1
-rotate entity camroom_hole by [0.000 ,0.000 ,0.000] at 155 speed signaling sig2
+rotate entity camroom_door by [0.000 ,90.000 ,0.000] at 155 speed signaling sig1
+rotate entity camroom_hole by [0.000 ,90.000 ,0.000] at 155 speed signaling sig2
 wait for all clearing sig1,sig2
 use entity openin
 use entity camdoorkicker

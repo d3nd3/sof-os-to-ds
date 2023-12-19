@@ -34,13 +34,13 @@ local int sig
 climber = find entity with targetname "climber"
 climbrdr = find entity with targetname "climbrdr"
 clipwallele = find entity with targetname "clipwallele"
-on climbrdr.health <= 0 goto lab_00001
+on climbrdr.health <= 0 goto lab_1
 use entity climbrdr
 climber.movetype = MOVETYPE_NOCLIP
 animate entity climber performing action STD_ECLIMBLEDGE_UP_A_N signaling sig
 wait for all clearing sig
 climber.movetype = MOVETYPE_STEP
 animate entity climber performing action SCRIPT_RELEASE
-label lab_00001
+label lab_1
 remove entity clipwallele
 exit

@@ -40,10 +40,10 @@ sneak = find entity player
 use entity guyrdm1
 guyrdm1.health = 1000
 health = guyrdm1.health
-label lab_00003
+label lab_2
 health = guyrdm1.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity guyrdm1
 animate entity guyrdm1 performing action CCH_F_FWD_S_2 repeating for 3 times targeting entity sneak signaling sig1
@@ -53,6 +53,6 @@ wait for all clearing sig1
 animate entity guyrdm1 performing action STD_F_FWD_R_2 repeating for pop1 times targeting entity sneak signaling sig1
 wait for all clearing sig1
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

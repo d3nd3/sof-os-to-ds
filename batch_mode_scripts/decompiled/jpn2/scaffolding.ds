@@ -32,7 +32,7 @@ local entity t563
 scaffold = find entity with targetname "scaffold"
 t563 = find entity with targetname "t563"
 scaffold.movetype = MOVETYPE_NOCLIP
-move entity scaffold by [0.000 ,0.000 ,0.000] at 50 speed
+move entity scaffold by [0.000 ,0.000 ,-128.000] at 50 speed
 remove entity t563
 wait 2 seconds
 exit

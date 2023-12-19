@@ -38,12 +38,12 @@ use entity jumpingman
 use entity endgl2
 animate entity jumpingman performing action STD_F_FWD_S_2 targeting entity swatguyfront kill signaling sig1
 wait for all clearing sig1
-on jumpingman.health < 100 goto lab_00001
+on jumpingman.health < 100 goto lab_1
 animate entity jumpingman performing action STD_JRUN_FWD_A_A by moving [-128.000 ,0.000 ,0.000] signaling sig1
 wait for all clearing sig1
 goto lab_00001
 exit
-label lab_00001
+label lab_1
 reset ai for entity jumpingman
 animate entity jumpingman performing action SCRIPT_RELEASE
 animate entity endgl2 performing action SCRIPT_RELEASE

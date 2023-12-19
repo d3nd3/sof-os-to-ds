@@ -44,7 +44,7 @@ print 29184
 animate entity endhawk1 performing action STD_XYELLATYOU_N_A_A signaling sig1 holding for 1.900
 wait for all clearing sig1
 use entity laddersnd
-move entity ladder by [0.000 ,0.000 ,0.000] at 50 speed
+move entity ladder by [0.000 ,0.000 ,-96.000] at 50 speed
 animate entity endhawk1 performing action STD_R_N_PK_N by moving [296.000 ,0.000 ,0.000] signaling sig1
 wait for all clearing sig1
 wait 0.900 seconds

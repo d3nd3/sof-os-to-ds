@@ -55,7 +55,7 @@ wait for all clearing sig
 animate entity guard performing action STD_WPATROL_N_MRS_2 by moving to [-1280.000 ,32.000 ,-344.000]
 animate entity introjohn performing action STD_IGUNUP_N_A_N holding for 5.200
 wait 0.800 seconds
-move entity lift by [0.000 ,0.000 ,0.000] over 4 seconds
+move entity lift by [0.000 ,0.000 ,-248.000] over 4 seconds
 use entity introsound
 wait 1.300 seconds
 use entity introcam1
@@ -69,7 +69,7 @@ wait 0.400 seconds
 animate entity introjohn performing action STD_WNORMAL_N_PK_A by moving [96.000 ,0.000 ,0.000] signaling sig
 wait for all clearing sig
 animate entity introjohn performing action STD_IGUNUP_N_A_N holding for 9.000
-move entity lift by [0.000 ,0.000 ,0.000] over 4 seconds
+move entity lift by [0.000 ,0.000 ,248.000] over 4 seconds
 use entity introsound
 wait 0.500 seconds
 moverotate entity introcam2 from file "ger2_introcam2.rof"

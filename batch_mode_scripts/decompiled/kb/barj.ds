@@ -54,7 +54,7 @@ animate entity sprayer1 performing action SCRIPT_RELEASE
 animate entity sprayer2 performing action STD_F_FWD_M_2 targeting entity sneak
 animate entity sprayer2 performing action SCRIPT_RELEASE
 use entity sprayer4
-label lab_00001
+label lab_1
 sneak = find entity player
 animate entity sprayer3 performing action STD_F_FWD_P_2 repeating for 5 times targeting entity sneak
 wait 1 seconds

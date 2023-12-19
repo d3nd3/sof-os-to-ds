@@ -31,13 +31,13 @@ local entity jo
 
 topstairbad1 = find entity with targetname "topstairbad1"
 jo = get entity activator
-label lab_00003
+label lab_2
 animate entity topstairbad1 performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
 suspend
 if topstairbad1.health <= 0
-goto lab_00002
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity topstairbad1 performing action SCRIPT_RELEASE
 exit

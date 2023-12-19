@@ -40,7 +40,7 @@ wall2 = find entity with targetname "fakedoor2"
 rightdoor = find entity with targetname "t23"
 use entity wall
 remove entity rightdoor
-move entity doorlf by [0.000 ,0.000 ,0.000] at 100 speed signaling sig
+move entity doorlf by [0.000 ,0.000 ,-98.000] at 100 speed signaling sig
 wait for all clearing sig
 use entity wall2
 remove entity doorlf

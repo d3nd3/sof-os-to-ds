@@ -153,19 +153,19 @@ animate entity guard5 performing action STD_XSTARTLED_N_A_A repeating for 1 time
 animate entity guard4 performing action STD_XSTARTLED_N_A_A repeating for 1 times
 use entity cam3
 wait 1 seconds
-move entity null by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
+move entity null by [-30.000 ,0.000 ,0.000] at 30 speed signaling sig1
 wait for all clearing sig1
-move entity null by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
+move entity null by [60.000 ,0.000 ,0.000] at 30 speed signaling sig1
 wait for all clearing sig1
-move entity null by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
+move entity null by [-30.000 ,0.000 ,0.000] at 30 speed signaling sig1
 wait for all clearing sig1
 use entity guard
-move entity cam3 by [0.000 ,0.000 ,0.000] at 60 speed signaling sig1
+move entity cam3 by [0.000 ,400.000 ,0.000] at 60 speed signaling sig1
 wait for all clearing sig1
 animate entity guard performing action STD_WFAST_N_A_N by moving [-20.000 ,128.000 ,0.000] signaling sig1
 use entity hostage
 use entity sabre1
-move entity cam3 by [0.000 ,0.000 ,0.000] at 50 speed
+move entity cam3 by [0.000 ,400.000 ,0.000] at 50 speed
 wait 2 seconds
 use entity cam3
 use entity cam1
@@ -194,14 +194,14 @@ wait for all clearing sig1
 wait 1 seconds
 animate entity sabre1 performing action STD_WFAST_N_A_N by moving [0.000 ,-5.000 ,0.000] signaling sig1
 wait for all clearing sig1
-label lab_00002
+label lab_1
 wait 2 seconds
 animate entity sabre1 performing action STD_ERAGESHOOT_N_P_N targeting entity hostage kill nulltarget HEAD signaling sig1
 wait for all clearing sig1
 wait 1 seconds
 health = hostage.health
 if health > 50
-goto lab_00002
+goto lab_00001
 endif
 play sound "cin/jpn2/c54d3.adp" for entity sabre1 on channel CHAN_AUTO at volume 0.900
 wait 2 seconds
@@ -209,7 +209,7 @@ animate entity guard performing action STD_WFAST_N_A_N by moving [0.000 ,-256.00
 wait 3 seconds
 use entity cam1
 use entity cam2
-move entity cam2 by [0.000 ,0.000 ,0.000] at 30 speed
+move entity cam2 by [0.000 ,50.000 ,0.000] at 30 speed
 play sound "cin/ger3/laugh.adp" for entity sabre1 on channel CHAN_AUTO at volume 0.900
 wait for all clearing sig1
 wait 1.500 seconds
@@ -222,8 +222,8 @@ remove entity guard5
 use entity camx
 use entity e_target
 use entity dsdsd
-move entity camx by [0.000 ,0.000 ,0.000] at 35 speed
-move entity nullx by [0.000 ,0.000 ,0.000] at 35 speed
+move entity camx by [0.000 ,-600.000 ,0.000] at 35 speed
+move entity nullx by [0.000 ,-600.000 ,0.000] at 35 speed
 wait 14 seconds
 use entity camx3
 use entity mendigo
@@ -255,8 +255,8 @@ move entity camr by [0.000 ,0.000 ,0.000] at 35 speed
 move entity nullr by [0.000 ,0.000 ,0.000] at 35 speed
 wait 6 seconds
 use entity camm
-move entity camm by [0.000 ,0.000 ,0.000] at 35 speed
-move entity nullm by [0.000 ,0.000 ,0.000] at 35 speed
+move entity camm by [0.000 ,-300.000 ,0.000] at 35 speed
+move entity nullm by [0.000 ,-300.000 ,0.000] at 35 speed
 wait 9 seconds
 use entity introcam1
 moverotate entity introcam1 from file "tsr1_introcam1_ren.rof"

@@ -26,26 +26,19 @@ field vector "p_origin"
 field int "takedamage"
 field int "health"
 
-local entity sam
-local entity hawk1
-local entity splayer
-local int sig1
+global int runcomputer1
 
-sam = find entity with targetname "sam"
-hawk1 = find entity with targetname "hawk1"
-splayer = get entity activator
-sam.health = 9999
-animate entity sam performing action STD_IETALKPOSE_N_A_N holding for 5.100
-play sound "cin/arm1/s4d1.adp" for entity splayer on channel CHAN_AUTO at volume 0.900
-print 31240
-wait 5.100 seconds
-animate entity sam performing action STD_EHEADNOD_N_A_N signaling sig1
-wait for all clearing sig1
-animate entity sam showing emotion EMOTION_TALK holding for 1.300
-animate entity sam performing action STD_ETALK_N_A_N holding for 1.300
-play sound "cin/arm1/s4d2.adp" for entity sam on channel CHAN_AUTO at volume 0.900
-print 31241
-animate entity sam performing action SCRIPT_RELEASE
-sam.health = 100
-use entity sam
+label lab_1
+if runcomputer1 == 1
+setcvar cvar "menu_mail_available" to 1.000000
+setcvar cvar "menu_mail_file" to "maps/mail_nyc1"
+setcvar cvar "menu_nextmap" to "nyc1"
+setcvar cvar "menu_nostats" to 1.000000
+run console command "intermission login"
+suspend
+goto lab_00001
+endif
+print 31500
+suspend
+goto lab_00001
 exit

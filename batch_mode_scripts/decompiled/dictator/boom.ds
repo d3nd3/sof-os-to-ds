@@ -46,7 +46,7 @@ boom3 = find entity with targetname "boom3"
 boom4 = find entity with targetname "boom4"
 boom5 = find entity with targetname "boom5"
 boom6 = find entity with targetname "boom6"
-label lab_00008
+label lab_2
 rnd = random from 1 to 10
 if rnd > 7
 pos = jo.origin
@@ -54,28 +54,35 @@ if pos < -3540
 if pos > -3300
 use entity boom1
 endif
+endif
 if pos > -3540
 if pos < -3100
 use entity boom2
+endif
 endif
 if pos > -3100
 if pos < -2850
 use entity boom2
 endif
+endif
 if pos > -2850
 if pos < -2650
 use entity boom2
+endif
 endif
 if pos > -2650
 if pos < -2350
 use entity boom2
 endif
+endif
+endif
 if tank1.health < 0
 if tank2.health < 0
-goto lab_00007
+goto lab_00001
+endif
 endif
 wait 4.200 seconds
 suspend
-goto lab_00008
-label lab_00007
+goto lab_00002
+label lab_1
 exit

@@ -46,7 +46,7 @@ cache roff "sib1_floodpipe_tophatch_cl.rof"
 cache roff "sib1_floodpipe_valve_cl.rof"
 cam = find entity with targetname "floodcam"
 enable cinematics
-label lab_00001
+label lab_1
 fuel = find entity with targetname "fuel"
 clip = find entity with targetname "floodclip"
 sideh = find entity with targetname "sidehatch"
@@ -61,7 +61,7 @@ killplayer = find entity with targetname "killplayer"
 die = find entity with targetname "t215"
 use entity sideclip
 wait 0.500 seconds
-rotate entity sideh by [0.000 ,0.000 ,0.000]
+rotate entity sideh by [0.000 ,90.000 ,0.000]
 use entity sideclip
 diebitch = 1
 moverotate entity toph from file "sib1_floodpipe_tophatch_cl.rof" signaling sig

@@ -46,7 +46,7 @@ use entity cam
 print 25608
 wait 5 seconds
 print 25611
-move entity cam by [0.000 ,0.000 ,0.000] at 20 speed
+move entity cam by [30.000 ,-90.000 ,0.000] at 20 speed
 wait 5 seconds
 print 25612
 wait 5 seconds

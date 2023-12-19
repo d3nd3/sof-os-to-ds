@@ -94,7 +94,7 @@ john_wp_1 = wp_1.origin
 animate entity irq2b_midjohn performing action STD_WSTEALTH_N_PK_N by moving to john_wp_1 signaling sig1 holding for 31337.000
 vNullStartPos = irq2b_midcam1_null.origin
 fNullStartX = vNullStartPos.x
-label lab_00003
+label lab_1
 if sig1 < 1
 vJohnPos = irq2b_midjohn.origin
 fJohnX = vJohnPos.x
@@ -102,7 +102,7 @@ if fJohnX > fNullStartX
 move entity irq2b_midcam1_null to vJohnPos
 endif
 wait 0.100 seconds
-goto lab_00003
+goto lab_00001
 endif
 use entity irq2b_midcam1
 use entity irq2b_midcam7
@@ -110,8 +110,8 @@ print 30471
 play sound "cin/irq2b/c63d1.adp" for entity irq2b_midcam7 on channel CHAN_AUTO at volume 0.900
 john_wp_2 = wp_2.origin
 animate entity irq2b_midjohn performing action STD_WSTEALTH_N_PK_N by moving to john_wp_2 signaling sig2 holding for 31337.000
-move entity irq2b_midcam7 by [0.000 ,0.000 ,0.000] at 5 speed
-move entity irq2b_midcam7_null by [0.000 ,0.000 ,0.000] at 5 speed
+move entity irq2b_midcam7 by [64.000 ,0.000 ,0.000] at 5 speed
+move entity irq2b_midcam7_null by [64.000 ,0.000 ,0.000] at 5 speed
 wait for all clearing sig2
 use entity irq2b_midlight
 use entity irq2b_midcam7
@@ -140,7 +140,7 @@ animate entity irq2b_midamu performing action STD_ETALKBOTH_N_A_N holding for 4.
 play sound "cin/irq2b/c63d4.adp" for entity irq2b_midcam3 on channel CHAN_AUTO at volume 0.900
 wait 4 seconds
 animate entity irq2b_midsaddam performing action STD_ETURN90_LT_A_N
-rotate entity irq2b_midsaddam by [0.000 ,0.000 ,0.000] at 40 speed
+rotate entity irq2b_midsaddam by [0.000 ,45.000 ,0.000] at 40 speed
 print 30475
 animate entity irq2b_midsaddam showing emotion EMOTION_TALK holding for 3.000
 animate entity irq2b_midamu performing action STD_IETALKPOSE_N_A_N holding for 3.000

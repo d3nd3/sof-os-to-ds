@@ -36,7 +36,7 @@ lbadguy1 = find entity with targetname "lbadguy1"
 lhostage = find entity with targetname "lhostage"
 host_count = find entity with targetname "host_count"
 host_count.health += 1
-on lbadguy1.health < 100 goto lab_00001
+on lbadguy1.health < 100 goto lab_1
 animate entity lbadguy1 performing action STD_MPISTOLWHIP_N_P_N signaling sig1
 if lbadguy1.health < 100
 goto lab_00001
@@ -47,7 +47,8 @@ if lhostage.health > 0
 animate entity lhostage performing action CCH_XONKNEES_N_N_N
 play sound "speech/tsr1/npc/eb9-6.adp" for entity lhostage at volume 0.900
 animate entity lhostage performing action CCH_SONKNEES_2FRNT_N_N
-endifendiflabel lab_00001
+endif
+label lab_1
 reset ai for entity lbadguy1
 animate entity lbadguy1 performing action SCRIPT_RELEASE
 exit

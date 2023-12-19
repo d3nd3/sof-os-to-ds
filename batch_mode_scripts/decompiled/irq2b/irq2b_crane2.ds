@@ -40,8 +40,8 @@ liftsnd = find entity with targetname "liftsnd"
 irq2b_lifter1.movetype = MOVETYPE_NOCLIP
 irq2b_lifter2.movetype = MOVETYPE_NOCLIP
 use entity liftsnd
-rotate entity irq2b_lifter1 by [0.000 ,0.000 ,0.000] at 22 speed signaling sig1
-rotate entity irq2b_lifter2 by [0.000 ,0.000 ,0.000] at 22 speed signaling sig2
+rotate entity irq2b_lifter1 by [0.000 ,70.000 ,-18.000] at 22 speed signaling sig1
+rotate entity irq2b_lifter2 by [0.000 ,70.000 ,0.000] at 22 speed signaling sig2
 wait for all clearing sig1,sig2
 use entity irq2b_clip1
 remove entity liftsnd

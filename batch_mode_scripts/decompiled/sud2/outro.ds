@@ -51,7 +51,7 @@ enable cinematics
 wait 0.100 seconds
 play sound "cin/sud2/c46d1.adp" for entity outromullins on channel CHAN_NO_PHS_ADD at volume 0.900
 print 27913
-rotate entity outromullins by [0.000 ,0.000 ,0.000]
+rotate entity outromullins by [-30.000 ,0.000 ,0.000]
 moverotate entity outromullins from file "sud2_spoogeslide.rof"
 animate entity outromullins performing action LB_ESLIDE_N_PK_N holding for 2.000
 wait 0.100 seconds

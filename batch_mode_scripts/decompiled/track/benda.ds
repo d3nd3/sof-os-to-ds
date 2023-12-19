@@ -34,15 +34,15 @@ use entity t53
 t53.health += 70
 animate entity t53 performing action STD_XROLL_RT_A_A
 wait 0.400 seconds
-label lab_00003
+label lab_2
 reset ai for entity t53
 jo = get entity activator
 animate entity t53 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 if t53.health <= 0
-goto lab_00002
+goto lab_00001
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity t53 performing action SCRIPT_RELEASE
 exit

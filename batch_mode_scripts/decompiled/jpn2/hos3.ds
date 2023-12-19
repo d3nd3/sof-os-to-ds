@@ -33,7 +33,7 @@ local int sig1
 hostage3 = find entity with targetname "hostage3"
 t175 = find entity with targetname "t175"
 remove entity t175
-rotate entity hostage3 by [0.000 ,0.000 ,0.000] at 300 speed
+rotate entity hostage3 by [0.000 ,180.000 ,0.000] at 300 speed
 animate entity hostage3 performing action CCH_XCCHCOWER_UP_A_A signaling sig1
 wait for all clearing sig1
 animate entity hostage3 performing action STD_ISTAND_N_A_N holding for 11.000

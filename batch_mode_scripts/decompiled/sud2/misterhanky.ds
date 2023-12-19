@@ -31,11 +31,11 @@ local int counter = 0
 local int sig
 
 misterhanky = find entity with targetname "misterhanky"
-label lab_00002
+label lab_1
 if counter < 10
 moverotate entity misterhanky from file "sud2_misterhanky.rof" signaling sig
 wait for all clearing sig
 counter = counter + 1
-goto lab_00002
+goto lab_00001
 endif
 exit

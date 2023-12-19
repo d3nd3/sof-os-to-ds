@@ -65,17 +65,18 @@ animate entity enho performing action SCRIPT_RELEASE
 animate entity omilieu performing action SCRIPT_RELEASE
 wait 0.900 seconds
 animate entity enba performing action SCRIPT_RELEASE
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity poufiasse performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
 wait 0.100 seconds
 animate entity youssouf performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
 if poufiasse.health < 0
 if youssouf.health < 0
-goto lab_00002
+goto lab_00001
+endif
 endif
 suspend
 wait 0.300 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

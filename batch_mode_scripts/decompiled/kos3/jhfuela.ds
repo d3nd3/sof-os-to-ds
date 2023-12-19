@@ -152,16 +152,16 @@ fcam3.movetype = MOVETYPE_NOCLIP
 fcam3n.movetype = MOVETYPE_NOCLIP
 fcam4.movetype = MOVETYPE_NOCLIP
 fcam4n.movetype = MOVETYPE_NOCLIP
-move entity fcam2 by [0.000 ,0.000 ,0.000] at 120 speed
-move entity fcam2n by [0.000 ,0.000 ,0.000] at 120 speed
+move entity fcam2 by [-256.000 ,0.000 ,0.000] at 120 speed
+move entity fcam2n by [-256.000 ,0.000 ,0.000] at 120 speed
 animate entity fuelhawk1 performing action STD_R_N_PK_N by moving [-356.000 ,0.000 ,0.000]
 wait 2.500 seconds
 remove entity fuelhawk1
 use entity ffirst
-move entity fcam2 by [0.000 ,0.000 ,0.000] at 120 speed signaling sig1
-move entity fcam2n by [0.000 ,0.000 ,0.000] at 120 speed signaling sig2
+move entity fcam2 by [0.000 ,220.000 ,0.000] at 120 speed signaling sig1
+move entity fcam2n by [0.000 ,220.000 ,12.000] at 120 speed signaling sig2
 wait for all clearing sig1,sig2
-move entity fcam2n by [0.000 ,0.000 ,0.000] at 10 speed signaling sig1
+move entity fcam2n by [0.000 ,0.000 ,-8.000] at 10 speed signaling sig1
 animate entity frightguy performing action STD_RAFRAID_N_N_N by moving to [624.000 ,-256.000 ,48.000]
 wait for all clearing sig1
 wait 0.300 seconds
@@ -170,9 +170,9 @@ use entity lstatx
 wait 0.200 seconds
 use entity rstatx
 wait 0.200 seconds
-rotate entity flighta1 by [0.000 ,0.000 ,0.000] at 300 speed
+rotate entity flighta1 by [-60.000 ,30.000 ,0.000] at 300 speed
 use entity flighta
-rotate entity flightb1 by [0.000 ,0.000 ,0.000] at 300 speed
+rotate entity flightb1 by [-30.000 ,0.000 ,0.000] at 300 speed
 use entity flightb
 wait 0.700 seconds
 use entity office

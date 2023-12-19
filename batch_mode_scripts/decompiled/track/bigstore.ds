@@ -46,7 +46,7 @@ bigb.health += 50
 bigc.health += 50
 bigd.health += 50
 wait 0.100 seconds
-label lab_00003
+label lab_2
 jo = get entity activator
 reset ai for entity biga
 reset ai for entity bigb
@@ -63,11 +63,13 @@ animate entity bigc performing action STD_F_FWD_R_2 targeting entity jo kill nul
 if biga.health <= 0
 if bigb.health <= 0
 if bigc.health <= 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 reset ai for entity biga
 reset ai for entity bigb
 reset ai for entity bigc

@@ -134,15 +134,15 @@ use entity guy17
 use entity corner2guy1
 use entity corner2guy2
 use entity whistle
-move entity cam1 by [0.000 ,0.000 ,0.000] at 70 speed signaling sig1
+move entity cam1 by [0.000 ,-150.000 ,0.000] at 70 speed signaling sig1
 wait for all clearing sig1
 animate entity guy17 performing action WALK by moving [640.000 ,0.000 ,0.000]
-move entity null1 by [0.000 ,0.000 ,0.000] at 70 speed
-move entity cam1 by [0.000 ,0.000 ,0.000] at 70 speed signaling sig1
+move entity null1 by [-60.000 ,0.000 ,0.000] at 70 speed
+move entity cam1 by [0.000 ,-78.000 ,0.000] at 70 speed signaling sig1
 wait for all clearing sig1
-move entity null1 by [0.000 ,0.000 ,0.000] at 200 speed
+move entity null1 by [-610.000 ,0.000 ,0.000] at 200 speed
 print 25609
-move entity cam1 by [0.000 ,0.000 ,0.000] at 70 speed signaling sig1
+move entity cam1 by [-610.000 ,0.000 ,0.000] at 70 speed signaling sig1
 wait for all clearing sig1
 remove entity guy1
 use entity guy13
@@ -153,38 +153,38 @@ use entity guy15
 use entity guy18
 use entity hench6
 use entity hench7
-move entity null1 by [0.000 ,0.000 ,0.000] at 70 speed
-move entity cam1 by [0.000 ,0.000 ,0.000] at 70 speed signaling sig1
+move entity null1 by [0.000 ,-60.000 ,0.000] at 70 speed
+move entity cam1 by [-60.000 ,0.000 ,0.000] at 70 speed signaling sig1
 wait for all clearing sig1
 print 25613
-move entity null1 by [0.000 ,0.000 ,0.000] at 1200 speed
-move entity cam1 by [0.000 ,0.000 ,0.000] at 70 speed signaling sig1
+move entity null1 by [0.000 ,-1430.000 ,0.000] at 1200 speed
+move entity cam1 by [0.000 ,-250.000 ,0.000] at 70 speed signaling sig1
 wait for all clearing sig1
 print 25600
 use entity whistle
-move entity null1 by [0.000 ,0.000 ,0.000] at 50 speed
-move entity cam1 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig1
+move entity null1 by [-350.000 ,0.000 ,0.000] at 50 speed
+move entity cam1 by [0.000 ,-450.000 ,0.000] at 80 speed signaling sig1
 wait for all clearing sig1
 print 25601
 animate entity guy18 performing action WALK by moving [0.000 ,-136.000 ,0.000]
-move entity cam1 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig1
+move entity cam1 by [0.000 ,-300.000 ,0.000] at 80 speed signaling sig1
 animate entity guy18 performing action WALK by moving [-32.000 ,0.000 ,0.000]
 remove entity guy16
 animate entity guy18 performing action STD_XALARMPUSH_N_A_N
 wait for all clearing sig1
 animate entity guy13 performing action WALK by moving [0.000 ,1000.000 ,0.000]
 animate entity guy3 performing action WALK by moving [0.000 ,-980.000 ,0.000]
-move entity null1 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig1
+move entity null1 by [350.000 ,0.000 ,0.000] at 80 speed signaling sig1
 wait for all clearing sig1
 remove entity whistle
 unload sound "kb/kb/KB_twisted_nerve.wav"
 use entity woohoo
-move entity null1 by [0.000 ,0.000 ,0.000] at 80 speed
+move entity null1 by [400.000 ,0.000 ,0.000] at 80 speed
 animate entity guy18 performing action WALK by moving [22.000 ,0.000 ,0.000]
 animate entity guy6 performing action STD_XDANCE_N_N_N repeating for 10 times
 animate entity guy7 performing action STD_XDANCE_N_N_N repeating for 10 times
 animate entity guy8 performing action STD_XDANCE_N_N_N repeating for 10 times
-move entity null1 by [0.000 ,0.000 ,0.000] at 80 speed
+move entity null1 by [430.000 ,0.000 ,-30.000] at 80 speed
 wait 1 seconds
 animate entity guy9 performing action STD_XDANCE_N_N_N repeating for 10 times
 wait 0.200 seconds
@@ -194,22 +194,22 @@ animate entity guy11 performing action STD_XDANCE_N_N_N repeating for 10 times
 animate entity guy12 performing action STD_XDANCE_N_N_N repeating for 10 times
 wait 1 seconds
 animate entity guy3 performing action WALK by moving [250.000 ,0.000 ,0.000]
-move entity cam1 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig1
+move entity cam1 by [0.000 ,-380.000 ,0.000] at 80 speed signaling sig1
 wait for all clearing sig1
-move entity null1 by [0.000 ,0.000 ,0.000] at 80 speed
-move entity cam1 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig1
+move entity null1 by [380.000 ,0.000 ,0.000] at 80 speed
+move entity cam1 by [690.000 ,0.000 ,-30.000] at 80 speed signaling sig1
 wait for all clearing sig1
-move entity null1 by [0.000 ,0.000 ,0.000] at 80 speed
+move entity null1 by [0.000 ,-60.000 ,0.000] at 80 speed
 animate entity guy4 performing action WALK by moving [300.000 ,0.000 ,0.000]
 print 25603
-move entity cam1 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig1
+move entity cam1 by [80.000 ,0.000 ,0.000] at 80 speed signaling sig1
 wait for all clearing sig1
-move entity null1 by [0.000 ,0.000 ,0.000] at 800 speed
-move entity cam1 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig1
+move entity null1 by [0.000 ,-450.000 ,0.000] at 800 speed
+move entity cam1 by [70.000 ,-362.000 ,0.000] at 80 speed signaling sig1
 wait for all clearing sig1
 print 25602
-move entity null1 by [0.000 ,0.000 ,0.000] at 80 speed
-move entity cam1 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig1
+move entity null1 by [220.000 ,0.000 ,0.000] at 80 speed
+move entity cam1 by [0.000 ,-200.000 ,0.000] at 80 speed signaling sig1
 wait for all clearing sig1
 use entity woohoo
 remove entity woohoo

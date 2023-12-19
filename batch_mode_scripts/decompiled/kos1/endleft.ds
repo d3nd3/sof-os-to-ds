@@ -33,12 +33,12 @@ local int health
 
 endmover = find entity with targetname "endmover"
 endmovecrate = find entity with targetname "endmovecrate"
-on endmover.health < 100 goto lab_00001
+on endmover.health < 100 goto lab_1
 animate entity endmover performing action STD_EPUSHCRATE_N_N_N by moving [0.000 ,128.000 ,0.000]
-move entity endmovecrate by [0.000 ,0.000 ,0.000] at 32 speed signaling sig1
+move entity endmovecrate by [0.000 ,128.000 ,0.000] at 32 speed signaling sig1
 wait for all clearing sig1
 endmovecrate.movetype = MOVETYPE_PUSH
-label lab_00001
+label lab_1
 animate entity endmover performing action SCRIPT_RELEASE
 endmovecrate.movetype = MOVETYPE_PUSH
 exit

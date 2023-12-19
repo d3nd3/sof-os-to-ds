@@ -43,7 +43,7 @@ bigtankexp1 = find entity with targetname "bigtankexp1"
 bigtankexp2 = find entity with targetname "bigtankexp2"
 hey = random from 2 to 15
 count = 7
-label lab_00002
+label lab_1
 if count > 0
 wait hey seconds
 use entity pipex1
@@ -58,6 +58,6 @@ use entity bpumpex
 wait hey seconds
 use entity bigtankexp1
 count = count - 1
-goto lab_00002
+goto lab_00001
 endif
 exit

@@ -38,7 +38,7 @@ doorx = find entity with targetname "doorx"
 new_tok_lever = find entity with targetname "new_tok_lever"
 use entity camx2
 wait 0.500 seconds
-move entity new_tok_lever by [0.000 ,0.000 ,0.000]
+move entity new_tok_lever by [0.000 ,0.000 ,-8.000]
 use entity doorx
 use entity relay2
 wait 4.800 seconds

@@ -88,7 +88,7 @@ use entity pelespk1
 wait 0.500 seconds
 use entity doors
 play sound "Impact/Metal/ElevFallBig.wav" for entity pele at volume 0.900
-move entity pele by [0.000 ,0.000 ,0.000] at 700 speed signaling sig1
+move entity pele by [0.000 ,0.000 ,-764.000] at 700 speed signaling sig1
 wait for all clearing sig1
 use entity peleexp4
 wait 0.500 seconds

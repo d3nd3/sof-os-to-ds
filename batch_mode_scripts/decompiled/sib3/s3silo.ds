@@ -69,18 +69,18 @@ notnullhealth = countnull.health
 if notnullhealth > 0
 play sound "cin/sib3/Critical.adp" for entity silocomputer on channel CHAN_NO_PHS_ADD at volume 0.900
 print 29446
-goto lab_00002
+goto lab_00001
 endif
 bTurnOffCountdown = 1
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 notnullhealth = countnull.health
 counter = 60
-label lab_00018
+label lab_3
 if notnullhealth > 0
 if counter == 0
 bTurnOffCountdown = 1
-goto lab_00003
+goto lab_00002
 endif
 if counter == 30
 play sound "cin/sib3/ThirtySecs.adp" for entity silocomputer on channel CHAN_NO_PHS_ADD at volume 0.900
@@ -132,19 +132,19 @@ endif
 counter -= 1
 wait 1 seconds
 notnullhealth = countnull.health
-goto lab_00018
+goto lab_00003
 endif
 use entity t406
 exit
 wait 1 seconds
-label lab_00003
+label lab_2
 enable cinematics
 use entity missilecam
 wait 1.500 seconds
 play sound "Cin/Ger3/Script/ClampOpn.adp" for entity bracel on channel CHAN_AUTO at volume 0.900
 play sound "Cin/Ger3/Script/ClampOpn.adp" for entity bracer on channel CHAN_AUTO at volume 0.900
-move entity bracel by [0.000 ,0.000 ,0.000] at 100 speed signaling sig1
-move entity bracer by [0.000 ,0.000 ,0.000] at 100 speed signaling sig2
+move entity bracel by [32.000 ,0.000 ,0.000] at 100 speed signaling sig1
+move entity bracer by [-32.000 ,0.000 ,0.000] at 100 speed signaling sig2
 wait for all clearing sig1,sig2
 wait 1 seconds
 jetorange.movetype = MOVETYPE_NOCLIP
@@ -155,11 +155,11 @@ use entity takeoff01
 use entity takeoff02
 use entity jetorange
 wait 0.500 seconds
-move entity missile by [0.000 ,0.000 ,0.000] at 150 speed
-move entity jetorange by [0.000 ,0.000 ,0.000] at 150 speed
-move entity rfire by [0.000 ,0.000 ,0.000] at 150 speed
-move entity takeoff01 by [0.000 ,0.000 ,0.000] at 150 speed
-move entity takeoff02 by [0.000 ,0.000 ,0.000] at 150 speed
+move entity missile by [0.000 ,0.000 ,3000.000] at 150 speed
+move entity jetorange by [0.000 ,0.000 ,3000.000] at 150 speed
+move entity rfire by [0.000 ,0.000 ,3000.000] at 150 speed
+move entity takeoff01 by [0.000 ,0.000 ,3000.000] at 150 speed
+move entity takeoff02 by [0.000 ,0.000 ,3000.000] at 150 speed
 wait 5 seconds
 use entity sib3fadeout
 wait 1 seconds

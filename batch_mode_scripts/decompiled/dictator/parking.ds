@@ -67,7 +67,7 @@ p2.health += 40
 p3.health += 40
 p4.health += 40
 p5.health += 80
-label lab_00003
+label lab_2
 suspend
 jo = get entity activator
 animate entity p1 performing action CCH_F_FWD_M_2 targeting entity jo kill nulltarget CHEST
@@ -80,8 +80,12 @@ if p2.health < 0
 if p3.health < 0
 if p4.health < 0
 if p5.health < 0
-goto lab_00002
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+endif
+endif
+endif
+endif
+goto lab_00002
+label lab_1
 exit

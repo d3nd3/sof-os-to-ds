@@ -30,7 +30,7 @@ local entity walker
 local int sig
 
 walker = find entity with targetname "walker"
-on walker.health < 100 goto lab_00001
+on walker.health < 100 goto lab_1
 animate entity walker performing action STD_WPATROL_N_MRS_2 by moving [40.000 ,0.000 ,0.000] signaling sig
 wait for all clearing sig
 animate entity walker performing action STD_WPATROL_N_MRS_2 by moving [0.000 ,256.000 ,0.000] signaling sig
@@ -41,7 +41,7 @@ animate entity walker performing action STD_WPATROL_N_MRS_2 by moving [-88.000 ,
 wait for all clearing sig
 animate entity walker performing action STD_ESPIN180_RT_A_N signaling sig
 wait for all clearing sig
-label lab_00001
+label lab_1
 reset ai for entity walker
 animate entity walker performing action SCRIPT_RELEASE
 wait 0.200 seconds

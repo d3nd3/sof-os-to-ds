@@ -116,8 +116,8 @@ use entity endhawk1b
 wait 0.100 seconds
 remove entity endhawk1
 use entity endcam3
-move entity endcam3 to [0.000 ,0.000 ,0.000] at 65 speed
-move entity endcam3n to [0.000 ,0.000 ,0.000] at 65 speed
+move entity endcam3 to [1816.000 ,-1882.000 ,-476.000] at 65 speed
+move entity endcam3n to [1822.000 ,-1874.000 ,-476.000] at 65 speed
 animate entity endhawk1b performing action STD_R_N_PK_N by moving [0.000 ,-256.000 ,0.000]
 animate entity endjohn1 performing action STD_IETALKPOSE_N_A_N holding for 6.000
 wait 1.200 seconds

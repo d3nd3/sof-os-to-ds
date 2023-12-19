@@ -65,7 +65,7 @@ animate entity pb performing action STD_XROLL_LT_A_A
 wait 0.400 seconds
 animate entity pd performing action SCRIPT_RELEASE
 suspend
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity pa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity pb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget GUT
@@ -77,11 +77,15 @@ if pb.health < 0
 if pc.health < 0
 if pd.health < 0
 if pe.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity pa performing action SCRIPT_RELEASE
 animate entity pb performing action SCRIPT_RELEASE
 animate entity pc performing action SCRIPT_RELEASE

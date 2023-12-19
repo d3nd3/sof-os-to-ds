@@ -42,10 +42,10 @@ samdoor5 = find entity with targetname "samdoor5"
 downtownnull = find entity with targetname "downtownnull"
 hudsam.wait = 0
 use entity weapdoor
-move entity samdoor5 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity samdoor5 by [-60.000 ,0.000 ,0.000] over 0.500 seconds
 animate entity hudsam performing action STD_WNORMAL_N_PK_A by moving to [952.000 ,-320.000 ,128.000] signaling sig
 wait for all clearing sig
-move entity samdoor5 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity samdoor5 by [60.000 ,0.000 ,0.000] over 0.500 seconds
 run console command "givemoretutorial"
 print 33322
 play sound "cin/tut/dt1.adp" for entity hudsam on channel CHAN_VOICE at volume 0.900

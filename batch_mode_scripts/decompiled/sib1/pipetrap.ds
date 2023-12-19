@@ -33,10 +33,10 @@ local int sig
 
 ouch = find entity with targetname "pipehurter"
 ouch1 = find entity with targetname "pipehurter2"
-label lab_00002
+label lab_1
 if diebitch == 1
 run console command "kill"
 endif
 suspend
-goto lab_00002
+goto lab_00001
 exit

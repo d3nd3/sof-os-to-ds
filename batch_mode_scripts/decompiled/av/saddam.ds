@@ -60,13 +60,13 @@ unload sound "cin/irq2b/c62d1.adp"
 animate entity saddam1 performing action STD_XSTARTLED_N_A_A
 wait 0.500 seconds
 play sound "cin/irq2b/c64d1.adp" for entity saddam1 on channel CHAN_VOICE at volume 0.900
-rotate entity saddam1 by [0.000 ,0.000 ,0.000]
+rotate entity saddam1 by [0.000 ,-180.000 ,0.000]
 wait 2 seconds
 play sound "cin/irq2b/c64d13.adp" for entity saddam1 on channel CHAN_VOICE at volume 0.900
 wait 2 seconds
 unload sound "cin/irq2b/c64d1.adp"
 unload sound "cin/irq2b/c64d13.adp"
-move entity cam9 by [0.000 ,0.000 ,0.000] over 2 seconds signaling sig1
+move entity cam9 by [-54.000 ,90.000 ,0.000] over 2 seconds signaling sig1
 wait for all clearing sig1
 use entity john1
 animate entity saddam1 showing emotion EMOTION_TALK holding for 4.000

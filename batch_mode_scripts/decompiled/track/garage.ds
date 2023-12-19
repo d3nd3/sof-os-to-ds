@@ -83,7 +83,7 @@ animate entity bg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo ki
 animate entity eg performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo
 wait 0.800 seconds
 suspend
-label lab_00003
+label lab_2
 reset ai for entity ag
 reset ai for entity bg
 reset ai for entity cg
@@ -111,11 +111,15 @@ if ag.health <= 0
 if bg.health <= 0
 if cg.health <= 0
 if dg.health <= 0
-goto lab_00002
+goto lab_00001
+endif
+endif
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 reset ai for entity ag
 reset ai for entity bg
 reset ai for entity cg

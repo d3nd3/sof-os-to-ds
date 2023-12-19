@@ -108,10 +108,10 @@ use entity ewall5
 wait 0.300 seconds
 play sound "Impact/Metal/Railing.adp" for entity erail2 on channel CHAN_AUTO at volume 0.900
 use entity erail2
-on endheli.health <= 0 goto lab_00001
+on endheli.health <= 0 goto lab_1
 helicopter entity endheli 27
 wait for all clearing sig1
-label lab_00001
+label lab_1
 use entity afteredoor
 use entity afteredoor
 use entity endheli

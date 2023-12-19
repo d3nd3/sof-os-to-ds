@@ -36,7 +36,7 @@ jo = get entity activator
 animate entity t27 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 wait 0.200 seconds
 suspend
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity t27 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 wait 0.200 seconds
@@ -45,10 +45,10 @@ jo = get entity activator
 animate entity t27 performing action STD_TGRENADE_N_A_N targeting entity jo
 wait 1.200 seconds
 if t27.health < 0
-goto lab_00002
+goto lab_00001
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity t27 performing action SCRIPT_RELEASE
 exit

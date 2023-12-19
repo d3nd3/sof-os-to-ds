@@ -53,7 +53,7 @@ man17.health = 2500
 health = man17.health
 man18.health = 2500
 health = man18.health
-label lab_00001
+label lab_1
 animate entity man15 performing action STD_FSWATSTYLE_FWD_M_2 repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
 wait 0.100 seconds
 animate entity man16 performing action STD_FSWATSTYLE_FWD_M_2 repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1

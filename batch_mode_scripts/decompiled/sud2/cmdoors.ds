@@ -31,7 +31,7 @@ local entity cmdoor02
 
 cmdoor01 = find entity with targetname "cmdoor01"
 cmdoor02 = find entity with targetname "cmdoor02"
-label lab_00001
+label lab_1
 use entity cmdoor01
 use entity cmdoor02
 wait 3 seconds

@@ -47,14 +47,14 @@ play sound "Cin/SIB2/Script/WallBreak.adp" for entity sib2_player on channel CHA
 sib2_cat2.movetype = MOVETYPE_NOCLIP
 sib2_snowclip.movetype = MOVETYPE_PUSH
 wait 1.800 seconds
-move entity sib2_cat2 by [0.000 ,0.000 ,0.000] at 320 speed signaling sig
-move entity sib2_snowclip by [0.000 ,0.000 ,0.000] at 320 speed
+move entity sib2_cat2 by [0.000 ,480.000 ,0.000] at 320 speed signaling sig
+move entity sib2_snowclip by [0.000 ,480.000 ,0.000] at 320 speed
 wait 0.100 seconds
 use entity sib2_icewall
 wait for all clearing sig
 tank entity sib2_cat2 3
 cathealth = sib2_cat2.health
-label lab_00002
+label lab_1
 if cathealth > 0
 sib2_cattarget = sib2_player.origin
 firedelay = random from 2 to 4
@@ -62,7 +62,7 @@ tank entity sib2_cat2 2
 wait for all clearing sig
 wait firedelay seconds
 cathealth = sib2_cat2.health
-goto lab_00002
+goto lab_00001
 endif
 use entity sib2_catexplode
 wait 0.200 seconds

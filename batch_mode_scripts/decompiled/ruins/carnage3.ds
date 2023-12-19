@@ -42,7 +42,7 @@ mit.health += 40
 sg.health += 40
 mat.health += 80
 a = 0
-label lab_00004
+label lab_2
 a += 1
 jo = get entity activator
 animate entity mit performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
@@ -51,7 +51,9 @@ animate entity mat performing action STD_F_FWD_R_2 targeting entity jo kill null
 if mit.health < 0
 if sg.health < 0
 if mat.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 if a == 5
 suspend
@@ -66,8 +68,8 @@ sg.health += 90
 animate entity sg performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
 endif
 suspend
-goto lab_00004
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity mit performing action SCRIPT_RELEASE
 animate entity sg performing action SCRIPT_RELEASE
 animate entity mat performing action SCRIPT_RELEASE

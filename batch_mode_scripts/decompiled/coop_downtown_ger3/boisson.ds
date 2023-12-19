@@ -46,7 +46,7 @@ animate entity glou performing action STD_FVIOLENT_DWN_M_2 targeting entity jo
 wait 0.400 seconds
 jo = get entity activator
 animate entity glou performing action CCH_F_FWD_M_2 targeting entity jo kill nulltarget LSHOULDER
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity glou performing action STD_FVIOLENT_DWN_M_2 targeting entity jo kill nulltarget GROIN
 wait 0.200 seconds
@@ -64,9 +64,11 @@ suspend
 if glou.health <= 0
 if glous.health <= 0
 if glout.health <= 0
-goto lab_00002
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+endif
+endif
+goto lab_00002
+label lab_1
 use entity short
 exit

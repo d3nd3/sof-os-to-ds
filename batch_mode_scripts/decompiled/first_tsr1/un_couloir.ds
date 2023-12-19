@@ -56,7 +56,7 @@ wait 0.100 seconds
 animate entity untop performing action STD_F_FWD_S_2 targeting entity sneak kill nulltarget HEAD
 animate entity unbot performing action RUN by moving [0.000 ,270.000 ,0.000]
 animate entity unbot performing action RUN by moving [-5.000 ,0.000 ,0.000]
-label lab_00003
+label lab_2
 sneak = get entity activator
 animate entity untop performing action STD_F_FWD_S_2 targeting entity sneak kill nulltarget HEAD
 wait 0.200 seconds
@@ -67,10 +67,12 @@ suspend
 if untop.health < 0
 if unbot.health < 0
 if debot.health < 0
-goto lab_00002
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+endif
+endif
+goto lab_00002
+label lab_1
 wait 2.500 seconds
 remove entity killerc
 remove entity killerb

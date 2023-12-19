@@ -40,10 +40,10 @@ sneak = find entity player
 use entity b2
 b2.health = 4000
 health = b2.health
-label lab_00003
+label lab_2
 health = b2.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity b2
 wait 4 seconds
@@ -56,6 +56,6 @@ wait 0.600 seconds
 animate entity b2 performing action STD_XROLLTOCCH_FWD_A_A repeating for pop1 times targeting entity sneak signaling sig1
 wait for all clearing sig1
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

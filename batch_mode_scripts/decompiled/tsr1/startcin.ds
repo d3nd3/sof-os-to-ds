@@ -268,9 +268,9 @@ wait 1.200 seconds
 animate entity boothguard performing action STD_ILOOKING_N_MRS_2 holding for 4.700
 use entity trucksound1
 use entity fronttruck
-move entity fronttruck by [0.000 ,0.000 ,0.000] at 120 speed
-move entity trucksmoke by [0.000 ,0.000 ,0.000] at 120 speed
-move entity trucksound1 by [0.000 ,0.000 ,0.000] at 120 speed
+move entity fronttruck by [0.000 ,320.000 ,0.000] at 120 speed
+move entity trucksmoke by [0.000 ,320.000 ,0.000] at 120 speed
+move entity trucksound1 by [0.000 ,320.000 ,0.000] at 120 speed
 wait 2 seconds
 use entity end_fade
 wait 1 seconds
@@ -280,13 +280,13 @@ use entity first_cam
 use entity start_fade
 use entity second_cam
 sniperzoom.wait = 60
-label lab_00002
+label lab_1
 if counter < 17
 sniperzoom.wait -= 2.500
 use entity sniperzoom
 wait 0.100 seconds
 counter += 1
-goto lab_00002
+goto lab_00001
 endif
 wait 1 seconds
 use entity vaporold
@@ -294,9 +294,9 @@ use entity cleanblood
 use entity dirtyblood
 play sound "Weapons\Sniper\Fire.wav" for entity mullins on channel CHAN_VOICE at volume 0.900
 wait 0.500 seconds
-move entity fronttruck by [0.000 ,0.000 ,0.000]
-move entity trucksmoke by [0.000 ,0.000 ,0.000]
-move entity trucksound1 by [0.000 ,0.000 ,0.000]
+move entity fronttruck by [0.000 ,84.000 ,0.000]
+move entity trucksmoke by [0.000 ,84.000 ,0.000]
+move entity trucksound1 by [0.000 ,84.000 ,0.000]
 wait 2.000 seconds
 sniperzoom.wait = -1
 use entity sniperzoom
@@ -314,9 +314,9 @@ wait 2 seconds
 use entity trucksound1
 use entity fronttruck
 use entity trucksmoke
-move entity fronttruck by [0.000 ,0.000 ,0.000] at 120 speed
-move entity trucksmoke by [0.000 ,0.000 ,0.000] at 120 speed
-move entity trucksound1 by [0.000 ,0.000 ,0.000] at 120 speed
+move entity fronttruck by [0.000 ,470.000 ,0.000] at 120 speed
+move entity trucksmoke by [0.000 ,470.000 ,0.000] at 120 speed
+move entity trucksound1 by [0.000 ,470.000 ,0.000] at 120 speed
 use entity kneeler
 use entity lookout
 use entity planter
@@ -365,8 +365,8 @@ use entity runner02
 wait 0.200 seconds
 use entity runner03
 wait 0.200 seconds
-move entity fifth_cam by [0.000 ,0.000 ,0.000] at 7 speed
-move entity t40 by [0.000 ,0.000 ,0.000] at 14 speed
+move entity fifth_cam by [0.000 ,-32.000 ,0.000] at 7 speed
+move entity t40 by [0.000 ,64.000 ,0.000] at 14 speed
 wait 0.700 seconds
 play sound "Enemy/Ra1/Ger3/Wake4.wav" for entity runner02 on channel CHAN_AUTO at volume 0.900
 wait 3 seconds
@@ -380,7 +380,7 @@ use entity fifth_cam
 use entity sixth_cam
 wait 0.100 seconds
 play sound "enemy/Dth/Russ/Writhe1.wav" for entity writhe1 on channel CHAN_AUTO at volume 0.900
-move entity sixth_cam by [0.000 ,0.000 ,0.000] at 50 speed
+move entity sixth_cam by [0.000 ,155.000 ,0.000] at 50 speed
 animate entity hallbaddie1 performing action STD_R_N_MRS_2 by moving [-120.000 ,0.000 ,0.000]
 animate entity hallbaddie1 performing action STD_R_N_MRS_2 by moving [-160.000 ,-80.000 ,0.000]
 animate entity hallbaddie1 performing action STD_R_N_MRS_2 by moving [-80.000 ,-160.000 ,0.000]
@@ -411,7 +411,7 @@ animate entity walkfire5 performing action STD_WPATROL_N_MRS_2 by moving [0.000 
 use entity sixth_cam
 use entity eighth_cam
 remove entity hallflee1
-move entity eighth_cam by [0.000 ,0.000 ,0.000] at 80 speed
+move entity eighth_cam by [0.000 ,-210.000 ,0.000] at 80 speed
 wait 2.700 seconds
 use entity eighth_cam
 use entity ninth_cam
@@ -443,25 +443,25 @@ use entity end_fade
 wait 1 seconds
 use entity ninth_cam
 use entity tenth_cam
-move entity tenth_cam by [0.000 ,0.000 ,0.000] at 15 speed
+move entity tenth_cam by [70.000 ,0.000 ,0.000] at 15 speed
 use entity start_fade
 animate entity nukewalker1 performing action STD_WPATROL_N_MRS_2 by moving [-250.000 ,0.000 ,0.000]
 animate entity nukewalker2 performing action STD_WPATROL_N_MRS_2 by moving [-250.000 ,0.000 ,0.000]
 animate entity pusher performing action STD_WPUSH_N_N_N by moving [-250.000 ,0.000 ,0.000] holding for 10.000
-move entity nuke01 by [49.700 ,0.000 ,0.000] at 49.700 speed
-move entity nuketable1 by [49.700 ,0.000 ,0.000] at 49.700 speed
-move entity nukesound1 by [49.700 ,0.000 ,0.000] at 49.700 speed
+move entity nuke01 by [-245.000 ,0.000 ,0.000] at 49.700 speed
+move entity nuketable1 by [-245.000 ,0.000 ,0.000] at 49.700 speed
+move entity nukesound1 by [-245.000 ,0.000 ,0.000] at 49.700 speed
 wait 3.200 seconds
 use entity end_fade
 wait 1 seconds
 use entity tenth_cam
 use entity eleventh_cam
 use entity outdoorsound
-move entity heli1 by [0.000 ,0.000 ,0.000] at 300 speed
+move entity heli1 by [1072.000 ,-1320.000 ,0.000] at 300 speed
 wait 0.100 seconds
 play sound "cin/tsr1/c9d2.adp" for entity mullins on channel CHAN_NO_PHS_ADD at volume 0.900
 print 25619
-move entity eleventh_cam by [0.000 ,0.000 ,0.000] at 16 speed
+move entity eleventh_cam by [80.000 ,-16.000 ,0.000] at 16 speed
 use entity start_fade
 wait 1 seconds
 use entity traindoors
@@ -480,7 +480,7 @@ wait 0.900 seconds
 play sound "cin/tsr1/c9d3.adp" for entity mullins on channel CHAN_NO_PHS_ADD at volume 0.900
 print 25620
 use entity start_fade
-move entity twelve_cam by [0.000 ,0.000 ,0.000] at 8 speed
+move entity twelve_cam by [0.000 ,0.000 ,32.000] at 8 speed
 use entity trainguard1
 use entity trainguard2
 use entity trainguard3
@@ -490,21 +490,21 @@ wait 0.100 seconds
 animate entity trainguard2 performing action STD_ILOOKING_N_MRS_2 holding for 999.900
 animate entity trainguard3 performing action STD_ILOOKING_N_MRS_2 holding for 999.900
 animate entity trainguard4 performing action STD_ILOOKING_N_MRS_2 holding for 999.900
-move entity trainplat by [0.000 ,0.000 ,0.000] at 40 speed
+move entity trainplat by [0.000 ,-64.000 ,0.000] at 40 speed
 use entity traintruck
-move entity traintruck by [0.000 ,0.000 ,0.000] at 120 speed
+move entity traintruck by [0.000 ,144.000 ,0.000] at 120 speed
 wait 1.300 seconds
 use entity traintruck
 wait 1.600 seconds
 use entity twelve_cam
 use entity thirteen_cam
-move entity thirteen_cam by [0.000 ,0.000 ,0.000] at 16 speed
+move entity thirteen_cam by [62.000 ,-16.000 ,0.000] at 16 speed
 animate entity trainpusher performing action STD_WPUSH_N_N_N by moving [0.000 ,250.000 ,0.000] holding for 10.000
-move entity trainnuke by [49.700 ,0.000 ,0.000] at 49.700 speed
-move entity traintable by [49.700 ,0.000 ,0.000] at 49.700 speed
-move entity nukesound2 by [49.700 ,0.000 ,0.000] at 49.700 speed
+move entity trainnuke by [0.000 ,245.000 ,0.000] at 49.700 speed
+move entity traintable by [0.000 ,245.000 ,0.000] at 49.700 speed
+move entity nukesound2 by [0.000 ,245.000 ,0.000] at 49.700 speed
 wait 0.500 seconds
-move entity traintruck2 by [0.000 ,0.000 ,0.000] at 90 speed
+move entity traintruck2 by [0.000 ,-470.000 ,0.000] at 90 speed
 wait 1.200 seconds
 use entity end_fade
 wait 1.000 seconds

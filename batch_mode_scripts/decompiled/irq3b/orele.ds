@@ -39,10 +39,10 @@ local float elez
 local float nulz
 global int ElevatorInUse
 
-label lab_00002
+label lab_1
 if ElevatorInUse != 0
 suspend
-goto lab_00002
+goto lab_00001
 print "Elevator in use
 endif
 "
@@ -61,7 +61,7 @@ endif
 ElevatorInUse = 0
 suspend
 endif
-goto lab_00002
+goto lab_00001
 if panelpressed == 1
 elez = elevator.origin_z
 nulz = hinull.origin_z
@@ -77,7 +77,7 @@ endif
 ElevatorInUse = 0
 suspend
 endif
-goto lab_00002
+goto lab_00001
 if panelpressed == 2
 elez = elevator.origin_z
 nulz = hinull.origin_z
@@ -93,7 +93,7 @@ endif
 ElevatorInUse = 0
 suspend
 endif
-goto lab_00002
+goto lab_00001
 if panelpressed == 3
 elez = elevator.origin_z
 nulz = lonull.origin_z
@@ -109,5 +109,5 @@ endif
 ElevatorInUse = 0
 suspend
 endif
-goto lab_00002
+goto lab_00001
 exit

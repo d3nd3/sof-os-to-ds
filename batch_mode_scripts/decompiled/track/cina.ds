@@ -40,7 +40,7 @@ use entity awall
 use entity acam
 enable cinematics
 wait 0.500 seconds
-move entity acam by [0.000 ,0.000 ,0.000] at 15 speed
+move entity acam by [-300.000 ,0.000 ,15.000] at 15 speed
 wait 4.500 seconds
 use entity shorta
 wait 0.100 seconds

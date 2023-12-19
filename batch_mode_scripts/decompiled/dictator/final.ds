@@ -55,7 +55,7 @@ tank4.health += 250
 wait 0.200 seconds
 animate entity warn performing action SCRIPT_RELEASE
 suspend
-label lab_00003
+label lab_2
 tank4.health += 15
 jo = get entity activator
 pos = jo.origin
@@ -73,12 +73,13 @@ animate entity bam2 performing action CCH_F_FWD_L_2 targeting entity jo
 animate entity bam1 performing action CCH_F_FWD_L_2 targeting entity jo
 if bam1.health < 0
 if bam2.health < 0
-goto lab_00002
+goto lab_00001
+endif
 endif
 wait 0.100 seconds
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 remove entity bam1
 remove entity bam2
 wait 0.600 seconds
@@ -91,14 +92,14 @@ animate entity boss performing action RUN by moving [-23.000 ,0.000 ,0.000] sign
 wait for all clearing sig
 animate entity boss performing action STD_XROLL_RT_A_A
 wait 0.300 seconds
-label lab_00006
+label lab_4
 wait 0.200 seconds
 if boss.health < 0
-goto lab_00005
+goto lab_00003
 endif
 suspend
-goto lab_00006
-label lab_00005
+goto lab_00004
+label lab_3
 use entity hehe
 wait 0.300 seconds
 exit

@@ -59,67 +59,67 @@ button1 = find entity with targetname "button1"
 crateclip = find entity with targetname "crateclip"
 crateclip2 = find entity with targetname "crateclip2"
 cranesnd = find entity with targetname "cranesnd"
-label lab_00004
+label lab_1
 if count == 0
 crate.movetype = MOVETYPE_NOCLIP
 crate2.movetype = MOVETYPE_NOCLIP
 wait 1 seconds
 use entity cranesnd
-move entity crate by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig4
+move entity crate by [0.000 ,0.000 ,160.000] at 30 speed signaling sig1
+move entity leftclamp by [0.000 ,0.000 ,160.000] at 30 speed signaling sig2
+move entity rightclamp by [0.000 ,0.000 ,160.000] at 30 speed signaling sig3
+move entity doorarm by [0.000 ,0.000 ,160.000] at 30 speed signaling sig4
 wait for all clearing sig1,sig2,sig3,sig4
 use entity cranesnd
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 10 speed
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 10 speed
-move entity crate by [0.000 ,0.000 ,0.000] at 500 speed signaling sig1
+move entity rightclamp by [8.000 ,0.000 ,0.000] at 10 speed
+move entity leftclamp by [-8.000 ,0.000 ,0.000] at 10 speed
+move entity crate by [0.000 ,0.000 ,-192.000] at 500 speed signaling sig1
 wait for all clearing sig1
 use entity crate
 endif
 if count == 1
 wait 1 seconds
 use entity cranesnd
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
+move entity leftclamp by [0.000 ,0.000 ,64.000] at 30 speed signaling sig1
+move entity rightclamp by [0.000 ,0.000 ,64.000] at 30 speed signaling sig2
+move entity doorarm by [0.000 ,0.000 ,64.000] at 30 speed signaling sig3
 wait for all clearing sig1,sig2,sig3
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
+move entity leftclamp by [0.000 ,-96.000 ,0.000] at 30 speed signaling sig1
+move entity rightclamp by [0.000 ,-96.000 ,0.000] at 30 speed signaling sig2
+move entity doorarm by [0.000 ,-96.000 ,0.000] at 30 speed signaling sig3
 wait for all clearing sig1,sig2,sig3
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
+move entity leftclamp by [0.000 ,0.000 ,-120.000] at 30 speed signaling sig1
+move entity rightclamp by [0.000 ,0.000 ,-120.000] at 30 speed signaling sig2
+move entity doorarm by [0.000 ,0.000 ,-120.000] at 30 speed signaling sig3
 wait for all clearing sig1,sig2,sig3
 use entity cranesnd
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 10 speed signaling sig1
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 10 speed signaling sig2
+move entity rightclamp by [-8.000 ,0.000 ,0.000] at 10 speed signaling sig1
+move entity leftclamp by [8.000 ,0.000 ,0.000] at 10 speed signaling sig2
 wait for all clearing sig1,sig2
 wait 2 seconds
 use entity cranesnd
 use entity crateclip2
-move entity crate2 by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig4
+move entity crate2 by [0.000 ,0.000 ,72.000] at 30 speed signaling sig1
+move entity leftclamp by [0.000 ,0.000 ,72.000] at 30 speed signaling sig2
+move entity rightclamp by [0.000 ,0.000 ,72.000] at 30 speed signaling sig3
+move entity doorarm by [0.000 ,0.000 ,72.000] at 30 speed signaling sig4
 wait for all clearing sig1,sig2,sig3,sig4
-move entity crate2 by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig4
+move entity crate2 by [0.000 ,96.000 ,0.000] at 30 speed signaling sig1
+move entity leftclamp by [0.000 ,96.000 ,0.000] at 30 speed signaling sig2
+move entity rightclamp by [0.000 ,96.000 ,0.000] at 30 speed signaling sig3
+move entity doorarm by [0.000 ,96.000 ,0.000] at 30 speed signaling sig4
 wait for all clearing sig1,sig2,sig3,sig4
 use entity cranesnd
 wait 2 seconds
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 10 speed
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 10 speed
+move entity rightclamp by [8.000 ,0.000 ,0.000] at 10 speed
+move entity leftclamp by [-8.000 ,0.000 ,0.000] at 10 speed
 crate2.movetype = MOVETYPE_NOCLIP
-move entity crate2 by [0.000 ,0.000 ,0.000] at 400 speed
+move entity crate2 by [0.000 ,0.000 ,-344.000] at 400 speed
 wait 0.500 seconds
 smashnorth.movetype = MOVETYPE_NOCLIP
 smashsouth.movetype = MOVETYPE_NOCLIP
-rotate entity smashnorth by [0.000 ,0.000 ,0.000] at 300 speed signaling sig1
-rotate entity smashsouth by [0.000 ,0.000 ,0.000] at 300 speed signaling sig2
+rotate entity smashnorth by [0.000 ,0.000 ,90.000] at 300 speed signaling sig1
+rotate entity smashsouth by [0.000 ,0.000 ,-90.000] at 300 speed signaling sig2
 wait for all clearing sig1,sig2
 wait for all clearing sig1
 wait 1 seconds
@@ -127,44 +127,44 @@ endif
 if count >= 2
 wait 1 seconds
 use entity cranesnd
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
+move entity leftclamp by [0.000 ,0.000 ,48.000] at 30 speed signaling sig1
+move entity rightclamp by [0.000 ,0.000 ,48.000] at 30 speed signaling sig2
+move entity doorarm by [0.000 ,0.000 ,48.000] at 30 speed signaling sig3
 wait for all clearing sig1,sig2,sig3
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
+move entity leftclamp by [0.000 ,-96.000 ,0.000] at 30 speed signaling sig1
+move entity rightclamp by [0.000 ,-96.000 ,0.000] at 30 speed signaling sig2
+move entity doorarm by [0.000 ,-96.000 ,0.000] at 30 speed signaling sig3
 wait for all clearing sig1,sig2,sig3
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
+move entity leftclamp by [0.000 ,0.000 ,-104.000] at 30 speed signaling sig1
+move entity rightclamp by [0.000 ,0.000 ,-104.000] at 30 speed signaling sig2
+move entity doorarm by [0.000 ,0.000 ,-104.000] at 30 speed signaling sig3
 wait for all clearing sig1,sig2,sig3
 use entity cranesnd
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 10 speed signaling sig1
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 10 speed signaling sig2
+move entity rightclamp by [-8.000 ,0.000 ,0.000] at 10 speed signaling sig1
+move entity leftclamp by [8.000 ,0.000 ,0.000] at 10 speed signaling sig2
 wait for all clearing sig1,sig2
 wait 2 seconds
 use entity cranesnd
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig4
+move entity leftclamp by [0.000 ,0.000 ,104.000] at 30 speed signaling sig2
+move entity rightclamp by [0.000 ,0.000 ,104.000] at 30 speed signaling sig3
+move entity doorarm by [0.000 ,0.000 ,104.000] at 30 speed signaling sig4
 wait for all clearing sig2,sig3,sig4
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig4
+move entity leftclamp by [0.000 ,96.000 ,0.000] at 30 speed signaling sig2
+move entity rightclamp by [0.000 ,96.000 ,0.000] at 30 speed signaling sig3
+move entity doorarm by [0.000 ,96.000 ,0.000] at 30 speed signaling sig4
 wait for all clearing sig2,sig3,sig4
 use entity cranesnd
 wait 2 seconds
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 10 speed signaling sig1
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 10 speed signaling sig2
+move entity rightclamp by [8.000 ,0.000 ,0.000] at 10 speed signaling sig1
+move entity leftclamp by [-8.000 ,0.000 ,0.000] at 10 speed signaling sig2
 wait for all clearing sig1,sig2
-move entity leftclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig1
-move entity rightclamp by [0.000 ,0.000 ,0.000] at 30 speed signaling sig2
-move entity doorarm by [0.000 ,0.000 ,0.000] at 30 speed signaling sig3
+move entity leftclamp by [0.000 ,0.000 ,-48.000] at 30 speed signaling sig1
+move entity rightclamp by [0.000 ,0.000 ,-48.000] at 30 speed signaling sig2
+move entity doorarm by [0.000 ,0.000 ,-48.000] at 30 speed signaling sig3
 wait for all clearing sig1,sig2,sig3
 wait 1 seconds
 endif
 count += 1
 suspend
-goto lab_00004
+goto lab_00001
 exit

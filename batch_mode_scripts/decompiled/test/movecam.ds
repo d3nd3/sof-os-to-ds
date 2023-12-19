@@ -34,8 +34,8 @@ camera1null = find entity with targetname "camera1null"
 camera1.movetype = MOVETYPE_NOCLIP
 camera1null.movetype = MOVETYPE_NOCLIP
 use entity camera1
-move entity camera1 by [0.000 ,0.000 ,0.000] at 35 speed
-move entity camera1null by [0.000 ,0.000 ,0.000] at 35 speed
+move entity camera1 by [512.000 ,0.000 ,0.000] at 35 speed
+move entity camera1null by [512.000 ,0.000 ,0.000] at 35 speed
 wait 16 seconds
 use entity camera1
 exit

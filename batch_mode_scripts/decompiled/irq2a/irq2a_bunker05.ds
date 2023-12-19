@@ -76,7 +76,7 @@ remove entity fan1
 wait 1.300 seconds
 remove entity fan2
 wait 0.700 seconds
-move entity fannull by [0.000 ,0.000 ,0.000] at 40 speed
+move entity fannull by [0.000 ,0.000 ,-370.000] at 40 speed
 wait 4 seconds
 use entity fanbridge
 use entity plat
@@ -95,8 +95,8 @@ wait 0.100 seconds
 play sound "CIN/IRQ2a/Script/Death.adp" for entity player1 on channel CHAN_NO_PHS_ADD at volume 0.900
 fangeezer.movetype = MOVETYPE_NOCLIP
 animate entity fangeezer performing action STD_SELECTROCUTE_N_N_N holding for 1.000
-move entity fangeezer by [0.000 ,0.000 ,0.000] at 40 speed
-rotate entity fangeezer by [0.000 ,0.000 ,0.000] at 130 speed
+move entity fangeezer by [120.000 ,0.000 ,0.000] at 40 speed
+rotate entity fangeezer by [330.000 ,0.000 ,0.000] at 130 speed
 use entity fangore
 wait 1.000 seconds
 remove entity fangeezer

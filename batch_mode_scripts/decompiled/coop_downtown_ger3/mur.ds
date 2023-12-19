@@ -49,7 +49,7 @@ wait 0.800 seconds
 use entity cexplo
 use entity dexplo
 trou.health += 300
-label lab_00003
+label lab_2
 jo = get entity activator
 pos = jo.origin
 pos += [0.000 ,0.000 ,-34.000]
@@ -67,8 +67,8 @@ tank entity trou 2
 wait 0.800 seconds
 suspend
 if trou.health <= 0
-goto lab_00002
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

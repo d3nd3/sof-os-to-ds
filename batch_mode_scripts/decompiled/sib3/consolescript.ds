@@ -35,7 +35,7 @@ countnull = find entity with targetname "countnull"
 handle = find entity with targetname "handle"
 finalrelay = find entity with targetname "finalrelay"
 fart = find entity with targetname "fart"
-move entity handle by [0.000 ,0.000 ,0.000] at 30 speed
+move entity handle by [0.000 ,0.000 ,-9.000] at 30 speed
 countnull.health = 0
 use entity finalrelay
 wait 1 seconds

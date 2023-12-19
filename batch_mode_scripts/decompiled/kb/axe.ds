@@ -33,9 +33,9 @@ local entity sig1
 axe = find entity with targetname "axe"
 axecam = find entity with targetname "axecam"
 use entity axecam
-move entity axe by [0.000 ,0.000 ,0.000] at 400 speed
+move entity axe by [0.000 ,740.000 ,0.000] at 400 speed
 wait 3 seconds
-move entity axe by [0.000 ,0.000 ,0.000] at 600 speed
+move entity axe by [0.000 ,1200.000 ,0.000] at 600 speed
 use entity axecam
 wait 10 seconds
 remove entity axe

@@ -43,7 +43,7 @@ animate entity hkbr performing action STD_F_FWD_P_2 targeting entity brgd1 kill
 wait 1 seconds
 use entity brdr1
 wait 1.300 seconds
-rotate entity hkbr by [0.000 ,0.000 ,0.000]
+rotate entity hkbr by [0.000 ,-90.000 ,0.000]
 play sound "cin/sud1/s27d2.adp" for entity hkbr on channel CHAN_AUTO at volume 0.900
 print 29187
 animate entity hkbr showing emotion EMOTION_TALK holding for 2.800

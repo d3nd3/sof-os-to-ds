@@ -71,8 +71,8 @@ moverotate entity heli1 from file "jpn3_heli.rof"
 wait 3 seconds
 helicopter entity heli1 48
 wait 1.200 seconds
-move entity j3introcam3 by [0.000 ,0.000 ,0.000] at 7 speed
-move entity t514 by [0.000 ,0.000 ,0.000] at 7 speed
+move entity j3introcam3 by [0.000 ,0.000 ,32.000] at 7 speed
+move entity t514 by [0.000 ,0.000 ,32.000] at 7 speed
 wait 4.600 seconds
 wait 3.300 seconds
 use entity jpn3fadeout

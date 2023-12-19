@@ -64,7 +64,7 @@ use entity clebs
 w1.health += 90
 w2.health += 90
 w3.health += 90
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity w1 performing action CCH_F_FWD_L_2 targeting entity jo
 animate entity w2 performing action CCH_F_FWD_L_2 targeting entity jo kill nulltarget HEAD
@@ -82,9 +82,11 @@ animate entity w2 performing action STD_XCROUCH_DWN_L_2 targeting entity jo
 if w1.health <= 0
 if w2.health <= 0
 if w3.health <= 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

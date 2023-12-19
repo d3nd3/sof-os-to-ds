@@ -61,11 +61,11 @@ wait 2.200 seconds
 enable cinematics
 use entity diccam
 wait 0.600 seconds
-move entity diccamn by [0.000 ,0.000 ,0.000] at 50 speed signaling sig
+move entity diccamn by [0.000 ,0.000 ,395.000] at 50 speed signaling sig
 wait for all clearing sig
 use entity saddam
 animate entity saddam performing action WALK by moving [-64.000 ,250.000 ,0.000]
-move entity diccamn to [0.000 ,0.000 ,0.000] at 65 speed signaling sig
+move entity diccamn to [-3565.000 ,350.000 ,100.000] at 65 speed signaling sig
 wait for all clearing sig
 wait 1.900 seconds
 use entity fader

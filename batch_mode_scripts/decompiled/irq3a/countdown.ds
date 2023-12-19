@@ -41,7 +41,7 @@ cargofork = find entity with targetname "cargofork"
 blocker = find entity with targetname "blocker"
 use entity cargofork
 use entity blocker
-on hawk.health <= 0 goto lab_00001
+on hawk.health <= 0 goto lab_1
 hawk.movetype = MOVETYPE_NOCLIP
 wait 0.100 seconds
 animate entity hawk performing action STD_ETYPING_N_N_N holding for 30000.000
@@ -50,6 +50,6 @@ print 28417
 wait 2 seconds
 use entity spawner1
 exit
-label lab_00001
+label lab_1
 splayer.health = -100
 exit

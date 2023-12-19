@@ -226,7 +226,7 @@ remove entity introswat3
 use entity introswatkiller
 use entity introcam6
 use entity introswatcam
-move entity introswatcam by [0.000 ,0.000 ,0.000] at 12 speed
+move entity introswatcam by [-55.000 ,20.000 ,0.000] at 12 speed
 animate entity introswatkiller performing action STD_R_N_PK_N by moving to [260.000 ,1432.000 ,-152.000]
 animate entity introswatkiller performing action STD_R_N_PK_N by moving to [284.000 ,1376.000 ,-152.000]
 animate entity introswatkiller performing action STD_R_N_PK_N by moving [0.000 ,-205.000 ,0.000]
@@ -334,7 +334,7 @@ remove entity introhostage1
 remove entity introhostage2
 animate entity lastswatleader performing action STD_IETALKPOSE_N_A_N holding for 1.000
 use entity lastcam1
-move entity lastcam1 by [0.000 ,0.000 ,0.000] at 2 speed
+move entity lastcam1 by [0.000 ,0.000 ,16.000] at 2 speed
 wait 0.100 seconds
 animate entity lasthawk performing action STD_IETALKPOSE_N_A_N holding for 2.600
 animate entity lastjohn performing action STD_IETALKPOSE_N_A_N holding for 2.000
@@ -369,7 +369,7 @@ wait 3.300 seconds
 animate entity lasthawk performing action STD_IETALKPOSE_N_A_N holding for 1.000
 use entity newcam2
 use entity lastcam2
-move entity lastcam2 by [0.000 ,0.000 ,0.000] at 8 speed
+move entity lastcam2 by [64.000 ,0.000 ,0.000] at 8 speed
 wait 0.100 seconds
 animate entity lastjohn performing action STD_R_N_PK_N by moving [0.000 ,-336.000 ,0.000]
 play sound "cin/tsr1/c6d4.adp" for entity lastjohn on channel CHAN_AUTO at volume 0.900

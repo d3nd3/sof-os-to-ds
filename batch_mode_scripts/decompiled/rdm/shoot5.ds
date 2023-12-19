@@ -35,15 +35,15 @@ segundo = find entity with targetname "segundo"
 use entity segundo
 segundo.health = 2500
 health = segundo.health
-label lab_00003
+label lab_2
 health = segundo.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity segundo
 me = get entity activator
 animate entity segundo performing action CCH_F_FWD_S_2 targeting entity me
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

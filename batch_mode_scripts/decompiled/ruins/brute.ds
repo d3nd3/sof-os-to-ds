@@ -56,7 +56,7 @@ animate entity ho performing action STD_TGRENADE_N_A_N targeting entity jo
 animate entity hu performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 wait 0.500 seconds
 suspend
-label lab_00003
+label lab_2
 jo = get entity activator
 reset ai for entity hi
 reset ai for entity ho
@@ -79,23 +79,29 @@ wait 1.200 seconds
 if hi.health < 0
 if ho.health < 0
 if hu.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 if hi.health < 0
 if ho.health < 0
 if hu.health < 0
 if he.health < 0
 if hy.health < 0
-goto lab_00005
+goto lab_00003
+endif
+endif
+endif
+endif
 endif
 animate entity he performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity hy performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget CHEST
 suspend
-goto lab_00002
-label lab_00005
+goto lab_00001
+label lab_3
 animate entity hi performing action SCRIPT_RELEASE
 animate entity ho performing action SCRIPT_RELEASE
 animate entity hu performing action SCRIPT_RELEASE

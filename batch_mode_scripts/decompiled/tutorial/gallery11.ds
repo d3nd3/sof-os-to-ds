@@ -44,19 +44,19 @@ goodguy4head = find entity with targetname "goodguy4head"
 goodguy4legs = find entity with targetname "goodguy4legs"
 gallery11null = find entity with targetname "gallery11null"
 target11 = 0
-label lab_00006
-on target11 == 1 goto lab_00001
+label lab_2
+on target11 == 1 goto lab_1
 goodguy4.movetype = MOVETYPE_PUSH
 goodguy4head.movetype = MOVETYPE_PUSH
 goodguy4legs.movetype = MOVETYPE_PUSH
-move entity goodguy4 by [0.200 ,0.000 ,0.000] over 0.200 seconds
-move entity goodguy4head by [0.200 ,0.000 ,0.000] over 0.200 seconds
-move entity goodguy4legs by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity goodguy4 by [32.000 ,0.000 ,0.000] over 0.200 seconds
+move entity goodguy4head by [32.000 ,0.000 ,0.000] over 0.200 seconds
+move entity goodguy4legs by [32.000 ,0.000 ,0.000] over 0.200 seconds
 play sound "Cin/Tut/Script/target.wav" for entity gallery11null on channel CHAN_AUTO at volume 0.900
 wait 2.200 seconds
-move entity goodguy4 by [0.200 ,0.000 ,0.000] over 0.200 seconds
-move entity goodguy4head by [0.200 ,0.000 ,0.000] over 0.200 seconds
-move entity goodguy4legs by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity goodguy4 by [-32.000 ,0.000 ,0.000] over 0.200 seconds
+move entity goodguy4head by [-32.000 ,0.000 ,0.000] over 0.200 seconds
+move entity goodguy4legs by [-32.000 ,0.000 ,0.000] over 0.200 seconds
 play sound "Cin/Tut/Script/target.wav" for entity gallery11null on channel CHAN_AUTO at volume 0.900
 wait 1.200 seconds
 goodguy4health = goodguy4.health
@@ -77,6 +77,6 @@ if btotal == 3
 exit
 goto lab_00001
 endif
-goto lab_00006
-label lab_00001
+goto lab_00002
+label lab_1
 exit

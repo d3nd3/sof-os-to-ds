@@ -63,13 +63,13 @@ use entity irq2b_fadein
 use entity irq2b_introcam
 animate entity irq2b_saddam performing action STD_IETALKPOSE_N_A_N holding for 7.500
 irq2b_sniperzoom.wait = 60
-label lab_00002
+label lab_1
 if counter < 60
 irq2b_sniperzoom.wait -= 1.600
 use entity irq2b_sniperzoom
 wait 0.100 seconds
 counter += 1
-goto lab_00002
+goto lab_00001
 endif
 play sound "cin/irq2b/c62d1.adp" for entity irq2b_introcam on channel CHAN_AUTO at volume 0.900
 print 30464
@@ -77,7 +77,7 @@ wait 1.700 seconds
 animate entity irq2b_amu performing action STD_WNORMAL_N_PK_A by moving [-104.000 ,0.000 ,0.000]
 wait 0.300 seconds
 animate entity irq2b_amu performing action STD_IETALKPOSE_N_A_N holding for 5.500
-move entity irq2b_introcamnull by [1.000 ,0.000 ,0.000] over 1.000 seconds
+move entity irq2b_introcamnull by [0.000 ,-42.000 ,0.000] over 1.000 seconds
 wait 1.500 seconds
 play sound "cin/irq2b/c62d2.adp" for entity irq2b_introcam on channel CHAN_AUTO at volume 0.900
 print 30465

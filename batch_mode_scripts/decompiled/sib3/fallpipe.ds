@@ -67,15 +67,15 @@ moverotate entity vent3 from file "sib3_vent3.rof"
 moverotate entity pipe1 from file "sib3_pipe1.rof"
 moverotate entity pipe2 from file "sib3_pipe2.rof"
 moverotate entity pipe3 from file "sib3_pipe3.rof"
-move entity vent1exp by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity vent1exp by [-128.000 ,0.000 ,0.000] over 0.100 seconds
 wait 0.100 seconds
 use entity vent1exp
-move entity vent1exp by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity vent1exp by [-64.000 ,0.000 ,0.000] over 0.100 seconds
 wait 0.100 seconds
 use entity vent1exp
 wait 0.300 seconds
 use entity vent3exp
-move entity vent3exp by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity vent3exp by [-64.000 ,0.000 ,-192.000] over 0.100 seconds
 wait 0.300 seconds
 use entity vent3exp
 wait 0.300 seconds
@@ -86,8 +86,8 @@ use entity pipe1exp
 wait 0.100 seconds
 use entity pipe2exp
 wait 0.100 seconds
-move entity pipe1exp by [0.100 ,0.000 ,0.000] over 0.100 seconds
-move entity pipe2exp by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity pipe1exp by [0.000 ,0.000 ,-192.000] over 0.100 seconds
+move entity pipe2exp by [0.000 ,0.000 ,-192.000] over 0.100 seconds
 wait 0.300 seconds
 use entity pipe1exp
 use entity pipe2exp

@@ -40,7 +40,7 @@ play sound "cin/irq2a/S17D2.adp" for entity irq2a_player on channel CHAN_AUTO at
 print 30214
 use entity irq2a_truckdoor
 irq2a_truck.movetype = MOVETYPE_NOCLIP
-move entity irq2a_truck to [0.000 ,0.000 ,0.000] at 60 speed signaling sig
+move entity irq2a_truck to [-3448.000 ,-705.000 ,-723.000] at 60 speed signaling sig
 wait for all clearing sig
 use entity irq2a_truckdoor
 wait 2 seconds

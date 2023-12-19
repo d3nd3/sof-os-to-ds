@@ -44,14 +44,14 @@ wait 1 seconds
 hidegun.wait = -1
 use entity hidegun
 if hidegun.count == 0
-goto lab_00002
+goto lab_00001
 endif
 print 32775
 if gateguard.health < 100
 if hidegun.count == 1
 use entity hidegun
 endif
-goto lab_00002
+goto lab_00001
 endif
 animate entity gateguard performing action STD_ECOMEHERE_N_A_N
 play sound "cin\irq1a\s16d1.adp" for entity gateguard at volume 0.900
@@ -65,7 +65,8 @@ hidegun.wait = -1
 use entity hidegun
 if hidegun.count == 1
 use entity hidegun
-endifendiflabel lab_00002
+endif
+label lab_1
 reset ai for entity gateguard
 reset ai for entity gateguard2
 reset ai for entity fruitguy1

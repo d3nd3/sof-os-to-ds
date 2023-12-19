@@ -55,7 +55,7 @@ use entity ass2
 use entity ass4
 animate entity ass2 performing action SCRIPT_RELEASE
 animate entity ass4 performing action SCRIPT_RELEASE
-label lab_00001
+label lab_1
 sneak = get entity activator
 animate entity man1 performing action STD_F_FWD_P_2 repeating for 2 times targeting entity sneak
 animate entity man2 performing action STD_F_FWD_P_2 repeating for 2 times targeting entity sneak

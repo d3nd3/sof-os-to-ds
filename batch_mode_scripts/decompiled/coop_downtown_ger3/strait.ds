@@ -55,7 +55,7 @@ wait 0.100 seconds
 animate entity gal performing action RUN by moving [0.000 ,15.000 ,0.000] signaling sig3
 wait for all clearing sig3
 goto lab_00001
-label lab_00001
+label lab_1
 suspend
 animate entity gal performing action SCRIPT_RELEASE
 animate entity gol performing action RUN by moving [90.000 ,0.000 ,0.000] signaling sig4
@@ -64,5 +64,5 @@ animate entity gol performing action RUN by moving [0.000 ,4.000 ,0.000]
 animate entity gol performing action SCRIPT_RELEASE
 wait 0.500 seconds
 goto lab_00002
-label lab_00002
+label lab_2
 exit

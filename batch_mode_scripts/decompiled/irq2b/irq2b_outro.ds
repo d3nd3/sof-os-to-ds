@@ -99,28 +99,28 @@ use entity irq2b_outjohn1
 use entity irq2b_outcam7
 wait 0.100 seconds
 animate entity irq2b_outjohn1 performing action STD_R_N_PK_N by moving to vJohnWP1 signaling sig1
-label lab_00002
+label lab_1
 if sig1 < 1
+vJohnPos = irq2b_outjohn1.origin
+move entity irq2b_outcam7null to vJohnPos
+wait 0.100 seconds
+goto lab_00001
+endif
+animate entity irq2b_outjohn1 performing action STD_R_N_PK_N by moving to vJohnWP2 signaling sig2
+label lab_2
+if sig2 < 1
 vJohnPos = irq2b_outjohn1.origin
 move entity irq2b_outcam7null to vJohnPos
 wait 0.100 seconds
 goto lab_00002
 endif
-animate entity irq2b_outjohn1 performing action STD_R_N_PK_N by moving to vJohnWP2 signaling sig2
-label lab_00004
-if sig2 < 1
-vJohnPos = irq2b_outjohn1.origin
-move entity irq2b_outcam7null to vJohnPos
-wait 0.100 seconds
-goto lab_00004
-endif
 animate entity irq2b_outjohn1 performing action STD_R_N_PK_N by moving to vJohnWP3 signaling sig3
-label lab_00006
+label lab_3
 if sig3 < 1
 vJohnPos = irq2b_outjohn1.origin
 move entity irq2b_outcam7null to vJohnPos
 wait 0.100 seconds
-goto lab_00006
+goto lab_00003
 endif
 use entity irq2b_outcam7
 remove entity irq2b_outjohn1
@@ -171,7 +171,7 @@ animate entity irq2b_outjohn2 performing action STD_IETALKPOSE_N_A_N holding for
 print 30486
 play sound "cin/irq2b/c64d9.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
 wait 3.500 seconds
-move entity irq2b_outcam1 by [0.000 ,0.000 ,0.000] at 5 speed
+move entity irq2b_outcam1 by [-128.000 ,0.000 ,0.000] at 5 speed
 use entity irq2b_outcam3
 use entity irq2b_outcam1
 wait 0.100 seconds
@@ -203,9 +203,9 @@ wait 0.100 seconds
 print 30492
 play sound "cin/irq2b/c64d15.adp" for entity irq2b_outcam1 on channel CHAN_AUTO at volume 0.900
 wait 0.200 seconds
-move entity irq2b_outheli by [0.000 ,0.000 ,0.000] at 60 speed
+move entity irq2b_outheli by [0.000 ,0.000 ,250.000] at 60 speed
 wait 2.500 seconds
-move entity irq2b_outcam4 by [0.000 ,0.000 ,0.000] at 5 speed
+move entity irq2b_outcam4 by [-5.000 ,30.000 ,2.000] at 5 speed
 use entity irq2b_outcam4
 use entity irq2b_outheli
 play sound "cin/IRQ2b/Script/HeliShoot.adp" for entity irq2b_outcam5 on channel CHAN_NO_PHS_ADD at volume 0.900

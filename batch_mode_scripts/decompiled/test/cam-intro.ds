@@ -54,8 +54,8 @@ nullx2.movetype = MOVETYPE_NOCLIP
 camx3.movetype = MOVETYPE_NOCLIP
 nullx3.movetype = MOVETYPE_NOCLIP
 use entity camx
-move entity camx by [0.000 ,0.000 ,0.000] at 35 speed
-move entity nullx by [0.000 ,0.000 ,0.000] at 35 speed
+move entity camx by [-250.000 ,0.000 ,0.000] at 35 speed
+move entity nullx by [-250.000 ,0.000 ,0.000] at 35 speed
 wait 8 seconds
 use entity camx2
 move entity camx2 by [0.000 ,0.000 ,0.000] at 35 speed

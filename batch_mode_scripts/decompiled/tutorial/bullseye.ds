@@ -62,103 +62,103 @@ bullseye6 = find entity with targetname "bullseye6"
 bullseye7 = find entity with targetname "bullseye7"
 bullseye8 = find entity with targetname "bullseye8"
 snipernull = find entity with targetname "snipernull"
-label lab_00018
+label lab_9
 bullseye1health = bullseye1.health
 if bullseye1health > 0
-move entity bullseye1 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity bullseye1 by [0.000 ,-40.000 ,0.000] over 0.500 seconds
 play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
 wait 4 seconds
-move entity bullseye1 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity bullseye1 by [0.000 ,40.000 ,0.000] over 0.500 seconds
+play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
+wait 1 seconds
+goto lab_00001
+endif
+b1 = 1
+label lab_1
+bullseye3health = bullseye3.health
+if bullseye3health > 0
+move entity bullseye3 by [0.000 ,-40.000 ,0.000] over 0.500 seconds
+play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
+wait 4.500 seconds
+move entity bullseye3 by [0.000 ,40.000 ,0.000] over 0.500 seconds
 play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
 wait 1 seconds
 goto lab_00002
 endif
-b1 = 1
-label lab_00002
-bullseye3health = bullseye3.health
-if bullseye3health > 0
-move entity bullseye3 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+b3 = 1
+label lab_2
+bullseye6health = bullseye6.health
+if bullseye6health > 0
+move entity bullseye6 by [0.000 ,40.000 ,0.000] over 0.500 seconds
 play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
-wait 4.500 seconds
-move entity bullseye3 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+wait 4 seconds
+move entity bullseye6 by [0.000 ,-40.000 ,0.000] over 0.500 seconds
+play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
+wait 1 seconds
+goto lab_00003
+endif
+b6 = 1
+label lab_3
+bullseye8health = bullseye8.health
+if bullseye8health > 0
+move entity bullseye8 by [0.000 ,0.000 ,40.000] over 0.500 seconds
+play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
+wait 3 seconds
+move entity bullseye8 by [0.000 ,0.000 ,-40.000] over 0.500 seconds
 play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
 wait 1 seconds
 goto lab_00004
 endif
-b3 = 1
-label lab_00004
-bullseye6health = bullseye6.health
-if bullseye6health > 0
-move entity bullseye6 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+b8 = 1
+label lab_4
+bullseye4health = bullseye4.health
+if bullseye4health > 0
+move entity bullseye4 by [0.000 ,0.000 ,32.000] over 0.500 seconds
 play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
-wait 4 seconds
-move entity bullseye6 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+wait 2.500 seconds
+move entity bullseye4 by [0.000 ,0.000 ,-32.000] over 0.500 seconds
+play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
+wait 1 seconds
+goto lab_00005
+endif
+b4 = 1
+label lab_5
+bullseye5health = bullseye5.health
+if bullseye5health > 0
+move entity bullseye5 by [0.000 ,40.000 ,0.000] over 0.500 seconds
+play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
+wait 3 seconds
+move entity bullseye5 by [0.000 ,-40.000 ,0.000] over 0.500 seconds
 play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
 wait 1 seconds
 goto lab_00006
 endif
-b6 = 1
-label lab_00006
-bullseye8health = bullseye8.health
-if bullseye8health > 0
-move entity bullseye8 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+b5 = 1
+label lab_6
+bullseye2health = bullseye2.health
+if bullseye2health > 0
+move entity bullseye2 by [0.000 ,0.000 ,40.000] over 0.500 seconds
 play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
-wait 3 seconds
-move entity bullseye8 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+wait 1.500 seconds
+move entity bullseye2 by [0.000 ,0.000 ,-40.000] over 0.500 seconds
+play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
+wait 1 seconds
+goto lab_00007
+endif
+b2 = 1
+label lab_7
+bullseye7health = bullseye7.health
+if bullseye7health > 0
+move entity bullseye7 by [0.000 ,0.000 ,40.000] over 0.500 seconds
+play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
+wait 2 seconds
+move entity bullseye7 by [0.000 ,0.000 ,-40.000] over 0.500 seconds
 play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
 wait 1 seconds
 goto lab_00008
 endif
-b8 = 1
-label lab_00008
-bullseye4health = bullseye4.health
-if bullseye4health > 0
-move entity bullseye4 by [0.500 ,0.000 ,0.000] over 0.500 seconds
-play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
-wait 2.500 seconds
-move entity bullseye4 by [0.500 ,0.000 ,0.000] over 0.500 seconds
-play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
-wait 1 seconds
-goto lab_00010
-endif
-b4 = 1
-label lab_00010
-bullseye5health = bullseye5.health
-if bullseye5health > 0
-move entity bullseye5 by [0.500 ,0.000 ,0.000] over 0.500 seconds
-play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
-wait 3 seconds
-move entity bullseye5 by [0.500 ,0.000 ,0.000] over 0.500 seconds
-play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
-wait 1 seconds
-goto lab_00012
-endif
-b5 = 1
-label lab_00012
-bullseye2health = bullseye2.health
-if bullseye2health > 0
-move entity bullseye2 by [0.500 ,0.000 ,0.000] over 0.500 seconds
-play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
-wait 1.500 seconds
-move entity bullseye2 by [0.500 ,0.000 ,0.000] over 0.500 seconds
-play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
-wait 1 seconds
-goto lab_00014
-endif
-b2 = 1
-label lab_00014
-bullseye7health = bullseye7.health
-if bullseye7health > 0
-move entity bullseye7 by [0.500 ,0.000 ,0.000] over 0.500 seconds
-play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
-wait 2 seconds
-move entity bullseye7 by [0.500 ,0.000 ,0.000] over 0.500 seconds
-play sound "Cin/Tut/Script/snipertarget.wav" for entity snipernull on channel CHAN_AUTO at volume 0.900
-wait 1 seconds
-goto lab_00016
-endif
 b7 = 1
-label lab_00016
+label lab_8
 btotal = b1 + b2
 btotal += b3
 btotal += b4
@@ -169,5 +169,5 @@ btotal += b8
 if btotal == 8
 exit
 endif
-goto lab_00018
+goto lab_00009
 exit

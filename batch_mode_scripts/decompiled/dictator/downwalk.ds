@@ -48,7 +48,7 @@ wait 0.400 seconds
 animate entity downa performing action CCH_F_FWD_L_2 targeting entity jo
 animate entity downb performing action CCH_F_FWD_L_2 targeting entity jo
 wait 0.400 seconds
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity downa performing action CCH_F_FWD_L_2 targeting entity jo
 wait 0.200 seconds
@@ -57,10 +57,11 @@ wait 0.200 seconds
 animate entity downa performing action CCH_F_FWD_L_2 targeting entity jo
 if downa.health < 0
 if downb.health < 0
-goto lab_00002
+goto lab_00001
+endif
 endif
 wait 0.100 seconds
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

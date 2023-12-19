@@ -41,16 +41,16 @@ wait 0.800 seconds
 animate entity edd performing action SCRIPT_RELEASE
 edd.health += 80
 eda.health += 80
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity eda performing action STD_FAUTOSWEEP_N_PM_A targeting entity jo kill nulltarget HEAD
 wait 0.300 seconds
 if eda.health < 0
-goto lab_00002
+goto lab_00001
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 wait 0.200 seconds
 animate entity eda performing action SCRIPT_RELEASE
 exit

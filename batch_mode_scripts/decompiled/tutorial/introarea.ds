@@ -116,21 +116,21 @@ print 33284
 play sound "cin/tut/introd5.adp" for entity introsam on channel CHAN_VOICE at volume 0.900
 animate entity introsam showing emotion EMOTION_TALK holding for 1.800
 animate entity introsam performing action STD_ETALK_N_A_N holding for 1.200
-move entity pallet by [0.000 ,0.000 ,0.000] over 2 seconds
+move entity pallet by [0.000 ,0.000 ,-128.000] over 2 seconds
 play sound "Cin/Tut/Script/firstpallet.wav" for entity intronull on channel CHAN_AUTO at volume 0.900
 wait 0.800 seconds
 introsam.wait = 0
 animate entity introsam performing action STD_WNORMAL_N_PK_A by moving to [140.000 ,540.000 ,128.000]
 wait 1 seconds
-move entity floorhatch by [0.000 ,0.000 ,0.000] over 1 seconds
+move entity floorhatch by [92.000 ,0.000 ,0.000] over 1 seconds
 play sound "Cin/Tut/Script/firstplate.wav" for entity intronull on channel CHAN_AUTO at volume 0.900
 wait 2 seconds
-move entity door1 by [0.700 ,0.000 ,0.000] over 0.700 seconds
+move entity door1 by [0.000 ,4.000 ,0.000] over 0.700 seconds
 play sound "Cin/Tut/Script/brickwall.wav" for entity intronull on channel CHAN_AUTO at volume 0.900
 wait 0.800 seconds
-move entity door1 by [0.000 ,0.000 ,0.000] over 1 seconds
+move entity door1 by [78.000 ,0.000 ,0.000] over 1 seconds
 wait 0.400 seconds
-move entity floorhatch by [0.400 ,0.000 ,0.000] over 0.400 seconds
+move entity floorhatch by [0.000 ,0.000 ,4.000] over 0.400 seconds
 wait 1.800 seconds
-rotate entity introsam by [0.100 ,0.000 ,0.000] over 0.100 seconds
+rotate entity introsam by [0.000 ,90.000 ,0.000] over 0.100 seconds
 exit

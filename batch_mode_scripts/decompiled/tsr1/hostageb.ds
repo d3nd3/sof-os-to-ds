@@ -31,15 +31,15 @@ local entity badguy2
 
 badguy2 = find entity with targetname "badguy2"
 hostage2 = find entity with targetname "hostage2"
-on badguy2.health < 100 goto lab_00001
+on badguy2.health < 100 goto lab_1
 animate entity badguy2 performing action STD_XYELLATYOU_N_A_A
 wait 0.500 seconds
 play sound "Speech/tsr1/skn/bt9-3.adp" for entity badguy2 at volume 0.900
-label lab_00002
+label lab_2
 animate entity badguy2 performing action SCRIPT_RELEASE
 animate entity hostage2 performing action SCRIPT_RELEASE
 exit
-label lab_00001
+label lab_1
 reset ai for entity badguy2
 goto lab_00002
 exit

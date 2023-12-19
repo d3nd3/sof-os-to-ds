@@ -34,14 +34,14 @@ sneak = get entity activator
 use entity youssouf
 animate entity youssouf performing action STD_XROLL_RT_A_A
 wait 0.500 seconds
-label lab_00003
+label lab_2
 reset ai for entity youssouf
 animate entity youssouf performing action STD_F_FWD_S_2 targeting entity sneak kill nulltarget HEAD
 if youssouf.health <= 0
-goto lab_00002
+goto lab_00001
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity youssouf performing action SCRIPT_RELEASE
 exit

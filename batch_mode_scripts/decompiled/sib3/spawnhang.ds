@@ -30,10 +30,10 @@ local entity fallingscientist
 
 fallingscientist = find entity with targetname "fallingscientist"
 use entity fallingscientist
-on fallingscientist.health < 100 goto lab_00001
+on fallingscientist.health < 100 goto lab_1
 animate entity fallingscientist performing action STD_ECLIMBLEDG_MID_A_N
 suspend
-label lab_00001
+label lab_1
 play sound "Cin/Sud1/Falling.wav" for entity fallingscientist at volume 0.900
 animate entity fallingscientist performing action STD_EFALLDEATH_N_N_N
 animate entity fallingscientist performing action STD_EFALLIMPACT_N_N_N

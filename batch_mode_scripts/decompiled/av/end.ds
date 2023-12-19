@@ -124,8 +124,8 @@ play sound "cin/irq2b/c64d2.adp" for entity killer at volume 0.900
 use entity helisp
 use entity heliesc
 wait 1 seconds
-move entity endnull1 by [0.000 ,0.000 ,0.000] over 2 seconds
-move entity endcam1 by [0.000 ,0.000 ,0.000] over 3 seconds
+move entity endnull1 by [0.000 ,-256.000 ,0.000] over 2 seconds
+move entity endcam1 by [0.000 ,-256.000 ,0.000] over 3 seconds
 helicopter entity heliesc 1
 wait 1 seconds
 animate entity killer performing action RUN by moving [-20.000 ,0.000 ,0.000]
@@ -148,14 +148,14 @@ wait 1 seconds
 play sound "cin/irq2a/S19D2.adp" for entity killer at volume 0.900
 wait 0.200 seconds
 helicopter entity heliesc 5
-move entity endcam1 by [0.000 ,0.000 ,0.000] over 3 seconds signaling sig1
+move entity endcam1 by [0.000 ,128.000 ,0.000] over 3 seconds signaling sig1
 wait for all clearing sig1
-move entity endnull1 by [0.000 ,0.000 ,0.000] over 2 seconds
-move entity endcam1 by [0.000 ,0.000 ,0.000] over 3 seconds
+move entity endnull1 by [-512.000 ,-256.000 ,0.000] over 2 seconds
+move entity endcam1 by [74.000 ,226.000 ,0.000] over 3 seconds
 reset ai for entity heliesc
 helicopter entity heliesc 2
 wait 7 seconds
-move entity endcam1 by [0.000 ,0.000 ,0.000] over 3 seconds
+move entity endcam1 by [-50.000 ,-30.000 ,0.000] over 3 seconds
 wait 1 seconds
 animate entity killer performing action WALK by moving [-80.000 ,0.000 ,0.000]
 wait 1 seconds
@@ -171,7 +171,7 @@ wait for all clearing sig1
 wait 1 seconds
 play sound "cin/sud3/C49D11.adp" for entity killer2 at volume 0.900
 wait 1 seconds
-move entity endnull2 by [0.000 ,0.000 ,0.000] over 1 seconds signaling sig1
+move entity endnull2 by [512.000 ,128.000 ,0.000] over 1 seconds signaling sig1
 wait for all clearing sig1
 animate entity killer2 performing action WALK by moving [256.000 ,0.000 ,0.000]
 wait 2 seconds
@@ -191,12 +191,12 @@ wait 0.500 seconds
 play sound "cin/tsr1/C8D1.adp" for entity john2 at volume 0.900
 wait 4 seconds
 play sound "cin/tsr1/C6D2.adp" for entity john2 at volume 0.900
-move entity endcam4 by [0.000 ,0.000 ,0.000] over 2 seconds
+move entity endcam4 by [0.000 ,266.000 ,0.000] over 2 seconds
 wait 4 seconds
 animate entity john2 showing emotion EMOTION_TALK holding for 2.000
 play sound "cin/sud3/S34D1.adp" for entity john2 at volume 0.900
 wait 2 seconds
-move entity endcam4 by [0.000 ,0.000 ,0.000] over 2 seconds
+move entity endcam4 by [0.000 ,800.000 ,0.000] over 2 seconds
 wait 1.500 seconds
 animate entity john2 performing action RUN by moving [0.000 ,800.000 ,0.000]
 use entity explosion1
@@ -210,7 +210,7 @@ wait 1.500 seconds
 use entity explosion5
 print 25601
 wait 3 seconds
-move entity endcam4 by [0.000 ,0.000 ,0.000] over 4 seconds
+move entity endcam4 by [0.000 ,0.000 ,60.000] over 4 seconds
 play sound "cin/tut/WEAPD8.adp" for entity john2 at volume 0.900
 wait 3 seconds
 print 25600

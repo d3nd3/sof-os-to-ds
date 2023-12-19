@@ -1,0 +1,85 @@
+#include "helper.ds"
+
+parameter vector location
+parameter vector newlocation
+parameter int upordown
+parameter entity leftupper
+parameter entity rightupper
+parameter entity leftlower
+parameter entity rightlower
+parameter entity elebody
+parameter entity eledoorleft
+parameter entity eledoorright
+local int done = 0
+local int currentfloor = 0
+
+if upordown == currentfloor
+if upordown == 1
+move entity leftlower by [0.000 ,0.000 ,0.000] at 100 speed
+move entity rightlower by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.500 seconds
+move entity eledoorleft by [0.000 ,0.000 ,0.000] at 100 speed
+move entity eledoorright by [0.000 ,0.000 ,0.000] at 100 speed signaling done
+wait for all clearing done
+wait 2 seconds
+move entity eledoorleft by [0.000 ,0.000 ,0.000] at 100 speed
+move entity eledoorright by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.500 seconds
+move entity leftlower by [0.000 ,0.000 ,0.000] at 100 speed
+move entity rightlower by [0.000 ,0.000 ,0.000] at 100 speed signaling done
+wait for all clearing done
+move entity eledoorleft by location at 100 speed
+move entity eledoorright by location at 100 speed
+move entity elebody by location at 100 speed signaling done
+wait for all clearing done
+wait 0.500 seconds
+move entity eledoorleft by [0.000 ,0.000 ,0.000] at 100 speed
+move entity eledoorright by [0.000 ,0.000 ,0.000] at 100 speed
+move entity leftupper by [0.000 ,0.000 ,0.000] at 100 speed
+move entity rightupper by [0.000 ,0.000 ,0.000] at 100 speed signaling done
+wait for all clearing done
+wait 2 seconds
+move entity leftupper by [0.000 ,0.000 ,0.000] at 100 speed
+move entity rightupper by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.500 seconds
+move entity eledoorleft by [0.000 ,0.000 ,0.000] at 100 speed
+move entity eledoorright by [0.000 ,0.000 ,0.000] at 100 speed signaling done
+wait for all clearing done
+goto lab_00003
+endif //else
+move entity leftupper by [0.000 ,0.000 ,0.000] at 100 speed
+move entity rightupper by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.500 seconds
+move entity eledoorleft by [0.000 ,0.000 ,0.000] at 100 speed
+move entity eledoorright by [0.000 ,0.000 ,0.000] at 100 speed signaling done
+wait for all clearing done
+wait 2 seconds
+move entity eledoorleft by [0.000 ,0.000 ,0.000] at 100 speed
+move entity eledoorright by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.500 seconds
+move entity leftupper by [0.000 ,0.000 ,0.000] at 100 speed
+move entity rightupper by [0.000 ,0.000 ,0.000] at 100 speed signaling done
+wait for all clearing done
+move entity eledoorleft by location at 100 speed
+move entity eledoorright by location at 100 speed
+move entity elebody by location at 100 speed signaling done
+wait for all clearing done
+wait 0.500 seconds
+move entity eledoorleft by [0.000 ,0.000 ,0.000] at 100 speed
+move entity eledoorright by [0.000 ,0.000 ,0.000] at 100 speed
+move entity leftlower by [0.000 ,0.000 ,0.000] at 100 speed
+move entity rightlower by [0.000 ,0.000 ,0.000] at 100 speed signaling done
+wait for all clearing done
+wait 2 seconds
+move entity leftlower by [0.000 ,0.000 ,0.000] at 100 speed
+move entity rightlower by [0.000 ,0.000 ,0.000] at 100 speed
+wait 0.500 seconds
+move entity eledoorleft by [0.000 ,0.000 ,0.000] at 100 speed
+move entity eledoorright by [0.000 ,0.000 ,0.000] at 100 speed signaling done
+wait for all clearing done
+label lab_00003 //endif
+goto lab_00004
+endif
+label lab_00004
+suspend
+exit

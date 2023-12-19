@@ -40,10 +40,10 @@ sneak = find entity player
 use entity estaticox1
 estaticox1.health = 4000
 health = estaticox1.health
-label lab_00003
+label lab_2
 health = estaticox1.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity estaticox1
 wait 1.400 seconds
@@ -56,6 +56,6 @@ wait 1.400 seconds
 animate entity estaticox1 performing action CCH_F_FWD_S_2 repeating for pop1 times targeting entity sneak signaling sig1
 wait for all clearing sig1
 wait 1.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

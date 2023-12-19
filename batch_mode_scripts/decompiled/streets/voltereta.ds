@@ -43,10 +43,10 @@ p3 = get entity player 3
 use entity kiloo
 kiloo.health = 2500
 health = kiloo.health
-label lab_00003
+label lab_2
 health = kiloo.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity kiloo
 me = get entity activator
@@ -54,6 +54,6 @@ animate entity kiloo performing action STD_XROLL_RT_A_A
 animate entity kiloo performing action SCRIPT_RELEASE
 wait for all clearing sig1
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

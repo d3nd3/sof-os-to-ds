@@ -136,24 +136,24 @@ animate entity ninja6 performing action RUN by moving [0.000 ,64.000 ,0.000] sig
 wait for all clearing sig1
 remove entity ninja1
 remove entity ninja4
-rotate entity ninja2 by [0.000 ,0.000 ,0.000]
-rotate entity ninja5 by [0.000 ,0.000 ,0.000]
-rotate entity ninja2 by [0.000 ,0.000 ,0.000]
-rotate entity ninja5 by [0.000 ,0.000 ,0.000]
+rotate entity ninja2 by [0.000 ,-90.000 ,0.000]
+rotate entity ninja5 by [0.000 ,90.000 ,0.000]
+rotate entity ninja2 by [0.000 ,180.000 ,0.000]
+rotate entity ninja5 by [0.000 ,180.000 ,0.000]
 wait 1 seconds
 use entity battle
-move entity null by [0.000 ,0.000 ,0.000] at 200 speed signaling sig1
+move entity null by [512.000 ,0.000 ,0.000] at 200 speed signaling sig1
 wait for all clearing sig1
-move entity null by [0.000 ,0.000 ,0.000] at 400 speed signaling sig1
+move entity null by [0.000 ,1024.000 ,0.000] at 400 speed signaling sig1
 wait for all clearing sig1
-move entity null by [0.000 ,0.000 ,0.000] at 300 speed signaling sig1
+move entity null by [-1024.000 ,0.000 ,0.000] at 300 speed signaling sig1
 wait for all clearing sig1
 use entity battle
-move entity null by [0.000 ,0.000 ,0.000] at 400 speed signaling sig1
+move entity null by [0.000 ,-1024.000 ,0.000] at 400 speed signaling sig1
 wait for all clearing sig1
-move entity null by [0.000 ,0.000 ,0.000] at 400 speed signaling sig1
+move entity null by [512.000 ,1024.000 ,-192.000] at 400 speed signaling sig1
 wait for all clearing sig1
-move entity cam by [0.000 ,0.000 ,0.000] at 400 speed signaling sig1
+move entity cam by [0.000 ,600.000 ,-192.000] at 400 speed signaling sig1
 wait for all clearing sig1
 remove entity ninja2
 remove entity ninja3
@@ -173,10 +173,10 @@ wait for all clearing sig1
 animate entity entninj2 performing action RUN by moving [-64.000 ,0.000 ,0.000]
 animate entity entninj3 performing action RUN by moving [0.000 ,-96.000 ,0.000] signaling sig1
 wait for all clearing sig1
-rotate entity entninj2 by [0.000 ,0.000 ,0.000]
+rotate entity entninj2 by [0.000 ,90.000 ,0.000]
 animate entity entninj3 performing action RUN by moving [64.000 ,0.000 ,0.000] signaling sig1
 wait for all clearing sig1
-rotate entity entninj3 by [0.000 ,0.000 ,0.000]
+rotate entity entninj3 by [0.000 ,-90.000 ,0.000]
 wait 1 seconds
 use entity cam
 remove entity battle

@@ -58,7 +58,7 @@ animate entity gateguard performing action STD_XYELLPOINT_FWD_A_N
 play sound "cin/irq2a/script/order.adp" for entity gateguard on channel CHAN_AUTO at volume 0.900
 wait 2 seconds
 use entity gatetruck
-move entity gatetruck by [0.000 ,0.000 ,0.000] at 70 speed
+move entity gatetruck by [-3000.000 ,0.000 ,0.000] at 70 speed
 animate entity gateguard performing action STD_R_N_MRS_2 by moving [-3000.000 ,0.000 ,0.000]
 wait 4 seconds
 use entity introcam1

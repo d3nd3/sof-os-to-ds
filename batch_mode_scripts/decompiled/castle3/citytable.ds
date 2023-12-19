@@ -38,15 +38,15 @@ lid = find entity with targetname "lid"
 citylight1 = find entity with targetname "citylight1"
 citylight2 = find entity with targetname "citylight2"
 tv1 = find entity with targetname "tv1"
-rotate entity lid by [0.000 ,0.000 ,0.000] over 2 seconds
+rotate entity lid by [0.000 ,0.000 ,-90.000] over 2 seconds
 use entity tv1
-move entity tv1 by [0.800 ,0.000 ,0.000] over 0.800 seconds
+move entity tv1 by [0.000 ,0.000 ,-80.000] over 0.800 seconds
 wait 0.800 seconds
 use entity tv1
 wait 1.200 seconds
-move entity lid by [0.000 ,0.000 ,0.000] over 2 seconds signaling sig
+move entity lid by [0.000 ,0.000 ,-64.000] over 2 seconds signaling sig
 wait for all clearing sig
-move entity city by [0.000 ,0.000 ,0.000] over 2 seconds signaling sig
+move entity city by [0.000 ,0.000 ,40.000] over 2 seconds signaling sig
 wait for all clearing sig
 wait 1 seconds
 use entity citylight1

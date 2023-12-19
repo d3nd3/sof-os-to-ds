@@ -35,7 +35,7 @@ trucksnd2 = find entity with targetname "trucksnd2"
 trucksnd2.movetype = MOVETYPE_NOCLIP
 use entity docktrck
 use entity trucksnd2
-move entity trucksnd2 by [0.000 ,0.000 ,0.000] at 25 speed signaling sig1
+move entity trucksnd2 by [0.000 ,-632.000 ,0.000] at 25 speed signaling sig1
 wait for all clearing sig1
 use entity trucksnd2
 wait 1 seconds

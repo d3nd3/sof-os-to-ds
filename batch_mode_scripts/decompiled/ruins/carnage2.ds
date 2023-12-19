@@ -40,7 +40,7 @@ use entity qc
 qa.health += 40
 qb.health += 40
 qc.health += 40
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity qa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity qb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
@@ -49,11 +49,13 @@ wait 0.200 seconds
 if qa.health < 0
 if qb.health < 0
 if qc.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity qa performing action SCRIPT_RELEASE
 animate entity qb performing action SCRIPT_RELEASE
 animate entity qc performing action SCRIPT_RELEASE

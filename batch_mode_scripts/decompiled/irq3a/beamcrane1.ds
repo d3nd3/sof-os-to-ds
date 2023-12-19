@@ -57,13 +57,13 @@ animate entity badman1 performing action SCRIPT_RELEASE
 animate entity operator1 performing action SCRIPT_RELEASE
 animate entity operator1 performing action SCRIPT_RELEASE
 use entity cranesound1
-move entity crate by [0.000 ,0.000 ,0.000] at 50 speed signaling sig1
-move entity bar by [0.000 ,0.000 ,0.000] at 50 speed signaling sig2
-move entity barslide by [0.000 ,0.000 ,0.000] at 50 speed signaling sig3
-move entity cranesound1 by [0.000 ,0.000 ,0.000] at 50 speed signaling sig4
+move entity crate by [0.000 ,-200.000 ,0.000] at 50 speed signaling sig1
+move entity bar by [0.000 ,-200.000 ,0.000] at 50 speed signaling sig2
+move entity barslide by [0.000 ,-200.000 ,0.000] at 50 speed signaling sig3
+move entity cranesound1 by [0.000 ,-248.000 ,0.000] at 50 speed signaling sig4
 wait for all clearing sig4,sig3,sig2,sig1
-move entity crate by [0.000 ,0.000 ,0.000] at 50 speed signaling sig1
-move entity cranesound1 by [0.000 ,0.000 ,0.000] at 50 speed signaling sig2
+move entity crate by [0.000 ,0.000 ,-56.000] at 50 speed signaling sig1
+move entity cranesound1 by [0.000 ,0.000 ,-48.000] at 50 speed signaling sig2
 wait for all clearing sig2,sig1
 use entity cranesound1
 use entity liftdude1

@@ -44,7 +44,7 @@ hawk1 = find entity with targetname "hawk1"
 lockeddoor = find entity with scripttarget "lockeddoor"
 fakedoor = find entity with targetname "fakedoor"
 joe = find entity with targetname "joe"
-label lab_00002
+label lab_1
 sam.health = 9999
 hawk1.health = 9999
 if count1 == 1
@@ -104,5 +104,5 @@ animate entity hawk1 performing action SCRIPT_RELEASE
 exit
 endif
 suspend
-goto lab_00002
+goto lab_00001
 exit

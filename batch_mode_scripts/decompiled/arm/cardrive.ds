@@ -33,7 +33,7 @@ local int sig1
 movingcar = find entity with targetname "movingcar"
 runinrain = find entity with targetname "runinrain"
 movingcar.movetype = MOVETYPE_NOCLIP
-move entity movingcar by [0.000 ,0.000 ,0.000] at 250 speed
+move entity movingcar by [0.000 ,1308.000 ,0.000] at 250 speed
 wait 5 seconds
 animate entity runinrain performing action STD_RAFRAID_N_N_N by moving [0.000 ,-700.000 ,0.000] signaling sig1 holding for 90.000
 wait for all clearing sig1

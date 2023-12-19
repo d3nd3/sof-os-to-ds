@@ -38,7 +38,7 @@ irq2a_silo_2 = find entity with targetname "irq2a_silo_2"
 irq2a_silo_3 = find entity with targetname "irq2a_silo_3"
 play sound "cin/irq2a/S17D1.adp" for entity irq2a_player on channel CHAN_AUTO at volume 0.900
 print 30213
-label lab_00002
+label lab_1
 if i < 20
 use entity irq2a_silo_1
 wait 0.100 seconds
@@ -54,6 +54,6 @@ use entity irq2a_silo_3
 wait 0.400 seconds
 wait 1.000 seconds
 i += 1
-goto lab_00002
+goto lab_00001
 endif
 exit

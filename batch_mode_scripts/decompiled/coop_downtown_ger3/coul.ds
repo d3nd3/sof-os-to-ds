@@ -55,7 +55,7 @@ animate entity bbal performing action RUN by moving [-360.000 ,0.000 ,0.000] sig
 animate entity abal performing action STD_FAUTOSWEEP_N_M_2 targeting entity jo
 wait 0.600 seconds
 cbal.health += 80
-label lab_00004
+label lab_2
 jo = get entity activator
 pos = jo.origin_x
 if pos < 2048.000
@@ -68,8 +68,10 @@ suspend
 if abal.health <= 0
 if bbal.health <= 0
 if cbal.health <= 0
-goto lab_00003
+goto lab_00001
 endif
-goto lab_00004
-label lab_00003
+endif
+endif
+goto lab_00002
+label lab_1
 exit

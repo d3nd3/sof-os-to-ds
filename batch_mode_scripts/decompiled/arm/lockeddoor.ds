@@ -38,7 +38,7 @@ doorsnd = find entity with targetname "doorsnd"
 wall2 = find entity with targetname "fakedoor2"
 use entity wall
 use entity doorsnd
-move entity lockeddoor by [0.000 ,0.000 ,0.000] at 100 speed signaling sig
+move entity lockeddoor by [0.000 ,0.000 ,-84.000] at 100 speed signaling sig
 wait for all clearing sig
 use entity wall2
 remove entity lockeddoor

@@ -34,7 +34,7 @@ pop = random from 1 to 4
 man1 = find entity with targetname "shoot1"
 sneak = get entity activator
 use entity man1
-label lab_00001
+label lab_1
 sneak = get entity activator
 animate entity man1 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak kill nulltarget NUG_O_POPPIN
 wait 0.100 seconds

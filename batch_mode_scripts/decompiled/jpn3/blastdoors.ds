@@ -103,8 +103,8 @@ animate entity windownin2 performing action SCRIPT_RELEASE
 wait 0.600 seconds
 use entity nin2glass
 wait 2 seconds
-on heli1.health < 10 goto lab_00001
+on heli1.health < 10 goto lab_1
 suspend
-label lab_00001
+label lab_1
 heli1.movetype = origMovetype
 exit

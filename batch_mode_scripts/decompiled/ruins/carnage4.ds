@@ -64,7 +64,7 @@ animate entity wc performing action STD_F_FWD_R_2 targeting entity jo kill nullt
 animate entity wd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 suspend
-label lab_00002
+label lab_1
 a += 1
 jo = get entity activator
 reset ai for entity wa
@@ -132,17 +132,20 @@ animate entity we performing action STD_F_FWD_R_2 targeting entity jo kill nullt
 animate entity wa performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 wait 0.500 seconds
 suspend
-goto lab_00002
+goto lab_00001
 endif
 if wa.health < 0
 if wb.health < 0
 if wc.health < 0
 if we.health < 0
-goto lab_00004
+goto lab_00002
+endif
+endif
+endif
 endif
 suspend
-goto lab_00002
-label lab_00004
+goto lab_00001
+label lab_2
 animate entity wa performing action SCRIPT_RELEASE
 animate entity wb performing action SCRIPT_RELEASE
 animate entity wc performing action SCRIPT_RELEASE

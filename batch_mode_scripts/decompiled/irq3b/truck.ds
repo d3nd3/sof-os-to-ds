@@ -44,9 +44,9 @@ animate entity trunner1 performing action SCRIPT_RELEASE
 animate entity trunner2 performing action SCRIPT_RELEASE
 use entity thetruck
 use entity trucksnd1
-move entity trucksnd1 by [0.000 ,0.000 ,0.000] at 130 speed
+move entity trucksnd1 by [448.000 ,0.000 ,0.000] at 130 speed
 thetruck.movetype = MOVETYPE_PUSH
-move entity thetruck by [0.000 ,0.000 ,0.000] at 130 speed signaling sig1
+move entity thetruck by [448.000 ,0.000 ,0.000] at 130 speed signaling sig1
 wait for all clearing sig1
 thetruck.movetype = MOVETYPE_NONE
 use entity thetruck

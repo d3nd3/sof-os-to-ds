@@ -33,16 +33,16 @@ local int sig1
 
 guy1 = find entity with targetname "bot16"
 use entity guy1
-label lab_00003
+label lab_2
 health = guy1.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity guy1
 me = get entity activator
 animate entity guy1 performing action STD_F_FWD_R_2 targeting entity me
 wait 0.100 seconds
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

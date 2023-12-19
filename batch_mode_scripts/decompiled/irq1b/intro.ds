@@ -77,7 +77,7 @@ animate entity introtruckguy1 performing action STD_WBCKSIGNAL_N_N_N by moving [
 wait 5 seconds
 remove entity introtruckguy1
 use entity introtruck
-move entity introtruck by [0.000 ,0.000 ,0.000] at 80 speed
+move entity introtruck by [0.000 ,832.000 ,0.000] at 80 speed
 wait 2 seconds
 animate entity introjohn1 performing action STD_WSTEALTH_N_PK_N by moving [-80.000 ,0.000 ,0.000]
 wait 2.500 seconds

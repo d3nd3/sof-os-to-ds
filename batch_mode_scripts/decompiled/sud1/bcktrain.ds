@@ -44,16 +44,16 @@ trainsnd01.movetype = MOVETYPE_NOCLIP
 trainsnd02.movetype = MOVETYPE_NOCLIP
 use entity trainsnd01
 use entity trainsnd02
-move entity trainsnd01 by [0.000 ,0.000 ,0.000] at 35 speed
-move entity trainsnd02 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity trainsnd01 by [0.000 ,296.000 ,0.000] at 35 speed
+move entity trainsnd02 by [0.000 ,296.000 ,0.000] at 35 speed
 bcktrn1.movetype = MOVETYPE_PUSH
-move entity bcktrn1 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity bcktrn1 by [0.000 ,296.000 ,0.000] at 35 speed
 bcktrn2.movetype = MOVETYPE_PUSH
-move entity bcktrn2 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity bcktrn2 by [0.000 ,296.000 ,0.000] at 35 speed
 bcktrn3.movetype = MOVETYPE_PUSH
-move entity bcktrn3 by [0.000 ,0.000 ,0.000] at 35 speed
+move entity bcktrn3 by [0.000 ,296.000 ,0.000] at 35 speed
 bcktrn4.movetype = MOVETYPE_PUSH
-move entity bcktrn4 by [0.000 ,0.000 ,0.000] at 35 speed signaling sig1
+move entity bcktrn4 by [0.000 ,296.000 ,0.000] at 35 speed signaling sig1
 wait for all clearing sig1
 use entity trainsnd01
 use entity trainsnd02

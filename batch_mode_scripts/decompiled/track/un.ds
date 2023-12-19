@@ -89,7 +89,7 @@ helicopter entity cheli 26
 helicopter entity cheli 41
 wait 0.200 seconds
 animate entity unf performing action SCRIPT_RELEASE
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity una performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
 animate entity unb performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget GUT
@@ -111,7 +111,9 @@ wait 0.100 seconds
 if tank1.health < 0
 if aheli.health < 0
 if bheli.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 animate entity una performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget HEAD
 animate entity unb performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
@@ -119,8 +121,8 @@ animate entity unc performing action STD_F_FWD_S_2 targeting entity jo kill null
 animate entity und performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget GROIN
 animate entity une performing action STD_F_FWD_P_2 targeting entity jo kill nulltarget GROIN
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 wait 0.200 seconds
 use entity tact
 animate entity una performing action SCRIPT_RELEASE

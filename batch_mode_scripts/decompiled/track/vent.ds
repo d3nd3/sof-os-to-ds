@@ -46,7 +46,7 @@ t62.health += 50
 t63.health += 50
 t64.health += 50
 wait 0.100 seconds
-label lab_00003
+label lab_2
 jo = get entity activator
 reset ai for entity t61
 reset ai for entity t62
@@ -63,11 +63,13 @@ animate entity t63 performing action STD_F_FWD_R_2 targeting entity jo kill null
 if t61.health <= 0
 if t62.health <= 0
 if t63.health <= 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 reset ai for entity t61
 reset ai for entity t62
 reset ai for entity t63

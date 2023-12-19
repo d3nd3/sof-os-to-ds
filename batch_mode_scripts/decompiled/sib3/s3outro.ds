@@ -160,7 +160,7 @@ remove entity outplay2
 use entity outcam2
 outcam3.movetype = MOVETYPE_NOCLIP
 use entity outcam3
-move entity outcam3 by [0.000 ,0.000 ,0.000] at 10 speed
+move entity outcam3 by [0.000 ,0.000 ,-18.000] at 10 speed
 setcvar cvar "timescale" to 0.300000
 animate entity outplay3 performing action STD_R_N_PK_N by moving [-365.000 ,0.000 ,0.000]
 wait 0.200 seconds

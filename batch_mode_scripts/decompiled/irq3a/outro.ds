@@ -101,8 +101,8 @@ moverotate entity reardoor from file "irq3a_cargo_reardoor01.rof"
 moverotate entity runningboards from file "irq3a_cargo_runningboards.rof"
 moverotate entity brace1 from file "irq3a_cargo_brace2.rof"
 moverotate entity brace2 from file "irq3a_cargo_brace2.rof"
-move entity reardoorcam by [2.500 ,0.000 ,0.000] over 2.500 seconds
-move entity rearnull by [2.500 ,0.000 ,0.000] over 2.500 seconds
+move entity reardoorcam by [64.000 ,0.000 ,0.000] over 2.500 seconds
+move entity rearnull by [64.000 ,0.000 ,0.000] over 2.500 seconds
 wait 2.500 seconds
 use entity reardoorcam
 use entity outrocam1
@@ -113,7 +113,7 @@ planeshooter.movetype = MOVETYPE_NOCLIP
 wait 0.100 seconds
 moverotate entity outrocam1 from file "irq3a_cargo_outrocam1.rof"
 moverotate entity outronotnull1 from file "irq3a_cargo_outronotnull1.rof" signaling sig1
-move entity planeshooter by [0.000 ,0.000 ,0.000] over 4 seconds
+move entity planeshooter by [400.000 ,0.000 ,0.000] over 4 seconds
 moverotate entity ladder from file "irq3a_cargo_ladder.rof"
 moverotate entity frontdoor from file "irq3a_cargo_frontdoor.rof"
 animate entity planeshooter performing action STD_FSWATSTYLE_FWD_M_2 targeting entity bunghole holding for 8.000
@@ -123,7 +123,7 @@ play sound "Impact/Metal/LadderHit.adp" for entity player1 on channel CHAN_NO_PH
 wait 1 seconds
 use entity outrofade
 wait 0.100 seconds
-move entity planeshooter by [0.000 ,0.000 ,0.000] over 4 seconds
+move entity planeshooter by [720.000 ,0.000 ,0.000] over 4 seconds
 wait for all clearing sig1
 use entity outrocam1
 use entity outronotnull1

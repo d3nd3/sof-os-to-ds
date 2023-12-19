@@ -101,18 +101,18 @@ use entity launchlight4
 use entity launchlight5
 use entity launchlight6
 use entity launchlight7
-rotate entity launchiris1 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity launchiris2 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity launchiris3 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity launchiris4 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity launchiris5 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity launchiris6 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity launchiris7 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity launchiris8 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity launchiris9 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity launchiris10 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity launchiris11 by [0.000 ,0.000 ,0.000] over 1 seconds
-rotate entity launchiris12 by [0.000 ,0.000 ,0.000] over 1 seconds
+rotate entity launchiris1 by [0.000 ,70.000 ,0.000] over 1 seconds
+rotate entity launchiris2 by [0.000 ,70.000 ,0.000] over 1 seconds
+rotate entity launchiris3 by [0.000 ,70.000 ,0.000] over 1 seconds
+rotate entity launchiris4 by [0.000 ,70.000 ,0.000] over 1 seconds
+rotate entity launchiris5 by [0.000 ,70.000 ,0.000] over 1 seconds
+rotate entity launchiris6 by [0.000 ,70.000 ,0.000] over 1 seconds
+rotate entity launchiris7 by [0.000 ,70.000 ,0.000] over 1 seconds
+rotate entity launchiris8 by [0.000 ,70.000 ,0.000] over 1 seconds
+rotate entity launchiris9 by [0.000 ,70.000 ,0.000] over 1 seconds
+rotate entity launchiris10 by [0.000 ,70.000 ,0.000] over 1 seconds
+rotate entity launchiris11 by [0.000 ,70.000 ,0.000] over 1 seconds
+rotate entity launchiris12 by [0.000 ,70.000 ,0.000] over 1 seconds
 wait 2.500 seconds
 use entity launchcam1
 use entity launchcam2
@@ -120,9 +120,9 @@ wait 0.100 seconds
 play sound "Cin/Ger3/Script/BlastOff.adp" for entity launchcam2 on channel CHAN_AUTO at volume 0.900
 launchcam2target.movetype = MOVETYPE_NOCLIP
 wait 1 seconds
-move entity launchmissile by [2.400 ,0.000 ,0.000] over 2.400 seconds
+move entity launchmissile by [0.000 ,0.000 ,1536.000] over 2.400 seconds
 wait 0.400 seconds
-move entity launchcam2target by [1.600 ,0.000 ,0.000] over 1.600 seconds
+move entity launchcam2target by [0.000 ,0.000 ,1012.000] over 1.600 seconds
 use entity launchfade
 wait 1 seconds
 use entity launchlight8

@@ -35,13 +35,13 @@ local int sig2
 splayer = get entity activator
 spawner2 = find entity with targetname "spawner2"
 hawk = find entity with targetname "hawk"
-on hawk.health <= 0 goto lab_00001
+on hawk.health <= 0 goto lab_1
 wait 0.100 seconds
 play sound "cin/irq3a/almost.adp" for entity splayer on channel CHAN_NO_PHS_ADD at volume 0.900
 print 28418
 wait 2 seconds
 use entity spawner2
 exit
-label lab_00001
+label lab_1
 splayer.health = -100
 exit

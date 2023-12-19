@@ -66,11 +66,11 @@ paljack1.movetype = MOVETYPE_NOCLIP
 wait 0.100 seconds
 use entity garlight1
 use entity paldude1
-move entity paljack1 by [0.000 ,0.000 ,0.000] at 45 speed signaling sig1
-move entity movbox1 by [0.000 ,0.000 ,0.000] at 45 speed signaling sig2
+move entity paljack1 by [256.000 ,0.000 ,0.000] at 45 speed signaling sig1
+move entity movbox1 by [256.000 ,0.000 ,0.000] at 45 speed signaling sig2
 use entity gardoor1
-move entity gartruck by [0.000 ,0.000 ,0.000] at 50 speed signaling sig1
-move entity garcrates by [0.000 ,0.000 ,0.000] at 50 speed signaling sig2
+move entity gartruck by [0.000 ,256.000 ,0.000] at 50 speed signaling sig1
+move entity garcrates by [0.000 ,256.000 ,0.000] at 50 speed signaling sig2
 animate entity paldude1 performing action STD_WPUSHCART_N_N_N by moving [256.000 ,0.000 ,0.000]
 wait for all clearing sig1,sig2
 use entity gardoor1

@@ -41,7 +41,7 @@ p0 = get entity player 0
 p1 = get entity player 1
 p2 = get entity player 2
 p3 = get entity player 3
-label lab_00001
+label lab_1
 animate entity shooter3 performing action STD_FSWATSTYLE_FWD_M_2 repeating for 1 times targeting entity p0 kill nulltarget NUG_O_POPPIN signaling sig1
 wait for all clearing sig1
 animate entity shooter3 performing action STD_FSWATSTYLE_FWD_M_2 repeating for 1 times targeting entity p1 kill nulltarget NUG_O_POPPIN signaling sig1

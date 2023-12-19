@@ -64,7 +64,7 @@ wait 0.200 seconds
 animate entity rocbot performing action CCH_F_FWD_L_2 targeting entity jo kill nulltarget HEAD
 wait 0.100 seconds
 animate entity rocbot performing action CCH_F_FWD_L_2 targeting entity jo kill nulltarget HEAD
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity atop performing action STD_FSWATSTYLE_FWD_M_2 targeting entity jo kill nulltarget HEAD
 animate entity btop performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
@@ -79,11 +79,15 @@ if atop.health < 0
 if btop.health < 0
 if ctop.health < 0
 if rocbot.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 use entity gtrig
 wait 0.400 seconds
 exit

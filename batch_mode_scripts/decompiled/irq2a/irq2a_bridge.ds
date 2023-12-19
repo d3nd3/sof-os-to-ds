@@ -59,16 +59,16 @@ animate entity irq2a_bridge_hawk performing action STD_EHEADSET_TO_P_N
 play sound "cin/irq2a/S19D1.adp" for entity irq2a_player on channel CHAN_AUTO at volume 0.900
 print 30216
 wait 2 seconds
-on panelkiller.health <= 0 goto lab_00001
+on panelkiller.health <= 0 goto lab_1
 animate entity panelkiller performing action STD_R_N_MRS_2 by moving [0.000 ,80.000 ,0.000] signaling sig
 wait for all clearing sig
 animate entity panelkiller performing action STD_R_N_MRS_2 by moving [-264.000 ,0.000 ,0.000] signaling sig
 wait for all clearing sig
-label lab_00002
+label lab_2
 animate entity panelkiller performing action STD_FAUTOSWEEP_N_PM_A targeting entity irq2a_player signaling sig
 wait for all clearing sig
 goto lab_00002
-label lab_00001
+label lab_1
 use entity paneldump
 wait 1.500 seconds
 play sound "cin/irq2a/S19D2.adp" for entity irq2a_player on channel CHAN_AUTO at volume 0.900
@@ -81,7 +81,7 @@ play sound "cin/irq2a/S19D3.adp" for entity irq2a_player on channel CHAN_AUTO at
 print 30218
 animate entity irq2a_bridge_hawk performing action STD_ETURN90_RT_A_N signaling sig
 wait for all clearing sig
-rotate entity irq2a_bridge_hawk by [0.000 ,0.000 ,0.000] at 20 speed
+rotate entity irq2a_bridge_hawk by [0.000 ,-45.000 ,0.000] at 20 speed
 animate entity irq2a_bridge_hawk performing action STD_EPUSHBUTTONS_N_N_N signaling sig
 wait for all clearing sig
 wait 1 seconds

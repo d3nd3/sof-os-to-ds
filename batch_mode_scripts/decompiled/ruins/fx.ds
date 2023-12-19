@@ -44,7 +44,7 @@ fc.health += 40
 animate entity fc performing action STD_XROLL_LT_A_A
 play sound "cin/enemy/ra1/ger1/wake1.wav" for entity fa on channel CHAN_AUTO at volume 0.900
 wait 0.400 seconds
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity fa performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
 animate entity fb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
@@ -52,11 +52,13 @@ animate entity fc performing action STD_F_FWD_R_2 targeting entity jo kill nullt
 if fa.health < 0
 if fb.health < 0
 if fc.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity fa performing action SCRIPT_RELEASE
 animate entity fb performing action SCRIPT_RELEASE
 animate entity fc performing action SCRIPT_RELEASE

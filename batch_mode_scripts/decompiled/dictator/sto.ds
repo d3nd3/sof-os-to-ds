@@ -42,16 +42,17 @@ sto2.health += 90
 animate entity sto1 performing action STD_XROLLTOCCH_FWD_A_A
 wait 0.200 seconds
 animate entity sto1 performing action STD_XROLL_RT_A_A
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity sto1 performing action STD_FGANGBANGER_N_M_2 targeting entity jo kill nulltarget HEAD
 animate entity sto2 performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
 if sto1.health < 0
 if sto2.health < 0
-goto lab_00002
+goto lab_00001
+endif
 endif
 wait 0.100 seconds
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

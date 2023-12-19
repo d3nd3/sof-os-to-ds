@@ -58,10 +58,10 @@ engine.movetype = MOVETYPE_NOCLIP
 use entity hoistlever
 wait 0.250 seconds
 use entity hoistsound
-move entity enginehoist by [0.000 ,0.000 ,0.000] at 200 speed
-move entity engine by [0.000 ,0.000 ,0.000] at 200 speed
-move entity hoistsound by [0.000 ,0.000 ,0.000] at 200 speed
-move entity enginespark by [0.000 ,0.000 ,0.000] at 200 speed
+move entity enginehoist by [0.000 ,200.000 ,0.000] at 200 speed
+move entity engine by [0.000 ,200.000 ,0.000] at 200 speed
+move entity hoistsound by [0.000 ,200.000 ,0.000] at 200 speed
+move entity enginespark by [0.000 ,200.000 ,0.000] at 200 speed
 wait 1 seconds
 use entity hoistsound
 use entity exploder
@@ -70,13 +70,13 @@ remove entity smash1
 use entity smashleft
 use entity smashright
 use entity hoistsound
-move entity smashlock by [0.000 ,0.000 ,0.000] at 200 speed
+move entity smashlock by [0.000 ,24.000 ,0.000] at 200 speed
 wait 2 seconds
 use entity hoistsound
-move entity enginehoist by [0.000 ,0.000 ,0.000] at 200 speed signaling sig1
-move entity engine by [0.000 ,0.000 ,0.000] at 200 speed
-move entity enginespark by [0.000 ,0.000 ,0.000] at 200 speed
-move entity hoistsound by [0.000 ,0.000 ,0.000] at 200 speed signaling sig2
+move entity enginehoist by [0.000 ,-200.000 ,0.000] at 200 speed signaling sig1
+move entity engine by [0.000 ,-200.000 ,0.000] at 200 speed
+move entity enginespark by [0.000 ,-200.000 ,0.000] at 200 speed
+move entity hoistsound by [0.000 ,-200.000 ,0.000] at 200 speed signaling sig2
 wait for all clearing sig1,sig2
 use entity hoistlever
 wait 1 seconds
@@ -84,10 +84,10 @@ suspend
 use entity hoistlever
 wait 0.250 seconds
 use entity hoistsound
-move entity enginehoist by [0.000 ,0.000 ,0.000] at 200 speed
-move entity engine by [0.000 ,0.000 ,0.000] at 200 speed
-move entity enginespark by [0.000 ,0.000 ,0.000] at 200 speed
-move entity hoistsound by [0.000 ,0.000 ,0.000] at 200 speed
+move entity enginehoist by [0.000 ,640.000 ,0.000] at 200 speed
+move entity engine by [0.000 ,640.000 ,0.000] at 200 speed
+move entity enginespark by [0.000 ,640.000 ,0.000] at 200 speed
+move entity hoistsound by [0.000 ,640.000 ,0.000] at 200 speed
 wait 1 seconds
 play sound "Impact\Metal\Short2.adp" for entity enginehoist on channel CHAN_AUTO at volume 0.900
 moverotate entity smashleft from file "irq3a_smashleft.rof"

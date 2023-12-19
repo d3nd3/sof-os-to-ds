@@ -43,7 +43,7 @@ animate entity skippy performing action STD_F_FWD_P_CB
 animate entity skippy performing action SCRIPT_RELEASE
 groundchuck.movetype = MOVETYPE_NOCLIP
 animate entity groundchuck performing action LB_PHOLDLEG_LT_N_N holding for 3.500
-move entity groundchuck by [0.000 ,0.000 ,0.000] at 50 speed
+move entity groundchuck by [0.000 ,-240.000 ,0.000] at 50 speed
 wait 2.500 seconds
 play sound "enemy/dth/arab/scream1.wav" for entity groundchuck on channel CHAN_AUTO at volume 0.900
 play sound "Cin/Sud2/Script/gore.adp" for entity player1 on channel CHAN_AUTO at volume 0.900

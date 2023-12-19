@@ -29,7 +29,7 @@ field int "health"
 local entity storedoor
 
 storedoor = find entity with targetname "storedoor"
-label lab_00001
+label lab_1
 use entity storedoor
 wait 3 seconds
 use entity storedoor

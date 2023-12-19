@@ -143,8 +143,8 @@ use entity smboom4a
 wait 0.200 seconds
 use entity smboom2
 use entity smboom2a
-move entity smboom4a by [0.500 ,0.000 ,0.000] over 0.500 seconds
-move entity smboom2a by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity smboom4a by [0.000 ,0.000 ,248.000] over 0.500 seconds
+move entity smboom2a by [0.000 ,0.000 ,248.000] over 0.500 seconds
 wait 1.100 seconds
 use entity smboom2a
 use entity smboom4a
@@ -156,37 +156,37 @@ use entity silosteam01
 wait 0.500 seconds
 wait 1 seconds
 use entity explosion1
-move entity explosion1 by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity explosion1 by [-88.000 ,0.000 ,0.000] over 0.100 seconds
 play sound "Impact/Metal/Long2.adp" for entity silosnd01 on channel CHAN_AUTO at volume 0.900
 use entity pipeswingbreak
 use entity pipestub
 wait 0.200 seconds
 use entity explosion1
-move entity explosion1 by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity explosion1 by [-28.000 ,88.000 ,0.000] over 0.100 seconds
 use entity spurt1
 wait 0.200 seconds
 use entity explosion1
-move entity explosion1 by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity explosion1 by [0.000 ,88.000 ,0.000] over 0.100 seconds
 wait 0.200 seconds
 use entity explosion1
-move entity explosion1 by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity explosion1 by [-4.000 ,100.000 ,0.000] over 0.100 seconds
 wait 0.200 seconds
 use entity explosion1
-move entity explosion1 by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity explosion1 by [-72.000 ,48.000 ,0.000] over 0.100 seconds
 moverotate entity pipeswing1 from file "irq3b_silopipe.rof"
 use entity clippipe
 wait 0.200 seconds
 use entity explosion1
-move entity explosion1 by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity explosion1 by [-92.000 ,0.000 ,0.000] over 0.100 seconds
 wait 0.200 seconds
 use entity explosion1
 wait 0.500 seconds
 use entity fencegood
 use entity fencebroken
-move entity smboom4a by [0.500 ,0.000 ,0.000] over 0.500 seconds
-move entity smboom2a by [0.500 ,0.000 ,0.000] over 0.500 seconds
-move entity smboom1a by [0.500 ,0.000 ,0.000] over 0.500 seconds
-move entity smboom3a by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity smboom4a by [0.000 ,-208.000 ,48.000] over 0.500 seconds
+move entity smboom2a by [0.000 ,208.000 ,48.000] over 0.500 seconds
+move entity smboom1a by [0.000 ,208.000 ,296.000] over 0.500 seconds
+move entity smboom3a by [0.000 ,-208.000 ,296.000] over 0.500 seconds
 wait 1 seconds
 use entity smboom2a
 wait 0.300 seconds

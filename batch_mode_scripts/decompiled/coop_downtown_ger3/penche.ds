@@ -31,7 +31,7 @@ local entity jo
 
 sombre1 = find entity with targetname "sombre1"
 use entity sombre1
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity sombre1 performing action STD_FVIOLENT_DWN_M_2 targeting entity jo
 wait 0.200 seconds
@@ -47,9 +47,9 @@ suspend
 animate entity sombre1 performing action STD_FVIOLENT_DWN_M_2 targeting entity jo
 wait 0.200 seconds
 if sombre1.health <= 0
-goto lab_00002
+goto lab_00001
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

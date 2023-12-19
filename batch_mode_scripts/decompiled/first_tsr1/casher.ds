@@ -63,7 +63,7 @@ animate entity gb performing action SCRIPT_RELEASE
 animate entity gc performing action SCRIPT_RELEASE
 suspend
 use entity kem
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity gc performing action STD_FATTITUDE_N_P_A targeting entity jo kill nulltarget HEAD
 wait 0.100 seconds
@@ -72,10 +72,11 @@ animate entity ga performing action STD_F_FWD_S_2 targeting entity jo kill nullt
 wait 0.200 seconds
 if gc.health < 0
 if gb.health < 0
-goto lab_00002
+goto lab_00001
+endif
 endif
 suspend
 wait 0.200 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

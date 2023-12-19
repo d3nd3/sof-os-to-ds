@@ -81,16 +81,16 @@ use entity introcam1
 enable cinematics
 print 32778
 use entity introknocker
-move entity introcam1 by [0.000 ,0.000 ,0.000] at 85 speed
-move entity introcam1n by [0.000 ,0.000 ,0.000] at 85 speed
+move entity introcam1 by [0.000 ,-392.000 ,0.000] at 85 speed
+move entity introcam1n by [0.000 ,-392.000 ,0.000] at 85 speed
 wait 4.200 seconds
 use entity introwalkby
 wait 0.800 seconds
-move entity introcam1 by [0.000 ,0.000 ,0.000] at 85 speed signaling sig1
-move entity introcam1n by [0.000 ,0.000 ,0.000] at 85 speed
+move entity introcam1 by [64.000 ,-64.000 ,0.000] at 85 speed signaling sig1
+move entity introcam1n by [64.000 ,-64.000 ,0.000] at 85 speed
 wait for all clearing sig1
-move entity introcam1 by [0.000 ,0.000 ,0.000] at 85 speed
-move entity introcam1n by [0.000 ,0.000 ,0.000] at 85 speed
+move entity introcam1 by [192.000 ,0.000 ,0.000] at 85 speed
+move entity introcam1n by [192.000 ,0.000 ,0.000] at 85 speed
 wait 4 seconds
 wait 0.700 seconds
 use entity introcam1
@@ -98,8 +98,8 @@ use entity intro2man1
 use entity intro2wom1
 use entity intro2wb2
 use entity introcam2
-move entity introcam2 by [0.000 ,0.000 ,0.000] at 35 speed
-move entity introcam2n by [0.000 ,0.000 ,0.000] at 34 speed
+move entity introcam2 by [0.000 ,0.000 ,-172.000] at 35 speed
+move entity introcam2n by [0.000 ,0.000 ,-168.000] at 34 speed
 wait 3 seconds
 animate entity intro2wb1 performing action STD_WNORMAL_N_PK_A by moving [0.000 ,256.000 ,0.000]
 wait 2 seconds

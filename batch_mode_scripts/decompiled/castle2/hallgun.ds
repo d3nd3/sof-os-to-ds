@@ -40,8 +40,8 @@ plat2.movetype = MOVETYPE_NOCLIP
 use entity door3
 use entity door4
 wait 1 seconds
-move entity plat2 by [0.000 ,0.000 ,0.000] over 2 seconds
-move entity auto2 by [0.000 ,0.000 ,0.000] over 2 seconds
+move entity plat2 by [0.000 ,0.000 ,-88.000] over 2 seconds
+move entity auto2 by [0.000 ,0.000 ,-88.000] over 2 seconds
 wait 1 seconds
 auto2.movetype = MOVETYPE_DAN
 exit

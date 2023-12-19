@@ -30,10 +30,10 @@ local entity dpipeguy
 local int sig1
 
 dpipeguy = find entity with targetname "dpipeguy"
-on dpipeguy.health < 100 goto lab_00001
+on dpipeguy.health < 100 goto lab_1
 animate entity dpipeguy performing action STD_JRUN_FWD_A_A by moving [0.000 ,-128.000 ,64.000] signaling sig1
 wait for all clearing sig1
-label lab_00001
+label lab_1
 reset ai for entity dpipeguy
 animate entity dpipeguy performing action SCRIPT_RELEASE
 exit

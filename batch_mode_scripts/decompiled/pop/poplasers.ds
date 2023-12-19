@@ -51,13 +51,13 @@ health = man62.health
 man63.health = 2500
 health = man63.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 use entity man60
 use entity man61
 use entity man62
 use entity man63
-label lab_00003
+label lab_2
 sneak = get entity activator
 reset ai for entity man60
 reset ai for entity man61
@@ -68,6 +68,6 @@ animate entity man61 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop 
 animate entity man62 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
 animate entity man63 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

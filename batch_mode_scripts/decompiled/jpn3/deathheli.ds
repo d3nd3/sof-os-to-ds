@@ -39,7 +39,7 @@ jpn3fadein = find entity with targetname "jpn3fadein"
 changelevel = find entity with targetname "changelevel"
 deathcam.movetype = MOVETYPE_NOCLIP
 setcvar cvar "timescale" to 0.500000
-move entity deathcam by [0.000 ,0.000 ,0.000] at 8 speed
+move entity deathcam by [-16.000 ,0.000 ,16.000] at 8 speed
 wait 1.200 seconds
 wait 3 seconds
 use entity jpn3fadeout

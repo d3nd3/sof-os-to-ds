@@ -56,7 +56,7 @@ tollguy = find entity with targetname "tollguy"
 host_counthealth = host_count.health
 use entity tdoorjohn
 use entity tokencam
-move entity new_tok_lever by [0.000 ,0.000 ,0.000]
+move entity new_tok_lever by [0.000 ,0.000 ,-8.000]
 use entity tdoor
 remove entity use_the_switch
 wait 2 seconds

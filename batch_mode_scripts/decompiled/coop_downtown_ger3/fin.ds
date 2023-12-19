@@ -65,7 +65,7 @@ enable cinematics
 animate entity tero performing action STD_L_N_MS_2
 wait 1.200 seconds
 animate entity tero performing action STD_ETURN90_LT_A_N
-move entity vid by [0.000 ,0.000 ,0.000] at 100 speed
+move entity vid by [-220.000 ,150.000 ,0.000] at 100 speed
 animate entity jo performing action RUN by moving [0.000 ,96.000 ,0.000] signaling sih
 wait for all clearing sih
 animate entity jo performing action STD_A_FWD_P_2 targeting entity tero holding for 6.000

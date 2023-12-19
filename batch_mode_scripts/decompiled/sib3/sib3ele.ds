@@ -62,117 +62,128 @@ doorRight.x = 0
 if innerdoorL.origin_y > innerdoorR.origin_y
 doorLeft.y = openDist
 doorRight.y = openDist * -1.000
-goto lab_00003
+goto lab_00001
 endif
 doorLeft.y = openDist * -1.000
 doorRight.y = openDist
-label lab_00003
-goto lab_00004
+label lab_1
+goto lab_00002
 endif
 doorLeft.y = 0
 doorRight.y = 0
 if innerdoorL.origin_x > innerdoorR.origin_x
 doorLeft.x = openDist
 doorRight.x = openDist * -1.000
-goto lab_00004
+goto lab_00002
 endif
 doorLeft.x = openDist * -1.000
 doorRight.x = openDist
-label lab_00004
+label lab_2
 if doorLeft.x > 0
-label lab_00007
+label lab_3
 if doorLeft.x > 5
 doorLeftNudge.x = 5.000
 doorLeft.x -= doorLeftNudge.x
 factor += 1
-goto lab_00007
+goto lab_00003
+endif
 endif
 if doorLeft.x < 0
-label lab_00009
+label lab_4
 if doorLeft.x < -5
 doorLeftNudge.x = -5.000
 doorLeft.x -= doorLeftNudge.x
 factor += 1
-goto lab_00009
+goto lab_00004
+endif
 endif
 if doorLeft.y > 0
-label lab_00011
+label lab_5
 if doorLeft.y > 5
 doorLeftNudge.y = 5.000
 doorLeft.y -= doorLeftNudge.y
 factor += 1
-goto lab_00011
+goto lab_00005
+endif
 endif
 if doorLeft.y < 0
-label lab_00013
+label lab_6
 if doorLeft.y < -5
 doorLeftNudge.y = -5.000
 doorLeft.y -= doorLeftNudge.y
 factor += 1
-goto lab_00013
+goto lab_00006
+endif
 endif
 if doorLeft.z > 0
-label lab_00015
+label lab_7
 if doorLeft.z > 5
 doorLeftNudge.z = 5.000
 doorLeft.z -= doorLeftNudge.z
 factor += 1
-goto lab_00015
+goto lab_00007
+endif
 endif
 if doorLeft.z < 0
-label lab_00017
+label lab_8
 if doorLeft.z < -5
 doorLeftNudge.z = -5.000
 doorLeft.z -= doorLeftNudge.z
 factor += 1
-goto lab_00017
+goto lab_00008
+endif
 endif
 if doorRight.x > 0
-label lab_00019
+label lab_9
 if doorRight.x > 5
 doorRightNudge.x = 5.000
 doorRight.x -= doorRightNudge.x
-goto lab_00019
+goto lab_00009
+endif
 endif
 if doorRight.x < 0
-label lab_00021
+label lab_10
 if doorRight.x < -5
 doorRightNudge.x = -5.000
 doorRight.x -= doorRightNudge.x
-goto lab_00021
+goto lab_00010
+endif
 endif
 if doorRight.y > 0
-label lab_00023
+label lab_11
 if doorRight.y > 5
 doorRightNudge.y = 5.000
 doorRight.y -= doorRightNudge.y
-goto lab_00023
+goto lab_00011
+endif
 endif
 if doorRight.y < 0
-label lab_00025
+label lab_12
 if doorRight.y < -5
 doorRightNudge.y = -5.000
 doorRight.y -= doorRightNudge.y
-goto lab_00025
+goto lab_00012
+endif
 endif
 if doorRight.z > 0
-label lab_00027
+label lab_13
 if doorRight.z > 5
 doorRightNudge.z = 5.000
 doorRight.z -= doorRightNudge.z
-goto lab_00027
+goto lab_00013
+endif
 endif
 if doorRight.z < 0
-label lab_00029
+label lab_14
 if doorRight.z < -5
 doorRightNudge.z = -5.000
 doorRight.z -= doorRightNudge.z
-goto lab_00029
+goto lab_00014
 endif
-label lab_00031
+endif
 if ElevatorInUse != 0
 suspend
-goto lab_00031
+goto lab_00000
 print "Elevator in use
 endif
 "
@@ -181,7 +192,7 @@ elez = elevator.origin_z
 nulz = lonull.origin_z
 if elez != nulz
 ElevatorInUse = 1
-label lab_00034
+label lab_15
 i = 0
 if i < factor
 move entity innerdoorL by doorRightNudge at doorSpeed speed
@@ -189,7 +200,7 @@ move entity innerdoorR by doorLeftNudge at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
 i += 1
 endif
-goto lab_00034
+goto lab_00015
 move entity innerdoorL by doorRight at doorSpeed speed
 move entity innerdoorR by doorLeft at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
@@ -209,7 +220,7 @@ move entity innerdoorR to vTemp at elevatorspeed speed
 wait for all clearing movedflag
 use entity elesnd01
 use entity lowerdoor
-label lab_00036
+label lab_16
 i = 0
 if i < factor
 move entity innerdoorL by doorLeftNudge at doorSpeed speed
@@ -217,7 +228,7 @@ move entity innerdoorR by doorRightNudge at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
 i += 1
 endif
-goto lab_00036
+goto lab_00016
 move entity innerdoorL by doorLeft at doorSpeed speed
 move entity innerdoorR by doorRight at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
@@ -225,13 +236,13 @@ endif
 ElevatorInUse = 0
 suspend
 endif
-goto lab_00031
+goto lab_00000
 if panelpressed == 1
 elez = elevator.origin_z
 nulz = hinull.origin_z
 if elez != nulz
 ElevatorInUse = 1
-label lab_00040
+label lab_17
 i = 0
 if i < factor
 move entity innerdoorL by doorRightNudge at doorSpeed speed
@@ -239,7 +250,7 @@ move entity innerdoorR by doorLeftNudge at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
 i += 1
 endif
-goto lab_00040
+goto lab_00017
 move entity innerdoorL by doorRight at doorSpeed speed
 move entity innerdoorR by doorLeft at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
@@ -259,7 +270,7 @@ move entity innerdoorR to vTemp at elevatorspeed speed
 wait for all clearing movedflag
 use entity elesnd01
 use entity upperdoor
-label lab_00042
+label lab_18
 i = 0
 if i < factor
 move entity innerdoorL by doorLeftNudge at doorSpeed speed
@@ -267,7 +278,7 @@ move entity innerdoorR by doorRightNudge at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
 i += 1
 endif
-goto lab_00042
+goto lab_00018
 move entity innerdoorL by doorLeft at doorSpeed speed
 move entity innerdoorR by doorRight at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
@@ -275,13 +286,13 @@ endif
 ElevatorInUse = 0
 suspend
 endif
-goto lab_00031
+goto lab_00000
 if panelpressed == 2
 elez = elevator.origin_z
 nulz = hinull.origin_z
 if elez != nulz
 ElevatorInUse = 1
-label lab_00046
+label lab_19
 i = 0
 if i < factor
 move entity innerdoorL by doorRightNudge at doorSpeed speed
@@ -289,7 +300,7 @@ move entity innerdoorR by doorLeftNudge at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
 i += 1
 endif
-goto lab_00046
+goto lab_00019
 move entity innerdoorL by doorRight at doorSpeed speed
 move entity innerdoorR by doorLeft at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
@@ -309,7 +320,7 @@ move entity innerdoorR to vTemp at elevatorspeed speed
 wait for all clearing movedflag
 use entity elesnd01
 use entity upperdoor
-label lab_00048
+label lab_20
 i = 0
 if i < factor
 move entity innerdoorL by doorLeftNudge at doorSpeed speed
@@ -317,7 +328,7 @@ move entity innerdoorR by doorRightNudge at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
 i += 1
 endif
-goto lab_00048
+goto lab_00020
 move entity innerdoorL by doorLeft at doorSpeed speed
 move entity innerdoorR by doorRight at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
@@ -325,13 +336,13 @@ endif
 ElevatorInUse = 0
 suspend
 endif
-goto lab_00031
+goto lab_00000
 if panelpressed == 3
 elez = elevator.origin_z
 nulz = lonull.origin_z
 if elez != nulz
 ElevatorInUse = 1
-label lab_00052
+label lab_21
 i = 0
 if i < factor
 move entity innerdoorL by doorRightNudge at doorSpeed speed
@@ -339,7 +350,7 @@ move entity innerdoorR by doorLeftNudge at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
 i += 1
 endif
-goto lab_00052
+goto lab_00021
 move entity innerdoorL by doorRight at doorSpeed speed
 move entity innerdoorR by doorLeft at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
@@ -359,7 +370,7 @@ move entity innerdoorR to vTemp at elevatorspeed speed
 wait for all clearing movedflag
 use entity elesnd01
 use entity lowerdoor
-label lab_00054
+label lab_22
 i = 0
 if i < factor
 move entity innerdoorL by doorLeftNudge at doorSpeed speed
@@ -367,7 +378,7 @@ move entity innerdoorR by doorRightNudge at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
 i += 1
 endif
-goto lab_00054
+goto lab_00022
 move entity innerdoorL by doorLeft at doorSpeed speed
 move entity innerdoorR by doorRight at doorSpeed speed signaling movedflag
 wait for all clearing movedflag
@@ -375,5 +386,5 @@ endif
 ElevatorInUse = 0
 suspend
 endif
-goto lab_00031
+goto lab_00000
 exit

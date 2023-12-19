@@ -35,8 +35,8 @@ lastcueguy = get entity activator
 flybycop.movetype = MOVETYPE_NOCLIP
 print 33026
 play sound "cin/irq1b/s44d4.adp" for entity lastcueguy on channel CHAN_AUTO at volume 0.900
-rotate entity flybycop by [0.000 ,0.000 ,0.000]
-move entity flybycop by [0.000 ,0.000 ,0.000] at 400 speed signaling sig1
+rotate entity flybycop by [0.000 ,0.000 ,15.000]
+move entity flybycop by [0.000 ,1072.000 ,0.000] at 400 speed signaling sig1
 wait for all clearing sig1
 remove entity flybycop
 exit

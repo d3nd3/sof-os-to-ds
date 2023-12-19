@@ -43,7 +43,7 @@ use entity c1
 use entity d1
 animate entity c1 performing action STD_XROLL_LT_A_A
 animate entity d1 performing action RUN by moving [-180.000 ,0.000 ,0.000]
-label lab_00004
+label lab_2
 jo = get entity activator
 animate entity b1 performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
 wait 0.200 seconds
@@ -69,14 +69,16 @@ animate entity d1 performing action STD_FGANGBANGER_N_M_2 targeting entity jo ki
 if b1.health < 0
 if c1.health < 0
 if d1.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 if etat == 1
-goto lab_00002
+goto lab_00001
 endif
 suspend
-goto lab_00004
-label lab_00002
+goto lab_00002
+label lab_1
 use entity debut
 animate entity c1 performing action SCRIPT_RELEASE
 animate entity d1 performing action SCRIPT_RELEASE

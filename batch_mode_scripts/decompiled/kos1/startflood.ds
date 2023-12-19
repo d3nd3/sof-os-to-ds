@@ -234,9 +234,9 @@ wait 0.100 seconds
 play sound "ambient/gen/wtrfx/gush.wav" for entity movwater at volume 0.900
 moverotate entity floodcam3 from file "flood2.rof" signaling sig1
 use entity movwater
-move entity movwater by [0.000 ,0.000 ,0.000] at 165 speed
-move entity spray2 by [0.000 ,0.000 ,0.000] at 165 speed
-move entity spray2b by [0.000 ,0.000 ,0.000] at 165 speed
+move entity movwater by [-624.000 ,0.000 ,0.000] at 165 speed
+move entity spray2 by [-624.000 ,0.000 ,0.000] at 165 speed
+move entity spray2b by [-624.000 ,0.000 ,0.000] at 165 speed
 moverotate entity floodrock from file "flood_rock.rof"
 wait 1 seconds
 moverotate entity floodwood from file "flood_wood.rof"
@@ -252,8 +252,8 @@ remove entity movwater
 use entity showwater
 use entity farcam
 wait 1 seconds
-move entity showwater by [0.000 ,0.000 ,0.000] at 3 speed
-move entity lastwater by [0.000 ,0.000 ,0.000] at 3 speed
+move entity showwater by [0.000 ,0.000 ,-16.000] at 3 speed
+move entity lastwater by [0.000 ,0.000 ,-16.000] at 3 speed
 wait 4 seconds
 use entity farcam
 use entity fade_in

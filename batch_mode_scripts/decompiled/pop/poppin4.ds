@@ -43,7 +43,7 @@ use entity man10
 use entity man14
 use entity man12
 use entity man13
-label lab_00001
+label lab_1
 sneak = get entity activator
 animate entity man10 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
 animate entity man14 performing action STD_FSWATSTYLE_FWD_M_2 repeating for pop times targeting entity sneak kill nulltarget HEAD

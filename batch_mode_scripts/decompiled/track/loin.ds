@@ -38,7 +38,7 @@ animate entity t57 performing action STD_XROLL_RT_A_A
 wait 0.100 seconds
 animate entity t58 performing action STD_XROLL_RT_A_A
 wait 0.400 seconds
-label lab_00003
+label lab_2
 jo = get entity activator
 reset ai for entity t57
 reset ai for entity t58
@@ -46,11 +46,12 @@ animate entity t57 performing action STD_F_FWD_R_2 targeting entity jo kill null
 animate entity t58 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget CHEST
 if t57.health <= 0
 if t58.health <= 0
-goto lab_00002
+goto lab_00001
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity t57 performing action SCRIPT_RELEASE
 animate entity t58 performing action SCRIPT_RELEASE
 exit

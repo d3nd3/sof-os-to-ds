@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
+
 #include "opcodes.h"
 #include "animation_ids.h"
 #include "movetypes.h"
@@ -10,7 +11,7 @@
 
 extern char REVERSEOS[32768];
 
-//imported frmo other .c files hehe
+
 extern char anims[356][32];
 extern char nullTargets[10][32];
 extern const char *movetypes[11];
@@ -30,6 +31,7 @@ void setupCommonDependency(void);
 void parseOpcodes(char * buffer,char * end);
 int PushStack(PushTypes type, char * data, int secret_size = 0);
 struct stackItem * PopStack(bool reverse = false);
+
 int handleStandardOpcode(const char *startwords,char * buffer,bool assign=false);
 int handleGoto(char * buffer);
 int handleAssignment(char * buffer);
@@ -79,8 +81,6 @@ void dumpFixUps(void);
 void dumpLineOffsetTable(void);
 
 
-bool addLabel(char * output,int labelPosition, int gotoPosition = 0);
-
 typedef union value_u {
 	int number;
 	int two_numbers[2];
@@ -98,27 +98,23 @@ struct stackItem {
 };
 
 
+int realLabelsCount = 0;
 
 typedef struct labelFixUp_s {
 	struct labelFixUp_s * prev, *next;
 
 	bool active;
-	int goto_offset;
+	int lab_num;
 	int label_offset;
+	int num_endifs;
 	
 } labelFixUp_t;
 
-void appendFixUp(int label_offset,int goto_offset);
+labelFixUp_t* appendFixUp(int label_offset, int lab_num);
 void removeFixUp(labelFixUp_t *which);
-labelFixUp_t * isFixUpEqual(int index);
+labelFixUp_t * getFixUp(int labelOffset);
 
-typedef struct labHead_s {
-	struct labHead_s * prev, *next;
-	char * varName;
-	int index;
-	char * alternate;
-	bool printed;
-} labHead_t;
+
 
 typedef struct vars_s {
 	struct vars_s * prev, *next;
@@ -126,7 +122,8 @@ typedef struct vars_s {
 	int index;
 } vars_t;
 
-//these are not labels lmfao
+
+
 void appendVariable(char * name,int idx);
 void removeVariable(vars_t *which);
 char * getVariable(int index);
@@ -136,11 +133,6 @@ void removeField(vars_t *which);
 char * getField(int index);
 
 
-// these are labels
-void appendLabelReal(char * name,int idx);
-void removeLabelReal(labHead_t *which);
-labHead_t * getLabelReal(int index);
-
 struct stackItem * top = NULL;
 struct stackItem * bottom = NULL;
 
@@ -149,13 +141,12 @@ unsigned int stackSize = 0;
 
 int preventXYZFields = 0;
 
-int realLabelsCount = 0;
+
 FILE * outfile = NULL;
 int lineNumbersToOffset[1024];
 int lineNumbers = 0;
 vars_t Variables;
 vars_t Fields;
-labHead_t LabelsReal;
 labelFixUp_t FixUps;
 unsigned char *fileContents;
 
@@ -176,15 +167,16 @@ int main ( int argc, char ** argv) {
 	// 	printf("%s\n",argv[g]);
 	// }
 
-	printf("DesignerScript Decompiler V2.1  (Jan 15 2019 10:19)\n\
-sofos.exe infile.os [outfile.ds]\nargs in [] are optional\n");
+
+	printf("DesignerScript Decompiler V3.0  (Dec 18 2023 16:18)\n\
+		sofos.exe infile.os [outfile.ds]\nargs in [] are optional\n");
 
 
 	//2 means that a valid infile was listed
 	if( argc >= 2 ) {
-      strcpy(inFileName,argv[1]);
-      strcpy(outFileName,"decompiled.ds");
-      strcpy(depPath,".\\");
+		strcpy(inFileName,argv[1]);
+		strcpy(outFileName,"decompiled.ds");
+		strcpy(depPath,".\\");
 	}else {
 		//1 or less arguments
 		printf("Please pass the file to be decompiled as an argument\n");
@@ -226,37 +218,23 @@ sofos.exe infile.os [outfile.ds]\nargs in [] are optional\n");
 		}
 	}
 
-	
 
-	//first arg :)
+	//first arg/option
 	if ( args_array[0] > 0 ) {
 		strcpy(outFileName,argv[args_array[0]]);
 		// printf("outfile is %s\n",outFileName);
 	}
 
-	//process options
-	// if ( opts_array[0] > 0 ) {
-	// 	strcpy(depPath,argv[opts_array[0]]);
-	// 	// printf("dep_path is %s\n",depPath);
-	// 	if ( depPath[strlen(depPath)-1] != '\\' ) {
-	// 		strcat(depPath,"\\");
-	// 	}
-	// } else {
-	// 	printf("INFO: Using current directory as path for creating helper file\n");
-	// }
 
-	
 	initAnims();
 	initMovetypes();
 	initSounds();
 	initEmotions();
 
-	
 
 	strcpy(newline,"\r\n");
 	
 	
-
 	char * cc = &inFileName[strlen(inFileName)-2];
 	if ( strcmp(cc,"os") ) {
 		printf("ERROR: The input file does not have os extension\n");
@@ -288,10 +266,9 @@ sofos.exe infile.os [outfile.ds]\nargs in [] are optional\n");
 		return 1;
 	}
 	
-
+	printf("INFO: Input file : \"%s\"\n",inFileName);
 	printf("INFO: Trying to make file at : \"%s\"\n",outFileName);
-	LabelsReal.next = LabelsReal.prev = &LabelsReal;
-	LabelsReal.index = -1;
+
 	// variableName to variableIndex mappings
 	Variables.next = Variables.prev = &Variables;
 	Variables.index = -1;
@@ -312,8 +289,7 @@ sofos.exe infile.os [outfile.ds]\nargs in [] are optional\n");
 	}
 	// fileContents +=4;
 
-
-	
+	// printf("Parsing Opcodes");	
 	parseOpcodes((char*)fileContents+4,(char*)fileContents+(size-1));
 	setupCommonDependency();
 
@@ -324,10 +300,10 @@ sofos.exe infile.os [outfile.ds]\nargs in [] are optional\n");
 }
 
 unsigned char checksum (unsigned char *ptr, size_t sz) {
-    unsigned char chk = 0;
-    while (sz-- != 0)
-        chk -= *ptr++;
-    return chk;
+	unsigned char chk = 0;
+	while (sz-- != 0)
+		chk -= *ptr++;
+	return chk;
 }
 
 
@@ -349,6 +325,7 @@ void writeHelperFile(void) {
 	Which is based on common/header.ds
 */
 void setupCommonDependency(void) {
+	// printf("SetupCommonDependency\n");
 
 	char dependency[128];
 	// char filepath[128];
@@ -496,58 +473,58 @@ int PushStack(PushTypes type, char * data, int secret_size) {
 
 	int len = 0;
 	switch ( type ) {
-		case PUSH_CONST_INT:
-			newItem->value.number = *(int*)data;
-			ret = 4;
+	case PUSH_CONST_INT:
+		newItem->value.number = *(int*)data;
+		ret = 4;
 		break;
-		case PUSH_CONST_FLOAT:
-			newItem->value.floatNumber = *(float*)data;
-			ret = 4;
+	case PUSH_CONST_FLOAT:
+		newItem->value.floatNumber = *(float*)data;
+		ret = 4;
 		break;
-		case PUSH_CONST_VECTOR:
+	case PUSH_CONST_VECTOR:
 			//3 floats
-			newItem->value.three_floats[0] = *(float*)data;
-			data+=4;
-			newItem->value.three_floats[1] = *(float*)data;
-			data+=4;
-			newItem->value.three_floats[2] = *(float*)data;
-			ret = 12;
+		newItem->value.three_floats[0] = *(float*)data;
+		data+=4;
+		newItem->value.three_floats[1] = *(float*)data;
+		data+=4;
+		newItem->value.three_floats[2] = *(float*)data;
+		ret = 12;
 		break;
-		case PUSH_CONST_ENTITY:
-			errorExit("PUSH Entity??\n");
+	case PUSH_CONST_ENTITY:
+		errorExit("PUSH Entity??\n");
 		break;
-		case PUSH_CONST_STRING:
-			len = strlen(data) + 1;
-			newItem->value.nullString = (char*)malloc(len);
-			strcpy(newItem->value.nullString,(char*)data);
-			return len;
+	case PUSH_CONST_STRING:
+		len = strlen(data) + 1;
+		newItem->value.nullString = (char*)malloc(len);
+		strcpy(newItem->value.nullString,(char*)data);
+		return len;
 		break;
-		case PUSH_VAR:
-			newItem->value.number = *(int*)data;
-			ret = 4;
+	case PUSH_VAR:
+		newItem->value.number = *(int*)data;
+		ret = 4;
 		break;
-		case PUSH_VAR_WITH_FIELD:
+	case PUSH_VAR_WITH_FIELD:
 			//2 ints?
-			newItem->value.two_numbers[0] = *(int*)data;
-			data+=4;
-			newItem->value.two_numbers[1] = *(int*)data;
-			ret = 8;
+		newItem->value.two_numbers[0] = *(int*)data;
+		data+=4;
+		newItem->value.two_numbers[1] = *(int*)data;
+		ret = 8;
 			// errorExit("PUSH_VAR_WITH_FIELD??\n");
 		break;
 
 		//this is very similar to pushFunction, but its created by us instead of the file... (math funcs)
-		case PUSH_CUSTOM:
-			len = strlen(data) + 1;
-			newItem->value.nullString = (char*)malloc(len);
-			strcpy(newItem->value.nullString,(char*)data);
-			return len;
+	case PUSH_CUSTOM:
+		len = strlen(data) + 1;
+		newItem->value.nullString = (char*)malloc(len);
+		strcpy(newItem->value.nullString,(char*)data);
+		return len;
 		break;
-  	}
- 
-  	return ret;
+	}
+
+	return ret;
 }
 
-bool DEBUG_MODE = false;
+bool DEBUG_MODE = true;
 void DebugPrintf(const char * txt,...) {
 	va_list args;
 	va_start(args,txt);
@@ -567,9 +544,13 @@ void parseOpcodes(char * buffer,char * end) {
 	struct stackItem * message;
 	//if bufffer is not 0x14 CODE_EXIT at end, then dont treat it like opcode
 	while( buffer <= end ) {
-		if (buffer == end && *buffer!=0x14) break;
+		if (buffer == end && *buffer!=0x14) {
+			DebugPrintf("BREAKING...\n");
+			break;
+		} 
 		//2 pushes have been read whilst ONFuncWasActive
 		if ( CODE_ON_COUNT == 2 ) {
+			DebugPrintf("CODE_ON_COUNT == 2\n");
 			buffer+=handleOn(buffer);
 			CODE_ON_COUNT = 0;
 			CODE_ON_MODE = false;
@@ -593,6 +574,8 @@ void parseOpcodes(char * buffer,char * end) {
 		} else {
 
 			char opCode = *buffer;
+			DebugPrintf("PROCESSING OPCODE == %i\n",opCode);
+
 			buffer++;
 			if ( fieldMode ) {
 				if (opCode != CODE_FIELD) {	
@@ -612,264 +595,264 @@ void parseOpcodes(char * buffer,char * end) {
 			}
 			switch((int)opCode) {
 
-                case CODE_NEW_GLOBAL:
-                	
-	    	        buffer+=handleStandardOpcode("global",buffer);
-	    	        DebugPrintf("CODE_NEW_GLOBAL %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-    	        case CODE_NEW_GLOBAL_PLUS_ASSIGNMENT:
-    	        	
-    	        	buffer+=handleStandardOpcode("global",buffer,true);
-    	        	DebugPrintf("CODE_NEW_GLOBAL_PLUS_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-    	        case CODE_NEW_LOCAL:
-    	        	DebugPrintf("CODE_NEW_LOCAL %02X @ %i\n",opCode,(int)(buffer-1));
-    	        	buffer+=handleStandardOpcode("local",buffer);
-    	        break;
-    	        case CODE_NEW_LOCAL_PLUS_ASSIGNMENT:
-    	        	
-    	        	buffer+=handleStandardOpcode("local",buffer,true);
-    	        	DebugPrintf("CODE_NEW_LOCAL_PLUS_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-    	        case CODE_NEW_PARAMETER:
-    	        	
-    	        	buffer+=handleStandardOpcode("parameter",buffer);
-    	        	DebugPrintf("CODE_NEW_PARAMETER %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-    	        case CODE_NEW_PARAMETER_PLUS_DEFAULT:
-    	        	
-    	        	buffer+=handleStandardOpcode("parameter",buffer,true);
-    	        	DebugPrintf("CODE_NEW_PARAMETER_PLUS_DEFAULT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-    	        case CODE_FIELD:
-    	        	buffer+=handleStandardOpcode("field",buffer);
-    	        	DebugPrintf("CODE_FIELD %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-    	        case CODE_ASSIGNMENT:
+			case CODE_NEW_GLOBAL:
 
-    	        	
-    	        	buffer+=handleAssignment(buffer);
-    	        	DebugPrintf("CODE_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+				buffer+=handleStandardOpcode("global",buffer);
+				DebugPrintf("CODE_NEW_GLOBAL %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+			case CODE_NEW_GLOBAL_PLUS_ASSIGNMENT:
 
-    	        case CODE_ADD_ASSIGNMENT: 
-    	        	buffer+=handleAddAssignment(buffer,"+");
-    	        	DebugPrintf("CODE_ADD_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+				buffer+=handleStandardOpcode("global",buffer,true);
+				DebugPrintf("CODE_NEW_GLOBAL_PLUS_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+			case CODE_NEW_LOCAL:
+				DebugPrintf("CODE_NEW_LOCAL %02X @ %i\n",opCode,(int)(buffer-1));
+				buffer+=handleStandardOpcode("local",buffer);
+				break;
+			case CODE_NEW_LOCAL_PLUS_ASSIGNMENT:
 
-    	        case CODE_SUBTRACT_ASSIGNMENT:
-    	        	buffer+=handleAddAssignment(buffer,"-");
-    	        	DebugPrintf("CODE_SUBTRACT_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+				buffer+=handleStandardOpcode("local",buffer,true);
+				DebugPrintf("CODE_NEW_LOCAL_PLUS_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+			case CODE_NEW_PARAMETER:
 
-    	        case CODE_DIVIDE_ASSIGNMENT:
-    	        	buffer+=handleAddAssignment(buffer,"/");
-    	        	DebugPrintf("CODE_DIVIDE_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+				buffer+=handleStandardOpcode("parameter",buffer);
+				DebugPrintf("CODE_NEW_PARAMETER %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+			case CODE_NEW_PARAMETER_PLUS_DEFAULT:
 
-    	        case CODE_MULTIPLY_ASSIGNMENT:
-    	        	buffer+=handleAddAssignment(buffer,"*");
-    	        	DebugPrintf("CODE_MULTIPLY_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-
-    	        case CODE_DIVIDE:
-    	   			buffer+= handleMath(buffer,"/");
-    	   			DebugPrintf("CODE_DIVIDE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	   		break;
-
-    	        case CODE_MULTIPLY:
-    	   			buffer+= handleMath(buffer,"*");
-    	   			DebugPrintf("CODE_MULTIPLY %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	   		break;
-
-    	   		case CODE_ADD:
-    	   			buffer+= handleMath(buffer,"+");
-    	   			DebugPrintf("CODE_ADD %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	   		break;
-
-    	        case CODE_SUBTRACT:
-    	        	buffer+= handleMath(buffer,"-");
-    	        	DebugPrintf("CODE_SUBTRACT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-
-    	        case CODE_IF:
-    	        	buffer+=handleIf(buffer);
-    	        	DebugPrintf("CODE_IF %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-
-    	        case CODE_GOTO:
-    	        	// convert os offset into ds line number
-    	        	buffer+=handleGoto(buffer);
-    	        	DebugPrintf("CODE_GOTO %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        	
-    	        break;
-
-    	        case CODE_ENABLE:
-    	        	buffer+= handleEnable(buffer,true);
-    	        	DebugPrintf("CODE_ENABLE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-
-    	        case CODE_DISABLE:
-    	        	buffer+= handleEnable(buffer,false);
-    	        	DebugPrintf("CODE_DISABLE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-
-    	        case CODE_ON:
-    	        	saveLineNumber(buffer);
-    	        	CODE_ON_MODE = true;
-    	        	DebugPrintf("CODE_ON %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        	// this function is unusual it wants its arguments pushed after the call, unlike the others.
-    	        	
-    	        break;
-
-    	        case CODE_USE:
-    	        	//use entity
-    	        	saveLineNumber(buffer,6);
-    	        	// Pop Entity index
-    	        	message = PopStack();
-
-    	        	fprintf(outfile,"use entity %s%s",getVariable(message->value.number),newline);
-    	        	DebugPrintf("CODE_USE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-
-    	        case CODE_MOVEROTATE:
-    	        	buffer+=handleMoveRotate(buffer);
-    	        	DebugPrintf("CODE_MOVEROTATE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-
-    	        case CODE_MOVE:
-    	        	buffer+=handleMove(buffer);
-    	        	DebugPrintf("CODE_MOVE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-    	        case CODE_ROTATE:
-    	        	buffer+=handleRotate(buffer);
-    	        	DebugPrintf("CODE_ROTATE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-    	        case CODE_CONSOLE_COMMAND:
-    	        	buffer+=handleConsoleCommand(buffer);
-    	        	DebugPrintf("CODE_CONSOLE_COMMAND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-
-    	        case CODE_PLAY_SOUND:
-    	        	buffer+=handlePlaySound(buffer);
-    	        	DebugPrintf("CODE_PLAY_SOUND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-
-    	        case CODE_UNLOAD_SOUND:
-    	        	buffer+=handleUnloadSound(buffer);
-    	        	DebugPrintf("CODE_UNLOAD_SOUND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-
-    	        case CODE_SETCVAR:
-    	        	buffer+=handleSetCvar(buffer);
-    	        	DebugPrintf("CODE_SETCVAR %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-
-    	        case CODE_SET_VIEW_ANGLES:
-    	        	buffer+=handleSetViewAngles(buffer);
-    	        	DebugPrintf("CODE_SET_VIEW_ANGLES %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+				buffer+=handleStandardOpcode("parameter",buffer,true);
+				DebugPrintf("CODE_NEW_PARAMETER_PLUS_DEFAULT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+			case CODE_FIELD:
+				buffer+=handleStandardOpcode("field",buffer);
+				DebugPrintf("CODE_FIELD %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+			case CODE_ASSIGNMENT:
 
 
+				buffer+=handleAssignment(buffer);
+				DebugPrintf("CODE_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_PRINT:
-    	        	buffer+= handlePrintMessage(buffer);
-    	        	DebugPrintf("CODE_PRINT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_ADD_ASSIGNMENT: 
+				buffer+=handleAddAssignment(buffer,"+");
+				DebugPrintf("CODE_ADD_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_SUSPEND:
-    	        	buffer+= handleSuspend(buffer);
-    	        	DebugPrintf("CODE_SUSPEND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_SUBTRACT_ASSIGNMENT:
+				buffer+=handleAddAssignment(buffer,"-");
+				DebugPrintf("CODE_SUBTRACT_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_WAIT_SECONDS:
-    	        	buffer+= handleWaitSeconds(buffer);
-    	        	DebugPrintf("CODE_WAIT_SECONDS %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_DIVIDE_ASSIGNMENT:
+				buffer+=handleAddAssignment(buffer,"/");
+				DebugPrintf("CODE_DIVIDE_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_WAIT_ANY:
-    	        case CODE_WAIT_ALL:
-    	        	buffer+= handleWaitAllAny(buffer);
-    	        	DebugPrintf("CODE_WAIT_ALL || ANY @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_MULTIPLY_ASSIGNMENT:
+				buffer+=handleAddAssignment(buffer,"*");
+				DebugPrintf("CODE_MULTIPLY_ASSIGNMENT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_ANIMATE:
-    	        	buffer+= handleAnimate(buffer);
-    	        	DebugPrintf("CODE_ANIMATE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
-    	        case CODE_REMOVE:
-    	        	//remove entity
-    	        	saveLineNumber(buffer,6);
-    	        	// edict to remove
-    	        	message = PopStack();
-    	        	fprintf(outfile,"remove entity %s%s",getVariable(message->value.number),newline);
-    	        	DebugPrintf("CODE_REMOVE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_DIVIDE:
+				buffer+= handleMath(buffer,"/");
+				DebugPrintf("CODE_DIVIDE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_RESET_AI:
-    	        	buffer+= handleResetAi(buffer);
-    	        	DebugPrintf("CODE_RESET_AI %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_MULTIPLY:
+				buffer+= handleMath(buffer,"*");
+				DebugPrintf("CODE_MULTIPLY %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_PLAYSONG:
-    	        	buffer+= handlePlaySong(buffer);
-    	        	DebugPrintf("CODE_PLAYSONG %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_ADD:
+				buffer+= handleMath(buffer,"+");
+				DebugPrintf("CODE_ADD %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_CACHE_ROFF:
-    	        	buffer+=handleCacheRoff(buffer);
-    	        	DebugPrintf("CODE_CACHE_ROFF %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_SUBTRACT:
+				buffer+= handleMath(buffer,"-");
+				DebugPrintf("CODE_SUBTRACT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_CACHE_SOUND:
-    	        	buffer+=handleCacheSound(buffer);
-    	        	DebugPrintf("CODE_CACHE_SOUND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_IF:
+				buffer+=handleIf(buffer);
+				DebugPrintf("CODE_IF %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_CACHE_STRING_PACKAGE:
-    	        	buffer+=handleCacheStringPackage(buffer);
-    	        	DebugPrintf("CODE_CACHE_SOUND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_GOTO:
+					// convert os offset into ds line number
+				buffer+=handleGoto(buffer);
+				DebugPrintf("CODE_GOTO %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
 
-    	        case CODE_UNLOAD_ROFF:
-    	        	buffer+=handleUnloadRoff(buffer);
-    	        	DebugPrintf("CODE_UNLOAD_ROFF %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+				break;
 
-    	        case CODE_TANK:
-    	        	buffer+=handleTank(buffer);
-    	        	DebugPrintf("CODE_TANK %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_ENABLE:
+				buffer+= handleEnable(buffer,true);
+				DebugPrintf("CODE_ENABLE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_HELICOPTER:
-    	        	buffer+=handleHelicopter(buffer);
-    	        	DebugPrintf("CODE_HELICOPTER %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+			case CODE_DISABLE:
+				buffer+= handleEnable(buffer,false);
+				DebugPrintf("CODE_DISABLE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
 
-    	        case CODE_SNOWCAT:
+			case CODE_ON:
+				saveLineNumber(buffer);
+				CODE_ON_MODE = true;
+				DebugPrintf("CODE_ON %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+					// this function is unusual it wants its arguments pushed after the call, unlike the others.
 
-    	        break;
-    	        case CODE_EXIT:
-    	        	//printf("previos opcode is %02X\n",previousOpcode);
-    	        	//exit
-    	        	if ( previousOpcode != CODE_EXIT ) { 
-    	        		saveLineNumber(buffer);
-    	        		fprintf(outfile,"exit%s",newline);
-    	        		//printf("%i Line Numbers :)\n",lineNumbers);
-    	        	}
-    	        	
-    	        	DebugPrintf("CODE_EXIT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
-    	        break;
+				break;
 
-    	        default:
-    	        	char lul[64];
-    	        	sprintf(lul,"Unrecognised opcode %02X\n",opCode);
-    	        	errorExit(lul);
-    	        break;
+			case CODE_USE:
+					//use entity
+				saveLineNumber(buffer,6);
+					// Pop Entity index
+				message = PopStack();
 
-    	        
-		    } // switch
-		    previousOpcode = opCode;
+				fprintf(outfile,"use entity %s%s",getVariable(message->value.number),newline);
+				DebugPrintf("CODE_USE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_MOVEROTATE:
+				buffer+=handleMoveRotate(buffer);
+				DebugPrintf("CODE_MOVEROTATE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_MOVE:
+				buffer+=handleMove(buffer);
+				DebugPrintf("CODE_MOVE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+			case CODE_ROTATE:
+				buffer+=handleRotate(buffer);
+				DebugPrintf("CODE_ROTATE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+			case CODE_CONSOLE_COMMAND:
+				buffer+=handleConsoleCommand(buffer);
+				DebugPrintf("CODE_CONSOLE_COMMAND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_PLAY_SOUND:
+				buffer+=handlePlaySound(buffer);
+				DebugPrintf("CODE_PLAY_SOUND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_UNLOAD_SOUND:
+				buffer+=handleUnloadSound(buffer);
+				DebugPrintf("CODE_UNLOAD_SOUND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_SETCVAR:
+				buffer+=handleSetCvar(buffer);
+				DebugPrintf("CODE_SETCVAR %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_SET_VIEW_ANGLES:
+				buffer+=handleSetViewAngles(buffer);
+				DebugPrintf("CODE_SET_VIEW_ANGLES %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+
+
+			case CODE_PRINT:
+				buffer+= handlePrintMessage(buffer);
+				DebugPrintf("CODE_PRINT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_SUSPEND:
+				buffer+= handleSuspend(buffer);
+				DebugPrintf("CODE_SUSPEND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_WAIT_SECONDS:
+				buffer+= handleWaitSeconds(buffer);
+				DebugPrintf("CODE_WAIT_SECONDS %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_WAIT_ANY:
+			case CODE_WAIT_ALL:
+				buffer+= handleWaitAllAny(buffer);
+				DebugPrintf("CODE_WAIT_ALL || ANY @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_ANIMATE:
+				buffer+= handleAnimate(buffer);
+				DebugPrintf("CODE_ANIMATE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+			case CODE_REMOVE:
+					//remove entity
+				saveLineNumber(buffer,6);
+					// edict to remove
+				message = PopStack();
+				fprintf(outfile,"remove entity %s%s",getVariable(message->value.number),newline);
+				DebugPrintf("CODE_REMOVE %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_RESET_AI:
+				buffer+= handleResetAi(buffer);
+				DebugPrintf("CODE_RESET_AI %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_PLAYSONG:
+				buffer+= handlePlaySong(buffer);
+				DebugPrintf("CODE_PLAYSONG %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_CACHE_ROFF:
+				buffer+=handleCacheRoff(buffer);
+				DebugPrintf("CODE_CACHE_ROFF %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_CACHE_SOUND:
+				buffer+=handleCacheSound(buffer);
+				DebugPrintf("CODE_CACHE_SOUND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_CACHE_STRING_PACKAGE:
+				buffer+=handleCacheStringPackage(buffer);
+				DebugPrintf("CODE_CACHE_SOUND %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_UNLOAD_ROFF:
+				buffer+=handleUnloadRoff(buffer);
+				DebugPrintf("CODE_UNLOAD_ROFF %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_TANK:
+				buffer+=handleTank(buffer);
+				DebugPrintf("CODE_TANK %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_HELICOPTER:
+				buffer+=handleHelicopter(buffer);
+				DebugPrintf("CODE_HELICOPTER %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			case CODE_SNOWCAT:
+
+				break;
+			case CODE_EXIT:
+					//printf("previos opcode is %02X\n",previousOpcode);
+					//exit
+				if ( previousOpcode != CODE_EXIT ) { 
+					saveLineNumber(buffer);
+					fprintf(outfile,"exit%s",newline);
+						//printf("%i Line Numbers :)\n",lineNumbers);
+				}
+
+				DebugPrintf("CODE_EXIT %02X @ %i\n",opCode,(int)(buffer)-(int)fileContents);
+				break;
+
+			default:
+				char lul[64];
+				sprintf(lul,"Unrecognised opcode %02X\n",opCode);
+				errorExit(lul);
+				break;
+
+				
+			} // switch
+			previousOpcode = opCode;
 		} //if else PUSH
 	} //while
 	PatchUpJumps();
@@ -970,6 +953,7 @@ int handleHelicopter(char * buffer) {
 
 
 	int flags = *(unsigned char*)buffer;
+	DebugPrintf("Helicopter Flags : %i\n",flags);
 	buffer++;
 
 
@@ -984,6 +968,7 @@ int handleHelicopter(char * buffer) {
 	//signaling
 	if (flags & HELICOPTER_SIGNALER)
 	{
+		DebugPrintf("HeliFlag: Signaller!\n");
 		message = PopStack();
 		num_pushed+=6;
 		signaler = getVariable(message->value.number);
@@ -991,23 +976,36 @@ int handleHelicopter(char * buffer) {
 
 	if (flags & HELICOPTER_FLOAT)
 	{
+		DebugPrintf("HeliFlag: Float!\n");
 		message = PopStack();
+
 		num_pushed+=6;
 		tankFloat = message->value.floatNumber;
 	}
 
+	/*
+		Seems the flags sometimes bug, where it contains
+		HELICOPTER_VECT flag, but its not a float?
+		Unless its a vect of shorts... and type still has to be checked?
+	*/
 	if (flags & HELICOPTER_VECT)
 	{
+		DebugPrintf("HeliFlag: Vect!\n");
 		message = PopStack();
-		num_pushed+=14;
-		tankVect[0] = message->value.three_floats[0];
-		tankVect[1] = message->value.three_floats[1];
-		tankVect[2] = message->value.three_floats[2];
+		if ( message->type == PUSH_CONST_VECTOR ) {
+			num_pushed+=14;
+			tankVect[0] = message->value.three_floats[0];
+			tankVect[1] = message->value.three_floats[1];
+			tankVect[2] = message->value.three_floats[2];
+		}
+		else
+			num_pushed+=6;
 	}
-		
+
 	//targeting
 	if (flags & HELICOPTER_TARG)
 	{
+		DebugPrintf("HeliFlag: Targ!\n");
 		message = PopStack();
 		num_pushed+=6;
 		tankTarg = getVariable(message->value.number);
@@ -1035,7 +1033,7 @@ int handleTank(char * buffer) {
 
 	int flags = *(unsigned char*)buffer;
 	buffer++;
-
+	DebugPrintf("Tank Flags : %i\n",flags);
 
 	float tankFloat;
 	float tankVect[3];
@@ -1048,6 +1046,7 @@ int handleTank(char * buffer) {
 	//signaling
 	if (flags & TANK_SIGNALER)
 	{
+		DebugPrintf("Tank: Signaller!\n");
 		message = PopStack();
 		num_pushed+=6;
 		signaler = getVariable(message->value.number);
@@ -1055,6 +1054,7 @@ int handleTank(char * buffer) {
 
 	if (flags & TANK_FLOAT)
 	{
+		DebugPrintf("Tank: Float!\n");
 		message = PopStack();
 		num_pushed+=6;
 		tankFloat = message->value.floatNumber;
@@ -1063,15 +1063,21 @@ int handleTank(char * buffer) {
 	if (flags & TANK_VECT)
 	{
 		message = PopStack();
-		num_pushed+=14;
-		tankVect[0] = message->value.three_floats[0];
-		tankVect[1] = message->value.three_floats[1];
-		tankVect[2] = message->value.three_floats[2];
+		DebugPrintf("Tank: Vect %i!\n",message->type);
+		if ( message->type == PUSH_CONST_VECTOR ) {
+			num_pushed+=14;
+			tankVect[0] = message->value.three_floats[0];
+			tankVect[1] = message->value.three_floats[1];
+			tankVect[2] = message->value.three_floats[2];
+		}
+		else
+			num_pushed+=6;
 	}
-		
+
 	//targeting
 	if (flags & TANK_TARG)
 	{
+		DebugPrintf("Tank: Targ\n");
 		message = PopStack();
 		num_pushed+=6;
 		tankTarg = getVariable(message->value.number);
@@ -1087,6 +1093,7 @@ int handleTank(char * buffer) {
 
 	fprintf(outfile,"tank entity %s %i%s",whichTank,command,newline);
 
+	DebugPrintf("Tank num_pushed = %i\n",num_pushed);
 	saveLineNumber(startbuffer,num_pushed);
 	return buffer - startbuffer;
 }
@@ -1107,22 +1114,27 @@ int handleMath(char* buffer,const char * symbol) {
 	bla = left;
 	idc = leftside;
 	for ( int i = 0; i<2;i++) {
+		DebugPrintf("Math Type is %i\n",bla->type);
 		switch (bla->type) {
-			case PUSH_VAR:
-				sprintf(idc,"%s",getVariable(bla->value.number));
-				num_pushed+=6;
+		case PUSH_VAR:
+			sprintf(idc,"%s",getVariable(bla->value.number));
+			num_pushed+=6;
 			break;
-			case PUSH_VAR_WITH_FIELD:
-				sprintf(idc,"%s.%s",getVariable(bla->value.two_numbers[0]),getField(bla->value.two_numbers[1]));
-				num_pushed+=10;
+		case PUSH_VAR_WITH_FIELD:
+			sprintf(idc,"%s.%s",getVariable(bla->value.two_numbers[0]),getField(bla->value.two_numbers[1]));
+			num_pushed+=10;
 			break;
-			case PUSH_CONST_FLOAT:
-				sprintf(idc,"%.3f",bla->value.floatNumber);
-				num_pushed+=6;
+		case PUSH_CONST_FLOAT:
+			sprintf(idc,"%.3f",bla->value.floatNumber);
+			num_pushed+=6;
 			break;
-			case PUSH_CONST_INT:
-				sprintf(idc,"%i",bla->value.number);
-				num_pushed+=6;
+		case PUSH_CONST_INT:
+			sprintf(idc,"%i",bla->value.number);
+			num_pushed+=6;
+			break;
+		case PUSH_CONST_VECTOR:
+			sprintf(idc,"[%.3f ,%.3f ,%.3f]",bla->value.three_floats[0],bla->value.three_floats[1],bla->value.three_floats[2]);
+			num_pushed+=14;
 			break;
 		}
 		bla=right;
@@ -1156,28 +1168,28 @@ int handleEnable(char * buffer, bool enable){
 	if ( enable ) strcpy(enOrDis,"enable"); else strcpy(enOrDis,"disable");
 	char outText[128];
 	switch ( type )  {
-		case FEATURE_TRIGGER:
+	case FEATURE_TRIGGER:
 			//entity?
-			message = PopStack();
-			num_pushed +=6;
-			entName = getVariable(message->value.number);
-			if ( !entName ) errorExit("Couldnt' get variable name error!\n");
-			sprintf(outText,"%s trigger entity %s%s",enOrDis,entName,newline);
+		message = PopStack();
+		num_pushed +=6;
+		entName = getVariable(message->value.number);
+		if ( !entName ) errorExit("Couldnt' get variable name error!\n");
+		sprintf(outText,"%s trigger entity %s%s",enOrDis,entName,newline);
 		break;
 
-		case FEATURE_AMBIENT_SOUNDS:
-			sprintf(outText,"%s ambient sounds%s",enOrDis,newline);
+	case FEATURE_AMBIENT_SOUNDS:
+		sprintf(outText,"%s ambient sounds%s",enOrDis,newline);
 		break;
 
-		case FEATURE_CINEMATICS:
+	case FEATURE_CINEMATICS:
 
 			//yes
 			//NADA?????
-			sprintf(outText,"%s cinematics%s",enOrDis,newline);
+		sprintf(outText,"%s cinematics%s",enOrDis,newline);
 		break;
 
-		case FEATURE_PLAGUE_SKINS:
-			sprintf(outText,"%s plague skins%s",enOrDis,newline);
+	case FEATURE_PLAGUE_SKINS:
+		sprintf(outText,"%s plague skins%s",enOrDis,newline);
 		break;
 	}
 
@@ -1206,19 +1218,19 @@ int handleCacheRoff(char * buffer){
 }
 
 int handleCacheStringPackage(char * buffer) {
-		char * startbuffer = buffer;
-		struct stackItem * message;
-		int num_pushed = 0;
+	char * startbuffer = buffer;
+	struct stackItem * message;
+	int num_pushed = 0;
 
 		//string.
-		message = PopStack();
-		num_pushed+=strlen(message->value.nullString)+1+2;
+	message = PopStack();
+	num_pushed+=strlen(message->value.nullString)+1+2;
 
 		// !!!!! NICE AND EASY ONE
-		fprintf(outfile,"cache strings \"%s\"%s",message->value.nullString,newline);
+	fprintf(outfile,"cache strings \"%s\"%s",message->value.nullString,newline);
 
-		saveLineNumber(startbuffer,num_pushed);
-		return buffer - startbuffer;
+	saveLineNumber(startbuffer,num_pushed);
+	return buffer - startbuffer;
 }
 
 int handleCacheSound(char * buffer){
@@ -1572,9 +1584,9 @@ int handleMove(char * buffer) {
 		float byy[3];
 		num_pushed+=14;
 		
-		byy[0] = message->value.three_floats[0];
-		byy[1] = message->value.three_floats[1];
-		byy[2] = message->value.three_floats[2];
+		byy[0] = byHowMuch->value.three_floats[0];
+		byy[1] = byHowMuch->value.three_floats[1];
+		byy[2] = byHowMuch->value.three_floats[2];
 		sprintf(cByHowMuch,"[%.3f ,%.3f ,%.3f]",byy[0],byy[1],byy[2]);
 	}
 	//entity
@@ -1716,9 +1728,9 @@ int handleRotate(char * buffer) {
 	} else {
 		num_pushed+=14;
 		float byy[3];
-		byy[0] = message->value.three_floats[0];
-		byy[1] = message->value.three_floats[1];
-		byy[2] = message->value.three_floats[2];
+		byy[0] = byHowMuch->value.three_floats[0];
+		byy[1] = byHowMuch->value.three_floats[1];
+		byy[2] = byHowMuch->value.three_floats[2];
 		sprintf(cByHowMuch,"[%.3f ,%.3f ,%.3f]",byy[0],byy[1],byy[2]);	
 	}
 	
@@ -1768,101 +1780,101 @@ int handleFunction(char * buffer,struct stackItem * item) {
 	char temp[256];
 	
 	switch (index) {
-		case FUNC_FIND_ENTITY_WITH_TARGET:
+	case FUNC_FIND_ENTITY_WITH_TARGET:
 			// printf("FIND ENTITY WITH TARGET PUSH\n");
 			// function / string?
-			message = PopStack();
+		message = PopStack();
 
-			if ( message->type == PUSH_VAR ) {
-				sprintf(temp,"find entity with targetname %s",getVariable(message->value.number));
-				item->value.nullString = (char*)malloc(strlen(temp)+1);
-				strcpy(item->value.nullString,temp);
-				item->secret_size = 6;	
-			} else {
+		if ( message->type == PUSH_VAR ) {
+			sprintf(temp,"find entity with targetname %s",getVariable(message->value.number));
+			item->value.nullString = (char*)malloc(strlen(temp)+1);
+			strcpy(item->value.nullString,temp);
+			item->secret_size = 6;	
+		} else {
 				//this is how much was read
-				item->secret_size = strlen(message->value.nullString)+1+2;
+			item->secret_size = strlen(message->value.nullString)+1+2;
 
-				sprintf(temp,"find entity with targetname \"%s\"",message->value.nullString);
+			sprintf(temp,"find entity with targetname \"%s\"",message->value.nullString);
 				//temp is pushed our stack
-				item->value.nullString = (char*)malloc(strlen(temp)+1);
-				strcpy(item->value.nullString,temp);		
-			}
-			
-		break;
-
-		case FUNC_SIN:
-			// float
-			message = PopStack();
-			// *lineNumberControl +=6;
-			sprintf(temp,"sin %f",message->value.floatNumber);
 			item->value.nullString = (char*)malloc(strlen(temp)+1);
-			strcpy(item->value.nullString,temp);
-			item->secret_size = 6;
-		break;
-
-		case FUNC_COS:
-			//float
-			message = PopStack();
-			// *lineNumberControl +=6;
-			sprintf(temp,"cos %f",message->value.floatNumber);
-			item->value.nullString = (char*)malloc(strlen(temp)+1);
-			strcpy(item->value.nullString,temp);
-			item->secret_size = 6;
-		break;
-
-		case FUNC_RANDOM: {
-			char cmin[64],cmax[64];
-			// 2x int
-			message = PopStack();
-			if( message->type == PUSH_VAR ) {
-				strcpy(cmax,getVariable(message->value.number));
-			} else {
-				sprintf(cmax,"%i",message->value.number);	
-			}
-			
-			message = PopStack();
-			if( message->type == PUSH_VAR ) {
-				strcpy(cmin,getVariable(message->value.number));
-			} else {
-				sprintf(cmin,"%i",message->value.number);	
-			}
-			item->secret_size = 12;
-
-			sprintf(temp,"random from %s to %s",cmin,cmax);
-			item->value.nullString = (char*)malloc(strlen(temp)+1);
-			strcpy(item->value.nullString,temp);
-		break;
+			strcpy(item->value.nullString,temp);		
 		}
 
-		case FUNC_FIND_ENTITY_WITH_SCRIPT:
+		break;
+
+	case FUNC_SIN:
+			// float
+		message = PopStack();
+			// *lineNumberControl +=6;
+		sprintf(temp,"sin %f",message->value.floatNumber);
+		item->value.nullString = (char*)malloc(strlen(temp)+1);
+		strcpy(item->value.nullString,temp);
+		item->secret_size = 6;
+		break;
+
+	case FUNC_COS:
+			//float
+		message = PopStack();
+			// *lineNumberControl +=6;
+		sprintf(temp,"cos %f",message->value.floatNumber);
+		item->value.nullString = (char*)malloc(strlen(temp)+1);
+		strcpy(item->value.nullString,temp);
+		item->secret_size = 6;
+		break;
+
+	case FUNC_RANDOM: {
+		char cmin[64],cmax[64];
+			// 2x int
+		message = PopStack();
+		if( message->type == PUSH_VAR ) {
+			strcpy(cmax,getVariable(message->value.number));
+		} else {
+			sprintf(cmax,"%i",message->value.number);	
+		}
+
+		message = PopStack();
+		if( message->type == PUSH_VAR ) {
+			strcpy(cmin,getVariable(message->value.number));
+		} else {
+			sprintf(cmin,"%i",message->value.number);	
+		}
+		item->secret_size = 12;
+
+		sprintf(temp,"random from %s to %s",cmin,cmax);
+		item->value.nullString = (char*)malloc(strlen(temp)+1);
+		strcpy(item->value.nullString,temp);
+		break;
+	}
+
+case FUNC_FIND_ENTITY_WITH_SCRIPT:
 			// string
-			message = PopStack();
+	message = PopStack();
 
-			if ( message->type == PUSH_VAR ) {
-				sprintf(temp,"find entity with scripttarget %s",getVariable(message->value.number));
-				item->value.nullString = (char*)malloc(strlen(temp)+1);
-				strcpy(item->value.nullString,temp);
-				item->secret_size = 6;	
-			} else {
-				item->secret_size = strlen(message->value.nullString)+1+2;
-				sprintf(temp,"find entity with scripttarget \"%s\"",message->value.nullString);
-				item->value.nullString = (char*)malloc(strlen(temp)+1);
-				strcpy(item->value.nullString,temp);	
-			}
+	if ( message->type == PUSH_VAR ) {
+		sprintf(temp,"find entity with scripttarget %s",getVariable(message->value.number));
+		item->value.nullString = (char*)malloc(strlen(temp)+1);
+		strcpy(item->value.nullString,temp);
+		item->secret_size = 6;	
+	} else {
+		item->secret_size = strlen(message->value.nullString)+1+2;
+		sprintf(temp,"find entity with scripttarget \"%s\"",message->value.nullString);
+		item->value.nullString = (char*)malloc(strlen(temp)+1);
+		strcpy(item->value.nullString,temp);	
+	}
 
-		break;
+	break;
 
-		case FUNC_FIND_PLAYER:
-			sprintf(temp,"find entity player");
-			item->value.nullString = (char*)malloc(strlen(temp)+1);
-			strcpy(item->value.nullString,temp);
-		break;
+case FUNC_FIND_PLAYER:
+	sprintf(temp,"find entity player");
+	item->value.nullString = (char*)malloc(strlen(temp)+1);
+	strcpy(item->value.nullString,temp);
+	break;
 
-		case FUNC_SPAWN: {
+case FUNC_SPAWN: {
 			// PrintStack();
-			struct stackItem * val;
-			int count = *(unsigned char*)buffer;
-			buffer++;
+	struct stackItem * val;
+	int count = *(unsigned char*)buffer;
+	buffer++;
 			item->secret_size +=1; //lul??:)
 
 			char small[64];
@@ -1887,33 +1899,33 @@ int handleFunction(char * buffer,struct stackItem * item) {
 				switch ( val->type ) {
 					
 					// non 4 cases
-					case PUSH_CONST_STRING:
-						
-						item->secret_size += strlen(val->value.nullString)+1+2;
-						sprintf(small," \"%s\" = \"%s\"",spawn_name,val->value.nullString);
-						strcat(temp, small);
+				case PUSH_CONST_STRING:
+
+					item->secret_size += strlen(val->value.nullString)+1+2;
+					sprintf(small," \"%s\" = \"%s\"",spawn_name,val->value.nullString);
+					strcat(temp, small);
 					break;
-					case PUSH_CONST_VECTOR:
-						item->secret_size += 14;
-						sprintf(small," \"%s\" = [%.3f ,%.3f ,%.3f]",spawn_name,val->value.three_floats[0],val->value.three_floats[1],val->value.three_floats[2]);
-						strcat(temp, small);
+				case PUSH_CONST_VECTOR:
+					item->secret_size += 14;
+					sprintf(small," \"%s\" = [%.3f ,%.3f ,%.3f]",spawn_name,val->value.three_floats[0],val->value.three_floats[1],val->value.three_floats[2]);
+					strcat(temp, small);
 					break;
 					
-					case PUSH_CONST_INT:
-						item->secret_size += 6;
-						sprintf(small," \"%s\" = %i",spawn_name,val->value.number);
-						strcat(temp, small);
+				case PUSH_CONST_INT:
+					item->secret_size += 6;
+					sprintf(small," \"%s\" = %i",spawn_name,val->value.number);
+					strcat(temp, small);
 
 					break;
 
-					case PUSH_CONST_FLOAT:
-						item->secret_size += 6;
-						sprintf(small," \"%s\" = %.3f",spawn_name,val->value.floatNumber);
-						strcat(temp, small);
+				case PUSH_CONST_FLOAT:
+					item->secret_size += 6;
+					sprintf(small," \"%s\" = %.3f",spawn_name,val->value.floatNumber);
+					strcat(temp, small);
 					break;
 					
-					default:
-						errorExit("Invalid var type in handleFunction\n");
+				default:
+					errorExit("Invalid var type in handleFunction\n");
 					break;
 				}
 				// if the data matches a fieldname
@@ -1927,27 +1939,27 @@ int handleFunction(char * buffer,struct stackItem * item) {
 			sprintf(final,"spawn entity with fields%s",temp);
 			item->value.nullString = (char*)malloc(strlen(final)+1);
 			strcpy(item->value.nullString,final);
-		break;
+			break;
 		}	
-		case FUNC_GET_OTHER:
-			sprintf(temp,"get entity other");
-			item->value.nullString = (char*)malloc(strlen(temp)+1);
-			strcpy(item->value.nullString,temp);
+	case FUNC_GET_OTHER:
+		sprintf(temp,"get entity other");
+		item->value.nullString = (char*)malloc(strlen(temp)+1);
+		strcpy(item->value.nullString,temp);
 		break;
 
-		case FUNC_GET_ACTIVATOR:
-			sprintf(temp,"get entity activator");
-			item->value.nullString = (char*)malloc(strlen(temp)+1);
-			strcpy(item->value.nullString,temp);
+	case FUNC_GET_ACTIVATOR:
+		sprintf(temp,"get entity activator");
+		item->value.nullString = (char*)malloc(strlen(temp)+1);
+		strcpy(item->value.nullString,temp);
 		break;
 
-		case FUNC_GET_PLAYER:
+	case FUNC_GET_PLAYER:
 			// int
-			message = PopStack();
-			sprintf(temp,"get entity player %i",message->value.number);
-			item->value.nullString = (char*)malloc(strlen(temp)+1);
-			strcpy(item->value.nullString,temp);
-			item->secret_size = 6;
+		message = PopStack();
+		sprintf(temp,"get entity player %i",message->value.number);
+		item->value.nullString = (char*)malloc(strlen(temp)+1);
+		strcpy(item->value.nullString,temp);
+		item->secret_size = 6;
 		break;
 	}
 	//11 07 type
@@ -2335,12 +2347,8 @@ int handlePrintMessage(char * buffer)
 	return buffer - startbuffer;
 }
 
-
 /*
-	arg1 ><= arg2
-
-	with if else endif , only the else (whcih is a goto) tells ut he location of the endif
-	but with if endif, the jump is to the endif
+	if ( ! cond ) goto endif
 */
 int handleIf(char * buffer,bool specialOnCase) {
 	
@@ -2349,40 +2357,36 @@ int handleIf(char * buffer,bool specialOnCase) {
 	struct stackItem * compare1;
 	compare2 = PopStack();
 	compare1 = PopStack();
-
-	
+			
 	int condType = *(unsigned char*)buffer;
 	buffer++;
 
 	char condString[3];
 	switch ( condType) {
-		case COND_GREATER_THAN:
-			strcpy(condString,">");
+	case COND_GREATER_THAN:
+		strcpy(condString,">");
 		break;
-		case COND_EQUAL:
-			strcpy(condString,"==");
+	case COND_EQUAL:
+		strcpy(condString,"==");
 		break;
-		case COND_NOT_EQUAL:
-			strcpy(condString,"!=");
+	case COND_NOT_EQUAL:
+		strcpy(condString,"!=");
 		break;
-		case COND_LESS_THAN:
-			strcpy(condString,"<");
+	case COND_LESS_THAN:
+		strcpy(condString,"<");
 		break;
 
-		case COND_LESS_THAN_EQUAL:
-			strcpy(condString,"<=");
+	case COND_LESS_THAN_EQUAL:
+		strcpy(condString,"<=");
 		break;
-		case COND_GREATER_THAN_EQUAL:
-			strcpy(condString,">=");
+	case COND_GREATER_THAN_EQUAL:
+		strcpy(condString,">=");
 		break;
-		default:
-			errorExit("New Condition Type\n");
+	default:
+		errorExit("New Condition Type\n");
 		break;
 	}
 
-	/*
-	THIS CODE IS SO SHIT!
-	*/
 	char compare1s[128], 	compare2s[128];
 
 	// printf("add: %08X %08X\n",compare1s,compare2s);
@@ -2391,60 +2395,60 @@ int handleIf(char * buffer,bool specialOnCase) {
 	int bytesForLineNumCalc = 0;
 	for (int i =0; i<2;i++) {
 		switch(p->type) {
-			case PUSH_CONST_INT:
+		case PUSH_CONST_INT:
 				//64 digit long number
 				// c = (char*)malloc(64);
 				// printf("LUL %08X %08X\n",*cc,compare2s);
-				sprintf(c,"%i",p->value.number);
+			sprintf(c,"%i",p->value.number);
 				// printf("s2 = %s %08X\n",*cc,cc);
 				// printf("s2 = %s %08X\n",compare2s,&compare2s);
-				bytesForLineNumCalc+=6;
+			bytesForLineNumCalc+=6;
 			break;
 
-			case PUSH_CONST_FLOAT:
+		case PUSH_CONST_FLOAT:
 				//64 digit long number
 				// c = (char*)malloc(64);
 				// printf("LUL %08X %08X\n",*cc,compare2s);
-				sprintf(c,"%.3f",p->value.floatNumber);
+			sprintf(c,"%.3f",p->value.floatNumber);
 				// printf("s2 = %s %08X\n",*cc,cc);
 				// printf("s2 = %s %08X\n",compare2s,&compare2s);
-				bytesForLineNumCalc+=6;
+			bytesForLineNumCalc+=6;
 			break;
 
-			case PUSH_CONST_VECTOR:
-				errorExit("Unknown PUSH_CONST_VECTOR in if statement\n");
+		case PUSH_CONST_VECTOR:
+			errorExit("Unknown PUSH_CONST_VECTOR in if statement\n");
 
-				bytesForLineNumCalc+=14;
+			bytesForLineNumCalc+=14;
 			break;
 
-			case PUSH_CONST_ENTITY:
-				errorExit("Unknown PUSH_CONST_ENTITY in if statement\n");
-				bytesForLineNumCalc+=6;
+		case PUSH_CONST_ENTITY:
+			errorExit("Unknown PUSH_CONST_ENTITY in if statement\n");
+			bytesForLineNumCalc+=6;
 			break;
 
-			case PUSH_CONST_STRING:
-				bytesForLineNumCalc += strlen(p->value.nullString)+1+2;
-				strcpy(c,p->value.nullString);
+		case PUSH_CONST_STRING:
+			bytesForLineNumCalc += strlen(p->value.nullString)+1+2;
+			strcpy(c,p->value.nullString);
 			break;
 
-			case PUSH_VAR:
-				strcpy(c,getVariable(p->value.number));
-				bytesForLineNumCalc+=6;
+		case PUSH_VAR:
+			strcpy(c,getVariable(p->value.number));
+			bytesForLineNumCalc+=6;
 			break;
 
 			// 
-			case PUSH_VAR_WITH_FIELD:
-				sprintf(c,"%s.%s",getVariable(p->value.two_numbers[0]),getField(p->value.two_numbers[1]));
+		case PUSH_VAR_WITH_FIELD:
+			sprintf(c,"%s.%s",getVariable(p->value.two_numbers[0]),getField(p->value.two_numbers[1]));
 				// errorExit("Unknown PUSH_VAR_WITH_FIELD in if statement\n");
-				bytesForLineNumCalc+=10;
+			bytesForLineNumCalc+=10;
 			break;
 
-			case PUSH_FUNCTION:
-				errorExit("Unknown PUSH_FUNCTION in if statement\n");
+		case PUSH_FUNCTION:
+			errorExit("Unknown PUSH_FUNCTION in if statement\n");
 			break;
 
-			default:
-				errorExit("unknown PUSH VAR in IF\n");
+		default:
+			errorExit("unknown PUSH VAR in IF\n");
 			break;
 		}
 
@@ -2452,48 +2456,66 @@ int handleIf(char * buffer,bool specialOnCase) {
 		p = (struct stackItem *)compare2;
 		
 	}
-	if (!specialOnCase)
-		saveLineNumber(startbuffer,bytesForLineNumCalc);
-		
+
+	// for IF. not ON
+	if (!specialOnCase) saveLineNumber(startbuffer,bytesForLineNumCalc);
+	
 
 	// read the jump offset if not true.
 	int endif_offset = *(int*)buffer;
 	buffer+=4;
 
 	// printf("%08X %08X %08X\n",compare1s,condString,compare2s);
-	if ( !specialOnCase ) 
+
+	DebugPrintf("IF BEFORE 0\n");
+	if ( !specialOnCase ) {
+		//IF
+		/*
+			We want to increment num_endifs.
+		*/
+
+		//Does it exist?
+
+		DebugPrintf("IF BEFORE 11\n");
+		labelFixUp_t * fixUp = getFixUp(endif_offset);
+		if ( !fixUp ) {
+			//create new.
+			fixUp = appendFixUp(endif_offset,0);
+
+			DebugPrintf("IF BEFORE 55\n");
+		}
+
+		DebugPrintf("%08X %08X %08X %08X\n",compare1s,condString,compare2s,outfile);
 		fprintf(outfile,"if %s %s %s%s",compare1s,condString,compare2s,newline);
-	else {
-		// THIS SHIT IS FOR THE ON COMMAND ... HMMMM
-		//lol actually another goto wtf hm.
-		char gotoJump[64];
-		//the on statement uses the ifNOTJUMP as its goto...
-		if (  addLabel(gotoJump,endif_offset) ) {
-			fprintf(outfile,"on %s %s %s %s",compare1s,condString,compare2s,gotoJump);
-		} else{
-			errorExit("error in on function\n");
-		}
+		
+		fixUp->num_endifs += 1;
+		DebugPrintf("IF BEFORE 22\n");
 	}
-	
-	if ( !specialOnCase) {
+	else {
+		DebugPrintf("IF BEFORE 1\n");
+		//ON
+		//the on statement uses the ifNOTJUMP as its goto...
+		/*
+			GENERATES LABEL!!!
+		*/
+		labelFixUp_t * fixUp = getFixUp(endif_offset);
+		DebugPrintf("IF BEFORE 2\n");
+		if ( !fixUp ) {
+			//create new.
+			fixUp = appendFixUp(endif_offset,realLabelsCount+1);
+			//label names are 1:1 to fixups. (endifs are not.)
+			realLabelsCount+=1;
+
+			DebugPrintf("IF BEFORE 3\n");
+		}
+
 		char temp[64];
-		strcpy(temp,"endif");
-		labHead_t *lr = getLabelReal(endif_offset);
-		if ( lr ) {
-			//nothing to do.
-			//a label
-			if ( strcmp(lr->varName,"endif"))  {
-				lr->alternate = (char*)malloc(strlen(temp)+1);
-				strcpy(lr->alternate,temp);
-			}
-			//its already endif so leave it
-		}
-		 else {
-			// brand spanking new
-			appendLabelReal(temp,endif_offset);
-			//if acts like a goto kind of.
-			appendFixUp(endif_offset,(int)(startbuffer-1));	
-		}
+		sprintf(temp,"%i", fixUp->lab_num);
+
+		DebugPrintf("IF BEFORE 4\n");
+		char temp2[64];
+		sprintf(temp2,"goto %s%s%s","lab_",temp,newline);
+		fprintf(outfile,"on %s %s %s %s",compare1s,condString,compare2s,temp2);
 	}
 	
 	return buffer - startbuffer;
@@ -2514,14 +2536,14 @@ int handleAddAssignment(char * buffer,const char * symbol) {
 	char leftSide[64];
 
 	switch ( index_var->type ) {
-		case PUSH_VAR:
-			num_pushed+=6;
-			sprintf(leftSide,"%s",getVariable(index_var->value.number));
+	case PUSH_VAR:
+		num_pushed+=6;
+		sprintf(leftSide,"%s",getVariable(index_var->value.number));
 		break;
-		case PUSH_VAR_WITH_FIELD:
+	case PUSH_VAR_WITH_FIELD:
 			//LEFT SIDE VAR WITH FIELD
-			num_pushed+=10;
-			sprintf(leftSide,"%s.%s",getVariable(index_var->value.two_numbers[0]),getField(index_var->value.two_numbers[1]));
+		num_pushed+=10;
+		sprintf(leftSide,"%s.%s",getVariable(index_var->value.two_numbers[0]),getField(index_var->value.two_numbers[1]));
 		break;
 	}
 
@@ -2532,74 +2554,74 @@ int handleAddAssignment(char * buffer,const char * symbol) {
 	char final[128];
 	switch ( new_value->type ) {
 		//IF LESS SIDE CONTAINED MOVETYPE IN ITS FIELD
-		case PUSH_CONST_INT:
-			if ( index_var->type == PUSH_VAR_WITH_FIELD 
-				&& !stricmp(getField(index_var->value.two_numbers[1]),"movetype")
-				&& new_value->value.number >=0 && new_value->value.number < 11 ) {
-				fprintf(outfile,"%s = %s%s",leftSide,movetypes[new_value->value.number],newline);	
-			} else
-			fprintf(outfile,"%s %s= %i%s",leftSide,symbol,new_value->value.number,newline);
+	case PUSH_CONST_INT:
+		if ( index_var->type == PUSH_VAR_WITH_FIELD 
+			&& !stricmp(getField(index_var->value.two_numbers[1]),"movetype")
+			&& new_value->value.number >=0 && new_value->value.number < 11 ) {
+			fprintf(outfile,"%s = %s%s",leftSide,movetypes[new_value->value.number],newline);	
+		} else
+		fprintf(outfile,"%s %s= %i%s",leftSide,symbol,new_value->value.number,newline);
 
-			num_pushed+=6;
+		num_pushed+=6;
 		break;
 
-		case PUSH_CONST_FLOAT:
-			fprintf(outfile,"%s %s= %.3f%s",leftSide,symbol,new_value->value.floatNumber,newline);
-			num_pushed+=6;
+	case PUSH_CONST_FLOAT:
+		fprintf(outfile,"%s %s= %.3f%s",leftSide,symbol,new_value->value.floatNumber,newline);
+		num_pushed+=6;
 		break;
 
-		case PUSH_CONST_VECTOR:
-			fprintf(outfile,"%s %s= [%.3f ,%.3f ,%.3f]%s",leftSide,symbol,new_value->value.three_floats[0],new_value->value.three_floats[1],new_value->value.three_floats[2],newline);
-			num_pushed+=14;
+	case PUSH_CONST_VECTOR:
+		fprintf(outfile,"%s %s= [%.3f ,%.3f ,%.3f]%s",leftSide,symbol,new_value->value.three_floats[0],new_value->value.three_floats[1],new_value->value.three_floats[2],newline);
+		num_pushed+=14;
 		break;
 
-		case PUSH_CONST_ENTITY:
-			errorExit("Unknown PUSH_CONST_ENTITY\n");
-			num_pushed+=6;
+	case PUSH_CONST_ENTITY:
+		errorExit("Unknown PUSH_CONST_ENTITY\n");
+		num_pushed+=6;
 		break;
 
-		case PUSH_CONST_STRING:
-			sprintf(final,"%s %s= %s%s",leftSide,symbol,new_value->value.nullString,newline);
-			num_pushed+=strlen(final)+1+2;
-			fprintf(outfile,final);
+	case PUSH_CONST_STRING:
+		sprintf(final,"%s %s= %s%s",leftSide,symbol,new_value->value.nullString,newline);
+		num_pushed+=strlen(final)+1+2;
+		fprintf(outfile,final);
 		break;
 
-		case PUSH_VAR:
-			varVarName = getVariable(new_value->value.number);
-			if (varVarName == NULL ) {
-				errorExit("No label error\n");
-			}
-			fprintf(outfile,"%s %s= %s%s",leftSide,symbol,varVarName,newline);
-			num_pushed+=6;
+	case PUSH_VAR:
+		varVarName = getVariable(new_value->value.number);
+		if (varVarName == NULL ) {
+			errorExit("No label error\n");
+		}
+		fprintf(outfile,"%s %s= %s%s",leftSide,symbol,varVarName,newline);
+		num_pushed+=6;
 		break;
 
-		case PUSH_VAR_WITH_FIELD:
-			varVarName = getVariable(new_value->value.two_numbers[0]);
-			if (varVarName == NULL ) {
-				errorExit("No label error\n");
-			}
-			fieldName = getField(new_value->value.two_numbers[1]);
-			if (fieldName == NULL ) {
-				errorExit("No label error\n");
-			}
-			fprintf(outfile,"%s %s= %s.%s%s",leftSide,symbol,varVarName,fieldName,newline);
-			num_pushed+=10;
+	case PUSH_VAR_WITH_FIELD:
+		varVarName = getVariable(new_value->value.two_numbers[0]);
+		if (varVarName == NULL ) {
+			errorExit("No label error\n");
+		}
+		fieldName = getField(new_value->value.two_numbers[1]);
+		if (fieldName == NULL ) {
+			errorExit("No label error\n");
+		}
+		fprintf(outfile,"%s %s= %s.%s%s",leftSide,symbol,varVarName,fieldName,newline);
+		num_pushed+=10;
 		break;
 
-		case PUSH_CUSTOM:
-		case PUSH_FUNCTION:
-			sprintf(final,"%s %s= %s%s",leftSide,symbol,new_value->value.nullString,newline);
-			fprintf(outfile,final);
-			// num_pushed+=strlen(new_value->value.nullString)+1+2;
-			num_pushed+= new_value->secret_size;
+	case PUSH_CUSTOM:
+	case PUSH_FUNCTION:
+		sprintf(final,"%s %s= %s%s",leftSide,symbol,new_value->value.nullString,newline);
+		fprintf(outfile,final);
+				// num_pushed+=strlen(new_value->value.nullString)+1+2;
+		num_pushed+= new_value->secret_size;
 		break;
 
-		default:
-			errorExit("unknown PUSH VAR in IF\n");
+	default:
+		errorExit("unknown PUSH VAR in IF\n");
 		break;
 	}
 
-	
+
 	//Assignment
 	// printf("NOOB_ADDASSIGNMENT : %i\n",(int)(((unsigned int)startbuffer-1 - num_pushed) - (unsigned int)fileContents));
 	saveLineNumber(startbuffer,num_pushed);
@@ -2641,23 +2663,23 @@ int handleAssignment(char * buffer) {
 	char *c = NULL;
 
 	switch ( index_var->type ) {
-		case PUSH_CONST_ENTITY:
-		case PUSH_VAR:
-			num_pushed+=6;
-			sprintf(leftSide,"%s",getVariable(index_var->value.number));
+	case PUSH_CONST_ENTITY:
+	case PUSH_VAR:
+		num_pushed+=6;
+		sprintf(leftSide,"%s",getVariable(index_var->value.number));
 		break;
-		case PUSH_VAR_WITH_FIELD:
+	case PUSH_VAR_WITH_FIELD:
 			//LEFT SIDE VAR WITH FIELD
-			num_pushed+=10;
-			c = getVariable(index_var->value.two_numbers[0]);
-			if ( c == NULL ) {
-				errorExit("Bad variable in assignment\n");
-			}
-			c = getField(index_var->value.two_numbers[1]);
-			if ( c == NULL ) {
-				errorExit("Bad variable in assignment\n");
-			}
-			sprintf(leftSide,"%s.%s",getVariable(index_var->value.two_numbers[0]),getField(index_var->value.two_numbers[1]));
+		num_pushed+=10;
+		c = getVariable(index_var->value.two_numbers[0]);
+		if ( c == NULL ) {
+			errorExit("Bad variable in assignment\n");
+		}
+		c = getField(index_var->value.two_numbers[1]);
+		if ( c == NULL ) {
+			errorExit("Bad variable in assignment\n");
+		}
+		sprintf(leftSide,"%s.%s",getVariable(index_var->value.two_numbers[0]),getField(index_var->value.two_numbers[1]));
 		break;
 	}
 
@@ -2671,96 +2693,97 @@ int handleAssignment(char * buffer) {
 	char final[256];
 	switch ( new_value->type ) {
 		//are we assigning to a xyz.movetype = 
-		case PUSH_CONST_INT:
-			if ( index_var->type == PUSH_VAR_WITH_FIELD 
-				&& !stricmp(getField(index_var->value.two_numbers[1]),"movetype")
-				&& new_value->value.number >=0 && new_value->value.number < 11 ) {
-				fprintf(outfile,"%s = %s%s",leftSide,movetypes[new_value->value.number],newline);	
-			} else
+	case PUSH_CONST_INT:
+		if ( index_var->type == PUSH_VAR_WITH_FIELD 
+			&& !stricmp(getField(index_var->value.two_numbers[1]),"movetype")
+			&& new_value->value.number >=0 && new_value->value.number < 11 ) {
+			fprintf(outfile,"%s = %s%s",leftSide,movetypes[new_value->value.number],newline);	
+		} else
 			fprintf(outfile,"%s = %i%s",leftSide,new_value->value.number,newline);
 
-			num_pushed+=6;
+		num_pushed+=6;
+	break;
+
+	case PUSH_CONST_FLOAT:
+		fprintf(outfile,"%s = %.3f%s",leftSide,new_value->value.floatNumber,newline);
+		num_pushed+=6;
 		break;
 
-		case PUSH_CONST_FLOAT:
-			fprintf(outfile,"%s = %.3f%s",leftSide,new_value->value.floatNumber,newline);
-			num_pushed+=6;
+	case PUSH_CONST_VECTOR:
+		fprintf(outfile,"%s = [%.3f ,%.3f ,%.3f]%s",leftSide,new_value->value.three_floats[0],new_value->value.three_floats[1],new_value->value.three_floats[2],newline);
+		num_pushed+=14;
 		break;
 
-		case PUSH_CONST_VECTOR:
-			fprintf(outfile,"%s = [%.3f ,%.3f ,%.3f]%s",leftSide,new_value->value.three_floats[0],new_value->value.three_floats[1],new_value->value.three_floats[2],newline);
-			num_pushed+=14;
+	case PUSH_CONST_ENTITY:
+		errorExit("Unknown PUSH_CONST_ENTITY\n");
+		num_pushed+=6;
 		break;
 
-		case PUSH_CONST_ENTITY:
-			errorExit("Unknown PUSH_CONST_ENTITY\n");
-			num_pushed+=6;
+	case PUSH_CONST_STRING:
+		sprintf(final,"%s = %s%s",leftSide,new_value->value.nullString,newline);
+				//secret_size from math function
+		num_pushed+=strlen(final)+1+2;
+		fprintf(outfile,final);
 		break;
 
-		case PUSH_CONST_STRING:
-			sprintf(final,"%s = %s%s",leftSide,new_value->value.nullString,newline);
-			//secret_size from math function
-			num_pushed+=strlen(final)+1+2;
-			fprintf(outfile,final);
+	case PUSH_VAR:
+		varVarName = getVariable(new_value->value.number);
+		if (varVarName == NULL ) {
+			errorExit("No label error PUSH_VAR AddASsignment\n");
+		}
+		fprintf(outfile,"%s = %s%s",leftSide,varVarName,newline);
+		num_pushed+=6;
 		break;
 
-		case PUSH_VAR:
-			varVarName = getVariable(new_value->value.number);
-			if (varVarName == NULL ) {
-				errorExit("No label error PUSH_VAR AddASsignment\n");
-			}
-			fprintf(outfile,"%s = %s%s",leftSide,varVarName,newline);
-			num_pushed+=6;
+	case PUSH_VAR_WITH_FIELD:
+		varVarName = getVariable(new_value->value.two_numbers[0]);
+		if (varVarName == NULL ) {
+			errorExit("No label error PUSH_VAR_WITH_FIELD AddASsignment\n");
+		}
+		fieldName = getField(new_value->value.two_numbers[1]);
+		if (fieldName == NULL ) {
+			errorExit("No label error PUSH_VAR_WITH_FIELD AddASsignment\n");
+		}
+		fprintf(outfile,"%s = %s.%s%s",leftSide,varVarName,fieldName,newline);
+		num_pushed+=10;
 		break;
 
-		case PUSH_VAR_WITH_FIELD:
-			varVarName = getVariable(new_value->value.two_numbers[0]);
-			if (varVarName == NULL ) {
-				errorExit("No label error PUSH_VAR_WITH_FIELD AddASsignment\n");
-			}
-			fieldName = getField(new_value->value.two_numbers[1]);
-			if (fieldName == NULL ) {
-				errorExit("No label error PUSH_VAR_WITH_FIELD AddASsignment\n");
-			}
-			fprintf(outfile,"%s = %s.%s%s",leftSide,varVarName,fieldName,newline);
-			num_pushed+=10;
+	case PUSH_CUSTOM:
+	case PUSH_FUNCTION:
+		sprintf(final,"%s = %s%s",leftSide,new_value->value.nullString,newline);
+		fprintf(outfile,final);
+				// num_pushed+=strlen(new_value->value.nullString)+1+2;
+		num_pushed+= new_value->secret_size;
+
+				// printf("WHAT THE ACTUAL FUCKAFTERRRRRRRRR : %i\n",num_pushed);
 		break;
 
-		case PUSH_CUSTOM:
-		case PUSH_FUNCTION:
-			sprintf(final,"%s = %s%s",leftSide,new_value->value.nullString,newline);
-			fprintf(outfile,final);
-			// num_pushed+=strlen(new_value->value.nullString)+1+2;
-			num_pushed+= new_value->secret_size;
-
-			// printf("WHAT THE ACTUAL FUCKAFTERRRRRRRRR : %i\n",num_pushed);
-		break;
-
-		default:
-			errorExit("unknown PUSH VAR in IF\n");
+	default:
+		errorExit("unknown PUSH VAR in IF\n");
 		break;
 	}
 
 
 
 	// TODO:handle TYPES
-	
 
-	
+
+
 	//Assignment
-	// printf("NOOB_ASSIGNMENT : %i\n",(int)(((unsigned int)startbuffer-1 - num_pushed) - (unsigned int)fileContents));
 
 	saveLineNumber(startbuffer,num_pushed);
 	return buffer - startbuffer;
 
 }
 
-//actually saves the offset index under linenumber.
+/*
+	The linenumber of the output .ds which marks the start of a .os OPCODE.
+*/
 void saveLineNumber(char * buffer, int sizepushed) {
 
+	DebugPrintf("%08X\n",buffer);
 	lineNumbersToOffset[lineNumbers] = (int)(((unsigned int)buffer-1 - sizepushed) - (unsigned int)fileContents);
-	// printf("SUBTRACTING : %i\n",sizepushed);
-	// printf("LMFAOOOOOOOOOOOOOOOOOO????????????   %i\n",lineNumbersToOffset[lineNumbers]);
+	DebugPrintf("%08X\n",lineNumbersToOffset[lineNumbers]);
 	lineNumbers++;
 }
 
@@ -2820,23 +2843,23 @@ int handleStandardOpcode(const char *startwords,char * buffer, bool assign) {
 	}
 	
 	switch (type) { 
-		case TypeINT:
-			strcpy(dataType,"int");
+	case TypeINT:
+		strcpy(dataType,"int");
 		break;
-		case TypeFLOAT:
-			strcpy(dataType,"float");
+	case TypeFLOAT:
+		strcpy(dataType,"float");
 		break;
-		case TypeVECTOR:
-			strcpy(dataType,"vector");
+	case TypeVECTOR:
+		strcpy(dataType,"vector");
 		break;
-		case TypeENTITY:
-			strcpy(dataType,"entity");
+	case TypeENTITY:
+		strcpy(dataType,"entity");
 		break;
-		case TypeSTRING:
-			strcpy(dataType,"string");
+	case TypeSTRING:
+		strcpy(dataType,"string");
 		break;
-		case TypeUNKNOWN:
-			errorExit("Unknown Variable\n");
+	case TypeUNKNOWN:
+		errorExit("Unknown Variable\n");
 		break;
 	}
 
@@ -2845,144 +2868,82 @@ int handleStandardOpcode(const char *startwords,char * buffer, bool assign) {
 	if ( assign ) {
 		//handle vector assignment please.
 		switch (type) {
-			case TypeINT:
-				sprintf(value,"%i",*(int*)buffer);
-				buffer+=4;
+		case TypeINT:
+			sprintf(value,"%i",*(int*)buffer);
+			buffer+=4;
 			break;
-			case TypeFLOAT:
-				strcpy(dataType,"float");
-				sprintf(value,"%.3f",*(int*)buffer);
-				buffer+=4;
+		case TypeFLOAT:
+			strcpy(dataType,"float");
+			sprintf(value,"%.3f",*(int*)buffer);
+			buffer+=4;
 			break;
-			case TypeVECTOR:
-				strcpy(dataType,"vector");
-				sprintf(value,"[%.3f ,%.3f ,%.3f]",*(float*)(buffer+4),*(float*)(buffer+8),*(float*)(buffer+8));
-				buffer+=12;
+		case TypeVECTOR:
+			strcpy(dataType,"vector");
+			sprintf(value,"[%.3f ,%.3f ,%.3f]",*(float*)(buffer+4),*(float*)(buffer+8),*(float*)(buffer+8));
+			buffer+=12;
 			break;
-			case TypeENTITY:
-				strcpy(dataType,"entity");
-				sprintf(value,"%i",*(int*)buffer);
-				buffer+=4;
+		case TypeENTITY:
+			strcpy(dataType,"entity");
+			sprintf(value,"%i",*(int*)buffer);
+			buffer+=4;
 			break;
-			case TypeSTRING:
-				strcpy(dataType,"string");
-				strcpy(value,buffer);
-				buffer+=strlen(buffer);
+		case TypeSTRING:
+			strcpy(dataType,"string");
+			strcpy(value,buffer);
+			buffer+=strlen(buffer);
 			break;
 		}
 
 		if ( preventXYZFields > 3 )
-		fprintf(outfile,"%s %s %s = %s%s",startwords,dataType,varName,value,newline);
+			fprintf(outfile,"%s %s %s = %s%s",startwords,dataType,varName,value,newline);
 	} else {
 		if ( preventXYZFields > 3 )
-		fprintf(outfile,"%s %s %s%s",startwords,dataType,varName,newline);	
+			fprintf(outfile,"%s %s %s%s",startwords,dataType,varName,newline);	
 	}
 
 	read = buffer - startbuffer;
 	return read;
 }
 
-// else is also a goto
+/*
+	Creates a Label.
+	This is also called for:
+		else
+		while
+*/
 int handleGoto(char * buffer) {
+	/*
+		GENERATES LABEL!!!
+	*/
 	char * b = buffer;
 	//goto
 	saveLineNumber(b);
 	
-
-	//printf("handling goto\n");
-
-	
 	int labelPosition = *(int*)buffer;
+	DebugPrintf("Goto Offset = %i\n",labelPosition);
 	buffer+=4;
 
-	// bool endiflabel = false;
+	//int gotoPosition = (int)(b-1)-(int)fileContents;
 
-	// for ( int i = 0 ; i < number_of_elses;i++ ) {
-	// 	if  ( else_list[i]	== b-1 ) {
-	// 		endiflabel = true;
-	// 		break;
-	// 	}
-	// }
-	
-	// at end must translate labelPosition into a lineNumber
-	// and insert 2 lines, one label and one goto.
-	/*
-		fixup table must be updated every time lines are added to the file.
+	labelFixUp_t * fixUp = getFixUp(labelPosition);
+	if ( !fixUp ) {
+		//create new.
+		fixUp = appendFixUp(labelPosition,realLabelsCount+1);
 
-		if jumpFrom == else_list[i] ELSE ENDIF instead.
-	*/
-
-
-	char theLine[256];
-	if ( addLabel(theLine,labelPosition,(int)(b-1)-(int)fileContents) ) {
-		fprintf(outfile,theLine);
-	} else {
-			errorExit("goto was not behaving as expected\n");
+		//label names are 1:1 to fixups. (endifs are not.)
+		realLabelsCount+=1;
 	}
 
+	char temp[64];
+	sprintf(temp,"%05i", fixUp->lab_num);
+
+	fprintf(outfile,"goto %s%s%s","lab_",temp,newline);
 
 	// labels are written to the file at the end. endif is a label
 	return buffer - b;
 }
 
 
-bool addLabel(char * output,int labelPosition, int gotoPosition) {
-	//labels must be unique
-	char temp[64];
-	sprintf(temp,"%05i",realLabelsCount+1);
-
-
-	//if label doesnt already exist
-
-	labHead_t * lr = getLabelReal(labelPosition); 
-	char * labName = NULL;
-	if ( !lr ) {
-
-		//only append fix up for new label
-		appendFixUp(labelPosition,gotoPosition);
-		// label doesn't already exist?
-		// a new label!
-		
-		appendLabelReal(temp,labelPosition);
-		
-		labName = temp;
-
-		sprintf(output,"goto %s%s%s","lab_",labName,newline);
-		return true;	
-	} else {
-		//a goto has already been request to this offset
-		labName = lr->varName;
-
-		//was the label that already exists for this offset an 'endif' label?
-		//but yet this jump/goto did not originate from an else jump?
-		if (!strcmp(labName,"endif") ) {
-			//it has already been used as an end if
-			//so we need to write out an extra one.. becasue there are 2 labels in on place.			
-
-			// check for real existence
-			if ( lr->alternate ) {
-				// exists use it
-				strcpy(temp,lr->alternate);
-			} else {
-				lr->alternate = (char*) malloc(strlen(temp)+1);	
-				strcpy(lr->alternate,temp);
-			}
-
-			sprintf(output,"goto %s%s%s","lab_",temp,newline);
-			return true;
-		} else {
-			//it already has a label but its not endif
-
-			//assume its fine to use the same label that exists already.
-			sprintf(output,"goto %s%s%s","lab_",labName,newline);
-			return true;
-		}
-		
-	}
-
-
-	return false;
-}
 
 void seekToEnthLine(int n,char * lineContent, int length) {
 
@@ -3012,7 +2973,7 @@ void seekToEnthLine(int n,char * lineContent, int length) {
 		
 		while ( (int)(newline-dsFile+1) < size && (newline = strstr(newline+1,"\n")) ) {
 			// printf("found a line!\n");
-		
+
 			if ( x == n ) { 
 				//insert line here
 				int loc = (int)(startofline-dsFile);
@@ -3025,7 +2986,7 @@ void seekToEnthLine(int n,char * lineContent, int length) {
 				memcpy(newBuffer+loc,lineContent,length);
 				//copy stuff beyond loc
 				memcpy(newBuffer+loc+length,dsFile+loc,size-loc);
-			
+
 				rewind(outfile);
 				fwrite(newBuffer,size+length,1,outfile);
 				
@@ -3036,153 +2997,88 @@ void seekToEnthLine(int n,char * lineContent, int length) {
 			x++;
 		}
 
-	
+
 	} else {
 		errorExit("fseek failed\n");
 	}
 }
 
 
-
-/*
-
-	
-
-*/
-
 void PatchUpJumps(void) {
 
 	char lol[32];
-	// // This is the offset to line conversion
-	// dumpLineOffsetTable();
-	// //These are the labels that need to be inserted into file
-	// dumpLabelReals();
-	// dumpFixUps();
-	// return;
+
+	
+	dumpLineOffsetTable();
+	dumpFixUps();
+
+	#if 0
+		
+		return;
+	#endif
 
 
-	// 1 iteration
 	int i = 0;
-	bool fixed = false;
-	int saved_loop_index = 0;
-	int bleh = 0;
-	// while ( bleh < lineNumbers*2 ) {
-
-	// 	int fixed_it = 0;
-	// 	if (fixed) {
-	// 		fixed_it = saved_loop_index+1;
-	// 		fixed = false;
-	// 	}
-
-	bool extraLabel = false;
-	labHead_t * lr = NULL;
 	labelFixUp_t *fix = NULL;
-
-	int lastFix = -1;
-	int loopCounter = 0;
-	// Ensure we process one per loop, if we dont, then its broken.
 	/*
-		2 methods to control the fixups, either let duplicates get into teh buffer
-		then filter them here...
-		or control them in the creation stage..
-
-		atm we doing the later method.
-		So we can expect every iteration of fixup should produce a label.
-		(aka all valid).
-		a clash/duplicate means its a endif hm
+		int lab_num
+		int label_offset;
 	*/
-	while ( FixUps.next != &FixUps && lastFix == loopCounter-1 ) {
-		//dumpFixUps();
+
+	labelFixUp_t *fixnext;
+
+	for ( fix=FixUps.next; fix != &FixUps; fix=fixnext ) {
+		fixnext = fix->next;
+		if ( !fix->active ) continue;
+		bool found_line_num = false;
 		for ( i=0;i < lineNumbers;i++ ) {
-			//for every offset stored at each line number
-			//check if its in the fix up table.
-
-			// is this lineNumber in the FixUp Tabel?
-			// If it is, then This LineNumber Should be a Label
-			// this line number points to an offset that is saved
-			fix = isFixUpEqual(lineNumbersToOffset[i]);
-			
-			// come out of the loop after done something.
-			if ( !fixed ) {
-				//is this line number important?
-				if ( fix ) {
-					lastFix = loopCounter;
-					//printf("fixxxx: %i\n",fix->label_offset);
-
-					//if it has a label there
-					lr = getLabelReal(lineNumbersToOffset[i]);
-					if (!lr) errorExit("No Label Error\n");
-
-					// if ( !lr->printed ) {
-					char * labelLine = lr->varName;
-					//this lineNumber/offset is a label
-					//insert line
-					// fetch label name by using offset
-					
-					//not sure if you should just print both of them wtf?
-					//you need to figure which one is 
-
-					if ( lr->alternate && strcmp(lr->alternate,"endif" )) {
-						sprintf(lol,"label %s%s%s","lab_",lr->alternate,newline);
-						seekToEnthLine(i,lol,strlen(lol));
-					} else
-					if ( strcmp(labelLine,"endif") ) {
-						sprintf(lol,"label %s%s%s","lab_",labelLine,newline);
-						seekToEnthLine(i,lol,strlen(lol));
-					}
-
-					if ( lr->alternate && !strcmp(lr->alternate,"endif" )) {
-						sprintf(lol,"endif%s",lr->alternate,newline);
-						seekToEnthLine(i,lol,strlen(lol));
-					} else
-					if ( !strcmp(labelLine,"endif") ) {
-						sprintf(lol,"endif%s",newline);
-						seekToEnthLine(i,lol,strlen(lol));
-					}
-
-					// lr->printed = true;
-
-					fixed = true;
-					saved_loop_index = i;
-					// }
-
-					//why is this not getting removed?
-					removeFixUp(fix);
-					break;
-				} 
+			if ( lineNumbersToOffset[i] == fix->label_offset ) {
+				found_line_num = true;
+				break;
 			}
 		}
-		// a label has just been added, now must adjust all the lines for this one.
-		if (fixed) {
+		/*
+		1) endifs must be output before labels and do not dissolve.
+		2) multiple labels dissolve into one.
+		*/
+		if ( !found_line_num ) errorExit("Unexpected error parsing, contact developer.");
+		
+
+		if ( fix->lab_num ) {
+			sprintf(lol,"label lab_%i%s",fix->lab_num,newline);
+			seekToEnthLine(i,lol,strlen(lol)); //inserts line
+		}
+
+		for ( int j = 0; j < fix->num_endifs; j++ ) {
+			sprintf(lol,"endif%s",newline);
+			seekToEnthLine(i,lol,strlen(lol)); //inserts line
+		}
+
+		
+		
+		//update line number mappings.
+		if ( fix->lab_num ) {
+
+			//Right Shift 
 			lineNumbers++;
-			//if created 2 lines, increment as necesasry
-			if ( lr->alternate ) {
-				lineNumbers++;
-			}
-			//shift twice???
-			//shift those bastards up one.
-			for (int j = lineNumbers-1; j > saved_loop_index; j-- ) {
+			for (int j = lineNumbers-1; j > i; j-- ) {
 				lineNumbersToOffset[j] = lineNumbersToOffset[j-1];
 			}
-			lineNumbersToOffset[saved_loop_index] = -1;
-
-			// shift again.
-			if ( lr->alternate ) {
-				for (int j = lineNumbers-1; j > saved_loop_index+1; j-- ) {
-					lineNumbersToOffset[j] = lineNumbersToOffset[j-1];
-				}
-				lineNumbersToOffset[saved_loop_index+1] = -1;
+			lineNumbersToOffset[i] = -1;
+		}
+		
+		for ( int c = 0; c < fix->num_endifs; c++ ) {
+			lineNumbers++;
+			for (int j = lineNumbers-1; j > i; j-- ) {
+				lineNumbersToOffset[j] = lineNumbersToOffset[j-1];
 			}
-			// dumpLineOffsetTable();
+			lineNumbersToOffset[i] = -1;
+		}
 
-			//reset this for loop to continue.
-			fixed = false;	
-		} 
-		loopCounter++;
+		removeFixUp(fix);
+
 	}
 
-	// bleh++;
-	// }
 }
 
 
@@ -3223,8 +3119,6 @@ char * getField(int index) {
 }
 
 
-
-
 // Index to VarName mapping
 void appendVariable(char * name,int idx) {
 	vars_t *l = (vars_t*)malloc(sizeof(vars_t));
@@ -3261,58 +3155,19 @@ char * getVariable(int index) {
 	return NULL;
 }
 
-// Index to VarName mapping
-void appendLabelReal(char * name,int idx) {
-	realLabelsCount++;
-	labHead_t *l = (labHead_t*)malloc(sizeof(labHead_t));
-	l->next = LabelsReal.next;
-	l->prev = &LabelsReal;
-	LabelsReal.next->prev = l;
-	LabelsReal.next = l;
-
-
-	l->printed = false;
-	l->index = idx;
-	l->varName = (char*)malloc(strlen(name+1));
-	l->alternate = NULL;
-	strcpy(l->varName,name);
-}
-
-// cut out of chain
-void removeLabelReal(labHead_t *which) {
-	which->prev->next = which->next;
-	which->next->prev = which->prev;
-
-
-	if ( which->alternate ) free(which->alternate);
-	free(which->varName);
-	free(which);
-}
-
-labHead_t * getLabelReal(int index) {
-	labHead_t	*l, *next;
-	for (l=LabelsReal.next ; l != &LabelsReal ; l=next)
+labelFixUp_t * getFixUp(int labelOffset)
+{
+	labelFixUp_t	*l, *next;
+	for (l=FixUps.next ; l != &FixUps ; l=next)
 	{
 		next = l->next;
-		if (l->index == index) {
-			//printf("found label : %s\n",l->varName);
+		if (l->label_offset == labelOffset) {
 			return l;
 		}
 	}
-
 	return NULL;
 }
 
-// these are the labels that exist
-void dumpLabelReals(void) {
-	printf("trying to print labels\n");
-	labHead_t	*l, *next;
-	for (l=LabelsReal.next ; l != &LabelsReal ; l=next)
-	{
-		next = l->next;
-		printf("labelreal %i %s\n",l->index,l->varName);
-	}
-}
 
 void dumpLineOffsetTable(void) {
 	printf("trying to print line numbers\n");
@@ -3332,34 +3187,48 @@ void dumpFixUps(void) {
 	}
 }
 
-// fixups are the labels actually
-void appendFixUp(int label_offset,int goto_offset) {
+labelFixUp_t* appendFixUp(int label_offset, int lab_num) {
+	// Attempt to allocate memory for labelFixUp_t
 	labelFixUp_t *l = (labelFixUp_t*)malloc(sizeof(labelFixUp_t));
-	//insert ourselves in front of orig
+	
+	// Check if memory allocation was successful
+	if (l == NULL) {
+		errorExit("Memory allocation failed in appendFixUp\n");
+	}
+
+	// Initialize the allocated structure
+	l->next = NULL;
+	l->prev = NULL;
+	l->active = true;
+	l->lab_num = lab_num;
+	l->label_offset = label_offset;
+	l->num_endifs = 0;
+
+	// Check if FixUps is properly initialized
+	if (FixUps.next == NULL || FixUps.prev == NULL) {
+		errorExit("FixUps is not properly initialized in appendFixUp\n");
+	}
+
+	// Insert the new node into the linked list
 	l->next = FixUps.next;
 	l->prev = &FixUps;
 	FixUps.next->prev = l;
 	FixUps.next = l;
 
 	l->active = true;
+	l->lab_num = lab_num;
 	l->label_offset = label_offset;
-	l->goto_offset = goto_offset;
+	l->num_endifs = 0;
+
+	DebugPrintf("FixUp node appended successfully\n");
+	return l;
 }
+
+
 void removeFixUp(labelFixUp_t *which) {
 	which->prev->next = which->next;
 	which->next->prev = which->prev;
 	free(which);
-}
-labelFixUp_t * isFixUpEqual(int offset) {
-	labelFixUp_t	*l, *next;
-	for (l=FixUps.next ; l != &FixUps ; l=next)
-	{
-		next = l->next;
-		if (l->active && l->label_offset == offset) {
-			return l;
-		}
-	}
-	return NULL;
 }
 
 

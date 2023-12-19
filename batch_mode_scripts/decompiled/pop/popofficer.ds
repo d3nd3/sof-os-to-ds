@@ -51,13 +51,13 @@ health = man82.health
 man83.health = 3500
 health = man83.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 use entity man80
 use entity man81
 use entity man82
 use entity man83
-label lab_00003
+label lab_2
 sneak = get entity activator
 animate entity man80 performing action STD_F_FWD_P_2 repeating for pop1 times targeting entity sneak kill nulltarget HEAD
 animate entity man81 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak kill nulltarget HEAD
@@ -84,6 +84,6 @@ animate entity man81 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop t
 animate entity man82 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop1 times targeting entity sneak kill nulltarget HEAD
 animate entity man83 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop times targeting entity sneak kill nulltarget HEAD
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

@@ -31,7 +31,7 @@ local entity kickdor
 
 kickgrd = find entity with targetname "kickgrd"
 kickdor = find entity with targetname "kickdor"
-on kickgrd.health <= 0 goto lab_00001
+on kickgrd.health <= 0 goto lab_1
 animate entity kickgrd performing action STD_XKICKDOOR_N_A_A
 animate entity kickgrd performing action SCRIPT_RELEASE
 wait 0.250 seconds
@@ -40,5 +40,5 @@ play sound "Impact/Door/KickDoor.wav" for entity kickdor at volume 0.900
 wait 2 seconds
 unload sound "Impact/Door/KickDoor.wav"
 unload roff "generic_door_cw.rof"
-label lab_00001
+label lab_1
 exit

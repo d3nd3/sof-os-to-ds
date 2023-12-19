@@ -53,7 +53,7 @@ jo = get entity activator
 animate entity sca performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity scb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity scc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity sca performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity scb performing action STD_F_FWD_R_2 targeting entity jo
@@ -68,11 +68,13 @@ animate entity sca performing action STD_F_FWD_R_2 targeting entity jo kill null
 if sca.health <= 0
 if scb.health <= 0
 if scc.health <= 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity sca performing action SCRIPT_RELEASE
 animate entity scb performing action SCRIPT_RELEASE
 animate entity scc performing action SCRIPT_RELEASE

@@ -42,10 +42,10 @@ p3 = get entity player 3
 use entity kiloop
 kiloop.health = 2500
 health = kiloop.health
-label lab_00003
+label lab_2
 health = kiloop.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity kiloop
 animate entity kiloop performing action STD_XSTARTLED_N_A_A
@@ -54,6 +54,6 @@ animate entity kiloop performing action STD_EJUMPRAIL_N_A_N
 animate entity kiloop performing action SCRIPT_RELEASE
 wait for all clearing sig1
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

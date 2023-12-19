@@ -58,7 +58,7 @@ use entity guncam1
 play sound "av/bgun/whoopass8.wav" for entity gunguy on channel CHAN_VOICE at volume 0.900
 wait 3 seconds
 unload sound "av/bgun/whoopass8.wav"
-move entity guncam1 by [0.000 ,0.000 ,0.000] over 2 seconds signaling sig1
+move entity guncam1 by [128.000 ,-256.000 ,0.000] over 2 seconds signaling sig1
 wait for all clearing sig1
 animate entity gunguy performing action STD_XALARMPUSH_N_A_N
 wait 0.500 seconds
@@ -77,7 +77,7 @@ remove entity gunnull1
 use entity gun
 wait 0.500 seconds
 suspend
-label lab_00002
+label lab_1
 guyhealth = gunguy.health
 if guyhealth == 0
 tank entity tk 1
@@ -87,5 +87,5 @@ animate entity gunguy performing action STD_XALARMPUSH_N_A_N
 use entity gun
 wait 0.200 seconds
 suspend
-goto lab_00002
+goto lab_00001
 exit

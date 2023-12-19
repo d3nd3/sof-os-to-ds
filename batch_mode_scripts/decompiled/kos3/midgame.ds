@@ -179,7 +179,7 @@ animate entity midjohn2 performing action STD_IALERT_N_P_N holding for 4.600
 wait 0.100 seconds
 use entity midcam1
 use entity midcam2
-move entity midcam2 to [0.000 ,0.000 ,0.000] over 4 seconds
+move entity midcam2 to [512.000 ,2520.000 ,148.000] over 4 seconds
 wait 3.500 seconds
 use entity hawklight
 wait 1 seconds
@@ -200,8 +200,8 @@ remove entity hang_door_buttons
 remove entity hang_door_buttonsb
 use entity hack_left
 use entity hack_right
-move entity hack_left by [0.000 ,0.000 ,0.000]
-move entity hack_right by [0.000 ,0.000 ,0.000]
+move entity hack_left by [0.000 ,0.000 ,-16.000]
+move entity hack_right by [0.000 ,0.000 ,-16.000]
 use entity button_camnew
 wait 1.500 seconds
 wait 1 seconds
@@ -219,12 +219,12 @@ use entity spawnguy3
 wait 4 seconds
 use entity spacam2
 use entity spacam1
-move entity spacam1 by [0.000 ,0.000 ,0.000] at 35 speed
-move entity spacam1n by [0.000 ,0.000 ,0.000] at 35 speed
-rotate entity frontdoorl by [0.000 ,0.000 ,0.000] at 50 speed
-rotate entity frontdoorr by [0.000 ,0.000 ,0.000] at 50 speed
+move entity spacam1 by [0.000 ,0.000 ,-128.000] at 35 speed
+move entity spacam1n by [0.000 ,0.000 ,-128.000] at 35 speed
+rotate entity frontdoorl by [0.000 ,-90.000 ,0.000] at 50 speed
+rotate entity frontdoorr by [0.000 ,90.000 ,0.000] at 50 speed
 use entity fronttruck
-move entity fronttruck by [0.000 ,0.000 ,0.000] at 90 speed signaling sig1
+move entity fronttruck by [0.000 ,225.000 ,0.000] at 90 speed signaling sig1
 wait 0.700 seconds
 animate entity spawnguy1 performing action STD_R_N_PK_N by moving [0.000 ,256.000 ,0.000] signaling sig2
 animate entity spawnguy1 performing action STD_XYELLPOINT_FWD_A_N signaling sig3
@@ -248,7 +248,7 @@ use entity ventcam
 wait 0.100 seconds
 venthawk.movetype = MOVETYPE_NOCLIP
 animate entity ventjohn performing action STD_IALERT_N_P_N holding for 1.000
-move entity venthawk by [0.000 ,0.000 ,0.000] at 20 speed
+move entity venthawk by [0.000 ,0.000 ,64.000] at 20 speed
 play sound "cin/kos3/c19d2.adp" for entity ventjohn at volume 0.900
 print 32516
 animate entity venthawk performing action STD_ECLIMBLEDGE_UP_A_N
@@ -267,10 +267,10 @@ disable cinematics
 move_player.movetype = original_move
 use entity phase2z
 use entity newendtrig
-on endheli.health <= 0 goto lab_00001
-move entity endheli to [0.000 ,0.000 ,0.000] at 9000 speed signaling sig1
+on endheli.health <= 0 goto lab_1
+move entity endheli to [-664.000 ,2600.000 ,298.000] at 9000 speed signaling sig1
 wait for all clearing sig1
-label lab_00001
+label lab_1
 use entity ehdoor
 use entity ehdoorbroke
 frontdoorl.movetype = MOVETYPE_NONE

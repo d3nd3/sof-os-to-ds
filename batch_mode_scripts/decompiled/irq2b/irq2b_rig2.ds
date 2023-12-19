@@ -34,7 +34,7 @@ local entity metaltank2
 metalexpl = find entity with targetname "metalexpl"
 metalpatch = find entity with targetname "metalpatch"
 metaltank2 = find entity with targetname "metaltank2"
-move entity metaltank2 by [0.000 ,0.000 ,0.000] at 500 speed signaling sig
+move entity metaltank2 by [0.000 ,0.000 ,-128.000] at 500 speed signaling sig
 wait for all clearing sig
 use entity metaltank2
 use entity metalexpl

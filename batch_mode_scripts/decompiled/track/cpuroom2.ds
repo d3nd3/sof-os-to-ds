@@ -49,7 +49,7 @@ mechb.health += 80
 mechc.health += 80
 mechd.health += 80
 wait 0.100 seconds
-label lab_00007
+label lab_4
 jo = get entity activator
 reset ai for entity mecha
 reset ai for entity mechb
@@ -64,20 +64,22 @@ animate entity mechd performing action STD_F_FWD_R_2 targeting entity jo kill nu
 animate entity mechb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity mechc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget GUT
 if a == 6
-goto lab_00002
+goto lab_00001
 endif
 if a == 9
-goto lab_00004
+goto lab_00002
 endif
 if mecha.health <= 0
 if mechb.health <= 0
 if mechc.health <= 0
-goto lab_00006
+goto lab_00003
+endif
+endif
 endif
 suspend
 a += 1
-goto lab_00007
-label lab_00002
+goto lab_00004
+label lab_1
 animate entity mecha performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity mechd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity mechb performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
@@ -87,8 +89,8 @@ animate entity mecha performing action STD_F_FWD_R_2 targeting entity jo kill nu
 animate entity mechd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity mechb performing action STD_F_FWD_R_2 targeting entity jo
 suspend
-goto lab_00007
-label lab_00004
+goto lab_00004
+label lab_2
 animate entity mecha performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity mechd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity mechc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
@@ -98,8 +100,8 @@ animate entity mecha performing action STD_F_FWD_R_2 targeting entity jo kill nu
 animate entity mechd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity mechc performing action STD_F_FWD_R_2 targeting entity jo
 suspend
-goto lab_00007
-label lab_00006
+goto lab_00004
+label lab_3
 reset ai for entity mecha
 reset ai for entity mechb
 reset ai for entity mechc

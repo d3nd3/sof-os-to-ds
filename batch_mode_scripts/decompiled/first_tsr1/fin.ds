@@ -39,7 +39,7 @@ use entity jo
 use entity xcamx
 use entity act
 enable cinematics
-move entity xcamx by [0.000 ,0.000 ,0.000] at 30 speed
+move entity xcamx by [-4.000 ,-350.000 ,0.000] at 30 speed
 wait 7.500 seconds
 animate entity jo performing action WALK by moving [0.000 ,-64.000 ,0.000] signaling sig
 wait for all clearing sig

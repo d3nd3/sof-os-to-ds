@@ -31,7 +31,7 @@ local int sig1
 
 takeofftruck = find entity with targetname "takeofftruck"
 takeofftruck.movetype = MOVETYPE_NOCLIP
-move entity takeofftruck to [0.000 ,812277.125 ,757.083] at 999 speed signaling sig1
+move entity takeofftruck to [-1538.000 ,-1538.000 ,-419.000] at 999 speed signaling sig1
 wait for all clearing sig1
 takeofftruck.movetype = MOVETYPE_NONE
 exit

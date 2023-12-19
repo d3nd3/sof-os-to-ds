@@ -120,10 +120,10 @@ use entity pipe1exp2
 use entity pipe2exp1
 use entity pipe2exp2
 wait 0.300 seconds
-move entity pipe1exp1 by [0.100 ,0.000 ,0.000] over 0.100 seconds
-move entity pipe1exp2 by [0.100 ,0.000 ,0.000] over 0.100 seconds
-move entity pipe2exp1 by [0.100 ,0.000 ,0.000] over 0.100 seconds
-move entity pipe2exp2 by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity pipe1exp1 by [0.000 ,0.000 ,72.000] over 0.100 seconds
+move entity pipe1exp2 by [0.000 ,56.000 ,0.000] over 0.100 seconds
+move entity pipe2exp1 by [0.000 ,0.000 ,72.000] over 0.100 seconds
+move entity pipe2exp2 by [0.000 ,-56.000 ,0.000] over 0.100 seconds
 use entity emlite01
 use entity emlite02
 wait 1.500 seconds
@@ -142,22 +142,22 @@ use entity exp3a
 use entity exp3b
 use entity fire3
 use entity fire4
-move entity exp3a by [0.100 ,0.000 ,0.000] over 0.100 seconds
-move entity exp3b by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity exp3a by [-72.000 ,0.000 ,0.000] over 0.100 seconds
+move entity exp3b by [-72.000 ,0.000 ,0.000] over 0.100 seconds
 wait 0.200 seconds
 use entity exp3a
 use entity exp3b
 use entity fire5
 use entity fire6
-move entity exp3a by [0.100 ,0.000 ,0.000] over 0.100 seconds
-move entity exp3b by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity exp3a by [-72.000 ,0.000 ,0.000] over 0.100 seconds
+move entity exp3b by [-72.000 ,0.000 ,0.000] over 0.100 seconds
 wait 0.200 seconds
 use entity exp3a
 use entity exp3b
 use entity fire7
 use entity fire8
-move entity exp3a by [0.100 ,0.000 ,0.000] over 0.100 seconds
-move entity exp3b by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity exp3a by [-64.000 ,0.000 ,0.000] over 0.100 seconds
+move entity exp3b by [-64.000 ,0.000 ,0.000] over 0.100 seconds
 wait 0.200 seconds
 use entity exp3a
 use entity exp3b
@@ -170,8 +170,8 @@ wait 0.200 seconds
 use entity exp4b
 use entity exp5b
 use entity pipecover
-rotate entity movepipe1 to [0.200 ,0.000 ,0.000] over 0.200 seconds
-rotate entity movepipe2 to [0.200 ,0.000 ,0.000] over 0.200 seconds
+rotate entity movepipe1 to [3.000 ,0.000 ,8.000] over 0.200 seconds
+rotate entity movepipe2 to [1.000 ,0.000 ,-8.000] over 0.200 seconds
 wait 1.500 seconds
 use entity fire1
 use entity fire2

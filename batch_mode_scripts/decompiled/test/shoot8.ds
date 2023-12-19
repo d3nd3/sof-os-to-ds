@@ -46,7 +46,7 @@ use entity guy11
 use entity guy12
 use entity guy13
 use entity guy14
-label lab_00001
+label lab_1
 animate entity guy11 performing action CCH_F_FWD_S_2 repeating for 5 times targeting entity me
 animate entity guy12 performing action CCH_F_FWD_S_2 repeating for 5 times targeting entity me
 animate entity guy13 performing action CCH_F_FWD_S_2 repeating for 5 times targeting entity me

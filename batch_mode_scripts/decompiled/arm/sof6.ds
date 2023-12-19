@@ -42,7 +42,7 @@ sam = find entity with targetname "sam"
 lockeddoor = find entity with scripttarget "lockeddoor"
 fakedoor = find entity with targetname "fakedoor"
 joe = find entity with targetname "joe"
-label lab_00002
+label lab_1
 sam.health = 9999
 if count2 == 1
 wait 3 seconds
@@ -110,5 +110,5 @@ animate entity sam performing action SCRIPT_RELEASE
 exit
 endif
 suspend
-goto lab_00002
+goto lab_00001
 exit

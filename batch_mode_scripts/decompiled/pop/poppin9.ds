@@ -43,7 +43,7 @@ use entity man66
 use entity man77
 use entity man88
 use entity man99
-label lab_00001
+label lab_1
 sneak = get entity activator
 animate entity man66 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop times targeting entity sneak kill nulltarget HEAD
 animate entity man77 performing action STD_FAUTOSWEEP_N_PM_A repeating for pop times targeting entity sneak kill nulltarget HEAD

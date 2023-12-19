@@ -63,7 +63,7 @@ use entity doortrigger
 animate entity pusher performing action STD_EPUSHCRATE_N_N_N repeating for pop1 times targeting entity sneak signaling sig1
 wait for all clearing sig1
 animate entity pusher performing action SCRIPT_RELEASE
-move entity door1 by [0.000 ,0.000 ,0.000] at 10 speed
+move entity door1 by [64.000 ,0.000 ,0.000] at 10 speed
 wait 3.500 seconds
 use entity door1
 use entity camera

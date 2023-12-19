@@ -71,7 +71,7 @@ animate entity twf performing action SCRIPT_RELEASE
 wait 0.200 seconds
 twa.health += 15
 twb.health += 15
-label lab_00003
+label lab_2
 tank3.health += 15
 jo = get entity activator
 animate entity twa performing action CCH_F_FWD_L_2 targeting entity jo
@@ -92,7 +92,9 @@ animate entity twb performing action CCH_F_FWD_L_2 targeting entity jo
 if twa.health < 0
 if twb.health < 0
 if tank3.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 wait 0.100 seconds
 animate entity twa performing action CCH_F_FWD_L_2 targeting entity jo
@@ -101,8 +103,8 @@ suspend
 jo = get entity activator
 animate entity twa performing action CCH_F_FWD_L_2 targeting entity jo
 animate entity twb performing action CCH_F_FWD_L_2 targeting entity jo
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 use entity g2
 remove entity g2
 exit

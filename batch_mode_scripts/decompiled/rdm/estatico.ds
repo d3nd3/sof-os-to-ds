@@ -36,10 +36,10 @@ sneak = find entity player
 use entity estatico
 estatico.health = 2500
 health = estatico.health
-label lab_00003
+label lab_2
 health = estatico.health
 if health == 0
-goto lab_00002
+goto lab_00001
 endif
 reset ai for entity estatico
 wait 3 seconds
@@ -47,6 +47,6 @@ animate entity estatico performing action STD_XROLLTOCCH_FWD_A_A targeting entit
 animate entity estatico performing action SCRIPT_RELEASE
 wait for all clearing sig1
 wait 0.100 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

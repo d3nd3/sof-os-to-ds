@@ -49,7 +49,7 @@ tablebreak = find entity with targetname "tablebreak"
 ninja1 = find entity with targetname "ninja1"
 ninja2 = find entity with targetname "ninja2"
 counterboy = find entity with targetname "counterboy"
-on player1.health <= 0 goto lab_00001
+on player1.health <= 0 goto lab_1
 use entity sushishooter
 use entity ventbreak
 use entity barshooter
@@ -82,5 +82,5 @@ animate entity ninja1 performing action SCRIPT_RELEASE
 animate entity ninja2 performing action SCRIPT_RELEASE
 wait 3.750 seconds
 animate entity counterboy performing action SCRIPT_RELEASE
-label lab_00001
+label lab_1
 exit

@@ -49,7 +49,7 @@ t92.health += 50
 t93.health += 50
 t94.health += 50
 wait 0.100 seconds
-label lab_00007
+label lab_4
 jo = get entity activator
 reset ai for entity t91
 reset ai for entity t92
@@ -64,21 +64,24 @@ animate entity t94 performing action STD_F_FWD_R_2 targeting entity jo kill null
 animate entity t92 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget GROIN
 animate entity t93 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget GUT
 if a == 6
-goto lab_00002
+goto lab_00001
 endif
 if a == 9
-goto lab_00004
+goto lab_00002
 endif
 if t91.health <= 0
 if t92.health <= 0
 if t93.health <= 0
 if t94.health <= 0
-goto lab_00006
+goto lab_00003
+endif
+endif
+endif
 endif
 suspend
 a += 1
-goto lab_00007
-label lab_00002
+goto lab_00004
+label lab_1
 animate entity t91 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity t94 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity t92 performing action STD_F_FWD_R_2 targeting entity jo
@@ -88,8 +91,8 @@ animate entity t91 performing action STD_F_FWD_R_2 targeting entity jo kill null
 animate entity t94 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity t92 performing action STD_F_FWD_R_2 targeting entity jo
 suspend
-goto lab_00007
-label lab_00004
+goto lab_00004
+label lab_2
 animate entity t91 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity t94 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity t93 performing action STD_F_FWD_R_2 targeting entity jo
@@ -99,8 +102,8 @@ animate entity t91 performing action STD_F_FWD_R_2 targeting entity jo kill null
 animate entity t94 performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity t93 performing action STD_F_FWD_R_2 targeting entity jo
 suspend
-goto lab_00007
-label lab_00006
+goto lab_00004
+label lab_3
 reset ai for entity t91
 reset ai for entity t92
 reset ai for entity t93

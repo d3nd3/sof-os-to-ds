@@ -38,13 +38,13 @@ cltanksmoke = find entity with targetname "cltanksmoke"
 boom = random from 2 to 15
 use entity cltanksmoke
 count = 7
-label lab_00002
+label lab_1
 if count > 0
 wait boom seconds
 use entity exp7
 wait boom seconds
 use entity exp8
 count = count - 1
-goto lab_00002
+goto lab_00001
 endif
 exit

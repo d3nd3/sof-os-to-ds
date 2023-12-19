@@ -29,7 +29,7 @@ field int "health"
 global int b
 global int c
 
-label lab_00005
+label lab_2
 if b == 1
 b = 0
 endif
@@ -37,9 +37,9 @@ if b == 0
 b = 1
 endif
 if c == 1
-goto lab_00004
+goto lab_00001
 endif
 suspend
-goto lab_00005
-label lab_00004
+goto lab_00002
+label lab_1
 exit

@@ -34,15 +34,15 @@ local float prout
 yop = find entity with targetname "yop"
 use entity yop
 yop.health += 80
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity yop performing action STD_F_FWD_S_2 targeting entity jo
 wait 0.300 seconds
 suspend
 if yop.health <= 0
-goto lab_00002
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity yop performing action SCRIPT_RELEASE
 exit

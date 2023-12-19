@@ -41,7 +41,7 @@ aster.health += 80
 bster.health += 80
 cster.health += 80
 suspend
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity aster performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity bster performing action STD_F_FWD_S_2 targeting entity jo kill nulltarget HEAD
@@ -50,11 +50,13 @@ wait 0.200 seconds
 if aster.health < 0
 if bster.health < 0
 if cster.health < 0
-goto lab_00002
+goto lab_00001
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity aster performing action SCRIPT_RELEASE
 animate entity bster performing action SCRIPT_RELEASE
 animate entity cster performing action SCRIPT_RELEASE

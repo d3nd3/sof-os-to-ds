@@ -70,9 +70,9 @@ animate entity killthemninja1 performing action STD_ININJA_N_P_N signaling sig1 
 animate entity killthemninja2 performing action STD_ININJA_N_P_N signaling sig2 holding for 1.800
 wait for all clearing sig1,sig2
 wait 1.200 seconds
-rotate entity killthemninja2 by [0.000 ,0.000 ,0.000]
+rotate entity killthemninja2 by [0.000 ,90.000 ,0.000]
 animate entity killthemninja2 performing action STD_XHANDSPRING_FWD_A_N
-rotate entity killthemninja1 by [0.000 ,0.000 ,0.000]
+rotate entity killthemninja1 by [0.000 ,-90.000 ,0.000]
 animate entity killthemninja1 performing action STD_JTHROWSTAR_FWD_A_N
 wait 0.900 seconds
 use entity salutedr1

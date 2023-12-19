@@ -60,11 +60,11 @@ print 30221
 animate entity irq2a_endjohn performing action STD_RGUNUP_N_P_2 by moving [80.000 ,0.000 ,0.000]
 animate entity irq2a_endjohn performing action STD_RGUNUP_N_P_2 by moving [68.000 ,56.000 ,0.000]
 animate entity irq2a_endjohn performing action STD_RGUNUP_N_P_2 by moving [0.000 ,32.000 ,0.000] signaling sig
-move entity irq2a_endcamnull by [0.000 ,0.000 ,0.000] at 170 speed signaling camsig
+move entity irq2a_endcamnull by [80.000 ,0.000 ,0.000] at 170 speed signaling camsig
 wait for all clearing camsig
-move entity irq2a_endcamnull by [0.000 ,0.000 ,0.000] at 120 speed signaling camsig
+move entity irq2a_endcamnull by [68.000 ,56.000 ,0.000] at 120 speed signaling camsig
 wait for all clearing camsig
-move entity irq2a_endcamnull by [0.000 ,0.000 ,0.000] at 80 speed signaling camsig
+move entity irq2a_endcamnull by [0.000 ,65.000 ,0.000] at 80 speed signaling camsig
 wait for all clearing camsig
 wait for all clearing sig
 animate entity irq2a_endjohn showing emotion EMOTION_TALK holding for 2.000
@@ -74,7 +74,7 @@ wait for all clearing sig
 play sound "cin/irq2a/c32d2.adp" for entity irq2a_endcam on channel CHAN_AUTO at volume 0.900
 print 30222
 animate entity irq2a_endhawk performing action STD_XLADDER_UP_A_A repeating for 130 times
-move entity irq2a_endhawk by [0.000 ,0.000 ,0.000] at 52 speed signaling sig
+move entity irq2a_endhawk by [0.000 ,0.000 ,128.000] at 52 speed signaling sig
 use entity irq2a_fadeout
 wait for all clearing sig
 setcvar cvar "menu_nextmap" to "irq3a"

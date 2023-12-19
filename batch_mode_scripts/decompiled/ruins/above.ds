@@ -35,16 +35,16 @@ use entity abov
 animate entity abov performing action STD_XROLL_RT_A_A
 wait 0.800 seconds
 abov.health += 100
-label lab_00003
+label lab_2
 suspend
 jo = get entity activator
 if abov.health < 10
-goto lab_00002
+goto lab_00001
 endif
 animate entity abov performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 suspend
 wait 0.200 seconds
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 animate entity abov performing action SCRIPT_RELEASE
 exit

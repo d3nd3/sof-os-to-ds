@@ -112,8 +112,8 @@ use entity fade
 use entity guard1
 wait 1 seconds
 print 25609
-move entity null4 by [0.000 ,0.000 ,0.000] at 30 speed
-move entity cam4 by [0.000 ,0.000 ,0.000] at 30 speed
+move entity null4 by [-96.000 ,-64.000 ,0.000] at 30 speed
+move entity cam4 by [-124.000 ,-64.000 ,0.000] at 30 speed
 play sound "impact/whip/swing.wav" for entity guard1 at volume 0.900
 wait 0.500 seconds
 play sound "impact/whip/hit.wav" for entity guard1 at volume 0.900
@@ -132,8 +132,8 @@ use entity sabre
 use entity guard2
 use entity wom2
 animate entity wom2 performing action CCH_XCCHCOWER_N_A_N holding for 999.000
-move entity null4 by [0.000 ,0.000 ,0.000] at 30 speed
-move entity cam4 by [0.000 ,0.000 ,0.000] at 30 speed
+move entity null4 by [128.000 ,70.000 ,20.000] at 30 speed
+move entity cam4 by [30.000 ,64.000 ,20.000] at 30 speed
 play sound "impact/whip/swing.wav" for entity guard1 at volume 0.900
 wait 0.500 seconds
 play sound "impact/whip/hit.wav" for entity guard1 at volume 0.900
@@ -159,14 +159,14 @@ unload sound "enemy/dth/fem/hit3.wav"
 unload sound "enemy/dth/fem/writhe7.wav"
 unload sound "enemy/dth/fem/burn1.wav"
 play sound "cin/sud3/c49d1.adp" for entity sabre at volume 0.500
-move entity null4 by [0.000 ,0.000 ,0.000] at 20 speed
-move entity cam4 by [0.000 ,0.000 ,0.000] at 20 speed
+move entity null4 by [100.000 ,0.000 ,0.000] at 20 speed
+move entity cam4 by [100.000 ,30.000 ,0.000] at 20 speed
 wait 2 seconds
 use entity cam4
 use entity cam5
 wait 2 seconds
-move entity null5 by [0.000 ,0.000 ,0.000] at 10 speed
-move entity cam5 by [0.000 ,0.000 ,0.000] at 20 speed
+move entity null5 by [0.000 ,0.000 ,-30.000] at 10 speed
+move entity cam5 by [-50.000 ,100.000 ,0.000] at 20 speed
 play sound "cin/nyc3/S26D2.adp" for entity wom2 at volume 0.900
 wait 1 seconds
 play sound "Speech/TSR1/SKN/BT9-4.adp" for entity sabre at volume 0.900
@@ -183,7 +183,7 @@ animate entity wom2 performing action STD_SHEAD_2FRNT_N_N
 wait 2 seconds
 play sound "cin/jpn2/c54d3.adp" for entity sabre at volume 0.900
 wait 1 seconds
-move entity cam5 by [0.000 ,0.000 ,0.000] at 20 speed
+move entity cam5 by [50.000 ,-50.000 ,0.000] at 20 speed
 print 25603
 wait 0.500 seconds
 animate entity guard2 performing action STD_WFAST_N_A_N by moving to [-2207.000 ,-2354.000 ,0.000] signaling sig1
@@ -199,26 +199,26 @@ use entity guard3
 wait 0.500 seconds
 animate entity guard2 performing action STD_WFAST_N_A_N by moving to [-1455.000 ,-2170.000 ,0.000]
 print 25604
-move entity null6 by [0.000 ,0.000 ,0.000] at 60 speed signaling sig1
+move entity null6 by [128.000 ,128.000 ,0.000] at 60 speed signaling sig1
 wait for all clearing sig1
 use entity wom3
 use entity wom4
 use entity wom5
-move entity wom1 to [0.000 ,0.000 ,0.000]
+move entity wom1 to [-1508.000 ,-2460.000 ,0.000]
 use entity guard4
 animate entity wom5 performing action STD_XAFRAIDSHAKE_N_N_N holding for 999.000
 animate entity wom3 performing action STD_XAFRAIDSHAKE_N_N_N holding for 999.000
 animate entity wom4 performing action CCH_XCCHCOWER_N_A_N holding for 999.000
-move entity null6 to [0.000 ,0.000 ,0.000] at 70 speed
-move entity cam6 to [0.000 ,0.000 ,0.000] at 75 speed signaling sig1
+move entity null6 to [-1454.000 ,-2175.000 ,200.000] at 70 speed
+move entity cam6 to [-1454.000 ,-2100.000 ,200.000] at 75 speed signaling sig1
 wait for all clearing sig1
 print 25602
-move entity null6 to [0.000 ,0.000 ,0.000] at 40 speed
-move entity cam6 to [0.000 ,0.000 ,0.000] at 70 speed
+move entity null6 to [-1454.000 ,-2390.000 ,200.000] at 40 speed
+move entity cam6 to [-1454.000 ,-2175.000 ,200.000] at 70 speed
 use entity door2
 animate entity guard2 performing action STD_WFAST_N_A_N by moving to [-1455.000 ,-2200.000 ,0.000] signaling sig1
 wait for all clearing sig1
-move entity cam6 by [0.000 ,0.000 ,0.000] at 10 speed signaling sig1
+move entity cam6 by [0.000 ,-70.000 ,0.000] at 10 speed signaling sig1
 wait for all clearing sig1
 remove entity guard2
 play sound "enemy/dth/fem/writhe1.wav" for entity wom1 at volume 0.900
@@ -232,7 +232,7 @@ use entity cam7
 print 25606
 wait 1 seconds
 play sound "cin/ger3/laugh.adp" for entity sabre at volume 0.900
-move entity cam7 by [0.000 ,0.000 ,0.000] at 10 speed signaling sig1
+move entity cam7 by [30.000 ,0.000 ,0.000] at 10 speed signaling sig1
 wait for all clearing sig1
 print 25607
 wait 2 seconds

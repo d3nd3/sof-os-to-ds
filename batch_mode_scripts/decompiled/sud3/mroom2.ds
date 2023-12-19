@@ -84,7 +84,7 @@ doormess = find entity with targetname "missmessage"
 door = find entity with targetname "missdoor"
 exdoor = find entity with targetname "missdoorex"
 gage2 = find entity with targetname "missgage2"
-move entity gage2 by [0.000 ,0.000 ,0.000] over 2 seconds
+move entity gage2 by [0.000 ,0.000 ,38.000] over 2 seconds
 wait 2 seconds
 use entity blast
 animate entity guy1 performing action STD_R_N_PK_N by moving [0.000 ,104.000 ,0.000]

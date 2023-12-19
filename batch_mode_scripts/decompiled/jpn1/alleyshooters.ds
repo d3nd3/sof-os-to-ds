@@ -43,21 +43,21 @@ wait 0.100 seconds
 animate entity alleymcdead performing action STD_XDONTSHOOT_N_A_N holding for 5.000
 animate entity alleyshooter1 performing action STD_F_FWD_P_2 signaling sig1
 animate entity alleyshooter2 performing action STD_F_FWD_P_2 signaling sig2
-on alleyshooter1.health < 100 goto lab_00001
-on alleyshooter2.health < 100 goto lab_00001
+on alleyshooter1.health < 100 goto lab_1
+on alleyshooter2.health < 100 goto lab_1
 wait for all clearing sig1,sig2
 animate entity alleyshooter1 performing action STD_F_FWD_P_2 signaling sig1
 animate entity alleyshooter2 performing action STD_F_FWD_P_2 signaling sig2
-on alleyshooter1.health < 100 goto lab_00001
-on alleyshooter2.health < 100 goto lab_00001
+on alleyshooter1.health < 100 goto lab_1
+on alleyshooter2.health < 100 goto lab_1
 wait for all clearing sig1,sig2
 animate entity alleyshooter1 performing action STD_F_FWD_P_2 targeting entity alleymcdead kill signaling sig1
 animate entity alleyshooter2 performing action STD_F_FWD_P_2 targeting entity alleymcdead signaling sig2
-on alleyshooter1.health < 100 goto lab_00001
-on alleyshooter2.health < 100 goto lab_00001
+on alleyshooter1.health < 100 goto lab_1
+on alleyshooter2.health < 100 goto lab_1
 wait for all clearing sig1,sig2
 goto lab_00001
-label lab_00001
+label lab_1
 animate entity alleyshooter1 performing action SCRIPT_RELEASE
 animate entity alleyshooter2 performing action SCRIPT_RELEASE
 animate entity alleymcdead performing action SCRIPT_RELEASE

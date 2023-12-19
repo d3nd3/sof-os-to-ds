@@ -142,10 +142,10 @@ stn1exp1.movetype = MOVETYPE_NOCLIP
 wait 1 seconds
 use entity stn1ex1
 use entity stn1exp1
-move entity stn1exp1 by [0.000 ,0.000 ,0.000] over 1 seconds
+move entity stn1exp1 by [64.000 ,0.000 ,0.000] over 1 seconds
 wait 1 seconds
 use entity stn1ex2
-move entity stn1exp1 by [0.500 ,0.000 ,0.000] over 0.500 seconds
+move entity stn1exp1 by [64.000 ,0.000 ,0.000] over 0.500 seconds
 use entity stn1exp1
 wait 0.500 seconds
 use entity stn1ex3
@@ -154,7 +154,7 @@ wait 0.500 seconds
 wait 1 seconds
 use entity spinner
 wait 0.100 seconds
-rotate entity spinner to [0.000 ,0.000 ,0.000] over 4 seconds
+rotate entity spinner to [0.000 ,400.000 ,0.000] over 4 seconds
 play sound "Impact/Metal/Long1.adp" for entity stn1snd01 on channel CHAN_AUTO at volume 0.900
 use entity pipex2
 use entity originalpipe
@@ -175,32 +175,32 @@ bpumpex.movetype = MOVETYPE_NOCLIP
 use entity opumpbottom
 use entity bpumpbottom
 use entity bpumpex
-move entity oilflood by [0.000 ,0.000 ,0.000] over 1 seconds
-move entity pumpbody by [0.400 ,0.000 ,0.000] over 0.400 seconds
+move entity oilflood by [0.000 ,0.000 ,64.000] over 1 seconds
+move entity pumpbody by [0.000 ,0.000 ,-48.000] over 0.400 seconds
 wait 0.200 seconds
 use entity bpumpex
-rotate entity pumpbody to [0.400 ,0.000 ,0.000] over 0.400 seconds
+rotate entity pumpbody to [25.000 ,0.000 ,0.000] over 0.400 seconds
 moverotate entity spinnercase from file "irq3b_spinnercase.rof"
 moverotate entity glass1 from file "irq3b_spinglass1.rof"
 moverotate entity glass2 from file "irq3b_spinglass2.rof"
 wait 0.300 seconds
-move entity bpumpex by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity bpumpex by [0.000 ,96.000 ,120.000] over 0.200 seconds
 use entity ofence
 use entity bfence
 use entity fire
 wait 0.100 seconds
-rotate entity pumpbody to [0.100 ,0.000 ,0.000] over 0.100 seconds
+rotate entity pumpbody to [18.000 ,0.000 ,0.000] over 0.100 seconds
 wait 0.100 seconds
-rotate entity pumpbody to [0.100 ,0.000 ,0.000] over 0.100 seconds
+rotate entity pumpbody to [25.000 ,0.000 ,0.000] over 0.100 seconds
 wait 0.800 seconds
 use entity topplesilo
 use entity glass1
 use entity bpumpex
-move entity bpumpex by [0.200 ,0.000 ,0.000] over 0.200 seconds
+move entity bpumpex by [0.000 ,0.000 ,64.000] over 0.200 seconds
 wait 0.400 seconds
 use entity glass2
 use entity bpumpex
-move entity bpumpex by [0.100 ,0.000 ,0.000] over 0.100 seconds
+move entity bpumpex by [0.000 ,0.000 ,-128.000] over 0.100 seconds
 wait 0.200 seconds
 use entity bpumpex
 wait 0.500 seconds

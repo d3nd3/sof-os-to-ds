@@ -34,7 +34,7 @@ local entity fader
 elev = find entity with targetname "elev"
 fader = find entity with targetname "fader"
 trig2leave = find entity with scripttarget "trig2leave"
-label lab_00002
+label lab_1
 if allowtoleave == 1
 allowtoleave = 0
 use entity fader
@@ -44,5 +44,5 @@ setcvar cvar "menu_nextmap" to "ger2"
 run console command "intermission blankscreen"
 endif
 suspend
-goto lab_00002
+goto lab_00001
 exit

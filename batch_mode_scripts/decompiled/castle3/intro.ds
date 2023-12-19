@@ -48,8 +48,8 @@ introcam1.movetype = MOVETYPE_NOCLIP
 enable cinematics
 use entity introcam1
 wait 0.600 seconds
-move entity introcam1 by [0.000 ,0.000 ,0.000] over 4 seconds
-move entity introcamtarget1 by [0.000 ,0.000 ,0.000] over 4 seconds
+move entity introcam1 by [0.000 ,64.000 ,0.000] over 4 seconds
+move entity introcamtarget1 by [0.000 ,0.000 ,-240.000] over 4 seconds
 wait 0.100 seconds
 animate entity introdecker performing action STD_WNORMAL_N_PK_A by moving [134.000 ,0.000 ,0.000] signaling sig1
 animate entity introthug1 performing action STD_WPATROL_N_MRS_2 by moving [134.000 ,0.000 ,0.000] signaling sig2
@@ -63,7 +63,7 @@ use entity introcam1
 introcam2.movetype = MOVETYPE_NOCLIP
 use entity introcam2
 wait 0.100 seconds
-move entity introcam2 by [5.100 ,0.000 ,0.000] over 5.100 seconds
+move entity introcam2 by [0.000 ,-124.000 ,-16.000] over 5.100 seconds
 play sound "cin/ger3/c74d2.adp" for entity introdecker on channel CHAN_VOICE at volume 0.900
 print 26113
 animate entity introdecker performing action STD_WNORMAL_N_PK_A by moving [0.000 ,-288.000 ,0.000]

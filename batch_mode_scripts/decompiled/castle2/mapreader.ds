@@ -35,7 +35,7 @@ condition = 0
 mapreader.movetype = MOVETYPE_NOCLIP
 animate entity mapreader performing action STD_WNORMAL_N_PK_A by moving [0.000 ,-32.000 ,0.000] signaling sig
 wait for all clearing sig
-label lab_00003
+label lab_2
 animate entity mapreader performing action STD_ILEAN_N_P_N
 wait 1.800 seconds
 if condition == 1
@@ -44,8 +44,8 @@ wait for all clearing sig
 mapreader.movetype = MOVETYPE_STEP
 animate entity mapreader performing action SCRIPT_RELEASE
 wait 1 seconds
-goto lab_00002
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit

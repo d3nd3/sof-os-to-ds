@@ -46,7 +46,7 @@ buchb.health += 50
 buchc.health += 50
 buchd.health += 50
 wait 0.100 seconds
-label lab_00003
+label lab_2
 jo = get entity activator
 reset ai for entity bucha
 reset ai for entity buchb
@@ -67,11 +67,14 @@ if bucha.health <= 0
 if buchb.health <= 0
 if buchc.health <= 0
 if buchd.health <= 0
-goto lab_00002
+goto lab_00001
+endif
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 reset ai for entity bucha
 reset ai for entity buchb
 reset ai for entity buchc

@@ -50,21 +50,21 @@ metalrig.movetype = MOVETYPE_NOCLIP
 metaltank1.movetype = MOVETYPE_NOCLIP
 metaltank2.movetype = MOVETYPE_NOCLIP
 use entity tanksnd
-move entity metalclip by [0.000 ,0.000 ,0.000] at 80 speed
-move entity tanksnd by [0.000 ,0.000 ,0.000] at 80 speed
-move entity metalrig by [0.000 ,0.000 ,0.000] at 80 speed
-move entity metaltank1 by [0.000 ,0.000 ,0.000] at 80 speed
-move entity metaltank2 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig
+move entity metalclip by [0.000 ,-104.000 ,0.000] at 80 speed
+move entity tanksnd by [0.000 ,-104.000 ,0.000] at 80 speed
+move entity metalrig by [0.000 ,-104.000 ,0.000] at 80 speed
+move entity metaltank1 by [0.000 ,-104.000 ,0.000] at 80 speed
+move entity metaltank2 by [0.000 ,-104.000 ,0.000] at 80 speed signaling sig
 wait for all clearing sig
 metalcrate.movetype = MOVETYPE_NOCLIP
-move entity metalcrate by [0.000 ,0.000 ,0.000] at 20 speed signaling sig
+move entity metalcrate by [16.000 ,-8.000 ,0.000] at 20 speed signaling sig
 wait for all clearing sig
 use entity metalcrate
-move entity metalclip by [0.000 ,0.000 ,0.000] at 80 speed
-move entity tanksnd by [0.000 ,0.000 ,0.000] at 80 speed
-move entity metalrig by [0.000 ,0.000 ,0.000] at 80 speed
-move entity metaltank1 by [0.000 ,0.000 ,0.000] at 80 speed
-move entity metaltank2 by [0.000 ,0.000 ,0.000] at 80 speed signaling sig
+move entity metalclip by [0.000 ,-296.000 ,0.000] at 80 speed
+move entity tanksnd by [0.000 ,-296.000 ,0.000] at 80 speed
+move entity metalrig by [0.000 ,-296.000 ,0.000] at 80 speed
+move entity metaltank1 by [0.000 ,-296.000 ,0.000] at 80 speed
+move entity metaltank2 by [0.000 ,-296.000 ,0.000] at 80 speed signaling sig
 wait for all clearing sig
 remove entity tanksnd
 use entity irq2b_oiltanktrigger

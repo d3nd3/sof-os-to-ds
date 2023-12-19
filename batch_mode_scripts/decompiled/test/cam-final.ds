@@ -64,8 +64,8 @@ move entity null22 by [0.000 ,0.000 ,0.000] at 35 speed
 wait 5 seconds
 use entity cam33
 print 25607
-move entity cam33 by [0.000 ,0.000 ,0.000] at 30 speed
-move entity null33 by [0.000 ,0.000 ,0.000] at 30 speed
+move entity cam33 by [0.000 ,0.000 ,60.000] at 30 speed
+move entity null33 by [0.000 ,0.000 ,60.000] at 30 speed
 wait 6 seconds
 use entity cam44
 print 25608

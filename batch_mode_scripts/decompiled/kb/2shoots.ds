@@ -40,7 +40,7 @@ sneak = get entity activator
 use entity man1
 use entity man2
 use entity man3
-label lab_00001
+label lab_1
 sneak = get entity activator
 animate entity man1 performing action STD_F_FWD_P_2 repeating for pop times targeting entity sneak
 animate entity man2 performing action STD_F_FWD_P_2 repeating for 2 times targeting entity sneak

@@ -42,16 +42,16 @@ wait 0.800 seconds
 animate entity xedd performing action SCRIPT_RELEASE
 xedd.health += 80
 xfdd.health += 80
-label lab_00003
+label lab_2
 reset ai for entity xfdd
 jo = get entity activator
 animate entity xfdd performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 if xfdd.health < 0
-goto lab_00002
+goto lab_00001
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 wait 0.200 seconds
 animate entity xfdd performing action SCRIPT_RELEASE
 exit

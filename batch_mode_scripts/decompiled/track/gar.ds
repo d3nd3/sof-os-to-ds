@@ -51,7 +51,7 @@ garb.health += 50
 garc.health += 50
 gard.health += 50
 wait 0.100 seconds
-label lab_00007
+label lab_4
 jo = get entity activator
 reset ai for entity gara
 reset ai for entity garb
@@ -68,19 +68,21 @@ animate entity gard performing action STD_F_FWD_R_2 targeting entity jo kill nul
 animate entity garb performing action STD_F_FWD_R_2 targeting entity jo
 animate entity garc performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget GUT
 if a == 6
-goto lab_00002
+goto lab_00001
 endif
 if a == 9
-goto lab_00004
+goto lab_00002
 endif
 if gara.health <= 0
 if garb.health <= 0
 if garc.health <= 0
-goto lab_00006
+goto lab_00003
+endif
+endif
 endif
 suspend
-goto lab_00007
-label lab_00002
+goto lab_00004
+label lab_1
 animate entity gara performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity gard performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity garb performing action STD_F_FWD_R_2 targeting entity jo
@@ -91,8 +93,8 @@ animate entity gara performing action STD_F_FWD_R_2 targeting entity jo kill nul
 animate entity gard performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity garb performing action STD_F_FWD_R_2 targeting entity jo
 suspend
-goto lab_00007
-label lab_00004
+goto lab_00004
+label lab_2
 animate entity gara performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity gard performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity garc performing action STD_F_FWD_R_2 targeting entity jo
@@ -103,8 +105,8 @@ animate entity gara performing action STD_F_FWD_R_2 targeting entity jo kill nul
 animate entity gard performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 animate entity garc performing action STD_F_FWD_R_2 targeting entity jo
 suspend
-goto lab_00007
-label lab_00006
+goto lab_00004
+label lab_3
 reset ai for entity gara
 reset ai for entity garb
 reset ai for entity garc

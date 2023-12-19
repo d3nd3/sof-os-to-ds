@@ -40,7 +40,7 @@ keep_origin = macharmp.origin
 keep_angles = macharmp.angles
 keep_origin1 = macharmc.origin
 keep_angles1 = macharmc.angles
-label lab_00001
+label lab_1
 moverotate entity macharmp from file "ger3_macharmp.rof"
 moverotate entity macharmc from file "ger3_macharmc.rof" signaling sig
 wait for all clearing sig

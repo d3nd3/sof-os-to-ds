@@ -229,7 +229,7 @@ print 32264
 play sound "cin/kos1/c15d3.adp" for entity endklaboss at volume 0.900
 animate entity endklaboss performing action STD_IETALKPOSE_N_A_N holding for 0.400
 wait 2.600 seconds
-move entity endcam4 by [0.000 ,0.000 ,0.000] at 2 speed
+move entity endcam4 by [-16.000 ,-8.000 ,0.000] at 2 speed
 wait 3.000 seconds
 animate entity endjohn1 performing action STD_ETALKLKLT_TO_A_N
 animate entity endjohn1 showing emotion EMOTION_TALK holding for 0.400
@@ -278,8 +278,8 @@ use entity endcam7
 wait 0.100 seconds
 use entity endjohn2
 use entity endhawk2
-move entity endcam7 by [0.000 ,0.000 ,0.000] at 50 speed signaling sig1
-move entity endcam7n by [0.000 ,0.000 ,0.000] at 50 speed signaling sig2
+move entity endcam7 by [-64.000 ,152.000 ,0.000] at 50 speed signaling sig1
+move entity endcam7n by [-64.000 ,152.000 ,0.000] at 50 speed signaling sig2
 play sound "cin/kos1/c15d8.adp" for entity endjohn2 at volume 0.900
 print 32269
 wait 1 seconds

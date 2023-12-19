@@ -1,0 +1,227 @@
+// template file for common directory
+
+#include "./common/header.ds"
+
+
+// Declare the variables
+
+	parameter vector location //how far will the elevator move
+	parameter vector newlocation //how far will the elevator move
+	parameter int upordown //defines which floor the elevator is on.  Up = 0
+		
+	parameter entity leftupper //Upper outside door
+	parameter entity rightupper //Upper outside door
+	parameter entity leftlower //Lower outside door
+	parameter entity rightlower //Lower outside door
+
+	parameter entity elebody //The actual elevator
+	parameter entity eledoorleft //The inside elevator door
+	parameter entity eledoorright //The inside elevator door
+
+	local int done = 0 //Shows when the elevator has stopped moving so the doors can open
+	local int currentfloor = 0 //this tells the program which floor the elevator is on.  Up = 0
+
+/* !!!!!WARNING!!!! with currentfloor set to 0, it assumes that the elevator is at its extended
+	position.  If you want the elevator to be at the lower floor, set currentfloor = 1 */
+
+//We need to check which floor it is on first... remember that up = 0
+
+	if upordown = currentfloor
+		if upordown = 1
+			move entity leftlower by [0,48,0] at 100 speed //open the outside doors
+			move entity rightlower by [0,-48,0] at 100 speed
+
+				wait .5 seconds		
+
+			move entity eledoorleft by [0,48,0] at 100 speed // open the inside doors
+			move entity eledoorright by [0,-48,0] at 100 speed signaling done
+			wait for any clearing done	
+	
+				wait 2 seconds
+
+			move entity eledoorleft by [0,-48,0] at 100 speed // close the inside doors
+			move entity eledoorright by [0,48,0] at 100 speed 
+
+				wait .5 seconds
+
+			move entity leftlower by [0,48,0] at 100 speed //close the outside doors
+			move entity rightlower by [0,-48,0] at 100 speed signaling done
+			wait for any clearing done
+			
+			move entity eledoorleft by location at 100 speed //move the elevator
+			move entity eledoorright by location at 100 speed
+			move entity elebody by location at 100 speed signaling done
+			wait for any clearing done
+
+				wait .5 seconds
+
+			move entity eledoorleft by [0,48,0] at 100 speed // open the inside doors
+			move entity eledoorright by [0,-48,0] at 100 speed 
+
+			move entity leftupper by [0,48,0] at 100 speed //open the outside doors
+			move entity rightupper by [0,-48,0] at 100 speed signaling done
+			wait for any clearing done
+					
+				wait 2 seconds
+	
+			move entity leftupper by [0,-48,0] at 100 speed //close the outside doors
+			move entity rightupper by [0,48,0] at 100 speed
+
+				wait .5 seconds		
+
+			move entity eledoorleft by [0,-48,0] at 100 speed // close the inside doors
+			move entity eledoorright by [0,48,0] at 100 speed signaling done
+			wait for any clearing done	
+
+		else
+			move entity leftupper by [0,48,0] at 100 speed //open the outside doors
+			move entity rightupper by [0,-48,0] at 100 speed
+
+				wait .5 seconds		
+
+			move entity eledoorleft by [0,48,0] at 100 speed // open the inside doors
+			move entity eledoorright by [0,-48,0] at 100 speed signaling done
+			wait for any clearing done	
+	
+				wait 2 seconds
+
+			move entity eledoorleft by [0,-48,0] at 100 speed // close the inside doors
+			move entity eledoorright by [0,48,0] at 100 speed 
+
+				wait .5 seconds
+
+			move entity leftupper by [0,48,0] at 100 speed //close the outside doors
+			move entity rightupper by [0,-48,0] at 100 speed signaling done
+			wait for any clearing done
+			
+			move entity eledoorleft by location at 100 speed //move the elevator
+			move entity eledoorright by location at 100 speed
+			move entity elebody by location at 100 speed signaling done
+			wait for any clearing done
+
+				wait .5 seconds
+
+			move entity eledoorleft by [0,48,0] at 100 speed // open the inside doors
+			move entity eledoorright by [0,-48,0] at 100 speed 
+
+			move entity leftlower by [0,48,0] at 100 speed //open the outside doors
+			move entity rightlower by [0,-48,0] at 100 speed signaling done
+			wait for any clearing done
+					
+				wait 2 seconds
+	
+			move entity leftlower by [0,-48,0] at 100 speed //close the outside doors
+			move entity rightlower by [0,48,0] at 100 speed
+
+				wait .5 seconds		
+
+			move entity eledoorleft by [0,-48,0] at 100 speed // close the inside doors
+			move entity eledoorright by [0,48,0] at 100 speed signaling done
+			wait for any clearing done	
+		endif
+
+		
+
+		
+			else 
+		
+	endif
+
+suspend
+		
+
+
+
+
+
+
+/*	if upordown = 0
+		move entity leftupper by [0,48,0] at 100 speed //open the outside doors
+		move entity rightupper by [0,-48,0] at 100 speed
+			wait .25 seconds
+
+			move entity eledoorleft by [0,48,0] at 100 speed // open the inside doors
+			move entity eledoorright by [0,-48,0] at 100 speed signaling done
+			wait for any clearing done
+			
+			wait 1 seconds
+			
+			move entity eledoorleft by [0,-48,0] at 100 speed // close the inside doors
+			move entity eledoorright by [0,48,0] at 100 speed 
+			wait .25 seconds
+
+				move entity leftupper by [0,48,0] at 100 speed //close the outside doors
+				move entity rightupper by [0,-48,0] at 100 speed signaling done
+				wait for any clearing done	
+			
+		else
+			move entity leftlower by [0,48,0] at 100 speed //open the outside doors
+			move entity rightlower by [0,-48,0] at 100 speed
+				wait .25 seconds
+	
+				move entity eledoorleft by [0,48,0] at 100 speed // open the inside doors
+				move entity eledoorright by [0,-48,0] at 100 speed signaling done
+				wait for any clearing done
+				
+				wait 1 seconds
+				
+				move entity eledoorleft by [0,-48,0] at 100 speed // close the inside doors
+				move entity eledoorright by [0,48,0] at 100 speed
+				wait .25 seconds
+
+					move entity leftlower by [0,48,0] at 100 speed //close the outside doors
+					move entity rightlower by [0,-48,0] at 100 speed signaling done
+		endif
+
+//move to the next level
+
+	move entity eledoorleft by newlocation at 200 speed
+	move entity eledoorright by newlocation at 200 speed
+	move entity elebody by newlocation at 200 speed signaling done
+	wait for any clearing done	
+
+
+//open the correct outside doors
+
+	if upordown = 1
+		move entity leftupper by [0,48,0] at 100 speed //open the outside doors
+		move entity rightupper by [0,-48,0] at 100 speed
+			wait .25 seconds
+
+			move entity eledoorleft by [0,48,0] at 100 speed // open the inside doors
+			move entity eledoorright by [0,-48,0] at 100 speed signaling done
+			wait for any clearing done
+
+			wait 1 seconds
+
+			move entity eledoorleft by [0,-48,0] at 100 speed // close the inside doors
+			move entity eledoorright by [0,48,0] at 100 speed 
+			wait .25 seconds
+
+				move entity leftupper by [0,48,0] at 100 speed //close the outside doors
+				move entity rightupper by [0,-48,0] at 100 speed signaling done
+				wait for any clearing done
+				
+			
+		else
+			move entity leftlower by [0,48,0] at 100 speed //open the outside doors
+			move entity rightlower by [0,-48,0] at 100 speed
+				wait .25 seconds
+	
+				move entity eledoorleft by [0,48,0] at 100 speed // open the inside doors
+				move entity eledoorright by [0,-48,0] at 100 speed signaling done
+				wait for any clearing done		
+	
+				wait 1 seconds
+
+				move entity eledoorleft by [0,-48,0] at 100 speed // close the inside doors
+				move entity eledoorright by [0,48,0] at 100 speed 
+				wait .25 seconds
+
+					move entity leftlower by [0,48,0] at 100 speed //close the outside doors
+					move entity rightlower by [0,-48,0] at 100 speed signaling done
+					wait for any clearing done
+	endif
+
+suspend */
+

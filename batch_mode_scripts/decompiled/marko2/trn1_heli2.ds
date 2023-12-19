@@ -72,8 +72,8 @@ helicopter entity helient 5
 wait for all clearing sig1
 helicopter entity helient 14
 wait for all clearing sig1
-rotate entity helient by [1.000 ,0.000 ,0.000] over 1.000 seconds signaling sig1
-move entity helient by [1.000 ,0.000 ,0.000] over 1.000 seconds signaling sig2
+rotate entity helient by [22.500 ,0.000 ,0.000] over 1.000 seconds signaling sig1
+move entity helient by [0.000 ,240.000 ,0.000] over 1.000 seconds signaling sig2
 wait for all clearing sig1,sig2
 use entity helient
 moverotate entity helient from file "zig_zag.rof" signaling sig1
@@ -93,17 +93,17 @@ wait for all clearing sig1
 helicopter entity helient 14
 wait for all clearing sig1
 helient.movetype = MOVETYPE_FLY
-label lab_00014
+label lab_4
 vTemp = player1.origin
 f1 = vTemp.x
 vTemp = helient.origin
 f2 = vTemp.x
 if nStrafes > 6
 nTemp = nStrafes
-label lab_00003
+label lab_1
 if nTemp >= 4
 nTemp -= 4
-goto lab_00003
+goto lab_00001
 endif
 if nTemp == 0
 helicopter entity helient 34
@@ -112,6 +112,8 @@ helicopter entity helient 14
 endif
 if bLeftSide == 1
 helicopter entity helient 14
+endif
+endif
 endif
 helicopter entity helient 40
 if bTriggeredCrates == 0
@@ -125,7 +127,7 @@ bTriggeredCrates = 1
 heliStartHealth = heliKillableHealth
 helicopter entity helient 37
 helicopter entity helient 38
-goto lab_00006
+goto lab_00002
 endif
 if f1 > f2
 fTemp = f1 - f2
@@ -146,6 +148,7 @@ wait for all clearing sig1
 helicopter entity helient 23
 wait for all clearing sig1
 endif
+endif
 if f1 <= f2
 fTemp = f2 - f1
 fTemp = fTemp + 300.000
@@ -164,12 +167,15 @@ helicopter entity helient 14
 wait for all clearing sig1
 helicopter entity helient 22
 wait for all clearing sig1
-endifendiflabel lab_00006
+endif
+endif
+label lab_2
 if innerCounter == nStrafesPerLoop
 if bTriggeredCrates == 1
-goto lab_00011
-vTemp = player1.origin
+goto lab_00003
 endif
+endif
+vTemp = player1.origin
 f1 = vTemp.z
 vTemp = helient.origin
 f2 = vTemp.z
@@ -180,60 +186,61 @@ helicopter entity helient 6
 if bLeftSide == 0
 helicopter entity helient 14
 wait for all clearing sig1
-if bLeftSide != 0
 endif
+if bLeftSide != 0
 helicopter entity helient 14
 wait for all clearing sig1
-helicopter entity helient 40
 endif
+helicopter entity helient 40
 wait for all clearing sig1
 innerCounter = innerCounter + 1
-goto lab_00014
+goto lab_00004
+label lab_3
 innerCounter = 0
-label lab_00011
 vTemp = player1.origin
 f2 = vTemp.x
 if f2 > 400
 bPlayerPassedHalfway = 1
 if 0 == bHeliHasRetreated
 bHeliHasRetreated = 2
-if f2 < 1000
 endif
+if f2 < 1000
 hidingCounter += 1
 if f2 > 700
 helicopter entity helient 5
 wait for all clearing sig1
 if hidingCounter > 2
 helicopter entity helient 24
-helicopter entity helient 34
 endif
+helicopter entity helient 34
 helicopter entity helient 14
 helicopter entity helient 34
 if hidingCounter > 2
 helicopter entity helient 25
+endif
 bLeftSide = 1
-endif
 helicopter entity helient 14
-goto lab_00020
-helicopter entity helient 5
+goto lab_00005
 endif
+helicopter entity helient 5
 wait for all clearing sig1
 if hidingCounter > 2
 helicopter entity helient 24
-helicopter entity helient 34
 endif
+helicopter entity helient 34
 helicopter entity helient 14
 helicopter entity helient 34
 if hidingCounter > 2
 helicopter entity helient 25
+endif
 bLeftSide = 0
-endif
 helicopter entity helient 14
+label lab_5
 helicopter entity helient 23
-label lab_00020
 wait for all clearing sig1
-vTemp = helient.origin
 endif
+endif
+vTemp = helient.origin
 f1 = vTemp.x
 if bLeftSide == 0
 if f1 > 2600
@@ -241,16 +248,16 @@ vTemp.x = 2600.000 - f1
 vTemp.y = 0.000
 vTemp.z = 100.000
 helicopter entity helient 6
-vTemp.x = vTemp.x + 100.000
 endif
+vTemp.x = vTemp.x + 100.000
 vTemp.y = fXaxis - 500.000
 if vTemp.z > 200
 vTemp.z = 200
+endif
 if vTemp.z < 0
-endif
 vTemp.z = 0
-helicopter entity helient 40
 endif
+helicopter entity helient 40
 helicopter entity helient 5
 helicopter entity helient 40
 helicopter entity helient 14
@@ -259,23 +266,23 @@ moverotate entity helient from file "u_turn_e.rof" signaling sig1
 wait for all clearing sig1
 helicopter entity helient 14
 bLeftSide = 1
-goto lab_00027
-if f1 < -2500
+goto lab_00006
 endif
+if f1 < -2500
 vTemp.x = -2500.000 - f1
 vTemp.y = 0.000
 vTemp.z = 100.000
 helicopter entity helient 6
-vTemp.x = vTemp.x - 100.000
 endif
+vTemp.x = vTemp.x - 100.000
 vTemp.y = fXaxis + 500.000
 if vTemp.z > 200
 vTemp.z = 200
+endif
 if vTemp.z < 0
-endif
 vTemp.z = 0
-helicopter entity helient 40
 endif
+helicopter entity helient 40
 helicopter entity helient 5
 helicopter entity helient 40
 wait for all clearing sig1
@@ -285,19 +292,22 @@ moverotate entity helient from file "u_turn_w.rof" signaling sig1
 wait for all clearing sig1
 helicopter entity helient 14
 bLeftSide = 0
+label lab_6
 if outerCounter > 100
-label lab_00027
-goto lab_00032
-outerCounter = outerCounter + 1
+goto lab_00007
 endif
+outerCounter = outerCounter + 1
 tempHealth = helient.health
 if 0 == bHeliHasRetreated
 if tempHealth <= halfHeliStartHealth
 if 0 == bPlayerPassedHalfway
 bHeliHasRetreated = 1
-goto lab_00034
-goto lab_00014
+goto lab_00008
 endif
+endif
+endif
+goto lab_00004
+label lab_8
 helicopter entity helient 5
 wait for all clearing sig1
 helicopter entity helient 34
@@ -312,7 +322,8 @@ helicopter entity helient 14
 wait for all clearing sig1
 bLeftSide = 0
 bLastStrafedLeft = 0
-goto lab_00014
-goto lab_00034
+goto lab_00004
 endif
+goto lab_00008
+label lab_7
 exit

@@ -37,7 +37,7 @@ use entity boss
 boss.health += 8000
 animate entity boss performing action RUN by moving [-400.000 ,0.000 ,0.000]
 wait 0.700 seconds
-label lab_00020
+label lab_6
 suspend
 rnd = random from 1 to 10
 jo = get entity activator
@@ -57,54 +57,54 @@ endif
 suspend
 wait 0.200 seconds
 if boss.health <= 0
-goto lab_00006
+goto lab_00001
 endif
 boss.health += 100
 rnd = random from 1 to 5
 if rnd == 1
-goto lab_00008
+goto lab_00002
 endif
 if rnd == 2
-goto lab_00010
+goto lab_00003
 endif
 if rnd == 3
-goto lab_00012
+goto lab_00004
 endif
 if rnd == 4
-goto lab_00010
+goto lab_00003
 endif
 if rnd == 5
-goto lab_00015
+goto lab_00005
 endif
 suspend
 pos = boss.origin_x
 if pos > -3328
-goto lab_00012
+goto lab_00004
 endif
 if pos < -3776
-goto lab_00012
+goto lab_00004
 endif
 pos = boss.origin_y
 if pos > 2176
-goto lab_00012
+goto lab_00004
 endif
 if pos < 1728
-goto lab_00012
+goto lab_00004
 endif
-goto lab_00020
-label lab_00008
+goto lab_00006
+label lab_2
 reset ai for entity boss
 rnd = random from 1 to 10
 if rnd > 5
 animate entity boss performing action STD_XROLL_RT_A_A
-goto lab_00022
+goto lab_00007
 endif
 animate entity boss performing action STD_XROLL_LT_A_A
-label lab_00022
+label lab_7
 wait 0.800 seconds
 suspend
-goto lab_00020
-label lab_00012
+goto lab_00006
+label lab_4
 suspend
 jo = get entity activator
 animate entity boss performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
@@ -112,18 +112,18 @@ wait 0.300 seconds
 animate entity boss performing action RUN by moving to [-3520.000 ,1984.000 ,32.000]
 wait 0.700 seconds
 suspend
-goto lab_00020
-label lab_00010
+goto lab_00006
+label lab_3
 suspend
 jo = get entity activator
 animate entity boss performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 wait 0.200 seconds
 animate entity boss performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 suspend
-goto lab_00020
-label lab_00015
+goto lab_00006
+label lab_5
 boss.health += 500
-goto lab_00020
-label lab_00006
+goto lab_00006
+label lab_1
 animate entity boss performing action SCRIPT_RELEASE
 exit

@@ -53,14 +53,14 @@ chunk3 = find entity with targetname "tchunk3"
 chunk4 = find entity with targetname "tchunk4"
 chunk5 = find entity with targetname "tchunk5"
 light = find entity with targetname "trailerlight"
-rotate entity doorback by [0.000 ,0.000 ,0.000] at 300 speed signaling sig2
+rotate entity doorback by [0.000 ,-90.000 ,0.000] at 300 speed signaling sig2
 play sound "ambient/doors/norm/metal/swnghvy1/cls.wav" for entity doorback at volume 0.900
-rotate entity doorfront by [0.000 ,0.000 ,0.000] at 300 speed
+rotate entity doorfront by [0.000 ,90.000 ,0.000] at 300 speed
 wait for all clearing sig2
 wait 0.300 seconds
 use entity clip
 use entity guy
-on guy.health < 100 goto lab_00001
+on guy.health < 100 goto lab_1
 animate entity guy performing action STD_F_FWD_S_2 targeting entity chunk1
 wait 0.100 seconds
 use entity chunk1
@@ -94,11 +94,11 @@ wait for all clearing sig1
 exit
 animate entity guyback performing action SCRIPT_RELEASE
 animate entity guy2 performing action SCRIPT_RELEASE
-label lab_00001
+label lab_1
 reset ai for entity guy
 use entity clip
-rotate entity doorback by [0.000 ,0.000 ,0.000] at 300 speed signaling sig2
+rotate entity doorback by [0.000 ,90.000 ,0.000] at 300 speed signaling sig2
 play sound "ambient/doors/norm/metal/swnghvy1/opn.wav" for entity doorback at volume 0.900
-rotate entity doorfront by [0.000 ,0.000 ,0.000] at 300 speed signaling sig1
+rotate entity doorfront by [0.000 ,-90.000 ,0.000] at 300 speed signaling sig1
 wait for all clearing sig1,sig2
 exit

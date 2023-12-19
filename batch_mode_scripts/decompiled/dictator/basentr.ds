@@ -35,7 +35,7 @@ rb = find entity with targetname "rb"
 use entity ra
 use entity rb
 wait 0.100 seconds
-label lab_00003
+label lab_2
 suspend
 jo = get entity activator
 animate entity rb performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
@@ -45,8 +45,9 @@ wait 0.300 seconds
 animate entity rb performing action STD_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
 if ra.health < 0
 if rb.health < 0
-goto lab_00002
+goto lab_00001
 endif
-goto lab_00003
-label lab_00002
+endif
+goto lab_00002
+label lab_1
 exit

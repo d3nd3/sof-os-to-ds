@@ -47,7 +47,7 @@ b = 0
 animate entity nb performing action STD_XROLL_RT_A_A
 wait 0.200 seconds
 animate entity na performing action RUN by moving [45.000 ,0.000 ,0.000]
-label lab_00006
+label lab_2
 a += 1
 jo = get entity activator
 animate entity na performing action CCH_F_FWD_M_2 targeting entity jo kill nulltarget HEAD
@@ -71,9 +71,12 @@ if nb.health < 0
 if na.health < 0
 if na.health < 0
 if na.health < 0
-goto lab_00005
+goto lab_00001
+endif
+endif
+endif
 endif
 suspend
-goto lab_00006
-label lab_00005
+goto lab_00002
+label lab_1
 exit

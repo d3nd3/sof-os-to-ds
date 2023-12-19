@@ -42,16 +42,16 @@ wait 0.800 seconds
 sud.health += 80
 nord.health += 80
 animate entity sud performing action SCRIPT_RELEASE
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity nord performing action STD_F_FWD_R_2 targeting entity jo kill nulltarget HEAD
 wait 0.300 seconds
 if nord.health < 0
-goto lab_00002
+goto lab_00001
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 wait 0.200 seconds
 animate entity nord performing action SCRIPT_RELEASE
 exit

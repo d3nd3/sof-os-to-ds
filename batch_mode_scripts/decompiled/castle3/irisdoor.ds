@@ -55,18 +55,18 @@ iris11 = find entity with targetname "iris11"
 iris12 = find entity with targetname "iris12"
 irissound = find entity with targetname "irissound"
 play sound "Cin/Ger3/Script/BigDoor.adp" for entity irissound on channel CHAN_AUTO at volume 0.900
-rotate entity iris1 by [0.000 ,0.000 ,0.000] over 5 seconds
-rotate entity iris2 by [0.000 ,0.000 ,0.000] over 5 seconds
-rotate entity iris3 by [0.000 ,0.000 ,0.000] over 5 seconds
-rotate entity iris4 by [0.000 ,0.000 ,0.000] over 5 seconds
-rotate entity iris5 by [0.000 ,0.000 ,0.000] over 5 seconds
-rotate entity iris6 by [0.000 ,0.000 ,0.000] over 5 seconds
-rotate entity iris7 by [0.000 ,0.000 ,0.000] over 5 seconds
-rotate entity iris8 by [0.000 ,0.000 ,0.000] over 5 seconds
-rotate entity iris9 by [0.000 ,0.000 ,0.000] over 5 seconds
-rotate entity iris10 by [0.000 ,0.000 ,0.000] over 5 seconds
-rotate entity iris11 by [0.000 ,0.000 ,0.000] over 5 seconds
-rotate entity iris12 by [0.000 ,0.000 ,0.000] over 5 seconds
+rotate entity iris1 by [0.000 ,70.000 ,0.000] over 5 seconds
+rotate entity iris2 by [0.000 ,70.000 ,0.000] over 5 seconds
+rotate entity iris3 by [0.000 ,70.000 ,0.000] over 5 seconds
+rotate entity iris4 by [0.000 ,70.000 ,0.000] over 5 seconds
+rotate entity iris5 by [0.000 ,70.000 ,0.000] over 5 seconds
+rotate entity iris6 by [0.000 ,70.000 ,0.000] over 5 seconds
+rotate entity iris7 by [0.000 ,70.000 ,0.000] over 5 seconds
+rotate entity iris8 by [0.000 ,70.000 ,0.000] over 5 seconds
+rotate entity iris9 by [0.000 ,70.000 ,0.000] over 5 seconds
+rotate entity iris10 by [0.000 ,70.000 ,0.000] over 5 seconds
+rotate entity iris11 by [0.000 ,70.000 ,0.000] over 5 seconds
+rotate entity iris12 by [0.000 ,70.000 ,0.000] over 5 seconds
 wait 5.500 seconds
 unload sound "Cin/Ger3/Script/BigDoor.adp"
 wait 0.200 seconds

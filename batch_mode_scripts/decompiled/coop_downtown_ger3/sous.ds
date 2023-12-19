@@ -60,7 +60,7 @@ wait 0.100 seconds
 animate entity app performing action STD_FVIOLENT_DWN_M_2 targeting entity jo kill nulltarget HEAD
 animate entity bpp performing action STD_FVIOLENT_DWN_M_2 targeting entity jo kill nulltarget HEAD
 suspend
-label lab_00003
+label lab_2
 jo = get entity activator
 animate entity app performing action STD_FVIOLENT_DWN_M_2 targeting entity jo
 animate entity bpp performing action CCH_F_FWD_M_2 targeting entity jo
@@ -82,9 +82,13 @@ if bpp.health <= 0
 if cpp.health <= 0
 if dpp.health <= 0
 if epp.health <= 0
-goto lab_00002
+goto lab_00001
+endif
+endif
+endif
+endif
 endif
 suspend
-goto lab_00003
-label lab_00002
+goto lab_00002
+label lab_1
 exit
