@@ -1,2 +1,2 @@
-i686-w64-mingw32-g++ -static-libgcc -static-libstdc++ -g src/main.c src/animation_ids.c src/movetypes.c src/sounds.c src/emotions.c -o sofos.exe
-#strip --strip-all sofos.exe
+i686-w64-mingw32-g++ -static-libgcc -static-libstdc++ src/main.c src/animation_ids.c src/movetypes.c src/sounds.c src/emotions.c -o sofos.exe
+strip --strip-all sofos.exe
