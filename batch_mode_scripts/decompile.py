@@ -4,7 +4,7 @@ from subprocess import Popen, PIPE
 outDirPrefix = "decompiled"
 
 inFolder = os.path.join(".", "os")
-decompiler = os.path.join(".", "sofos.exe")
+decompiler = os.path.join(".", "../sofos.exe")
 
 counter = 0
 error_counter = 0
