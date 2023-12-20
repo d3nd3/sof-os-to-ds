@@ -3,4 +3,5 @@ sofos.exe
 decompiled/
 /*.os
 *.o
+!/sofos_release/os_library/*.o
 *.zip

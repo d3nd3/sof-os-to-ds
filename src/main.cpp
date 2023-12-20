@@ -381,7 +381,7 @@ int main ( int argc, char ** argv) {
 		do {
 			//TopLevelDirectory.
 			// printf("data.name: %s\n",data.name);
-			if ( strcmp(data.name, "..") != 0 ) {
+			if ( strcmp(data.name, "..") != 0 && strcmp(data.name,".") != 0 ) {
 				if (data.attrib & _A_SUBDIR) {
 					ProcessFilesAndSubdirectories(inFileName, data.name, totalFiles, errorFiles, successFiles);
 				}
@@ -629,18 +629,18 @@ void setupCommonDependency(void) {
 				//the file is valid
 			} else {
 				//write a valid file
-				printf("Because checksum invalid\n");
+				//printf("Because checksum invalid\n");
 				writeHelperFile();
 			}
 		} else {
 			//its size is 0.
-			printf("Because size is 0\n");
+			//printf("Because size is 0\n");
 			writeHelperFile();
 		}
 
 	} else {
 		//it does not exist so create one.
-		printf("Because doesnt exist\n");
+		//printf("Because doesnt exist\n");
 		writeHelperFile();
 	}
 }
