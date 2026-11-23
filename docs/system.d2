@@ -1,0 +1,87 @@
+# sof-os-to-ds — system overview (source of truth).
+# Render: scripts/render-diagram.sh  (svg: light+dark, png: dark, for gpm desktop)
+# Colours come from the d2 theme plus stroke-only classes, so light and dark both stay legible.
+# Keep node labels short: a zone wider than ~2 columns makes TALA drop the 2x2 grid.
+
+title: |md
+  **sof-os-to-ds** — byte-stream un-compiler: Raven's compiled `.os` scripts back into readable `.ds`
+| {near: top-center}
+
+direction: right
+grid-columns: 2
+grid-rows: 2
+
+entry: Entry points {
+  direction: down
+  file: "`sofos.exe in.os [out.ds]` — one file, `decompiled.ds` by default"
+  dir: "`sofos.exe somedir` — every `.os` below it, into `decompiled/<subdir>/`"
+  drop: drag and drop a file or folder — same two modes
+  usage: "`-h` · `--help` · `-v` · `help` — banner, then stop"
+  build: "`make` cross-compiles; `make release` zips and bumps `version.txt`"
+}
+
+ext: External {
+  direction: down
+  sofds: "`sofds.exe` (shipped) — Raven's compiler, `.ds` back to `.os`"
+  server: the SoF server's `user/<mod>/ds/` — where `.os` is really loaded
+  wine: the exe is win32-only — on Linux it is run under wine
+  py: "`deprecated_py_wrap/decompile.py` — old per-file shell driver"
+}
+
+core: Core · one byte walk, one handler per opcode {
+  direction: down
+  load: "`parseOpcodes` gets the stream at +4 — the leading int32 is the version"
+  dispatch: "`switch` on the opcode byte, then a `handle*` per family"
+  stack: "`PushStack` / `PopStack` — the expression stack, replayed in reverse"
+  symbols: "`Variables` + `Fields` — name to global index, rebuilt per file"
+  labels: "`FixUps` — raw jump offsets resolved to `label_N` at the end"
+  tables: "`animation_ids` / `movetypes` / `sounds` / `emotions` — int to name"
+  helper: "`setupCommonDependency` — writes `helper.ds`, adds its include"
+}
+
+state: State {
+  direction: down
+  os: the input `.os` — only ever read {
+    shape: cylinder
+  }
+  out: "`decompiled.ds` — rewritten per file, no merge, no backup" {
+    shape: cylinder
+  }
+  helper: "`helper.ds` — the define wall every output includes" {
+    shape: cylinder
+  }
+  corpus: "`sofos_release/os_library/` — one checked `.os` per map" {
+    shape: cylinder
+  }
+}
+
+entry.file -> core.load
+entry.dir -> core.load
+entry.drop -> entry.file
+core.load -> core.dispatch
+core.dispatch -> core.stack
+core.dispatch -> core.symbols
+core.dispatch -> core.labels
+core.dispatch -> core.tables
+core.load -> state.os: "reads"
+core.dispatch -> state.out
+core.labels -> state.out
+core.helper -> state.helper
+core.dispatch -> ext.sofds: "round-trip check"
+ext.sofds -> ext.server: "recompiled .os"
+
+classes: {
+  store: {style.stroke: "#1c7ed6"; style.stroke-width: 2}
+  ext: {style.stroke: "#7048e8"; style.stroke-dash: 3}
+  dead: {style.stroke: "#868e96"; style.stroke-dash: 2}
+}
+
+state.os.class: store
+state.out.class: store
+state.helper.class: store
+state.corpus.class: store
+ext.sofds.class: ext
+ext.server.class: ext
+ext.wine.class: ext
+ext.py.class: dead
+entry.drop.class: dead
